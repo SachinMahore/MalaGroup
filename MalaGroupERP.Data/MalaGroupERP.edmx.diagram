@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="fd555641bcb146b98e3f4fc745270bbc" Name="Diagram1" ZoomLevel="65">
+        <EntityTypeShape EntityType="MalaGroupERPModel.syNavigationNode" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MalaGroupERPModel.syResource" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MalaGroupERPModel.syResourceType" Width="1.5" PointX="5.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MalaGroupERPModel.syRoleResource" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MalaGroupERPModel.syRole" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MalaGroupERPModel.syRolesResourcesLevel" Width="1.5" PointX="3" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MalaGroupERPModel.syUsersRole" Width="1.5" PointX="3" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MalaGroupERPModel.tblLoginHistory" Width="1.5" PointX="7.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MalaGroupERPModel.tblMessage" Width="1.5" PointX="7.75" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MalaGroupERPModel.tblPagesLoginHistory" Width="1.5" PointX="7.75" PointY="10.5" IsExpanded="true" />
+        <AssociationConnector Association="MalaGroupERPModel.FK_syNavigationNodes_syResources" ManuallyRouted="false" />
+        <AssociationConnector Association="MalaGroupERPModel.FK_syRoleResources_syResources" ManuallyRouted="false" />
+        <AssociationConnector Association="MalaGroupERPModel.FK_syRoleResources_syRoles" ManuallyRouted="false" />
+        <AssociationConnector Association="MalaGroupERPModel.FK_syRolesResourcesLevels_syRoles" ManuallyRouted="false" />
+        <AssociationConnector Association="MalaGroupERPModel.FK_syUsersRoles_syRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MalaGroupERPModel.tbl_VehicleType" Width="1.5" PointX="0.75" PointY="13.75" />
+        <EntityTypeShape EntityType="MalaGroupERPModel.tbl_Question" Width="1.5" PointX="14.375" PointY="14.75" />
+        <EntityTypeShape EntityType="MalaGroupERPModel.tbl_VehicleLeads" Width="1.5" PointX="16.375" PointY="0.75" />
+        <EntityTypeShape EntityType="MalaGroupERPModel.tbl_AgentOrder" Width="1.5" PointX="10.375" PointY="4.75" />
+        <EntityTypeShape EntityType="MalaGroupERPModel.tbl_CallHistory" Width="1.5" PointX="14.75" PointY="10.75" />
+        <EntityTypeShape EntityType="MalaGroupERPModel.tbl_NotExportLead" Width="1.5" PointX="0.75" PointY="16.75" />
+        <EntityTypeShape EntityType="MalaGroupERPModel.tbl_Calls" Width="1.5" PointX="12.375" PointY="4.75" />
+        <EntityTypeShape EntityType="MalaGroupERPModel.tbl_Events" Width="1.5" PointX="17.375" PointY="8.75" />
+        <EntityTypeShape EntityType="MalaGroupERPModel.tbl_Tasks" Width="1.5" PointX="13.375" PointY="17.75" />
+        <EntityTypeShape EntityType="MalaGroupERPModel.tblLogin" Width="1.5" PointX="18.375" PointY="13.75" />
+        <EntityTypeShape EntityType="MalaGroupERPModel.tbl_AttachedFiles" Width="1.5" PointX="15.375" PointY="17.75" />
+        <EntityTypeShape EntityType="MalaGroupERPModel.tbl_FromAddress" Width="1.5" PointX="18.375" PointY="5.75" />
+        <EntityTypeShape EntityType="MalaGroupERPModel.tbl_VehicleAO" Width="1.5" PointX="19.375" PointY="8.75" />
+        <EntityTypeShape EntityType="MalaGroupERPModel.tbl_ABSCreditCrad" Width="1.5" PointX="21.375" PointY="0.75" />
+        <EntityTypeShape EntityType="MalaGroupERPModel.tbl_Notes" Width="1.5" PointX="15.375" PointY="21.75" />
+        <EntityTypeShape EntityType="MalaGroupERPModel.tbl_ViewedBy" Width="1.5" PointX="5.375" PointY="13.75" />
+        <EntityTypeShape EntityType="MalaGroupERPModel.tbl_Transaction" Width="1.5" PointX="0.75" PointY="22.75" />
+        <EntityTypeShape EntityType="MalaGroupERPModel.tbl_ChatViewedBy" Width="1.5" PointX="7.375" PointY="22.75" />
+        <EntityTypeShape EntityType="MalaGroupERPModel.tbl_LeadInformation" Width="1.5" PointX="20.375" PointY="12.75" />
+        <EntityTypeShape EntityType="MalaGroupERPModel.tbl_EmailTemplates" Width="1.5" PointX="14.375" PointY="4.75" />
+        <EntityTypeShape EntityType="MalaGroupERPModel.tbl_ExportHistory" Width="1.5" PointX="7.375" PointY="13.75" />
+        <EntityTypeShape EntityType="MalaGroupERPModel.tbl_Chattter" Width="1.5" PointX="10.375" PointY="8.75" />
+        <EntityTypeShape EntityType="MalaGroupERPModel.tbl_Accounts" Width="1.5" PointX="3.375" PointY="16.75" />
+        <EntityTypeShape EntityType="MalaGroupERPModel.tbl_AuditTrail" Width="1.5" PointX="11.375" PointY="13.75" />
+        <EntityTypeShape EntityType="MalaGroupERPModel.tbl_OrderCardCheckInfo" Width="1.5" PointX="5.375" PointY="17.75" />
+        <EntityTypeShape EntityType="MalaGroupERPModel.tbl_Package" Width="1.5" PointX="10.375" PointY="0.75" />
+        <EntityTypeShape EntityType="MalaGroupERPModel.tbl_AOScript" Width="1.5" PointX="12.375" PointY="0.75" />
+        <EntityTypeShape EntityType="MalaGroupERPModel.tbl_ReportTakeOffListCriteria" Width="1.5" PointX="9.375" PointY="16.75" />
+        <EntityTypeShape EntityType="MalaGroupERPModel.tbl_EMails" Width="1.5" PointX="18.375" PointY="0.75" />
+        <EntityTypeShape EntityType="MalaGroupERPModel.tbl_Snippet" Width="1.5" PointX="22.375" PointY="11.75" />
+        <EntityTypeShape EntityType="MalaGroupERPModel.tbl_CustomReportDataType" Width="1.5" PointX="22.375" PointY="14.75" />
+        <EntityTypeShape EntityType="MalaGroupERPModel.tbl_CustomReportFields" Width="1.5" PointX="22.375" PointY="17.75" />
+        <EntityTypeShape EntityType="MalaGroupERPModel.tbl_CustomReportFilters" Width="1.5" PointX="22.375" PointY="20.75" />
+        <EntityTypeShape EntityType="MalaGroupERPModel.tbl_ReportTables" Width="1.5" PointX="23.375" PointY="0.75" />
+        <EntityTypeShape EntityType="MalaGroupERPModel.tbl_ReportTablesFields" Width="1.5" PointX="23.375" PointY="3.75" />
+        <EntityTypeShape EntityType="MalaGroupERPModel.tbl_ReportTablesJoins" Width="1.5" PointX="23.375" PointY="6.75" />
+        <EntityTypeShape EntityType="MalaGroupERPModel.tbl_CustomReport" Width="1.5" PointX="11.25" PointY="23.875" />
+        <EntityTypeShape EntityType="MalaGroupERPModel.tbl_AgentOrderDetails" Width="1.5" PointX="20.375" PointY="23.75" />
+        <EntityTypeShape EntityType="MalaGroupERPModel.tbl_AccountOwner" Width="1.5" PointX="22.375" PointY="23.75" />
+        <EntityTypeShape EntityType="MalaGroupERPModel.tbl_VehicleMake" Width="1.5" PointX="24.375" PointY="9.75" />
+        <EntityTypeShape EntityType="MalaGroupERPModel.tbl_OrderTransactions" Width="1.5" PointX="11.375" PointY="17.75" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,880 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MalaGroupERPModelStoreContainer" CdmEntityContainer="MalaGroupERPEntities">
+    <EntitySetMapping Name="syNavigationNodes">
+      <EntityTypeMapping TypeName="MalaGroupERPModel.syNavigationNode">
+        <MappingFragment StoreEntitySet="syNavigationNodes">
+          <ScalarProperty Name="NodeID" ColumnName="NodeID" />
+          <ScalarProperty Name="DisplayIndex" ColumnName="DisplayIndex" />
+          <ScalarProperty Name="ResourceId" ColumnName="ResourceId" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="IsPopupWindow" ColumnName="IsPopupWindow" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="syResources">
+      <EntityTypeMapping TypeName="MalaGroupERPModel.syResource">
+        <MappingFragment StoreEntitySet="syResources">
+          <ScalarProperty Name="ClickEent" ColumnName="ClickEent" />
+          <ScalarProperty Name="ResourceId" ColumnName="ResourceId" />
+          <ScalarProperty Name="Resource" ColumnName="Resource" />
+          <ScalarProperty Name="ResourceTypeId" ColumnName="ResourceTypeId" />
+          <ScalarProperty Name="Controller" ColumnName="Controller" />
+          <ScalarProperty Name="Action" ColumnName="Action" />
+          <ScalarProperty Name="UsedIn" ColumnName="UsedIn" />
+          <ScalarProperty Name="IsRight" ColumnName="IsRight" />
+          <ScalarProperty Name="TabText" ColumnName="TabText" />
+          <ScalarProperty Name="PageTitle" ColumnName="PageTitle" />
+          <ScalarProperty Name="Icon" ColumnName="Icon" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="syResourceTypes">
+      <EntityTypeMapping TypeName="MalaGroupERPModel.syResourceType">
+        <MappingFragment StoreEntitySet="syResourceTypes">
+          <ScalarProperty Name="ResourceTypeId" ColumnName="ResourceTypeId" />
+          <ScalarProperty Name="ResourceType" ColumnName="ResourceType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="syRoleResources">
+      <EntityTypeMapping TypeName="MalaGroupERPModel.syRoleResource">
+        <MappingFragment StoreEntitySet="syRoleResources">
+          <ScalarProperty Name="RoleResourceId" ColumnName="RoleResourceId" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="ResourceId" ColumnName="ResourceId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="syRoles">
+      <EntityTypeMapping TypeName="MalaGroupERPModel.syRole">
+        <MappingFragment StoreEntitySet="syRoles">
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="RoleCode" ColumnName="RoleCode" />
+          <ScalarProperty Name="RoleDescription" ColumnName="RoleDescription" />
+          <ScalarProperty Name="RoleStatus" ColumnName="RoleStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="syRolesResourcesLevels">
+      <EntityTypeMapping TypeName="MalaGroupERPModel.syRolesResourcesLevel">
+        <MappingFragment StoreEntitySet="syRolesResourcesLevels">
+          <ScalarProperty Name="RRLId" ColumnName="RRLId" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="ModuleId" ColumnName="ModuleId" />
+          <ScalarProperty Name="ResourceId" ColumnName="ResourceId" />
+          <ScalarProperty Name="AccessLevel" ColumnName="AccessLevel" />
+          <ScalarProperty Name="HasSpecialRight" ColumnName="HasSpecialRight" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="syUsersRoles">
+      <EntityTypeMapping TypeName="MalaGroupERPModel.syUsersRole">
+        <MappingFragment StoreEntitySet="syUsersRoles">
+          <ScalarProperty Name="UserRoleId" ColumnName="UserRoleId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblLoginHistories">
+      <EntityTypeMapping TypeName="MalaGroupERPModel.tblLoginHistory">
+        <MappingFragment StoreEntitySet="tblLoginHistory">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="SessionID" ColumnName="SessionID" />
+          <ScalarProperty Name="IPAddress" ColumnName="IPAddress" />
+          <ScalarProperty Name="PageName" ColumnName="PageName" />
+          <ScalarProperty Name="LoginDateTime" ColumnName="LoginDateTime" />
+          <ScalarProperty Name="LogoutDateTime" ColumnName="LogoutDateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblMessages">
+      <EntityTypeMapping TypeName="MalaGroupERPModel.tblMessage">
+        <MappingFragment StoreEntitySet="tblMessage">
+          <ScalarProperty Name="MessageId" ColumnName="MessageId" />
+          <ScalarProperty Name="MessageFrom" ColumnName="MessageFrom" />
+          <ScalarProperty Name="MessageTo" ColumnName="MessageTo" />
+          <ScalarProperty Name="MessageText" ColumnName="MessageText" />
+          <ScalarProperty Name="MessageTime" ColumnName="MessageTime" />
+          <ScalarProperty Name="IsRead" ColumnName="IsRead" />
+          <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblPagesLoginHistories">
+      <EntityTypeMapping TypeName="MalaGroupERPModel.tblPagesLoginHistory">
+        <MappingFragment StoreEntitySet="tblPagesLoginHistory">
+          <ScalarProperty Name="PHID" ColumnName="PHID" />
+          <ScalarProperty Name="LHID" ColumnName="LHID" />
+          <ScalarProperty Name="PageName" ColumnName="PageName" />
+          <ScalarProperty Name="PageInDateTime" ColumnName="PageInDateTime" />
+          <ScalarProperty Name="PageOutDateTime" ColumnName="PageOutDateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_VehicleType">
+      <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_VehicleType">
+        <MappingFragment StoreEntitySet="tbl_VehicleType">
+          <ScalarProperty Name="VehicleType" ColumnName="VehicleType" />
+          <ScalarProperty Name="VehicleMake" ColumnName="VehicleMake" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Question">
+      <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_Question">
+        <MappingFragment StoreEntitySet="tbl_Question">
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Answer" ColumnName="Answer" />
+          <ScalarProperty Name="Question" ColumnName="Question" />
+          <ScalarProperty Name="QID" ColumnName="QID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_VehicleLeads">
+      <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_VehicleLeads">
+        <MappingFragment StoreEntitySet="tbl_VehicleLeads">
+          <ScalarProperty Name="VehicleTypeText" ColumnName="VehicleTypeText" />
+          <ScalarProperty Name="LeadID" ColumnName="LeadID" />
+          <ScalarProperty Name="FinanceCompany" ColumnName="FinanceCompany" />
+          <ScalarProperty Name="Dealership" ColumnName="Dealership" />
+          <ScalarProperty Name="LicensePlate" ColumnName="LicensePlate" />
+          <ScalarProperty Name="VINNo" ColumnName="VINNo" />
+          <ScalarProperty Name="VehicleYear" ColumnName="VehicleYear" />
+          <ScalarProperty Name="VehicleType" ColumnName="VehicleType" />
+          <ScalarProperty Name="VehicleMake" ColumnName="VehicleMake" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_AgentOrder">
+      <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_AgentOrder">
+        <MappingFragment StoreEntitySet="tbl_AgentOrder">
+          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+          <ScalarProperty Name="IsCompleted" ColumnName="IsCompleted" />
+          <ScalarProperty Name="PinNo" ColumnName="PinNo" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="StepCompleted" ColumnName="StepCompleted" />
+          <ScalarProperty Name="AgentID" ColumnName="AgentID" />
+          <ScalarProperty Name="LeadID" ColumnName="LeadID" />
+          <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_CallHistory">
+      <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_CallHistory">
+        <MappingFragment StoreEntitySet="tbl_CallHistory">
+          <ScalarProperty Name="PageID" ColumnName="PageID" />
+          <ScalarProperty Name="LeadID" ColumnName="LeadID" />
+          <ScalarProperty Name="CallDate" ColumnName="CallDate" />
+          <ScalarProperty Name="AgentID" ColumnName="AgentID" />
+          <ScalarProperty Name="AOID" ColumnName="AOID" />
+          <ScalarProperty Name="CHID" ColumnName="CHID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_NotExportLead">
+      <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_NotExportLead">
+        <MappingFragment StoreEntitySet="tbl_NotExportLead">
+          <ScalarProperty Name="ExportDate" ColumnName="ExportDate" />
+          <ScalarProperty Name="DEALERSHIP" ColumnName="DEALERSHIP" />
+          <ScalarProperty Name="LOAD_DATE" ColumnName="LOAD_DATE" />
+          <ScalarProperty Name="LENDER_NAME" ColumnName="LENDER_NAME" />
+          <ScalarProperty Name="LISTCODE" ColumnName="LISTCODE" />
+          <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+          <ScalarProperty Name="EXPIRATIONDATE" ColumnName="EXPIRATIONDATE" />
+          <ScalarProperty Name="LOGIN" ColumnName="LOGIN" />
+          <ScalarProperty Name="VEHTYPE" ColumnName="VEHTYPE" />
+          <ScalarProperty Name="MAKE" ColumnName="MAKE" />
+          <ScalarProperty Name="YEAR" ColumnName="YEAR" />
+          <ScalarProperty Name="VIN" ColumnName="VIN" />
+          <ScalarProperty Name="ZIP" ColumnName="ZIP" />
+          <ScalarProperty Name="STATE" ColumnName="STATE" />
+          <ScalarProperty Name="CITY" ColumnName="CITY" />
+          <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+          <ScalarProperty Name="LASTNAME" ColumnName="LASTNAME" />
+          <ScalarProperty Name="FIRSTNAME" ColumnName="FIRSTNAME" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Calls">
+      <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_Calls">
+        <MappingFragment StoreEntitySet="tbl_Calls">
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedById" ColumnName="ModifiedById" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedById" ColumnName="CreatedById" />
+          <ScalarProperty Name="ReleatedToIds" ColumnName="ReleatedToIds" />
+          <ScalarProperty Name="CallNameIds" ColumnName="CallNameIds" />
+          <ScalarProperty Name="CallComment" ColumnName="CallComment" />
+          <ScalarProperty Name="CallSubject" ColumnName="CallSubject" />
+          <ScalarProperty Name="AutoGenID" ColumnName="AutoGenID" />
+          <ScalarProperty Name="PageID" ColumnName="PageID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Events">
+      <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_Events">
+        <MappingFragment StoreEntitySet="tbl_Events">
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedById" ColumnName="ModifiedById" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedById" ColumnName="CreatedById" />
+          <ScalarProperty Name="ReleatedToIds" ColumnName="ReleatedToIds" />
+          <ScalarProperty Name="EventNameIds" ColumnName="EventNameIds" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EventDescription" ColumnName="EventDescription" />
+          <ScalarProperty Name="EventSubject" ColumnName="EventSubject" />
+          <ScalarProperty Name="AutoGenID" ColumnName="AutoGenID" />
+          <ScalarProperty Name="PageID" ColumnName="PageID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Tasks">
+      <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_Tasks">
+        <MappingFragment StoreEntitySet="tbl_Tasks">
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedById" ColumnName="ModifiedById" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedById" ColumnName="CreatedById" />
+          <ScalarProperty Name="ReleatedToIds" ColumnName="ReleatedToIds" />
+          <ScalarProperty Name="TaskNameIds" ColumnName="TaskNameIds" />
+          <ScalarProperty Name="AssignToId" ColumnName="AssignToId" />
+          <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+          <ScalarProperty Name="TaskSubject" ColumnName="TaskSubject" />
+          <ScalarProperty Name="AutoGenID" ColumnName="AutoGenID" />
+          <ScalarProperty Name="PageID" ColumnName="PageID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblLogins">
+      <EntityTypeMapping TypeName="MalaGroupERPModel.tblLogin">
+        <MappingFragment StoreEntitySet="tblLogin">
+          <ScalarProperty Name="SMTPPassword" ColumnName="SMTPPassword" />
+          <ScalarProperty Name="SMTPUserName" ColumnName="SMTPUserName" />
+          <ScalarProperty Name="UserRoleId" ColumnName="UserRoleId" />
+          <ScalarProperty Name="CommunityNickname" ColumnName="CommunityNickname" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+          <ScalarProperty Name="LastModifiedById" ColumnName="LastModifiedById" />
+          <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+          <ScalarProperty Name="CreatedById" ColumnName="CreatedById" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="FederationID" ColumnName="FederationID" />
+          <ScalarProperty Name="EndDay" ColumnName="EndDay" />
+          <ScalarProperty Name="StartDay" ColumnName="StartDay" />
+          <ScalarProperty Name="EmailEncoding" ColumnName="EmailEncoding" />
+          <ScalarProperty Name="UserLicense" ColumnName="UserLicense" />
+          <ScalarProperty Name="Department" ColumnName="Department" />
+          <ScalarProperty Name="Company" ColumnName="Company" />
+          <ScalarProperty Name="Locale" ColumnName="Locale" />
+          <ScalarProperty Name="Language" ColumnName="Language" />
+          <ScalarProperty Name="Timezone" ColumnName="Timezone" />
+          <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+          <ScalarProperty Name="ShowNotification" ColumnName="ShowNotification" />
+          <ScalarProperty Name="StationMarketID" ColumnName="StationMarketID" />
+          <ScalarProperty Name="UserType" ColumnName="UserType" />
+          <ScalarProperty Name="AddToGroup" ColumnName="AddToGroup" />
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+          <ScalarProperty Name="Extension" ColumnName="Extension" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="CellPhone" ColumnName="CellPhone" />
+          <ScalarProperty Name="WorkPhone" ColumnName="WorkPhone" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+          <ScalarProperty Name="StateID" ColumnName="StateID" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Address1" ColumnName="Address1" />
+          <ScalarProperty Name="SortOrderSFP" ColumnName="SortOrderSFP" />
+          <ScalarProperty Name="IsSuperUser" ColumnName="IsSuperUser" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="IsClientOrVendor" ColumnName="IsClientOrVendor" />
+          <ScalarProperty Name="ClientOrVendorID" ColumnName="ClientOrVendorID" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_AttachedFiles">
+      <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_AttachedFiles">
+        <MappingFragment StoreEntitySet="tbl_AttachedFiles">
+          <ScalarProperty Name="CreatedByID" ColumnName="CreatedByID" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="OriginalFileName" ColumnName="OriginalFileName" />
+          <ScalarProperty Name="SystemFileName" ColumnName="SystemFileName" />
+          <ScalarProperty Name="AGID" ColumnName="AGID" />
+          <ScalarProperty Name="PageID" ColumnName="PageID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_FromAddress">
+      <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_FromAddress">
+        <MappingFragment StoreEntitySet="tbl_FromAddress">
+          <ScalarProperty Name="FromName" ColumnName="FromName" />
+          <ScalarProperty Name="FromEmailAddress" ColumnName="FromEmailAddress" />
+          <ScalarProperty Name="FromID" ColumnName="FromID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_VehicleAO">
+      <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_VehicleAO">
+        <MappingFragment StoreEntitySet="tbl_VehicleAO">
+          <ScalarProperty Name="AOID" ColumnName="AOID" />
+          <ScalarProperty Name="FinanceCompany" ColumnName="FinanceCompany" />
+          <ScalarProperty Name="Dealership" ColumnName="Dealership" />
+          <ScalarProperty Name="LicensePlate" ColumnName="LicensePlate" />
+          <ScalarProperty Name="VINNo" ColumnName="VINNo" />
+          <ScalarProperty Name="VehicleYear" ColumnName="VehicleYear" />
+          <ScalarProperty Name="VehicleType" ColumnName="VehicleType" />
+          <ScalarProperty Name="VehicleMake" ColumnName="VehicleMake" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_ABSCreditCrad">
+      <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_ABSCreditCrad">
+        <MappingFragment StoreEntitySet="tbl_ABSCreditCrad">
+          <ScalarProperty Name="ModifiedById" ColumnName="ModifiedById" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="CreatedById" ColumnName="CreatedById" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="IsSend" ColumnName="IsSend" />
+          <ScalarProperty Name="AuthCode" ColumnName="AuthCode" />
+          <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+          <ScalarProperty Name="TransactionMessage" ColumnName="TransactionMessage" />
+          <ScalarProperty Name="TransactionStatus" ColumnName="TransactionStatus" />
+          <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+          <ScalarProperty Name="ChargeAmount" ColumnName="ChargeAmount" />
+          <ScalarProperty Name="VehicleMake" ColumnName="VehicleMake" />
+          <ScalarProperty Name="VehicleYear" ColumnName="VehicleYear" />
+          <ScalarProperty Name="ShippingCountry" ColumnName="ShippingCountry" />
+          <ScalarProperty Name="ShippingZipPostalCode" ColumnName="ShippingZipPostalCode" />
+          <ScalarProperty Name="ShippingStateProvince" ColumnName="ShippingStateProvince" />
+          <ScalarProperty Name="ShippingCity" ColumnName="ShippingCity" />
+          <ScalarProperty Name="ShippingStreet" ColumnName="ShippingStreet" />
+          <ScalarProperty Name="PersonAccountLastName" ColumnName="PersonAccountLastName" />
+          <ScalarProperty Name="PersonAccountFirstName" ColumnName="PersonAccountFirstName" />
+          <ScalarProperty Name="PersonAccountEmail" ColumnName="PersonAccountEmail" />
+          <ScalarProperty Name="PrimaryPhone" ColumnName="PrimaryPhone" />
+          <ScalarProperty Name="BillingCountry" ColumnName="BillingCountry" />
+          <ScalarProperty Name="BillingZipPostal" ColumnName="BillingZipPostal" />
+          <ScalarProperty Name="BillingState" ColumnName="BillingState" />
+          <ScalarProperty Name="BillingCity" ColumnName="BillingCity" />
+          <ScalarProperty Name="BillingAddress" ColumnName="BillingAddress" />
+          <ScalarProperty Name="BillingLastName" ColumnName="BillingLastName" />
+          <ScalarProperty Name="BillingFirstName" ColumnName="BillingFirstName" />
+          <ScalarProperty Name="PinNumber" ColumnName="PinNumber" />
+          <ScalarProperty Name="PasswordId" ColumnName="PasswordId" />
+          <ScalarProperty Name="ChargeDate" ColumnName="ChargeDate" />
+          <ScalarProperty Name="PaymentCount" ColumnName="PaymentCount" />
+          <ScalarProperty Name="TransactionCount" ColumnName="TransactionCount" />
+          <ScalarProperty Name="CardExpirationYear" ColumnName="CardExpirationYear" />
+          <ScalarProperty Name="CardExpirationMonth" ColumnName="CardExpirationMonth" />
+          <ScalarProperty Name="CardNumber" ColumnName="CardNumber" />
+          <ScalarProperty Name="PaymentMethod" ColumnName="PaymentMethod" />
+          <ScalarProperty Name="TransactionTotal" ColumnName="TransactionTotal" />
+          <ScalarProperty Name="ChargeAmountAfterFirstPayment" ColumnName="ChargeAmountAfterFirstPayment" />
+          <ScalarProperty Name="InvoiceNumber" ColumnName="InvoiceNumber" />
+          <ScalarProperty Name="PaymentStartDate" ColumnName="PaymentStartDate" />
+          <ScalarProperty Name="PaymentStatus" ColumnName="PaymentStatus" />
+          <ScalarProperty Name="OpportunityID" ColumnName="OpportunityID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Notes">
+      <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_Notes">
+        <MappingFragment StoreEntitySet="tbl_Notes">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+          <ScalarProperty Name="LastModifiedById" ColumnName="LastModifiedById" />
+          <ScalarProperty Name="CreatedByID" ColumnName="CreatedByID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="NotesDate" ColumnName="NotesDate" />
+          <ScalarProperty Name="Photo" ColumnName="Photo" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_ViewedBy">
+      <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_ViewedBy">
+        <MappingFragment StoreEntitySet="tbl_ViewedBy">
+          <ScalarProperty Name="ViewedDate" ColumnName="ViewedDate" />
+          <ScalarProperty Name="ViewedById" ColumnName="ViewedById" />
+          <ScalarProperty Name="NID" ColumnName="NID" />
+          <ScalarProperty Name="NVID" ColumnName="NVID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Transaction">
+      <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_Transaction">
+        <MappingFragment StoreEntitySet="tbl_Transaction">
+          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+          <ScalarProperty Name="LeadID" ColumnName="LeadID" />
+          <ScalarProperty Name="AOID" ColumnName="AOID" />
+          <ScalarProperty Name="CardSecurityCode" ColumnName="CardSecurityCode" />
+          <ScalarProperty Name="CardExpirationYear" ColumnName="CardExpirationYear" />
+          <ScalarProperty Name="CardExpirationMonth" ColumnName="CardExpirationMonth" />
+          <ScalarProperty Name="Token" ColumnName="Token" />
+          <ScalarProperty Name="CardNumber" ColumnName="CardNumber" />
+          <ScalarProperty Name="CardType" ColumnName="CardType" />
+          <ScalarProperty Name="CardDetail" ColumnName="CardDetail" />
+          <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_ChatViewedBy">
+      <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_ChatViewedBy">
+        <MappingFragment StoreEntitySet="tbl_ChatViewedBy">
+          <ScalarProperty Name="ViewedDate" ColumnName="ViewedDate" />
+          <ScalarProperty Name="ViewedById" ColumnName="ViewedById" />
+          <ScalarProperty Name="CID" ColumnName="CID" />
+          <ScalarProperty Name="CVID" ColumnName="CVID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_LeadInformation">
+      <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_LeadInformation">
+        <MappingFragment StoreEntitySet="tbl_LeadInformation">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="LicensePlate" ColumnName="LicensePlate" />
+          <ScalarProperty Name="VinNo" ColumnName="VinNo" />
+          <ScalarProperty Name="Finance" ColumnName="Finance" />
+          <ScalarProperty Name="DelearShip" ColumnName="DelearShip" />
+          <ScalarProperty Name="VechileYear" ColumnName="VechileYear" />
+          <ScalarProperty Name="VechileTye" ColumnName="VechileTye" />
+          <ScalarProperty Name="VechileMake" ColumnName="VechileMake" />
+          <ScalarProperty Name="Take_Off_List__c" ColumnName="Take_Off_List__c" />
+          <ScalarProperty Name="AOStatus" ColumnName="AOStatus" />
+          <ScalarProperty Name="Password_Generator__c" ColumnName="Password_Generator__c" />
+          <ScalarProperty Name="AccountText" ColumnName="AccountText" />
+          <ScalarProperty Name="ConvertedDate" ColumnName="ConvertedDate" />
+          <ScalarProperty Name="OwnerIDText" ColumnName="OwnerIDText" />
+          <ScalarProperty Name="LastModifiedById" ColumnName="LastModifiedById" />
+          <ScalarProperty Name="IsConverted" ColumnName="IsConverted" />
+          <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+          <ScalarProperty Name="CreatedById" ColumnName="CreatedById" />
+          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ExportedDate" ColumnName="ExportedDate" />
+          <ScalarProperty Name="PinNo" ColumnName="PinNo" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Street" ColumnName="Street" />
+          <ScalarProperty Name="ListCode2" ColumnName="ListCode2" />
+          <ScalarProperty Name="Language" ColumnName="Language" />
+          <ScalarProperty Name="Warranty" ColumnName="Warranty" />
+          <ScalarProperty Name="ExpirationDate" ColumnName="ExpirationDate" />
+          <ScalarProperty Name="ListCode" ColumnName="ListCode" />
+          <ScalarProperty Name="LeadEmail" ColumnName="LeadEmail" />
+          <ScalarProperty Name="SecondaryPhone" ColumnName="SecondaryPhone" />
+          <ScalarProperty Name="PrimaryPhone" ColumnName="PrimaryPhone" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="LeadOwner" ColumnName="LeadOwner" />
+          <ScalarProperty Name="LeadStatus" ColumnName="LeadStatus" />
+          <ScalarProperty Name="LeadID" ColumnName="LeadID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_EmailTemplates">
+      <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_EmailTemplates">
+        <MappingFragment StoreEntitySet="tbl_EmailTemplates">
+          <ScalarProperty Name="TemplateFor" ColumnName="TemplateFor" />
+          <ScalarProperty Name="LastModifiedById" ColumnName="LastModifiedById" />
+          <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+          <ScalarProperty Name="CreatedById" ColumnName="CreatedById" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="AttachmentFileName" ColumnName="AttachmentFileName" />
+          <ScalarProperty Name="TemplatePlainText" ColumnName="TemplatePlainText" />
+          <ScalarProperty Name="TemplateHTML" ColumnName="TemplateHTML" />
+          <ScalarProperty Name="TemplateSubject" ColumnName="TemplateSubject" />
+          <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
+          <ScalarProperty Name="TemplateID" ColumnName="TemplateID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_ExportHistory">
+      <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_ExportHistory">
+        <MappingFragment StoreEntitySet="tbl_ExportHistory">
+          <ScalarProperty Name="IsViewed" ColumnName="IsViewed" />
+          <ScalarProperty Name="IsExported" ColumnName="IsExported" />
+          <ScalarProperty Name="DateExported" ColumnName="DateExported" />
+          <ScalarProperty Name="DuplicateCount" ColumnName="DuplicateCount" />
+          <ScalarProperty Name="TotalCount" ColumnName="TotalCount" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="TableName" ColumnName="TableName" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Chattter">
+      <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_Chattter">
+        <MappingFragment StoreEntitySet="tbl_Chattter">
+          <ScalarProperty Name="LeadID" ColumnName="LeadID" />
+          <ScalarProperty Name="OriginalFileName" ColumnName="OriginalFileName" />
+          <ScalarProperty Name="SystemFileName" ColumnName="SystemFileName" />
+          <ScalarProperty Name="IsRichText" ColumnName="IsRichText" />
+          <ScalarProperty Name="InsertedById" ColumnName="InsertedById" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="LinkUrl" ColumnName="LinkUrl" />
+          <ScalarProperty Name="Body" ColumnName="Body" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedById" ColumnName="CreatedById" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+          <ScalarProperty Name="FeedItemId" ColumnName="FeedItemId" />
+          <ScalarProperty Name="CID" ColumnName="CID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Accounts">
+      <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_Accounts">
+        <MappingFragment StoreEntitySet="tbl_Accounts">
+          <ScalarProperty Name="SalesDate" ColumnName="SalesDate" />
+          <ScalarProperty Name="AccountStatus" ColumnName="AccountStatus" />
+          <ScalarProperty Name="RenewalDate" ColumnName="RenewalDate" />
+          <ScalarProperty Name="AccountCancellationDate" ColumnName="AccountCancellationDate" />
+          <ScalarProperty Name="RecordTypeId" ColumnName="RecordTypeId" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="CustomerAddressID" ColumnName="CustomerAddressID" />
+          <ScalarProperty Name="CustomerPaymentID" ColumnName="CustomerPaymentID" />
+          <ScalarProperty Name="CustomerProfileID" ColumnName="CustomerProfileID" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="PersonContactId" ColumnName="PersonContactId" />
+          <ScalarProperty Name="LastModifiedById" ColumnName="LastModifiedById" />
+          <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+          <ScalarProperty Name="CreatedById" ColumnName="CreatedById" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="PinNo" ColumnName="PinNo" />
+          <ScalarProperty Name="AOID" ColumnName="AOID" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="LeadID" ColumnName="LeadID" />
+          <ScalarProperty Name="ShippingCountry" ColumnName="ShippingCountry" />
+          <ScalarProperty Name="ShippingZip" ColumnName="ShippingZip" />
+          <ScalarProperty Name="ShippingState" ColumnName="ShippingState" />
+          <ScalarProperty Name="ShippingCity" ColumnName="ShippingCity" />
+          <ScalarProperty Name="ShippingAddress" ColumnName="ShippingAddress" />
+          <ScalarProperty Name="BillingCountry" ColumnName="BillingCountry" />
+          <ScalarProperty Name="BillingZip" ColumnName="BillingZip" />
+          <ScalarProperty Name="BillingState" ColumnName="BillingState" />
+          <ScalarProperty Name="BillingCity" ColumnName="BillingCity" />
+          <ScalarProperty Name="BillingAddress" ColumnName="BillingAddress" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Employee" ColumnName="Employee" />
+          <ScalarProperty Name="Industry" ColumnName="Industry" />
+          <ScalarProperty Name="ParentAccount" ColumnName="ParentAccount" />
+          <ScalarProperty Name="AccountOwner" ColumnName="AccountOwner" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Website" ColumnName="Website" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_AuditTrail">
+      <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_AuditTrail">
+        <MappingFragment StoreEntitySet="tbl_AuditTrail">
+          <ScalarProperty Name="AGID" ColumnName="AGID" />
+          <ScalarProperty Name="PageID" ColumnName="PageID" />
+          <ScalarProperty Name="UpdatedByUserID" ColumnName="UpdatedByUserID" />
+          <ScalarProperty Name="DateUpdate" ColumnName="DateUpdate" />
+          <ScalarProperty Name="AuditDetails" ColumnName="AuditDetails" />
+          <ScalarProperty Name="ATID" ColumnName="ATID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_OrderCardCheckInfo">
+      <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_OrderCardCheckInfo">
+        <MappingFragment StoreEntitySet="tbl_OrderCardCheckInfo">
+          <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
+          <ScalarProperty Name="CardName" ColumnName="CardName" />
+          <ScalarProperty Name="LeadID" ColumnName="LeadID" />
+          <ScalarProperty Name="AOID" ColumnName="AOID" />
+          <ScalarProperty Name="CheckNo" ColumnName="CheckNo" />
+          <ScalarProperty Name="CardSecurityCode" ColumnName="CardSecurityCode" />
+          <ScalarProperty Name="CardExpirationYear" ColumnName="CardExpirationYear" />
+          <ScalarProperty Name="CardExpirationMonth" ColumnName="CardExpirationMonth" />
+          <ScalarProperty Name="CardNumber" ColumnName="CardNumber" />
+          <ScalarProperty Name="CardType" ColumnName="CardType" />
+          <ScalarProperty Name="PaymentMode" ColumnName="PaymentMode" />
+          <ScalarProperty Name="CCID" ColumnName="CCID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Package">
+      <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_Package">
+        <MappingFragment StoreEntitySet="tbl_Package">
+          <ScalarProperty Name="IsRenewal" ColumnName="IsRenewal" />
+          <ScalarProperty Name="DecalNumber" ColumnName="DecalNumber" />
+          <ScalarProperty Name="AddIdentityTheft" ColumnName="AddIdentityTheft" />
+          <ScalarProperty Name="AddDecal" ColumnName="AddDecal" />
+          <ScalarProperty Name="Additional" ColumnName="Additional" />
+          <ScalarProperty Name="NoOfInstallment" ColumnName="NoOfInstallment" />
+          <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Package" ColumnName="Package" />
+          <ScalarProperty Name="PackageID" ColumnName="PackageID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_AOScript">
+      <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_AOScript">
+        <MappingFragment StoreEntitySet="tbl_AOScript">
+          <ScalarProperty Name="Step" ColumnName="Step" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="AOScript" ColumnName="AOScript" />
+          <ScalarProperty Name="AOSID" ColumnName="AOSID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_ReportTakeOffListCriteria">
+      <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_ReportTakeOffListCriteria">
+        <MappingFragment StoreEntitySet="tbl_ReportTakeOffListCriteria">
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="ReportDate" ColumnName="ReportDate" />
+          <ScalarProperty Name="ReportStatus" ColumnName="ReportStatus" />
+          <ScalarProperty Name="AccountStatus" ColumnName="AccountStatus" />
+          <ScalarProperty Name="Show" ColumnName="Show" />
+          <ScalarProperty Name="IsTakeOFF" ColumnName="IsTakeOFF" />
+          <ScalarProperty Name="LastModifiedTo" ColumnName="LastModifiedTo" />
+          <ScalarProperty Name="LastModifiedFrom" ColumnName="LastModifiedFrom" />
+          <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_EMails">
+      <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_EMails">
+        <MappingFragment StoreEntitySet="tbl_EMails">
+          <ScalarProperty Name="OriginalFileName" ColumnName="OriginalFileName" />
+          <ScalarProperty Name="AttachedFileName" ColumnName="AttachedFileName" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedById" ColumnName="ModifiedById" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedById" ColumnName="CreatedById" />
+          <ScalarProperty Name="EmailPlainText" ColumnName="EmailPlainText" />
+          <ScalarProperty Name="EmailHTMLBody" ColumnName="EmailHTMLBody" />
+          <ScalarProperty Name="EmailSubject" ColumnName="EmailSubject" />
+          <ScalarProperty Name="BCCEmails" ColumnName="BCCEmails" />
+          <ScalarProperty Name="CCEmails" ColumnName="CCEmails" />
+          <ScalarProperty Name="ToEmails" ColumnName="ToEmails" />
+          <ScalarProperty Name="FromEmail" ColumnName="FromEmail" />
+          <ScalarProperty Name="AutoGenID" ColumnName="AutoGenID" />
+          <ScalarProperty Name="PageID" ColumnName="PageID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Snippet">
+      <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_Snippet">
+        <MappingFragment StoreEntitySet="tbl_Snippet">
+          <ScalarProperty Name="SnippetFor" ColumnName="SnippetFor" />
+          <ScalarProperty Name="Snippet" ColumnName="Snippet" />
+          <ScalarProperty Name="SnippetTitle" ColumnName="SnippetTitle" />
+          <ScalarProperty Name="SID" ColumnName="SID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_CustomReportDataType">
+      <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_CustomReportDataType">
+        <MappingFragment StoreEntitySet="tbl_CustomReportDataType">
+          <ScalarProperty Name="DataType" ColumnName="DataType" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_CustomReportFields">
+      <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_CustomReportFields">
+        <MappingFragment StoreEntitySet="tbl_CustomReportFields">
+          <ScalarProperty Name="FieldID" ColumnName="FieldID" />
+          <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_CustomReportFilters">
+      <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_CustomReportFilters">
+        <MappingFragment StoreEntitySet="tbl_CustomReportFilters">
+          <ScalarProperty Name="FieldCriteria" ColumnName="FieldCriteria" />
+          <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_ReportTables">
+      <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_ReportTables">
+        <MappingFragment StoreEntitySet="tbl_ReportTables">
+          <ScalarProperty Name="TableName" ColumnName="TableName" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_ReportTablesFields">
+      <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_ReportTablesFields">
+        <MappingFragment StoreEntitySet="tbl_ReportTablesFields">
+          <ScalarProperty Name="DropDownID" ColumnName="DropDownID" />
+          <ScalarProperty Name="IsDropDown" ColumnName="IsDropDown" />
+          <ScalarProperty Name="DataType" ColumnName="DataType" />
+          <ScalarProperty Name="ColumnName" ColumnName="ColumnName" />
+          <ScalarProperty Name="DiaplayName" ColumnName="DiaplayName" />
+          <ScalarProperty Name="TableID" ColumnName="TableID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_ReportTablesJoins">
+      <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_ReportTablesJoins">
+        <MappingFragment StoreEntitySet="tbl_ReportTablesJoins">
+          <ScalarProperty Name="JoinString" ColumnName="JoinString" />
+          <ScalarProperty Name="TableID" ColumnName="TableID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_CustomReport">
+      <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_CustomReport">
+        <MappingFragment StoreEntitySet="tbl_CustomReport">
+          <ScalarProperty Name="IsSaved" ColumnName="IsSaved" />
+          <ScalarProperty Name="IsPublic" ColumnName="IsPublic" />
+          <ScalarProperty Name="ModifiedBY" ColumnName="ModifiedBY" />
+          <ScalarProperty Name="CreatedtedBY" ColumnName="CreatedtedBY" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="CreatdedDate" ColumnName="CreatdedDate" />
+          <ScalarProperty Name="ReportName" ColumnName="ReportName" />
+          <ScalarProperty Name="TableID" ColumnName="TableID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_AgentOrderDetails">
+      <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_AgentOrderDetails">
+        <MappingFragment StoreEntitySet="tbl_AgentOrderDetails">
+          <ScalarProperty Name="TooMuch" ColumnName="TooMuch" />
+          <ScalarProperty Name="CompType" ColumnName="CompType" />
+          <ScalarProperty Name="LicensePlate4" ColumnName="LicensePlate4" />
+          <ScalarProperty Name="LicensePlate3" ColumnName="LicensePlate3" />
+          <ScalarProperty Name="LicensePlate2" ColumnName="LicensePlate2" />
+          <ScalarProperty Name="VINNo4" ColumnName="VINNo4" />
+          <ScalarProperty Name="VINNo3" ColumnName="VINNo3" />
+          <ScalarProperty Name="VINNo2" ColumnName="VINNo2" />
+          <ScalarProperty Name="VehicleYear4" ColumnName="VehicleYear4" />
+          <ScalarProperty Name="VehicleYear3" ColumnName="VehicleYear3" />
+          <ScalarProperty Name="VehicleYear2" ColumnName="VehicleYear2" />
+          <ScalarProperty Name="VehicleMake4" ColumnName="VehicleMake4" />
+          <ScalarProperty Name="VehicleMake3" ColumnName="VehicleMake3" />
+          <ScalarProperty Name="VehicleMake2" ColumnName="VehicleMake2" />
+          <ScalarProperty Name="Warranty" ColumnName="Warranty" />
+          <ScalarProperty Name="FinanceCompany" ColumnName="FinanceCompany" />
+          <ScalarProperty Name="Dealership" ColumnName="Dealership" />
+          <ScalarProperty Name="LicensePlate" ColumnName="LicensePlate" />
+          <ScalarProperty Name="VINNo" ColumnName="VINNo" />
+          <ScalarProperty Name="GPSDN4" ColumnName="GPSDN4" />
+          <ScalarProperty Name="GPSDN3" ColumnName="GPSDN3" />
+          <ScalarProperty Name="GPSDN2" ColumnName="GPSDN2" />
+          <ScalarProperty Name="GPSDN1" ColumnName="GPSDN1" />
+          <ScalarProperty Name="GPSSKU4" ColumnName="GPSSKU4" />
+          <ScalarProperty Name="GPSSKU3" ColumnName="GPSSKU3" />
+          <ScalarProperty Name="GPSSKU2" ColumnName="GPSSKU2" />
+          <ScalarProperty Name="GPSSKU1" ColumnName="GPSSKU1" />
+          <ScalarProperty Name="DecalNumber4" ColumnName="DecalNumber4" />
+          <ScalarProperty Name="DecalNumber3" ColumnName="DecalNumber3" />
+          <ScalarProperty Name="DecalNumber2" ColumnName="DecalNumber2" />
+          <ScalarProperty Name="DecalNumber1" ColumnName="DecalNumber1" />
+          <ScalarProperty Name="AdditionalPackageAmt" ColumnName="AdditionalPackageAmt" />
+          <ScalarProperty Name="PackageAmt" ColumnName="PackageAmt" />
+          <ScalarProperty Name="TotalAmt" ColumnName="TotalAmt" />
+          <ScalarProperty Name="IdentityTheft" ColumnName="IdentityTheft" />
+          <ScalarProperty Name="AddDecals" ColumnName="AddDecals" />
+          <ScalarProperty Name="NoOfVehicle" ColumnName="NoOfVehicle" />
+          <ScalarProperty Name="ChargeDay" ColumnName="ChargeDay" />
+          <ScalarProperty Name="FirstChargeDate" ColumnName="FirstChargeDate" />
+          <ScalarProperty Name="BZipCode" ColumnName="BZipCode" />
+          <ScalarProperty Name="BState" ColumnName="BState" />
+          <ScalarProperty Name="BCity" ColumnName="BCity" />
+          <ScalarProperty Name="BStreet" ColumnName="BStreet" />
+          <ScalarProperty Name="IsDiffBillingAdd" ColumnName="IsDiffBillingAdd" />
+          <ScalarProperty Name="AdditionalPackage" ColumnName="AdditionalPackage" />
+          <ScalarProperty Name="PackageId" ColumnName="PackageId" />
+          <ScalarProperty Name="VehicleYear" ColumnName="VehicleYear" />
+          <ScalarProperty Name="VehicleType" ColumnName="VehicleType" />
+          <ScalarProperty Name="VehicleMake" ColumnName="VehicleMake" />
+          <ScalarProperty Name="AOID" ColumnName="AOID" />
+          <ScalarProperty Name="AODID" ColumnName="AODID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_AccountOwner">
+      <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_AccountOwner">
+        <MappingFragment StoreEntitySet="tbl_AccountOwner">
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="NewOwnerId" ColumnName="NewOwnerId" />
+          <ScalarProperty Name="OldOwnerId" ColumnName="OldOwnerId" />
+          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+          <ScalarProperty Name="ACCOID" ColumnName="ACCOID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_VehicleMake">
+      <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_VehicleMake">
+        <MappingFragment StoreEntitySet="tbl_VehicleMake">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="VehicleMake" ColumnName="VehicleMake" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_OrderTransactions">
+      <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_OrderTransactions">
+        <MappingFragment StoreEntitySet="tbl_OrderTransactions">
+          <ScalarProperty Name="MailSend" ColumnName="MailSend" />
+          <ScalarProperty Name="TransType" ColumnName="TransType" />
+          <ScalarProperty Name="StatusText" ColumnName="StatusText" />
+          <ScalarProperty Name="ResonText" ColumnName="ResonText" />
+          <ScalarProperty Name="GatwayResponse" ColumnName="GatwayResponse" />
+          <ScalarProperty Name="GatewayID" ColumnName="GatewayID" />
+          <ScalarProperty Name="RefundAmt" ColumnName="RefundAmt" />
+          <ScalarProperty Name="SubscriptionID" ColumnName="SubscriptionID" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="ChargeAmt" ColumnName="ChargeAmt" />
+          <ScalarProperty Name="CardType" ColumnName="CardType" />
+          <ScalarProperty Name="CardCheckNumber" ColumnName="CardCheckNumber" />
+          <ScalarProperty Name="TransHashCode" ColumnName="TransHashCode" />
+          <ScalarProperty Name="AuthCode" ColumnName="AuthCode" />
+          <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+          <ScalarProperty Name="PaymentMethod" ColumnName="PaymentMethod" />
+          <ScalarProperty Name="ChargeNo" ColumnName="ChargeNo" />
+          <ScalarProperty Name="AOID" ColumnName="AOID" />
+          <ScalarProperty Name="ChargeDate" ColumnName="ChargeDate" />
+          <ScalarProperty Name="CDID" ColumnName="CDID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

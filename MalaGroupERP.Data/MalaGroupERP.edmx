@@ -1,0 +1,2850 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MalaGroupERPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="syNavigationNodes">
+          <Key>
+            <PropertyRef Name="NodeID" />
+          </Key>
+          <Property Name="NodeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DisplayIndex" Type="int" Nullable="false" />
+          <Property Name="ResourceId" Type="int" Nullable="false" />
+          <Property Name="ParentId" Type="int" />
+          <Property Name="IsPopupWindow" Type="bit" />
+        </EntityType>
+        <EntityType Name="syResources">
+          <Key>
+            <PropertyRef Name="ResourceId" />
+          </Key>
+          <Property Name="ResourceId" Type="int" Nullable="false" />
+          <Property Name="Resource" Type="varchar" MaxLength="200" />
+          <Property Name="ResourceTypeId" Type="tinyint" />
+          <Property Name="Controller" Type="varchar" MaxLength="200" />
+          <Property Name="Action" Type="varchar" MaxLength="200" />
+          <Property Name="UsedIn" Type="int" />
+          <Property Name="IsRight" Type="int" />
+          <Property Name="TabText" Type="varchar" MaxLength="200" />
+          <Property Name="PageTitle" Type="varchar" MaxLength="200" />
+          <Property Name="Icon" Type="varchar" MaxLength="50" />
+          <Property Name="ClickEent" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="syResourceTypes">
+          <Key>
+            <PropertyRef Name="ResourceTypeId" />
+          </Key>
+          <Property Name="ResourceTypeId" Type="int" Nullable="false" />
+          <Property Name="ResourceType" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="syRoleResources">
+          <Key>
+            <PropertyRef Name="RoleResourceId" />
+          </Key>
+          <Property Name="RoleResourceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="ResourceId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="syRoles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleCode" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="RoleDescription" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="RoleStatus" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="syRolesResourcesLevels">
+          <Key>
+            <PropertyRef Name="RRLId" />
+          </Key>
+          <Property Name="RRLId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="ModuleId" Type="int" Nullable="false" />
+          <Property Name="ResourceId" Type="int" Nullable="false" />
+          <Property Name="AccessLevel" Type="int" Nullable="false" />
+          <Property Name="HasSpecialRight" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="syUsersRoles">
+          <Key>
+            <PropertyRef Name="UserRoleId" />
+          </Key>
+          <Property Name="UserRoleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="RoleId" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_ABSCreditCrad">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OpportunityID" Type="varchar" MaxLength="50" />
+          <Property Name="PaymentStatus" Type="varchar" MaxLength="50" />
+          <Property Name="PaymentStartDate" Type="varchar" MaxLength="50" />
+          <Property Name="InvoiceNumber" Type="varchar" MaxLength="50" />
+          <Property Name="ChargeAmountAfterFirstPayment" Type="varchar" MaxLength="50" />
+          <Property Name="TransactionTotal" Type="varchar" MaxLength="50" />
+          <Property Name="PaymentMethod" Type="varchar" MaxLength="50" />
+          <Property Name="CardNumber" Type="varchar" MaxLength="50" />
+          <Property Name="CardExpirationMonth" Type="varchar" MaxLength="50" />
+          <Property Name="CardExpirationYear" Type="varchar" MaxLength="50" />
+          <Property Name="TransactionCount" Type="varchar" MaxLength="50" />
+          <Property Name="PaymentCount" Type="varchar" MaxLength="50" />
+          <Property Name="ChargeDate" Type="varchar" MaxLength="50" />
+          <Property Name="PasswordId" Type="varchar" MaxLength="50" />
+          <Property Name="PinNumber" Type="varchar" MaxLength="50" />
+          <Property Name="BillingFirstName" Type="varchar" MaxLength="50" />
+          <Property Name="BillingLastName" Type="varchar" MaxLength="50" />
+          <Property Name="BillingAddress" Type="varchar" MaxLength="500" />
+          <Property Name="BillingCity" Type="varchar" MaxLength="50" />
+          <Property Name="BillingState" Type="varchar" MaxLength="50" />
+          <Property Name="BillingZipPostal" Type="varchar" MaxLength="50" />
+          <Property Name="BillingCountry" Type="varchar" MaxLength="50" />
+          <Property Name="PrimaryPhone" Type="varchar" MaxLength="50" />
+          <Property Name="PersonAccountEmail" Type="varchar" MaxLength="500" />
+          <Property Name="PersonAccountFirstName" Type="varchar" MaxLength="50" />
+          <Property Name="PersonAccountLastName" Type="varchar" MaxLength="50" />
+          <Property Name="ShippingStreet" Type="varchar" MaxLength="500" />
+          <Property Name="ShippingCity" Type="varchar" MaxLength="50" />
+          <Property Name="ShippingStateProvince" Type="varchar" MaxLength="50" />
+          <Property Name="ShippingZipPostalCode" Type="varchar" MaxLength="50" />
+          <Property Name="ShippingCountry" Type="varchar" MaxLength="50" />
+          <Property Name="VehicleYear" Type="varchar" MaxLength="50" />
+          <Property Name="VehicleMake" Type="varchar" MaxLength="50" />
+          <Property Name="ChargeAmount" Type="varchar" MaxLength="50" />
+          <Property Name="TransactionID" Type="varchar" MaxLength="50" />
+          <Property Name="TransactionStatus" Type="varchar" MaxLength="50" />
+          <Property Name="TransactionMessage" Type="varchar" MaxLength="1000" />
+          <Property Name="TransactionDate" Type="varchar" MaxLength="50" />
+          <Property Name="AuthCode" Type="varchar" MaxLength="50" />
+          <Property Name="IsSend" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="CreatedById" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="ModifiedById" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_AccountOwner">
+          <Key>
+            <PropertyRef Name="ACCOID" />
+          </Key>
+          <Property Name="ACCOID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccountID" Type="bigint" />
+          <Property Name="OldOwnerId" Type="int" />
+          <Property Name="NewOwnerId" Type="int" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_Accounts">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccountName" Type="varchar" MaxLength="100" />
+          <Property Name="Phone" Type="varchar" MaxLength="20" />
+          <Property Name="Website" Type="varchar" MaxLength="50" />
+          <Property Name="Type" Type="int" />
+          <Property Name="AccountOwner" Type="int" />
+          <Property Name="ParentAccount" Type="int" />
+          <Property Name="Industry" Type="int" />
+          <Property Name="Employee" Type="int" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="BillingAddress" Type="nvarchar" MaxLength="500" />
+          <Property Name="BillingCity" Type="varchar" MaxLength="50" />
+          <Property Name="BillingState" Type="varchar" MaxLength="50" />
+          <Property Name="BillingZip" Type="varchar" MaxLength="50" />
+          <Property Name="BillingCountry" Type="varchar" MaxLength="50" />
+          <Property Name="ShippingAddress" Type="nvarchar" MaxLength="500" />
+          <Property Name="ShippingCity" Type="varchar" MaxLength="50" />
+          <Property Name="ShippingState" Type="varchar" MaxLength="50" />
+          <Property Name="ShippingZip" Type="varchar" MaxLength="50" />
+          <Property Name="ShippingCountry" Type="varchar" MaxLength="50" />
+          <Property Name="LeadID" Type="bigint" />
+          <Property Name="Password" Type="varchar" MaxLength="20" />
+          <Property Name="AOID" Type="bigint" />
+          <Property Name="PinNo" Type="varchar" MaxLength="20" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="CreatedById" Type="int" />
+          <Property Name="LastModifiedDate" Type="datetime" />
+          <Property Name="LastModifiedById" Type="int" />
+          <Property Name="PersonContactId" Type="int" />
+          <Property Name="IsDeleted" Type="int" Nullable="false" />
+          <Property Name="CustomerProfileID" Type="varchar" MaxLength="20" />
+          <Property Name="CustomerPaymentID" Type="varchar" MaxLength="20" />
+          <Property Name="CustomerAddressID" Type="varchar" MaxLength="20" />
+          <Property Name="EmailId" Type="nvarchar" MaxLength="255" />
+          <Property Name="RecordTypeId" Type="nvarchar" MaxLength="255" />
+          <Property Name="AccountCancellationDate" Type="datetime" />
+          <Property Name="RenewalDate" Type="datetime" />
+          <Property Name="AccountStatus" Type="int" />
+          <Property Name="SalesDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_AgentOrder">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LeadID" Type="bigint" />
+          <Property Name="AgentID" Type="int" />
+          <Property Name="StepCompleted" Type="int" />
+          <Property Name="StartDate" Type="datetime" />
+          <Property Name="EndDate" Type="datetime" />
+          <Property Name="PinNo" Type="varchar" MaxLength="20" />
+          <Property Name="IsCompleted" Type="int" />
+          <Property Name="AccountID" Type="bigint" />
+        </EntityType>
+        <EntityType Name="tbl_AgentOrderDetails">
+          <Key>
+            <PropertyRef Name="AODID" />
+          </Key>
+          <Property Name="AODID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AOID" Type="bigint" />
+          <Property Name="VehicleMake" Type="int" />
+          <Property Name="VehicleType" Type="int" />
+          <Property Name="VehicleYear" Type="varchar" MaxLength="10" />
+          <Property Name="PackageId" Type="int" />
+          <Property Name="AdditionalPackage" Type="varchar" MaxLength="50" />
+          <Property Name="IsDiffBillingAdd" Type="int" />
+          <Property Name="BStreet" Type="varchar" MaxLength="200" />
+          <Property Name="BCity" Type="varchar" MaxLength="200" />
+          <Property Name="BState" Type="varchar" MaxLength="200" />
+          <Property Name="BZipCode" Type="varchar" MaxLength="20" />
+          <Property Name="FirstChargeDate" Type="datetime" />
+          <Property Name="ChargeDay" Type="int" />
+          <Property Name="NoOfVehicle" Type="int" />
+          <Property Name="AddDecals" Type="int" />
+          <Property Name="IdentityTheft" Type="int" />
+          <Property Name="TotalAmt" Type="nvarchar" MaxLength="50" />
+          <Property Name="PackageAmt" Type="money" />
+          <Property Name="AdditionalPackageAmt" Type="varchar" MaxLength="500" />
+          <Property Name="DecalNumber1" Type="varchar" MaxLength="50" />
+          <Property Name="DecalNumber2" Type="varchar" MaxLength="50" />
+          <Property Name="DecalNumber3" Type="varchar" MaxLength="50" />
+          <Property Name="DecalNumber4" Type="varchar" MaxLength="50" />
+          <Property Name="GPSSKU1" Type="varchar" MaxLength="50" />
+          <Property Name="GPSSKU2" Type="varchar" MaxLength="50" />
+          <Property Name="GPSSKU3" Type="varchar" MaxLength="50" />
+          <Property Name="GPSSKU4" Type="varchar" MaxLength="50" />
+          <Property Name="GPSDN1" Type="varchar" MaxLength="50" />
+          <Property Name="GPSDN2" Type="varchar" MaxLength="50" />
+          <Property Name="GPSDN3" Type="varchar" MaxLength="50" />
+          <Property Name="GPSDN4" Type="varchar" MaxLength="50" />
+          <Property Name="VINNo" Type="varchar" MaxLength="50" />
+          <Property Name="LicensePlate" Type="varchar" MaxLength="50" />
+          <Property Name="Dealership" Type="varchar" MaxLength="200" />
+          <Property Name="FinanceCompany" Type="varchar" MaxLength="200" />
+          <Property Name="Warranty" Type="varchar" MaxLength="200" />
+          <Property Name="VehicleMake2" Type="int" />
+          <Property Name="VehicleMake3" Type="int" />
+          <Property Name="VehicleMake4" Type="int" />
+          <Property Name="VehicleYear2" Type="varchar" MaxLength="10" />
+          <Property Name="VehicleYear3" Type="varchar" MaxLength="10" />
+          <Property Name="VehicleYear4" Type="varchar" MaxLength="10" />
+          <Property Name="VINNo2" Type="varchar" MaxLength="50" />
+          <Property Name="VINNo3" Type="varchar" MaxLength="50" />
+          <Property Name="VINNo4" Type="varchar" MaxLength="50" />
+          <Property Name="LicensePlate2" Type="varchar" MaxLength="50" />
+          <Property Name="LicensePlate3" Type="varchar" MaxLength="50" />
+          <Property Name="LicensePlate4" Type="varchar" MaxLength="50" />
+          <Property Name="CompType" Type="int" />
+          <Property Name="TooMuch" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_AOScript">
+          <Key>
+            <PropertyRef Name="AOSID" />
+          </Key>
+          <Property Name="AOSID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AOScript" Type="nvarchar(max)" />
+          <Property Name="Status" Type="int" />
+          <Property Name="Step" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_AttachedFiles">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PageID" Type="int" />
+          <Property Name="AGID" Type="bigint" />
+          <Property Name="SystemFileName" Type="varchar" MaxLength="500" />
+          <Property Name="OriginalFileName" Type="varchar" MaxLength="500" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="CreatedByID" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_AuditTrail">
+          <Key>
+            <PropertyRef Name="ATID" />
+          </Key>
+          <Property Name="ATID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AuditDetails" Type="nvarchar(max)" />
+          <Property Name="DateUpdate" Type="datetime" />
+          <Property Name="UpdatedByUserID" Type="int" />
+          <Property Name="PageID" Type="int" />
+          <Property Name="AGID" Type="bigint" />
+        </EntityType>
+        <EntityType Name="tbl_CallHistory">
+          <Key>
+            <PropertyRef Name="CHID" />
+          </Key>
+          <Property Name="CHID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AOID" Type="bigint" />
+          <Property Name="AgentID" Type="int" />
+          <Property Name="CallDate" Type="datetime" />
+          <Property Name="LeadID" Type="bigint" />
+          <Property Name="PageID" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_Calls">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PageID" Type="int" />
+          <Property Name="AutoGenID" Type="bigint" />
+          <Property Name="CallSubject" Type="varchar(max)" />
+          <Property Name="CallComment" Type="varchar(max)" />
+          <Property Name="CallNameIds" Type="varchar" MaxLength="500" />
+          <Property Name="ReleatedToIds" Type="varchar" MaxLength="500" />
+          <Property Name="CreatedById" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedById" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_Chattter">
+          <Key>
+            <PropertyRef Name="CID" />
+          </Key>
+          <Property Name="CID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FeedItemId" Type="nvarchar" MaxLength="255" />
+          <Property Name="AccountId" Type="varchar" MaxLength="10" />
+          <Property Name="Type" Type="int" />
+          <Property Name="CreatedById" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="Title" Type="nvarchar" MaxLength="255" />
+          <Property Name="Body" Type="nvarchar(max)" />
+          <Property Name="LinkUrl" Type="nvarchar" MaxLength="255" />
+          <Property Name="IsDeleted" Type="int" />
+          <Property Name="InsertedById" Type="int" />
+          <Property Name="IsRichText" Type="int" />
+          <Property Name="SystemFileName" Type="varchar" MaxLength="500" />
+          <Property Name="OriginalFileName" Type="varchar" MaxLength="500" />
+          <Property Name="LeadID" Type="bigint" />
+        </EntityType>
+        <EntityType Name="tbl_ChatViewedBy">
+          <Key>
+            <PropertyRef Name="CVID" />
+          </Key>
+          <Property Name="CVID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CID" Type="bigint" />
+          <Property Name="ViewedById" Type="int" />
+          <Property Name="ViewedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_CustomReport">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TableID" Type="bigint" />
+          <Property Name="ReportName" Type="varchar" MaxLength="255" />
+          <Property Name="CreatdedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="CreatedtedBY" Type="int" />
+          <Property Name="ModifiedBY" Type="int" />
+          <Property Name="IsPublic" Type="int" />
+          <Property Name="IsSaved" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_CustomReportDataType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DataType" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="tbl_CustomReportFields">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReportID" Type="bigint" />
+          <Property Name="FieldID" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="tbl_CustomReportFilters">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReportID" Type="bigint" />
+          <Property Name="FieldCriteria" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="tbl_EMails">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PageID" Type="int" />
+          <Property Name="AutoGenID" Type="bigint" />
+          <Property Name="FromEmail" Type="varchar" MaxLength="500" />
+          <Property Name="ToEmails" Type="varchar(max)" />
+          <Property Name="CCEmails" Type="varchar(max)" />
+          <Property Name="BCCEmails" Type="varchar(max)" />
+          <Property Name="EmailSubject" Type="varchar" MaxLength="500" />
+          <Property Name="EmailHTMLBody" Type="varchar(max)" />
+          <Property Name="EmailPlainText" Type="varchar(max)" />
+          <Property Name="CreatedById" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedById" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="AttachedFileName" Type="nvarchar" MaxLength="500" />
+          <Property Name="OriginalFileName" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="tbl_EmailTemplates">
+          <Key>
+            <PropertyRef Name="TemplateID" />
+          </Key>
+          <Property Name="TemplateID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TemplateName" Type="varchar" MaxLength="500" />
+          <Property Name="TemplateSubject" Type="varchar" MaxLength="500" />
+          <Property Name="TemplateHTML" Type="varchar(max)" />
+          <Property Name="TemplatePlainText" Type="varchar(max)" />
+          <Property Name="AttachmentFileName" Type="varchar" MaxLength="500" />
+          <Property Name="IsDeleted" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="CreatedById" Type="int" />
+          <Property Name="LastModifiedDate" Type="datetime" />
+          <Property Name="LastModifiedById" Type="int" />
+          <Property Name="TemplateFor" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_Events">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PageID" Type="int" />
+          <Property Name="AutoGenID" Type="bigint" />
+          <Property Name="EventSubject" Type="varchar(max)" />
+          <Property Name="EventDescription" Type="varchar(max)" />
+          <Property Name="StartDate" Type="datetime" />
+          <Property Name="EndDate" Type="datetime" />
+          <Property Name="Location" Type="varchar(max)" />
+          <Property Name="EventNameIds" Type="varchar" MaxLength="500" />
+          <Property Name="ReleatedToIds" Type="varchar" MaxLength="500" />
+          <Property Name="CreatedById" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedById" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_ExportHistory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TableName" Type="varchar" MaxLength="500" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="TotalCount" Type="int" />
+          <Property Name="DuplicateCount" Type="int" />
+          <Property Name="DateExported" Type="datetime" />
+          <Property Name="IsExported" Type="int" />
+          <Property Name="IsViewed" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_FromAddress">
+          <Key>
+            <PropertyRef Name="FromID" />
+          </Key>
+          <Property Name="FromID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FromEmailAddress" Type="varchar" MaxLength="500" />
+          <Property Name="FromName" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="tbl_LeadInformation">
+          <Key>
+            <PropertyRef Name="LeadID" />
+          </Key>
+          <Property Name="LeadID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LeadStatus" Type="int" />
+          <Property Name="LeadOwner" Type="int" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="PrimaryPhone" Type="varchar" MaxLength="500" />
+          <Property Name="SecondaryPhone" Type="varchar" MaxLength="500" />
+          <Property Name="LeadEmail" Type="varchar" MaxLength="255" />
+          <Property Name="ListCode" Type="varchar" MaxLength="500" />
+          <Property Name="ExpirationDate" Type="datetime" />
+          <Property Name="Warranty" Type="varchar" MaxLength="500" />
+          <Property Name="Language" Type="varchar" MaxLength="500" />
+          <Property Name="ListCode2" Type="varchar" MaxLength="500" />
+          <Property Name="Street" Type="varchar" MaxLength="200" />
+          <Property Name="City" Type="varchar" MaxLength="500" />
+          <Property Name="State" Type="varchar" MaxLength="500" />
+          <Property Name="ZipCode" Type="varchar" MaxLength="500" />
+          <Property Name="Country" Type="varchar" MaxLength="500" />
+          <Property Name="Password" Type="varchar" MaxLength="500" />
+          <Property Name="PinNo" Type="varchar" MaxLength="500" />
+          <Property Name="ExportedDate" Type="datetime" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="FirstName" Type="varchar" MaxLength="500" />
+          <Property Name="LastName" Type="varchar" MaxLength="500" />
+          <Property Name="AccountID" Type="bigint" />
+          <Property Name="CreatedById" Type="varchar" MaxLength="500" />
+          <Property Name="LastModifiedDate" Type="datetime" />
+          <Property Name="IsConverted" Type="int" />
+          <Property Name="LastModifiedById" Type="varchar" MaxLength="500" />
+          <Property Name="ConvertedDate" Type="datetime" />
+          <Property Name="AccountText" Type="varchar" MaxLength="500" />
+          <Property Name="Password_Generator__c" Type="varchar" MaxLength="500" />
+          <Property Name="VechileMake" Type="varchar" MaxLength="500" />
+          <Property Name="VechileTye" Type="varchar" MaxLength="500" />
+          <Property Name="VechileYear" Type="varchar" MaxLength="500" />
+          <Property Name="DelearShip" Type="varchar" MaxLength="500" />
+          <Property Name="Finance" Type="varchar" MaxLength="500" />
+          <Property Name="VinNo" Type="varchar" MaxLength="500" />
+          <Property Name="LicensePlate" Type="varchar" MaxLength="500" />
+          <Property Name="Take_Off_List__c" Type="int" />
+          <Property Name="AOStatus" Type="int" />
+          <Property Name="OwnerIDText" Type="varchar" MaxLength="100" />
+          <Property Name="IsDeleted" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_Notes">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Notes" Type="nvarchar(max)" />
+          <Property Name="Photo" Type="nvarchar(max)" />
+          <Property Name="NotesDate" Type="datetime" />
+          <Property Name="UserID" Type="bigint" />
+          <Property Name="CreatedByID" Type="int" />
+          <Property Name="LastModifiedById" Type="int" />
+          <Property Name="LastModifiedDate" Type="datetime" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="IsDeleted" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_NotExportLead">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FIRSTNAME" Type="varchar" MaxLength="500" />
+          <Property Name="LASTNAME" Type="varchar" MaxLength="500" />
+          <Property Name="ADDRESS" Type="varchar" MaxLength="500" />
+          <Property Name="CITY" Type="varchar" MaxLength="500" />
+          <Property Name="STATE" Type="varchar" MaxLength="500" />
+          <Property Name="ZIP" Type="varchar" MaxLength="500" />
+          <Property Name="VIN" Type="varchar" MaxLength="500" />
+          <Property Name="YEAR" Type="varchar" MaxLength="500" />
+          <Property Name="MAKE" Type="varchar" MaxLength="500" />
+          <Property Name="VEHTYPE" Type="varchar" MaxLength="500" />
+          <Property Name="LOGIN" Type="varchar" MaxLength="500" />
+          <Property Name="EXPIRATIONDATE" Type="varchar" MaxLength="500" />
+          <Property Name="PASSWORD" Type="varchar" MaxLength="500" />
+          <Property Name="LISTCODE" Type="varchar" MaxLength="500" />
+          <Property Name="LENDER_NAME" Type="varchar" MaxLength="500" />
+          <Property Name="LOAD_DATE" Type="varchar" MaxLength="500" />
+          <Property Name="DEALERSHIP" Type="varchar" MaxLength="500" />
+          <Property Name="ExportDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_OrderCardCheckInfo">
+          <Key>
+            <PropertyRef Name="CCID" />
+          </Key>
+          <Property Name="CCID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PaymentMode" Type="int" />
+          <Property Name="CardType" Type="int" />
+          <Property Name="CardNumber" Type="varchar" MaxLength="20" />
+          <Property Name="CardExpirationMonth" Type="varchar" MaxLength="10" />
+          <Property Name="CardExpirationYear" Type="varchar" MaxLength="10" />
+          <Property Name="CardSecurityCode" Type="varchar" MaxLength="20" />
+          <Property Name="CheckNo" Type="varchar" MaxLength="20" />
+          <Property Name="AOID" Type="bigint" />
+          <Property Name="LeadID" Type="bigint" />
+          <Property Name="CardName" Type="varchar" MaxLength="50" />
+          <Property Name="IsDefault" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_OrderTransactions">
+          <Key>
+            <PropertyRef Name="CDID" />
+          </Key>
+          <Property Name="CDID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ChargeDate" Type="datetime" />
+          <Property Name="AOID" Type="bigint" />
+          <Property Name="ChargeNo" Type="int" />
+          <Property Name="PaymentMethod" Type="int" />
+          <Property Name="TransactionID" Type="varchar" MaxLength="50" />
+          <Property Name="AuthCode" Type="varchar" MaxLength="50" />
+          <Property Name="TransHashCode" Type="nvarchar" MaxLength="100" />
+          <Property Name="CardCheckNumber" Type="varchar" MaxLength="20" />
+          <Property Name="CardType" Type="varchar" MaxLength="50" />
+          <Property Name="ChargeAmt" Type="money" />
+          <Property Name="Status" Type="int" />
+          <Property Name="SubscriptionID" Type="varchar" MaxLength="100" />
+          <Property Name="RefundAmt" Type="money" />
+          <Property Name="GatewayID" Type="nvarchar" MaxLength="50" />
+          <Property Name="GatwayResponse" Type="nvarchar(max)" />
+          <Property Name="ResonText" Type="nvarchar(max)" />
+          <Property Name="StatusText" Type="nvarchar" MaxLength="50" />
+          <Property Name="TransType" Type="int" />
+          <Property Name="MailSend" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_Package">
+          <Key>
+            <PropertyRef Name="PackageID" />
+          </Key>
+          <Property Name="PackageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Package" Type="nvarchar" MaxLength="500" />
+          <Property Name="Price" Type="nvarchar" MaxLength="50" />
+          <Property Name="ExpiryDate" Type="datetime" />
+          <Property Name="NoOfInstallment" Type="int" />
+          <Property Name="Additional" Type="int" />
+          <Property Name="AddDecal" Type="int" />
+          <Property Name="AddIdentityTheft" Type="int" />
+          <Property Name="DecalNumber" Type="int" />
+          <Property Name="IsRenewal" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'MalaGroupERP_Development.dbo.tbl_Question' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tbl_Question">
+          <Key>
+            <PropertyRef Name="QID" />
+          </Key>
+          <Property Name="QID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Question" Type="nvarchar" MaxLength="500" />
+          <Property Name="Answer" Type="nvarchar(max)" />
+          <Property Name="Status" Type="int" />
+          <Property Name="Type" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_ReportTables">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TableName" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="tbl_ReportTablesFields">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TableID" Type="bigint" />
+          <Property Name="DiaplayName" Type="varchar" MaxLength="100" />
+          <Property Name="ColumnName" Type="varchar" MaxLength="100" />
+          <Property Name="DataType" Type="int" />
+          <Property Name="IsDropDown" Type="int" />
+          <Property Name="DropDownID" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_ReportTablesJoins">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TableID" Type="bigint" />
+          <Property Name="JoinString" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="tbl_ReportTakeOffListCriteria">
+          <Key>
+            <PropertyRef Name="ReportID" />
+          </Key>
+          <Property Name="ReportID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LastModifiedFrom" Type="datetime" />
+          <Property Name="LastModifiedTo" Type="datetime" />
+          <Property Name="IsTakeOFF" Type="int" />
+          <Property Name="Show" Type="int" />
+          <Property Name="AccountStatus" Type="varchar" MaxLength="100" />
+          <Property Name="ReportStatus" Type="int" />
+          <Property Name="ReportDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_Snippet">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SnippetTitle" Type="varchar" MaxLength="50" />
+          <Property Name="Snippet" Type="nvarchar" MaxLength="100" />
+          <Property Name="SnippetFor" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_Tasks">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PageID" Type="int" />
+          <Property Name="AutoGenID" Type="bigint" />
+          <Property Name="TaskSubject" Type="varchar(max)" />
+          <Property Name="DueDate" Type="datetime" />
+          <Property Name="AssignToId" Type="int" />
+          <Property Name="TaskNameIds" Type="varchar" MaxLength="500" />
+          <Property Name="ReleatedToIds" Type="varchar" MaxLength="500" />
+          <Property Name="CreatedById" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedById" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_Transaction">
+          <Key>
+            <PropertyRef Name="TransactionID" />
+          </Key>
+          <Property Name="TransactionID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CardDetail" Type="varchar" MaxLength="50" />
+          <Property Name="CardType" Type="int" />
+          <Property Name="CardNumber" Type="varchar" MaxLength="20" />
+          <Property Name="Token" Type="varchar" MaxLength="10" />
+          <Property Name="CardExpirationMonth" Type="varchar" MaxLength="10" />
+          <Property Name="CardExpirationYear" Type="varchar" MaxLength="10" />
+          <Property Name="CardSecurityCode" Type="varchar" MaxLength="20" />
+          <Property Name="AOID" Type="bigint" />
+          <Property Name="LeadID" Type="bigint" />
+          <Property Name="TotalAmount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="AccountID" Type="bigint" />
+        </EntityType>
+        <EntityType Name="tbl_VehicleAO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VehicleMake" Type="int" />
+          <Property Name="VehicleType" Type="int" />
+          <Property Name="VehicleYear" Type="varchar" MaxLength="10" />
+          <Property Name="VINNo" Type="varchar" MaxLength="20" />
+          <Property Name="LicensePlate" Type="varchar" MaxLength="50" />
+          <Property Name="Dealership" Type="varchar" MaxLength="100" />
+          <Property Name="FinanceCompany" Type="varchar" MaxLength="100" />
+          <Property Name="AOID" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_VehicleLeads">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VehicleMake" Type="int" />
+          <Property Name="VehicleType" Type="int" />
+          <Property Name="VehicleYear" Type="varchar" MaxLength="10" />
+          <Property Name="VINNo" Type="varchar" MaxLength="30" />
+          <Property Name="LicensePlate" Type="varchar" MaxLength="50" />
+          <Property Name="Dealership" Type="varchar" MaxLength="100" />
+          <Property Name="FinanceCompany" Type="varchar" MaxLength="100" />
+          <Property Name="LeadID" Type="bigint" Nullable="false" />
+          <Property Name="VehicleTypeText" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="tbl_VehicleMake">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VehicleMake" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="IsDeleted" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_VehicleType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VehicleMake" Type="int" Nullable="false" />
+          <Property Name="VehicleType" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_ViewedBy">
+          <Key>
+            <PropertyRef Name="NVID" />
+          </Key>
+          <Property Name="NVID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NID" Type="bigint" />
+          <Property Name="ViewedById" Type="int" />
+          <Property Name="ViewedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblLogin">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="255" />
+          <Property Name="Password" Type="nvarchar" MaxLength="255" />
+          <Property Name="ClientOrVendorID" Type="int" />
+          <Property Name="IsClientOrVendor" Type="int" />
+          <Property Name="FirstName" Type="varchar" MaxLength="100" />
+          <Property Name="LastName" Type="varchar" MaxLength="100" />
+          <Property Name="Email" Type="varchar" MaxLength="260" />
+          <Property Name="IsSuperUser" Type="int" />
+          <Property Name="SortOrderSFP" Type="int" />
+          <Property Name="Address1" Type="varchar" MaxLength="200" />
+          <Property Name="City" Type="varchar" MaxLength="100" />
+          <Property Name="StateID" Type="varchar" MaxLength="50" />
+          <Property Name="ZipCode" Type="varchar" MaxLength="10" />
+          <Property Name="Country" Type="varchar" MaxLength="50" />
+          <Property Name="WorkPhone" Type="varchar" MaxLength="15" />
+          <Property Name="CellPhone" Type="varchar" MaxLength="15" />
+          <Property Name="IsActive" Type="int" />
+          <Property Name="Extension" Type="varchar" MaxLength="5" />
+          <Property Name="VendorID" Type="varchar" MaxLength="10" />
+          <Property Name="EmployeeID" Type="bigint" />
+          <Property Name="AddToGroup" Type="int" />
+          <Property Name="UserType" Type="int" />
+          <Property Name="StationMarketID" Type="int" />
+          <Property Name="ShowNotification" Type="int" />
+          <Property Name="UserCode" Type="nvarchar" MaxLength="20" />
+          <Property Name="Timezone" Type="nvarchar" MaxLength="20" />
+          <Property Name="Language" Type="varchar" MaxLength="20" />
+          <Property Name="Locale" Type="varchar" MaxLength="50" />
+          <Property Name="Company" Type="varchar" MaxLength="20" />
+          <Property Name="Department" Type="varchar" MaxLength="20" />
+          <Property Name="UserLicense" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmailEncoding" Type="nvarchar" MaxLength="50" />
+          <Property Name="StartDay" Type="nvarchar" MaxLength="20" />
+          <Property Name="EndDay" Type="nvarchar" MaxLength="20" />
+          <Property Name="FederationID" Type="varchar" MaxLength="20" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="CreatedById" Type="int" />
+          <Property Name="LastModifiedDate" Type="datetime" />
+          <Property Name="LastModifiedById" Type="int" />
+          <Property Name="LastLoginDate" Type="datetime" />
+          <Property Name="IsDeleted" Type="int" />
+          <Property Name="CommunityNickname" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserRoleId" Type="nvarchar" MaxLength="50" />
+          <Property Name="SMTPUserName" Type="varchar" MaxLength="500" />
+          <Property Name="SMTPPassword" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblLoginHistory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="SessionID" Type="varchar" MaxLength="500" />
+          <Property Name="IPAddress" Type="varchar" MaxLength="50" />
+          <Property Name="PageName" Type="varchar" MaxLength="100" />
+          <Property Name="LoginDateTime" Type="datetime" />
+          <Property Name="LogoutDateTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblMessage">
+          <Key>
+            <PropertyRef Name="MessageId" />
+          </Key>
+          <Property Name="MessageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MessageFrom" Type="int" />
+          <Property Name="MessageTo" Type="int" />
+          <Property Name="MessageText" Type="varchar" MaxLength="8000" />
+          <Property Name="MessageTime" Type="datetime" />
+          <Property Name="IsRead" Type="int" />
+          <Property Name="GroupID" Type="int" />
+        </EntityType>
+        <EntityType Name="tblPagesLoginHistory">
+          <Key>
+            <PropertyRef Name="PHID" />
+          </Key>
+          <Property Name="PHID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LHID" Type="bigint" />
+          <Property Name="PageName" Type="varchar" MaxLength="100" />
+          <Property Name="PageInDateTime" Type="datetime" />
+          <Property Name="PageOutDateTime" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_syNavigationNodes_syResources">
+          <End Role="syResources" Type="Self.syResources" Multiplicity="1" />
+          <End Role="syNavigationNodes" Type="Self.syNavigationNodes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="syResources">
+              <PropertyRef Name="ResourceId" />
+            </Principal>
+            <Dependent Role="syNavigationNodes">
+              <PropertyRef Name="ResourceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_syRoleResources_syResources">
+          <End Role="syResources" Type="Self.syResources" Multiplicity="1" />
+          <End Role="syRoleResources" Type="Self.syRoleResources" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="syResources">
+              <PropertyRef Name="ResourceId" />
+            </Principal>
+            <Dependent Role="syRoleResources">
+              <PropertyRef Name="ResourceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_syRoleResources_syRoles">
+          <End Role="syRoles" Type="Self.syRoles" Multiplicity="1" />
+          <End Role="syRoleResources" Type="Self.syRoleResources" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="syRoles">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="syRoleResources">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_syRolesResourcesLevels_syRoles">
+          <End Role="syRoles" Type="Self.syRoles" Multiplicity="1" />
+          <End Role="syRolesResourcesLevels" Type="Self.syRolesResourcesLevels" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="syRoles">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="syRolesResourcesLevels">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_syUsersRoles_syRoles">
+          <End Role="syRoles" Type="Self.syRoles" Multiplicity="0..1" />
+          <End Role="syUsersRoles" Type="Self.syUsersRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="syRoles">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="syUsersRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MalaGroupERPModelStoreContainer">
+          <EntitySet Name="syNavigationNodes" EntityType="Self.syNavigationNodes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="syResources" EntityType="Self.syResources" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="syResourceTypes" EntityType="Self.syResourceTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="syRoleResources" EntityType="Self.syRoleResources" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="syRoles" EntityType="Self.syRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="syRolesResourcesLevels" EntityType="Self.syRolesResourcesLevels" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="syUsersRoles" EntityType="Self.syUsersRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_ABSCreditCrad" EntityType="Self.tbl_ABSCreditCrad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_AccountOwner" EntityType="Self.tbl_AccountOwner" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Accounts" EntityType="Self.tbl_Accounts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_AgentOrder" EntityType="Self.tbl_AgentOrder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_AgentOrderDetails" EntityType="Self.tbl_AgentOrderDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_AOScript" EntityType="Self.tbl_AOScript" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_AttachedFiles" EntityType="Self.tbl_AttachedFiles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_AuditTrail" EntityType="Self.tbl_AuditTrail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_CallHistory" EntityType="Self.tbl_CallHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Calls" EntityType="Self.tbl_Calls" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Chattter" EntityType="Self.tbl_Chattter" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_ChatViewedBy" EntityType="Self.tbl_ChatViewedBy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_CustomReport" EntityType="Self.tbl_CustomReport" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_CustomReportDataType" EntityType="Self.tbl_CustomReportDataType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_CustomReportFields" EntityType="Self.tbl_CustomReportFields" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_CustomReportFilters" EntityType="Self.tbl_CustomReportFilters" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_EMails" EntityType="Self.tbl_EMails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_EmailTemplates" EntityType="Self.tbl_EmailTemplates" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Events" EntityType="Self.tbl_Events" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_ExportHistory" EntityType="Self.tbl_ExportHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_FromAddress" EntityType="Self.tbl_FromAddress" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_LeadInformation" EntityType="Self.tbl_LeadInformation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Notes" EntityType="Self.tbl_Notes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_NotExportLead" EntityType="Self.tbl_NotExportLead" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_OrderCardCheckInfo" EntityType="Self.tbl_OrderCardCheckInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_OrderTransactions" EntityType="Self.tbl_OrderTransactions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Package" EntityType="Self.tbl_Package" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_ReportTables" EntityType="Self.tbl_ReportTables" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_ReportTablesFields" EntityType="Self.tbl_ReportTablesFields" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_ReportTablesJoins" EntityType="Self.tbl_ReportTablesJoins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_ReportTakeOffListCriteria" EntityType="Self.tbl_ReportTakeOffListCriteria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Snippet" EntityType="Self.tbl_Snippet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Tasks" EntityType="Self.tbl_Tasks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Transaction" EntityType="Self.tbl_Transaction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_VehicleAO" EntityType="Self.tbl_VehicleAO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_VehicleLeads" EntityType="Self.tbl_VehicleLeads" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_VehicleMake" EntityType="Self.tbl_VehicleMake" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_VehicleType" EntityType="Self.tbl_VehicleType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_ViewedBy" EntityType="Self.tbl_ViewedBy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblLogin" EntityType="Self.tblLogin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblLoginHistory" EntityType="Self.tblLoginHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblMessage" EntityType="Self.tblMessage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPagesLoginHistory" EntityType="Self.tblPagesLoginHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Question" EntityType="Self.tbl_Question" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tbl_Question].[QID] AS [QID], 
+    [tbl_Question].[Question] AS [Question], 
+    [tbl_Question].[Answer] AS [Answer], 
+    [tbl_Question].[Status] AS [Status], 
+    [tbl_Question].[Type] AS [Type]
+    FROM [dbo].[tbl_Question] AS [tbl_Question]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_syNavigationNodes_syResources" Association="Self.FK_syNavigationNodes_syResources">
+            <End Role="syResources" EntitySet="syResources" />
+            <End Role="syNavigationNodes" EntitySet="syNavigationNodes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_syRoleResources_syResources" Association="Self.FK_syRoleResources_syResources">
+            <End Role="syResources" EntitySet="syResources" />
+            <End Role="syRoleResources" EntitySet="syRoleResources" />
+          </AssociationSet>
+          <AssociationSet Name="FK_syRoleResources_syRoles" Association="Self.FK_syRoleResources_syRoles">
+            <End Role="syRoles" EntitySet="syRoles" />
+            <End Role="syRoleResources" EntitySet="syRoleResources" />
+          </AssociationSet>
+          <AssociationSet Name="FK_syRolesResourcesLevels_syRoles" Association="Self.FK_syRolesResourcesLevels_syRoles">
+            <End Role="syRoles" EntitySet="syRoles" />
+            <End Role="syRolesResourcesLevels" EntitySet="syRolesResourcesLevels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_syUsersRoles_syRoles" Association="Self.FK_syUsersRoles_syRoles">
+            <End Role="syRoles" EntitySet="syRoles" />
+            <End Role="syUsersRoles" EntitySet="syUsersRoles" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MalaGroupERPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="syNavigationNode">
+          <Key>
+            <PropertyRef Name="NodeID" />
+          </Key>
+          <Property Name="NodeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DisplayIndex" Type="Int32" Nullable="false" />
+          <Property Name="ResourceId" Type="Int32" Nullable="false" />
+          <Property Name="ParentId" Type="Int32" />
+          <Property Name="IsPopupWindow" Type="Boolean" />
+          <NavigationProperty Name="syResource" Relationship="Self.FK_syNavigationNodes_syResources" FromRole="syNavigationNodes" ToRole="syResources" />
+        </EntityType>
+        <EntityType Name="syResource">
+          <Key>
+            <PropertyRef Name="ResourceId" />
+          </Key>
+          <Property Name="ResourceId" Type="Int32" Nullable="false" />
+          <Property Name="Resource" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ResourceTypeId" Type="Byte" />
+          <Property Name="Controller" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Action" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="UsedIn" Type="Int32" />
+          <Property Name="IsRight" Type="Int32" />
+          <Property Name="TabText" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="PageTitle" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Icon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="syNavigationNodes" Relationship="Self.FK_syNavigationNodes_syResources" FromRole="syResources" ToRole="syNavigationNodes" />
+          <NavigationProperty Name="syRoleResources" Relationship="Self.FK_syRoleResources_syResources" FromRole="syResources" ToRole="syRoleResources" />
+          <Property Name="ClickEent" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="syResourceType">
+          <Key>
+            <PropertyRef Name="ResourceTypeId" />
+          </Key>
+          <Property Name="ResourceTypeId" Type="Int32" Nullable="false" />
+          <Property Name="ResourceType" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="syRoleResource">
+          <Key>
+            <PropertyRef Name="RoleResourceId" />
+          </Key>
+          <Property Name="RoleResourceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <Property Name="ResourceId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="syResource" Relationship="Self.FK_syRoleResources_syResources" FromRole="syRoleResources" ToRole="syResources" />
+          <NavigationProperty Name="syRole" Relationship="Self.FK_syRoleResources_syRoles" FromRole="syRoleResources" ToRole="syRoles" />
+        </EntityType>
+        <EntityType Name="syRole">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RoleDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RoleStatus" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="syRoleResources" Relationship="Self.FK_syRoleResources_syRoles" FromRole="syRoles" ToRole="syRoleResources" />
+          <NavigationProperty Name="syRolesResourcesLevels" Relationship="Self.FK_syRolesResourcesLevels_syRoles" FromRole="syRoles" ToRole="syRolesResourcesLevels" />
+          <NavigationProperty Name="syUsersRoles" Relationship="Self.FK_syUsersRoles_syRoles" FromRole="syRoles" ToRole="syUsersRoles" />
+        </EntityType>
+        <EntityType Name="syRolesResourcesLevel">
+          <Key>
+            <PropertyRef Name="RRLId" />
+          </Key>
+          <Property Name="RRLId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <Property Name="ModuleId" Type="Int32" Nullable="false" />
+          <Property Name="ResourceId" Type="Int32" Nullable="false" />
+          <Property Name="AccessLevel" Type="Int32" Nullable="false" />
+          <Property Name="HasSpecialRight" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="syRole" Relationship="Self.FK_syRolesResourcesLevels_syRoles" FromRole="syRolesResourcesLevels" ToRole="syRoles" />
+        </EntityType>
+        <EntityType Name="syUsersRole">
+          <Key>
+            <PropertyRef Name="UserRoleId" />
+          </Key>
+          <Property Name="UserRoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="RoleId" Type="Int32" />
+          <NavigationProperty Name="syRole" Relationship="Self.FK_syUsersRoles_syRoles" FromRole="syUsersRoles" ToRole="syRoles" />
+        </EntityType>
+        <EntityType Name="tblLoginHistory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="SessionID" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="IPAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PageName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LoginDateTime" Type="DateTime" Precision="3" />
+          <Property Name="LogoutDateTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tblMessage">
+          <Key>
+            <PropertyRef Name="MessageId" />
+          </Key>
+          <Property Name="MessageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MessageFrom" Type="Int32" />
+          <Property Name="MessageTo" Type="Int32" />
+          <Property Name="MessageText" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
+          <Property Name="MessageTime" Type="DateTime" Precision="3" />
+          <Property Name="IsRead" Type="Int32" />
+          <Property Name="GroupID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tblPagesLoginHistory">
+          <Key>
+            <PropertyRef Name="PHID" />
+          </Key>
+          <Property Name="PHID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LHID" Type="Int64" />
+          <Property Name="PageName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PageInDateTime" Type="DateTime" Precision="3" />
+          <Property Name="PageOutDateTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <Association Name="FK_syNavigationNodes_syResources">
+          <End Role="syResources" Type="Self.syResource" Multiplicity="1" />
+          <End Role="syNavigationNodes" Type="Self.syNavigationNode" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="syResources">
+              <PropertyRef Name="ResourceId" />
+            </Principal>
+            <Dependent Role="syNavigationNodes">
+              <PropertyRef Name="ResourceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_syRoleResources_syResources">
+          <End Role="syResources" Type="Self.syResource" Multiplicity="1" />
+          <End Role="syRoleResources" Type="Self.syRoleResource" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="syResources">
+              <PropertyRef Name="ResourceId" />
+            </Principal>
+            <Dependent Role="syRoleResources">
+              <PropertyRef Name="ResourceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_syRoleResources_syRoles">
+          <End Role="syRoles" Type="Self.syRole" Multiplicity="1" />
+          <End Role="syRoleResources" Type="Self.syRoleResource" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="syRoles">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="syRoleResources">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_syRolesResourcesLevels_syRoles">
+          <End Role="syRoles" Type="Self.syRole" Multiplicity="1" />
+          <End Role="syRolesResourcesLevels" Type="Self.syRolesResourcesLevel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="syRoles">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="syRolesResourcesLevels">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_syUsersRoles_syRoles">
+          <End Role="syRoles" Type="Self.syRole" Multiplicity="0..1" />
+          <End Role="syUsersRoles" Type="Self.syUsersRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="syRoles">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="syUsersRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MalaGroupERPEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="syNavigationNodes" EntityType="Self.syNavigationNode" />
+          <EntitySet Name="syResources" EntityType="Self.syResource" />
+          <EntitySet Name="syResourceTypes" EntityType="Self.syResourceType" />
+          <EntitySet Name="syRoleResources" EntityType="Self.syRoleResource" />
+          <EntitySet Name="syRoles" EntityType="Self.syRole" />
+          <EntitySet Name="syRolesResourcesLevels" EntityType="Self.syRolesResourcesLevel" />
+          <EntitySet Name="syUsersRoles" EntityType="Self.syUsersRole" />
+          <EntitySet Name="tblLoginHistories" EntityType="Self.tblLoginHistory" />
+          <EntitySet Name="tblMessages" EntityType="Self.tblMessage" />
+          <EntitySet Name="tblPagesLoginHistories" EntityType="Self.tblPagesLoginHistory" />
+          <AssociationSet Name="FK_syNavigationNodes_syResources" Association="Self.FK_syNavigationNodes_syResources">
+            <End Role="syResources" EntitySet="syResources" />
+            <End Role="syNavigationNodes" EntitySet="syNavigationNodes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_syRoleResources_syResources" Association="Self.FK_syRoleResources_syResources">
+            <End Role="syResources" EntitySet="syResources" />
+            <End Role="syRoleResources" EntitySet="syRoleResources" />
+          </AssociationSet>
+          <AssociationSet Name="FK_syRoleResources_syRoles" Association="Self.FK_syRoleResources_syRoles">
+            <End Role="syRoles" EntitySet="syRoles" />
+            <End Role="syRoleResources" EntitySet="syRoleResources" />
+          </AssociationSet>
+          <AssociationSet Name="FK_syRolesResourcesLevels_syRoles" Association="Self.FK_syRolesResourcesLevels_syRoles">
+            <End Role="syRoles" EntitySet="syRoles" />
+            <End Role="syRolesResourcesLevels" EntitySet="syRolesResourcesLevels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_syUsersRoles_syRoles" Association="Self.FK_syUsersRoles_syRoles">
+            <End Role="syRoles" EntitySet="syRoles" />
+            <End Role="syUsersRoles" EntitySet="syUsersRoles" />
+          </AssociationSet>
+          <EntitySet Name="tbl_VehicleType" EntityType="MalaGroupERPModel.tbl_VehicleType" />
+          <EntitySet Name="tbl_Question" EntityType="MalaGroupERPModel.tbl_Question" />
+          <EntitySet Name="tbl_VehicleLeads" EntityType="MalaGroupERPModel.tbl_VehicleLeads" />
+          <EntitySet Name="tbl_AgentOrder" EntityType="MalaGroupERPModel.tbl_AgentOrder" />
+          <EntitySet Name="tbl_CallHistory" EntityType="MalaGroupERPModel.tbl_CallHistory" />
+          <EntitySet Name="tbl_NotExportLead" EntityType="MalaGroupERPModel.tbl_NotExportLead" />
+          <EntitySet Name="tbl_Calls" EntityType="MalaGroupERPModel.tbl_Calls" />
+          <EntitySet Name="tbl_Events" EntityType="MalaGroupERPModel.tbl_Events" />
+          <EntitySet Name="tbl_Tasks" EntityType="MalaGroupERPModel.tbl_Tasks" />
+          <EntitySet Name="tblLogins" EntityType="MalaGroupERPModel.tblLogin" />
+          <EntitySet Name="tbl_AttachedFiles" EntityType="MalaGroupERPModel.tbl_AttachedFiles" />
+          <EntitySet Name="tbl_FromAddress" EntityType="MalaGroupERPModel.tbl_FromAddress" />
+          <EntitySet Name="tbl_VehicleAO" EntityType="MalaGroupERPModel.tbl_VehicleAO" />
+          <EntitySet Name="tbl_ABSCreditCrad" EntityType="MalaGroupERPModel.tbl_ABSCreditCrad" />
+          <EntitySet Name="tbl_Notes" EntityType="MalaGroupERPModel.tbl_Notes" />
+          <EntitySet Name="tbl_ViewedBy" EntityType="MalaGroupERPModel.tbl_ViewedBy" />
+          <EntitySet Name="tbl_Transaction" EntityType="MalaGroupERPModel.tbl_Transaction" />
+          <EntitySet Name="tbl_ChatViewedBy" EntityType="MalaGroupERPModel.tbl_ChatViewedBy" />
+          <EntitySet Name="tbl_LeadInformation" EntityType="MalaGroupERPModel.tbl_LeadInformation" />
+          <EntitySet Name="tbl_EmailTemplates" EntityType="MalaGroupERPModel.tbl_EmailTemplates" />
+          <EntitySet Name="tbl_ExportHistory" EntityType="MalaGroupERPModel.tbl_ExportHistory" />
+          <EntitySet Name="tbl_Chattter" EntityType="MalaGroupERPModel.tbl_Chattter" />
+          <EntitySet Name="tbl_Accounts" EntityType="MalaGroupERPModel.tbl_Accounts" />
+          <EntitySet Name="tbl_AuditTrail" EntityType="MalaGroupERPModel.tbl_AuditTrail" />
+          <EntitySet Name="tbl_OrderCardCheckInfo" EntityType="MalaGroupERPModel.tbl_OrderCardCheckInfo" />
+          <EntitySet Name="tbl_Package" EntityType="MalaGroupERPModel.tbl_Package" />
+          <EntitySet Name="tbl_AOScript" EntityType="MalaGroupERPModel.tbl_AOScript" />
+          <EntitySet Name="tbl_ReportTakeOffListCriteria" EntityType="MalaGroupERPModel.tbl_ReportTakeOffListCriteria" />
+          <EntitySet Name="tbl_EMails" EntityType="MalaGroupERPModel.tbl_EMails" />
+          <EntitySet Name="tbl_Snippet" EntityType="MalaGroupERPModel.tbl_Snippet" />
+          <EntitySet Name="tbl_CustomReportDataType" EntityType="MalaGroupERPModel.tbl_CustomReportDataType" />
+          <EntitySet Name="tbl_CustomReportFields" EntityType="MalaGroupERPModel.tbl_CustomReportFields" />
+          <EntitySet Name="tbl_CustomReportFilters" EntityType="MalaGroupERPModel.tbl_CustomReportFilters" />
+          <EntitySet Name="tbl_ReportTables" EntityType="MalaGroupERPModel.tbl_ReportTables" />
+          <EntitySet Name="tbl_ReportTablesFields" EntityType="MalaGroupERPModel.tbl_ReportTablesFields" />
+          <EntitySet Name="tbl_ReportTablesJoins" EntityType="MalaGroupERPModel.tbl_ReportTablesJoins" />
+          <EntitySet Name="tbl_CustomReport" EntityType="MalaGroupERPModel.tbl_CustomReport" />
+          <EntitySet Name="tbl_AgentOrderDetails" EntityType="MalaGroupERPModel.tbl_AgentOrderDetails" />
+          <EntitySet Name="tbl_AccountOwner" EntityType="MalaGroupERPModel.tbl_AccountOwner" />
+          <EntitySet Name="tbl_VehicleMake" EntityType="MalaGroupERPModel.tbl_VehicleMake" />
+          <EntitySet Name="tbl_OrderTransactions" EntityType="MalaGroupERPModel.tbl_OrderTransactions" />
+        </EntityContainer>
+        <EntityType Name="tbl_VehicleType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VehicleMake" Type="Int32" Nullable="false" />
+          <Property Name="VehicleType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_Question">
+          <Key>
+            <PropertyRef Name="QID" />
+          </Key>
+          <Property Name="QID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Question" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Answer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="Type" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tbl_VehicleLeads">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VehicleMake" Type="Int32" />
+          <Property Name="VehicleType" Type="Int32" />
+          <Property Name="VehicleYear" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="VINNo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="LicensePlate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Dealership" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FinanceCompany" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LeadID" Type="Int64" Nullable="false" />
+          <Property Name="VehicleTypeText" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_AgentOrder">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LeadID" Type="Int64" />
+          <Property Name="AgentID" Type="Int32" />
+          <Property Name="StepCompleted" Type="Int32" />
+          <Property Name="StartDate" Type="DateTime" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
+          <Property Name="PinNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IsCompleted" Type="Int32" />
+          <Property Name="AccountID" Type="Int64" />
+        </EntityType>
+        <EntityType Name="tbl_CallHistory">
+          <Key>
+            <PropertyRef Name="CHID" />
+          </Key>
+          <Property Name="CHID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AOID" Type="Int64" />
+          <Property Name="AgentID" Type="Int32" />
+          <Property Name="CallDate" Type="DateTime" Precision="3" />
+          <Property Name="LeadID" Type="Int64" />
+          <Property Name="PageID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tbl_NotExportLead">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FIRSTNAME" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="LASTNAME" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ADDRESS" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="CITY" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="STATE" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ZIP" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="VIN" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="YEAR" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="MAKE" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="VEHTYPE" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="LOGIN" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="EXPIRATIONDATE" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="PASSWORD" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="LISTCODE" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="LENDER_NAME" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="LOAD_DATE" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="DEALERSHIP" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ExportDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_Calls">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PageID" Type="Int32" />
+          <Property Name="AutoGenID" Type="Int64" />
+          <Property Name="CallSubject" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CallComment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CallNameIds" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ReleatedToIds" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedById" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedById" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_Events">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PageID" Type="Int32" />
+          <Property Name="AutoGenID" Type="Int64" />
+          <Property Name="EventSubject" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EventDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="StartDate" Type="DateTime" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
+          <Property Name="Location" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EventNameIds" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ReleatedToIds" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedById" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedById" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_Tasks">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PageID" Type="Int32" />
+          <Property Name="AutoGenID" Type="Int64" />
+          <Property Name="TaskSubject" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DueDate" Type="DateTime" Precision="3" />
+          <Property Name="AssignToId" Type="Int32" />
+          <Property Name="TaskNameIds" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ReleatedToIds" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedById" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedById" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tblLogin">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ClientOrVendorID" Type="Int32" />
+          <Property Name="IsClientOrVendor" Type="Int32" />
+          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="260" FixedLength="false" Unicode="false" />
+          <Property Name="IsSuperUser" Type="Int32" />
+          <Property Name="SortOrderSFP" Type="Int32" />
+          <Property Name="Address1" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="StateID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ZipCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="WorkPhone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="CellPhone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Int32" />
+          <Property Name="Extension" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="VendorID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="EmployeeID" Type="Int64" />
+          <Property Name="AddToGroup" Type="Int32" />
+          <Property Name="UserType" Type="Int32" />
+          <Property Name="StationMarketID" Type="Int32" />
+          <Property Name="ShowNotification" Type="Int32" />
+          <Property Name="UserCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Timezone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Language" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Locale" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Company" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Department" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="UserLicense" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmailEncoding" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StartDay" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="EndDay" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="FederationID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedById" Type="Int32" />
+          <Property Name="LastModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="LastModifiedById" Type="Int32" />
+          <Property Name="LastLoginDate" Type="DateTime" Precision="3" />
+          <Property Name="IsDeleted" Type="Int32" />
+          <Property Name="CommunityNickname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserRoleId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SMTPUserName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="SMTPPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_AttachedFiles">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PageID" Type="Int32" />
+          <Property Name="AGID" Type="Int64" />
+          <Property Name="SystemFileName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="OriginalFileName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedByID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tbl_FromAddress">
+          <Key>
+            <PropertyRef Name="FromID" />
+          </Key>
+          <Property Name="FromID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FromEmailAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="FromName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_VehicleAO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VehicleMake" Type="Int32" />
+          <Property Name="VehicleType" Type="Int32" />
+          <Property Name="VehicleYear" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="VINNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="LicensePlate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Dealership" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FinanceCompany" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="AOID" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_ABSCreditCrad">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OpportunityID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PaymentStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PaymentStartDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="InvoiceNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ChargeAmountAfterFirstPayment" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TransactionTotal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PaymentMethod" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CardNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CardExpirationMonth" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CardExpirationYear" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TransactionCount" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PaymentCount" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ChargeDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PasswordId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PinNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BillingFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BillingLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BillingAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="BillingCity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BillingState" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BillingZipPostal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BillingCountry" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PrimaryPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PersonAccountEmail" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="PersonAccountFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PersonAccountLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ShippingStreet" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ShippingCity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ShippingStateProvince" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ShippingZipPostalCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ShippingCountry" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="VehicleYear" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="VehicleMake" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ChargeAmount" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TransactionID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TransactionStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TransactionMessage" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="TransactionDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AuthCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsSend" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedById" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedById" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tbl_Notes">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NotesDate" Type="DateTime" Precision="3" />
+          <Property Name="UserID" Type="Int64" />
+          <Property Name="CreatedByID" Type="Int32" />
+          <Property Name="LastModifiedById" Type="Int32" />
+          <Property Name="LastModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="IsDeleted" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tbl_ViewedBy">
+          <Key>
+            <PropertyRef Name="NVID" />
+          </Key>
+          <Property Name="NVID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NID" Type="Int64" />
+          <Property Name="ViewedById" Type="Int32" />
+          <Property Name="ViewedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_Transaction">
+          <Key>
+            <PropertyRef Name="TransactionID" />
+          </Key>
+          <Property Name="TransactionID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CardDetail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CardType" Type="Int32" />
+          <Property Name="CardNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Token" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CardExpirationMonth" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CardExpirationYear" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CardSecurityCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="AOID" Type="Int64" />
+          <Property Name="LeadID" Type="Int64" />
+          <Property Name="TotalAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="AccountID" Type="Int64" />
+        </EntityType>
+        <EntityType Name="tbl_ChatViewedBy">
+          <Key>
+            <PropertyRef Name="CVID" />
+          </Key>
+          <Property Name="CVID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CID" Type="Int64" />
+          <Property Name="ViewedById" Type="Int32" />
+          <Property Name="ViewedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_LeadInformation">
+          <Key>
+            <PropertyRef Name="LeadID" />
+          </Key>
+          <Property Name="LeadID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LeadStatus" Type="Int32" />
+          <Property Name="LeadOwner" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PrimaryPhone" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="SecondaryPhone" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="LeadEmail" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ListCode" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ExpirationDate" Type="DateTime" Precision="3" />
+          <Property Name="Warranty" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Language" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ListCode2" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Street" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ZipCode" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Country" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="PinNo" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ExportedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="FirstName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="AccountID" Type="Int64" />
+          <Property Name="CreatedById" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="LastModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="IsConverted" Type="Int32" />
+          <Property Name="LastModifiedById" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="OwnerIDText" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ConvertedDate" Type="DateTime" Precision="3" />
+          <Property Name="AccountText" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Password_Generator__c" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="AOStatus" Type="Int32" />
+          <Property Name="Take_Off_List__c" Type="Int32" />
+          <Property Name="VechileMake" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="VechileTye" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="VechileYear" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="DelearShip" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Finance" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="VinNo" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="LicensePlate" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="IsDeleted" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tbl_EmailTemplates">
+          <Key>
+            <PropertyRef Name="TemplateID" />
+          </Key>
+          <Property Name="TemplateID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TemplateName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="TemplateSubject" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="TemplateHTML" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="TemplatePlainText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="AttachmentFileName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="IsDeleted" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedById" Type="Int32" />
+          <Property Name="LastModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="LastModifiedById" Type="Int32" />
+          <Property Name="TemplateFor" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tbl_ExportHistory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TableName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="TotalCount" Type="Int32" />
+          <Property Name="DuplicateCount" Type="Int32" />
+          <Property Name="DateExported" Type="DateTime" Precision="3" />
+          <Property Name="IsExported" Type="Int32" />
+          <Property Name="IsViewed" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tbl_Chattter">
+          <Key>
+            <PropertyRef Name="CID" />
+          </Key>
+          <Property Name="CID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FeedItemId" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AccountId" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Type" Type="Int32" />
+          <Property Name="CreatedById" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Body" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LinkUrl" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Int32" />
+          <Property Name="InsertedById" Type="Int32" />
+          <Property Name="IsRichText" Type="Int32" />
+          <Property Name="SystemFileName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="OriginalFileName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="LeadID" Type="Int64" />
+        </EntityType>
+        <EntityType Name="tbl_Accounts">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Website" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Type" Type="Int32" />
+          <Property Name="AccountOwner" Type="Int32" />
+          <Property Name="ParentAccount" Type="Int32" />
+          <Property Name="Industry" Type="Int32" />
+          <Property Name="Employee" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="BillingAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="BillingCity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BillingState" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BillingZip" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BillingCountry" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ShippingAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ShippingCity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ShippingState" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ShippingZip" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ShippingCountry" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LeadID" Type="Int64" />
+          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="AOID" Type="Int64" />
+          <Property Name="PinNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedById" Type="Int32" />
+          <Property Name="LastModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="LastModifiedById" Type="Int32" />
+          <Property Name="PersonContactId" Type="Int32" />
+          <Property Name="IsDeleted" Type="Int32" Nullable="false" />
+          <Property Name="CustomerProfileID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerPaymentID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerAddressID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EmailId" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="RecordTypeId" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AccountCancellationDate" Type="DateTime" Precision="3" />
+          <Property Name="RenewalDate" Type="DateTime" Precision="3" />
+          <Property Name="AccountStatus" Type="Int32" />
+          <Property Name="SalesDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_AuditTrail">
+          <Key>
+            <PropertyRef Name="ATID" />
+          </Key>
+          <Property Name="ATID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AuditDetails" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateUpdate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedByUserID" Type="Int32" />
+          <Property Name="PageID" Type="Int32" />
+          <Property Name="AGID" Type="Int64" />
+        </EntityType>
+        <EntityType Name="tbl_OrderCardCheckInfo">
+          <Key>
+            <PropertyRef Name="CCID" />
+          </Key>
+          <Property Name="CCID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PaymentMode" Type="Int32" />
+          <Property Name="CardType" Type="Int32" />
+          <Property Name="CardNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CardExpirationMonth" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CardExpirationYear" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CardSecurityCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CheckNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="AOID" Type="Int64" />
+          <Property Name="LeadID" Type="Int64" />
+          <Property Name="CardName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsDefault" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tbl_Package">
+          <Key>
+            <PropertyRef Name="PackageID" />
+          </Key>
+          <Property Name="PackageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Package" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ExpiryDate" Type="DateTime" Precision="3" />
+          <Property Name="NoOfInstallment" Type="Int32" />
+          <Property Name="Additional" Type="Int32" />
+          <Property Name="AddDecal" Type="Int32" />
+          <Property Name="AddIdentityTheft" Type="Int32" />
+          <Property Name="DecalNumber" Type="Int32" />
+          <Property Name="IsRenewal" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tbl_AOScript">
+          <Key>
+            <PropertyRef Name="AOSID" />
+          </Key>
+          <Property Name="AOSID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AOScript" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="Step" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tbl_ReportTakeOffListCriteria">
+          <Key>
+            <PropertyRef Name="ReportID" />
+          </Key>
+          <Property Name="ReportID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LastModifiedFrom" Type="DateTime" Precision="3" />
+          <Property Name="LastModifiedTo" Type="DateTime" Precision="3" />
+          <Property Name="IsTakeOFF" Type="Int32" />
+          <Property Name="Show" Type="Int32" />
+          <Property Name="AccountStatus" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ReportStatus" Type="Int32" />
+          <Property Name="ReportDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tbl_EMails">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PageID" Type="Int32" />
+          <Property Name="AutoGenID" Type="Int64" />
+          <Property Name="FromEmail" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ToEmails" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CCEmails" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="BCCEmails" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EmailSubject" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="EmailHTMLBody" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EmailPlainText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedById" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedById" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="AttachedFileName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="OriginalFileName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_Snippet">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SnippetTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Snippet" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SnippetFor" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tbl_CustomReportDataType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DataType" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_CustomReportFields">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReportID" Type="Int64" />
+          <Property Name="FieldID" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_CustomReportFilters">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReportID" Type="Int64" />
+          <Property Name="FieldCriteria" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_ReportTables">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TableName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_ReportTablesFields">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TableID" Type="Int64" />
+          <Property Name="DiaplayName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ColumnName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DataType" Type="Int32" />
+          <Property Name="IsDropDown" Type="Int32" />
+          <Property Name="DropDownID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tbl_ReportTablesJoins">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TableID" Type="Int64" />
+          <Property Name="JoinString" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_CustomReport">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TableID" Type="Int64" />
+          <Property Name="ReportName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CreatdedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedtedBY" Type="Int32" />
+          <Property Name="ModifiedBY" Type="Int32" />
+          <Property Name="IsPublic" Type="Int32" />
+          <Property Name="IsSaved" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tbl_AgentOrderDetails">
+          <Key>
+            <PropertyRef Name="AODID" />
+          </Key>
+          <Property Name="AODID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AOID" Type="Int64" />
+          <Property Name="VehicleMake" Type="Int32" />
+          <Property Name="VehicleType" Type="Int32" />
+          <Property Name="VehicleYear" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="PackageId" Type="Int32" />
+          <Property Name="AdditionalPackage" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsDiffBillingAdd" Type="Int32" />
+          <Property Name="BStreet" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="BCity" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="BState" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="BZipCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="FirstChargeDate" Type="DateTime" Precision="3" />
+          <Property Name="ChargeDay" Type="Int32" />
+          <Property Name="NoOfVehicle" Type="Int32" />
+          <Property Name="AddDecals" Type="Int32" />
+          <Property Name="IdentityTheft" Type="Int32" />
+          <Property Name="TotalAmt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PackageAmt" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="AdditionalPackageAmt" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="DecalNumber1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DecalNumber2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DecalNumber3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DecalNumber4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GPSSKU1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GPSSKU2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GPSSKU3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GPSSKU4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GPSDN1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GPSDN2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GPSDN3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GPSDN4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="VINNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LicensePlate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Dealership" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="FinanceCompany" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Warranty" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="VehicleMake2" Type="Int32" />
+          <Property Name="VehicleMake3" Type="Int32" />
+          <Property Name="VehicleMake4" Type="Int32" />
+          <Property Name="VehicleYear2" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="VehicleYear3" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="VehicleYear4" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="VINNo2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="VINNo3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="VINNo4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LicensePlate2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LicensePlate3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LicensePlate4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CompType" Type="Int32" />
+          <Property Name="TooMuch" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tbl_AccountOwner">
+          <Key>
+            <PropertyRef Name="ACCOID" />
+          </Key>
+          <Property Name="ACCOID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountID" Type="Int64" />
+          <Property Name="OldOwnerId" Type="Int32" />
+          <Property Name="NewOwnerId" Type="Int32" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tbl_VehicleMake">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VehicleMake" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tbl_OrderTransactions">
+          <Key>
+            <PropertyRef Name="CDID" />
+          </Key>
+          <Property Name="CDID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ChargeDate" Type="DateTime" Precision="3" />
+          <Property Name="AOID" Type="Int64" />
+          <Property Name="ChargeNo" Type="Int32" />
+          <Property Name="PaymentMethod" Type="Int32" />
+          <Property Name="TransactionID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AuthCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TransHashCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CardCheckNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CardType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ChargeAmt" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="SubscriptionID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="RefundAmt" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="GatewayID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GatwayResponse" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ResonText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StatusText" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TransType" Type="Int32" />
+          <Property Name="MailSend" Type="Int32" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MalaGroupERPModelStoreContainer" CdmEntityContainer="MalaGroupERPEntities">
+          <EntitySetMapping Name="syNavigationNodes">
+            <EntityTypeMapping TypeName="MalaGroupERPModel.syNavigationNode">
+              <MappingFragment StoreEntitySet="syNavigationNodes">
+                <ScalarProperty Name="NodeID" ColumnName="NodeID" />
+                <ScalarProperty Name="DisplayIndex" ColumnName="DisplayIndex" />
+                <ScalarProperty Name="ResourceId" ColumnName="ResourceId" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="IsPopupWindow" ColumnName="IsPopupWindow" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="syResources">
+            <EntityTypeMapping TypeName="MalaGroupERPModel.syResource">
+              <MappingFragment StoreEntitySet="syResources">
+                <ScalarProperty Name="ClickEent" ColumnName="ClickEent" />
+                <ScalarProperty Name="ResourceId" ColumnName="ResourceId" />
+                <ScalarProperty Name="Resource" ColumnName="Resource" />
+                <ScalarProperty Name="ResourceTypeId" ColumnName="ResourceTypeId" />
+                <ScalarProperty Name="Controller" ColumnName="Controller" />
+                <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="UsedIn" ColumnName="UsedIn" />
+                <ScalarProperty Name="IsRight" ColumnName="IsRight" />
+                <ScalarProperty Name="TabText" ColumnName="TabText" />
+                <ScalarProperty Name="PageTitle" ColumnName="PageTitle" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="syResourceTypes">
+            <EntityTypeMapping TypeName="MalaGroupERPModel.syResourceType">
+              <MappingFragment StoreEntitySet="syResourceTypes">
+                <ScalarProperty Name="ResourceTypeId" ColumnName="ResourceTypeId" />
+                <ScalarProperty Name="ResourceType" ColumnName="ResourceType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="syRoleResources">
+            <EntityTypeMapping TypeName="MalaGroupERPModel.syRoleResource">
+              <MappingFragment StoreEntitySet="syRoleResources">
+                <ScalarProperty Name="RoleResourceId" ColumnName="RoleResourceId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="ResourceId" ColumnName="ResourceId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="syRoles">
+            <EntityTypeMapping TypeName="MalaGroupERPModel.syRole">
+              <MappingFragment StoreEntitySet="syRoles">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="RoleCode" ColumnName="RoleCode" />
+                <ScalarProperty Name="RoleDescription" ColumnName="RoleDescription" />
+                <ScalarProperty Name="RoleStatus" ColumnName="RoleStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="syRolesResourcesLevels">
+            <EntityTypeMapping TypeName="MalaGroupERPModel.syRolesResourcesLevel">
+              <MappingFragment StoreEntitySet="syRolesResourcesLevels">
+                <ScalarProperty Name="RRLId" ColumnName="RRLId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="ModuleId" ColumnName="ModuleId" />
+                <ScalarProperty Name="ResourceId" ColumnName="ResourceId" />
+                <ScalarProperty Name="AccessLevel" ColumnName="AccessLevel" />
+                <ScalarProperty Name="HasSpecialRight" ColumnName="HasSpecialRight" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="syUsersRoles">
+            <EntityTypeMapping TypeName="MalaGroupERPModel.syUsersRole">
+              <MappingFragment StoreEntitySet="syUsersRoles">
+                <ScalarProperty Name="UserRoleId" ColumnName="UserRoleId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblLoginHistories">
+            <EntityTypeMapping TypeName="MalaGroupERPModel.tblLoginHistory">
+              <MappingFragment StoreEntitySet="tblLoginHistory">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="SessionID" ColumnName="SessionID" />
+                <ScalarProperty Name="IPAddress" ColumnName="IPAddress" />
+                <ScalarProperty Name="PageName" ColumnName="PageName" />
+                <ScalarProperty Name="LoginDateTime" ColumnName="LoginDateTime" />
+                <ScalarProperty Name="LogoutDateTime" ColumnName="LogoutDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblMessages">
+            <EntityTypeMapping TypeName="MalaGroupERPModel.tblMessage">
+              <MappingFragment StoreEntitySet="tblMessage">
+                <ScalarProperty Name="MessageId" ColumnName="MessageId" />
+                <ScalarProperty Name="MessageFrom" ColumnName="MessageFrom" />
+                <ScalarProperty Name="MessageTo" ColumnName="MessageTo" />
+                <ScalarProperty Name="MessageText" ColumnName="MessageText" />
+                <ScalarProperty Name="MessageTime" ColumnName="MessageTime" />
+                <ScalarProperty Name="IsRead" ColumnName="IsRead" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPagesLoginHistories">
+            <EntityTypeMapping TypeName="MalaGroupERPModel.tblPagesLoginHistory">
+              <MappingFragment StoreEntitySet="tblPagesLoginHistory">
+                <ScalarProperty Name="PHID" ColumnName="PHID" />
+                <ScalarProperty Name="LHID" ColumnName="LHID" />
+                <ScalarProperty Name="PageName" ColumnName="PageName" />
+                <ScalarProperty Name="PageInDateTime" ColumnName="PageInDateTime" />
+                <ScalarProperty Name="PageOutDateTime" ColumnName="PageOutDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_VehicleType">
+            <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_VehicleType">
+              <MappingFragment StoreEntitySet="tbl_VehicleType">
+                <ScalarProperty Name="VehicleType" ColumnName="VehicleType" />
+                <ScalarProperty Name="VehicleMake" ColumnName="VehicleMake" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Question">
+            <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_Question">
+              <MappingFragment StoreEntitySet="tbl_Question">
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Answer" ColumnName="Answer" />
+                <ScalarProperty Name="Question" ColumnName="Question" />
+                <ScalarProperty Name="QID" ColumnName="QID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_VehicleLeads">
+            <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_VehicleLeads">
+              <MappingFragment StoreEntitySet="tbl_VehicleLeads">
+                <ScalarProperty Name="VehicleTypeText" ColumnName="VehicleTypeText" />
+                <ScalarProperty Name="LeadID" ColumnName="LeadID" />
+                <ScalarProperty Name="FinanceCompany" ColumnName="FinanceCompany" />
+                <ScalarProperty Name="Dealership" ColumnName="Dealership" />
+                <ScalarProperty Name="LicensePlate" ColumnName="LicensePlate" />
+                <ScalarProperty Name="VINNo" ColumnName="VINNo" />
+                <ScalarProperty Name="VehicleYear" ColumnName="VehicleYear" />
+                <ScalarProperty Name="VehicleType" ColumnName="VehicleType" />
+                <ScalarProperty Name="VehicleMake" ColumnName="VehicleMake" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_AgentOrder">
+            <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_AgentOrder">
+              <MappingFragment StoreEntitySet="tbl_AgentOrder">
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="IsCompleted" ColumnName="IsCompleted" />
+                <ScalarProperty Name="PinNo" ColumnName="PinNo" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="StepCompleted" ColumnName="StepCompleted" />
+                <ScalarProperty Name="AgentID" ColumnName="AgentID" />
+                <ScalarProperty Name="LeadID" ColumnName="LeadID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_CallHistory">
+            <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_CallHistory">
+              <MappingFragment StoreEntitySet="tbl_CallHistory">
+                <ScalarProperty Name="PageID" ColumnName="PageID" />
+                <ScalarProperty Name="LeadID" ColumnName="LeadID" />
+                <ScalarProperty Name="CallDate" ColumnName="CallDate" />
+                <ScalarProperty Name="AgentID" ColumnName="AgentID" />
+                <ScalarProperty Name="AOID" ColumnName="AOID" />
+                <ScalarProperty Name="CHID" ColumnName="CHID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_NotExportLead">
+            <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_NotExportLead">
+              <MappingFragment StoreEntitySet="tbl_NotExportLead">
+                <ScalarProperty Name="ExportDate" ColumnName="ExportDate" />
+                <ScalarProperty Name="DEALERSHIP" ColumnName="DEALERSHIP" />
+                <ScalarProperty Name="LOAD_DATE" ColumnName="LOAD_DATE" />
+                <ScalarProperty Name="LENDER_NAME" ColumnName="LENDER_NAME" />
+                <ScalarProperty Name="LISTCODE" ColumnName="LISTCODE" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="EXPIRATIONDATE" ColumnName="EXPIRATIONDATE" />
+                <ScalarProperty Name="LOGIN" ColumnName="LOGIN" />
+                <ScalarProperty Name="VEHTYPE" ColumnName="VEHTYPE" />
+                <ScalarProperty Name="MAKE" ColumnName="MAKE" />
+                <ScalarProperty Name="YEAR" ColumnName="YEAR" />
+                <ScalarProperty Name="VIN" ColumnName="VIN" />
+                <ScalarProperty Name="ZIP" ColumnName="ZIP" />
+                <ScalarProperty Name="STATE" ColumnName="STATE" />
+                <ScalarProperty Name="CITY" ColumnName="CITY" />
+                <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+                <ScalarProperty Name="LASTNAME" ColumnName="LASTNAME" />
+                <ScalarProperty Name="FIRSTNAME" ColumnName="FIRSTNAME" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Calls">
+            <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_Calls">
+              <MappingFragment StoreEntitySet="tbl_Calls">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedById" ColumnName="ModifiedById" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedById" ColumnName="CreatedById" />
+                <ScalarProperty Name="ReleatedToIds" ColumnName="ReleatedToIds" />
+                <ScalarProperty Name="CallNameIds" ColumnName="CallNameIds" />
+                <ScalarProperty Name="CallComment" ColumnName="CallComment" />
+                <ScalarProperty Name="CallSubject" ColumnName="CallSubject" />
+                <ScalarProperty Name="AutoGenID" ColumnName="AutoGenID" />
+                <ScalarProperty Name="PageID" ColumnName="PageID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Events">
+            <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_Events">
+              <MappingFragment StoreEntitySet="tbl_Events">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedById" ColumnName="ModifiedById" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedById" ColumnName="CreatedById" />
+                <ScalarProperty Name="ReleatedToIds" ColumnName="ReleatedToIds" />
+                <ScalarProperty Name="EventNameIds" ColumnName="EventNameIds" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EventDescription" ColumnName="EventDescription" />
+                <ScalarProperty Name="EventSubject" ColumnName="EventSubject" />
+                <ScalarProperty Name="AutoGenID" ColumnName="AutoGenID" />
+                <ScalarProperty Name="PageID" ColumnName="PageID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Tasks">
+            <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_Tasks">
+              <MappingFragment StoreEntitySet="tbl_Tasks">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedById" ColumnName="ModifiedById" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedById" ColumnName="CreatedById" />
+                <ScalarProperty Name="ReleatedToIds" ColumnName="ReleatedToIds" />
+                <ScalarProperty Name="TaskNameIds" ColumnName="TaskNameIds" />
+                <ScalarProperty Name="AssignToId" ColumnName="AssignToId" />
+                <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+                <ScalarProperty Name="TaskSubject" ColumnName="TaskSubject" />
+                <ScalarProperty Name="AutoGenID" ColumnName="AutoGenID" />
+                <ScalarProperty Name="PageID" ColumnName="PageID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblLogins">
+            <EntityTypeMapping TypeName="MalaGroupERPModel.tblLogin">
+              <MappingFragment StoreEntitySet="tblLogin">
+                <ScalarProperty Name="SMTPPassword" ColumnName="SMTPPassword" />
+                <ScalarProperty Name="SMTPUserName" ColumnName="SMTPUserName" />
+                <ScalarProperty Name="UserRoleId" ColumnName="UserRoleId" />
+                <ScalarProperty Name="CommunityNickname" ColumnName="CommunityNickname" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+                <ScalarProperty Name="LastModifiedById" ColumnName="LastModifiedById" />
+                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+                <ScalarProperty Name="CreatedById" ColumnName="CreatedById" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="FederationID" ColumnName="FederationID" />
+                <ScalarProperty Name="EndDay" ColumnName="EndDay" />
+                <ScalarProperty Name="StartDay" ColumnName="StartDay" />
+                <ScalarProperty Name="EmailEncoding" ColumnName="EmailEncoding" />
+                <ScalarProperty Name="UserLicense" ColumnName="UserLicense" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="Locale" ColumnName="Locale" />
+                <ScalarProperty Name="Language" ColumnName="Language" />
+                <ScalarProperty Name="Timezone" ColumnName="Timezone" />
+                <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+                <ScalarProperty Name="ShowNotification" ColumnName="ShowNotification" />
+                <ScalarProperty Name="StationMarketID" ColumnName="StationMarketID" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="AddToGroup" ColumnName="AddToGroup" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+                <ScalarProperty Name="Extension" ColumnName="Extension" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CellPhone" ColumnName="CellPhone" />
+                <ScalarProperty Name="WorkPhone" ColumnName="WorkPhone" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="StateID" ColumnName="StateID" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="SortOrderSFP" ColumnName="SortOrderSFP" />
+                <ScalarProperty Name="IsSuperUser" ColumnName="IsSuperUser" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="IsClientOrVendor" ColumnName="IsClientOrVendor" />
+                <ScalarProperty Name="ClientOrVendorID" ColumnName="ClientOrVendorID" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_AttachedFiles">
+            <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_AttachedFiles">
+              <MappingFragment StoreEntitySet="tbl_AttachedFiles">
+                <ScalarProperty Name="CreatedByID" ColumnName="CreatedByID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="OriginalFileName" ColumnName="OriginalFileName" />
+                <ScalarProperty Name="SystemFileName" ColumnName="SystemFileName" />
+                <ScalarProperty Name="AGID" ColumnName="AGID" />
+                <ScalarProperty Name="PageID" ColumnName="PageID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_FromAddress">
+            <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_FromAddress">
+              <MappingFragment StoreEntitySet="tbl_FromAddress">
+                <ScalarProperty Name="FromName" ColumnName="FromName" />
+                <ScalarProperty Name="FromEmailAddress" ColumnName="FromEmailAddress" />
+                <ScalarProperty Name="FromID" ColumnName="FromID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_VehicleAO">
+            <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_VehicleAO">
+              <MappingFragment StoreEntitySet="tbl_VehicleAO">
+                <ScalarProperty Name="AOID" ColumnName="AOID" />
+                <ScalarProperty Name="FinanceCompany" ColumnName="FinanceCompany" />
+                <ScalarProperty Name="Dealership" ColumnName="Dealership" />
+                <ScalarProperty Name="LicensePlate" ColumnName="LicensePlate" />
+                <ScalarProperty Name="VINNo" ColumnName="VINNo" />
+                <ScalarProperty Name="VehicleYear" ColumnName="VehicleYear" />
+                <ScalarProperty Name="VehicleType" ColumnName="VehicleType" />
+                <ScalarProperty Name="VehicleMake" ColumnName="VehicleMake" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_ABSCreditCrad">
+            <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_ABSCreditCrad">
+              <MappingFragment StoreEntitySet="tbl_ABSCreditCrad">
+                <ScalarProperty Name="ModifiedById" ColumnName="ModifiedById" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedById" ColumnName="CreatedById" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="IsSend" ColumnName="IsSend" />
+                <ScalarProperty Name="AuthCode" ColumnName="AuthCode" />
+                <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+                <ScalarProperty Name="TransactionMessage" ColumnName="TransactionMessage" />
+                <ScalarProperty Name="TransactionStatus" ColumnName="TransactionStatus" />
+                <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+                <ScalarProperty Name="ChargeAmount" ColumnName="ChargeAmount" />
+                <ScalarProperty Name="VehicleMake" ColumnName="VehicleMake" />
+                <ScalarProperty Name="VehicleYear" ColumnName="VehicleYear" />
+                <ScalarProperty Name="ShippingCountry" ColumnName="ShippingCountry" />
+                <ScalarProperty Name="ShippingZipPostalCode" ColumnName="ShippingZipPostalCode" />
+                <ScalarProperty Name="ShippingStateProvince" ColumnName="ShippingStateProvince" />
+                <ScalarProperty Name="ShippingCity" ColumnName="ShippingCity" />
+                <ScalarProperty Name="ShippingStreet" ColumnName="ShippingStreet" />
+                <ScalarProperty Name="PersonAccountLastName" ColumnName="PersonAccountLastName" />
+                <ScalarProperty Name="PersonAccountFirstName" ColumnName="PersonAccountFirstName" />
+                <ScalarProperty Name="PersonAccountEmail" ColumnName="PersonAccountEmail" />
+                <ScalarProperty Name="PrimaryPhone" ColumnName="PrimaryPhone" />
+                <ScalarProperty Name="BillingCountry" ColumnName="BillingCountry" />
+                <ScalarProperty Name="BillingZipPostal" ColumnName="BillingZipPostal" />
+                <ScalarProperty Name="BillingState" ColumnName="BillingState" />
+                <ScalarProperty Name="BillingCity" ColumnName="BillingCity" />
+                <ScalarProperty Name="BillingAddress" ColumnName="BillingAddress" />
+                <ScalarProperty Name="BillingLastName" ColumnName="BillingLastName" />
+                <ScalarProperty Name="BillingFirstName" ColumnName="BillingFirstName" />
+                <ScalarProperty Name="PinNumber" ColumnName="PinNumber" />
+                <ScalarProperty Name="PasswordId" ColumnName="PasswordId" />
+                <ScalarProperty Name="ChargeDate" ColumnName="ChargeDate" />
+                <ScalarProperty Name="PaymentCount" ColumnName="PaymentCount" />
+                <ScalarProperty Name="TransactionCount" ColumnName="TransactionCount" />
+                <ScalarProperty Name="CardExpirationYear" ColumnName="CardExpirationYear" />
+                <ScalarProperty Name="CardExpirationMonth" ColumnName="CardExpirationMonth" />
+                <ScalarProperty Name="CardNumber" ColumnName="CardNumber" />
+                <ScalarProperty Name="PaymentMethod" ColumnName="PaymentMethod" />
+                <ScalarProperty Name="TransactionTotal" ColumnName="TransactionTotal" />
+                <ScalarProperty Name="ChargeAmountAfterFirstPayment" ColumnName="ChargeAmountAfterFirstPayment" />
+                <ScalarProperty Name="InvoiceNumber" ColumnName="InvoiceNumber" />
+                <ScalarProperty Name="PaymentStartDate" ColumnName="PaymentStartDate" />
+                <ScalarProperty Name="PaymentStatus" ColumnName="PaymentStatus" />
+                <ScalarProperty Name="OpportunityID" ColumnName="OpportunityID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Notes">
+            <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_Notes">
+              <MappingFragment StoreEntitySet="tbl_Notes">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+                <ScalarProperty Name="LastModifiedById" ColumnName="LastModifiedById" />
+                <ScalarProperty Name="CreatedByID" ColumnName="CreatedByID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="NotesDate" ColumnName="NotesDate" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_ViewedBy">
+            <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_ViewedBy">
+              <MappingFragment StoreEntitySet="tbl_ViewedBy">
+                <ScalarProperty Name="ViewedDate" ColumnName="ViewedDate" />
+                <ScalarProperty Name="ViewedById" ColumnName="ViewedById" />
+                <ScalarProperty Name="NID" ColumnName="NID" />
+                <ScalarProperty Name="NVID" ColumnName="NVID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Transaction">
+            <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_Transaction">
+              <MappingFragment StoreEntitySet="tbl_Transaction">
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+                <ScalarProperty Name="LeadID" ColumnName="LeadID" />
+                <ScalarProperty Name="AOID" ColumnName="AOID" />
+                <ScalarProperty Name="CardSecurityCode" ColumnName="CardSecurityCode" />
+                <ScalarProperty Name="CardExpirationYear" ColumnName="CardExpirationYear" />
+                <ScalarProperty Name="CardExpirationMonth" ColumnName="CardExpirationMonth" />
+                <ScalarProperty Name="Token" ColumnName="Token" />
+                <ScalarProperty Name="CardNumber" ColumnName="CardNumber" />
+                <ScalarProperty Name="CardType" ColumnName="CardType" />
+                <ScalarProperty Name="CardDetail" ColumnName="CardDetail" />
+                <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_ChatViewedBy">
+            <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_ChatViewedBy">
+              <MappingFragment StoreEntitySet="tbl_ChatViewedBy">
+                <ScalarProperty Name="ViewedDate" ColumnName="ViewedDate" />
+                <ScalarProperty Name="ViewedById" ColumnName="ViewedById" />
+                <ScalarProperty Name="CID" ColumnName="CID" />
+                <ScalarProperty Name="CVID" ColumnName="CVID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_LeadInformation">
+            <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_LeadInformation">
+              <MappingFragment StoreEntitySet="tbl_LeadInformation">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="LicensePlate" ColumnName="LicensePlate" />
+                <ScalarProperty Name="VinNo" ColumnName="VinNo" />
+                <ScalarProperty Name="Finance" ColumnName="Finance" />
+                <ScalarProperty Name="DelearShip" ColumnName="DelearShip" />
+                <ScalarProperty Name="VechileYear" ColumnName="VechileYear" />
+                <ScalarProperty Name="VechileTye" ColumnName="VechileTye" />
+                <ScalarProperty Name="VechileMake" ColumnName="VechileMake" />
+                <ScalarProperty Name="Take_Off_List__c" ColumnName="Take_Off_List__c" />
+                <ScalarProperty Name="AOStatus" ColumnName="AOStatus" />
+                <ScalarProperty Name="Password_Generator__c" ColumnName="Password_Generator__c" />
+                <ScalarProperty Name="AccountText" ColumnName="AccountText" />
+                <ScalarProperty Name="ConvertedDate" ColumnName="ConvertedDate" />
+                <ScalarProperty Name="OwnerIDText" ColumnName="OwnerIDText" />
+                <ScalarProperty Name="LastModifiedById" ColumnName="LastModifiedById" />
+                <ScalarProperty Name="IsConverted" ColumnName="IsConverted" />
+                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+                <ScalarProperty Name="CreatedById" ColumnName="CreatedById" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ExportedDate" ColumnName="ExportedDate" />
+                <ScalarProperty Name="PinNo" ColumnName="PinNo" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="ListCode2" ColumnName="ListCode2" />
+                <ScalarProperty Name="Language" ColumnName="Language" />
+                <ScalarProperty Name="Warranty" ColumnName="Warranty" />
+                <ScalarProperty Name="ExpirationDate" ColumnName="ExpirationDate" />
+                <ScalarProperty Name="ListCode" ColumnName="ListCode" />
+                <ScalarProperty Name="LeadEmail" ColumnName="LeadEmail" />
+                <ScalarProperty Name="SecondaryPhone" ColumnName="SecondaryPhone" />
+                <ScalarProperty Name="PrimaryPhone" ColumnName="PrimaryPhone" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LeadOwner" ColumnName="LeadOwner" />
+                <ScalarProperty Name="LeadStatus" ColumnName="LeadStatus" />
+                <ScalarProperty Name="LeadID" ColumnName="LeadID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_EmailTemplates">
+            <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_EmailTemplates">
+              <MappingFragment StoreEntitySet="tbl_EmailTemplates">
+                <ScalarProperty Name="TemplateFor" ColumnName="TemplateFor" />
+                <ScalarProperty Name="LastModifiedById" ColumnName="LastModifiedById" />
+                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+                <ScalarProperty Name="CreatedById" ColumnName="CreatedById" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="AttachmentFileName" ColumnName="AttachmentFileName" />
+                <ScalarProperty Name="TemplatePlainText" ColumnName="TemplatePlainText" />
+                <ScalarProperty Name="TemplateHTML" ColumnName="TemplateHTML" />
+                <ScalarProperty Name="TemplateSubject" ColumnName="TemplateSubject" />
+                <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
+                <ScalarProperty Name="TemplateID" ColumnName="TemplateID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_ExportHistory">
+            <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_ExportHistory">
+              <MappingFragment StoreEntitySet="tbl_ExportHistory">
+                <ScalarProperty Name="IsViewed" ColumnName="IsViewed" />
+                <ScalarProperty Name="IsExported" ColumnName="IsExported" />
+                <ScalarProperty Name="DateExported" ColumnName="DateExported" />
+                <ScalarProperty Name="DuplicateCount" ColumnName="DuplicateCount" />
+                <ScalarProperty Name="TotalCount" ColumnName="TotalCount" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="TableName" ColumnName="TableName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Chattter">
+            <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_Chattter">
+              <MappingFragment StoreEntitySet="tbl_Chattter">
+                <ScalarProperty Name="LeadID" ColumnName="LeadID" />
+                <ScalarProperty Name="OriginalFileName" ColumnName="OriginalFileName" />
+                <ScalarProperty Name="SystemFileName" ColumnName="SystemFileName" />
+                <ScalarProperty Name="IsRichText" ColumnName="IsRichText" />
+                <ScalarProperty Name="InsertedById" ColumnName="InsertedById" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="LinkUrl" ColumnName="LinkUrl" />
+                <ScalarProperty Name="Body" ColumnName="Body" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedById" ColumnName="CreatedById" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="FeedItemId" ColumnName="FeedItemId" />
+                <ScalarProperty Name="CID" ColumnName="CID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Accounts">
+            <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_Accounts">
+              <MappingFragment StoreEntitySet="tbl_Accounts">
+                <ScalarProperty Name="SalesDate" ColumnName="SalesDate" />
+                <ScalarProperty Name="AccountStatus" ColumnName="AccountStatus" />
+                <ScalarProperty Name="RenewalDate" ColumnName="RenewalDate" />
+                <ScalarProperty Name="AccountCancellationDate" ColumnName="AccountCancellationDate" />
+                <ScalarProperty Name="RecordTypeId" ColumnName="RecordTypeId" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="CustomerAddressID" ColumnName="CustomerAddressID" />
+                <ScalarProperty Name="CustomerPaymentID" ColumnName="CustomerPaymentID" />
+                <ScalarProperty Name="CustomerProfileID" ColumnName="CustomerProfileID" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="PersonContactId" ColumnName="PersonContactId" />
+                <ScalarProperty Name="LastModifiedById" ColumnName="LastModifiedById" />
+                <ScalarProperty Name="LastModifiedDate" ColumnName="LastModifiedDate" />
+                <ScalarProperty Name="CreatedById" ColumnName="CreatedById" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="PinNo" ColumnName="PinNo" />
+                <ScalarProperty Name="AOID" ColumnName="AOID" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="LeadID" ColumnName="LeadID" />
+                <ScalarProperty Name="ShippingCountry" ColumnName="ShippingCountry" />
+                <ScalarProperty Name="ShippingZip" ColumnName="ShippingZip" />
+                <ScalarProperty Name="ShippingState" ColumnName="ShippingState" />
+                <ScalarProperty Name="ShippingCity" ColumnName="ShippingCity" />
+                <ScalarProperty Name="ShippingAddress" ColumnName="ShippingAddress" />
+                <ScalarProperty Name="BillingCountry" ColumnName="BillingCountry" />
+                <ScalarProperty Name="BillingZip" ColumnName="BillingZip" />
+                <ScalarProperty Name="BillingState" ColumnName="BillingState" />
+                <ScalarProperty Name="BillingCity" ColumnName="BillingCity" />
+                <ScalarProperty Name="BillingAddress" ColumnName="BillingAddress" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Employee" ColumnName="Employee" />
+                <ScalarProperty Name="Industry" ColumnName="Industry" />
+                <ScalarProperty Name="ParentAccount" ColumnName="ParentAccount" />
+                <ScalarProperty Name="AccountOwner" ColumnName="AccountOwner" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_AuditTrail">
+            <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_AuditTrail">
+              <MappingFragment StoreEntitySet="tbl_AuditTrail">
+                <ScalarProperty Name="AGID" ColumnName="AGID" />
+                <ScalarProperty Name="PageID" ColumnName="PageID" />
+                <ScalarProperty Name="UpdatedByUserID" ColumnName="UpdatedByUserID" />
+                <ScalarProperty Name="DateUpdate" ColumnName="DateUpdate" />
+                <ScalarProperty Name="AuditDetails" ColumnName="AuditDetails" />
+                <ScalarProperty Name="ATID" ColumnName="ATID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_OrderCardCheckInfo">
+            <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_OrderCardCheckInfo">
+              <MappingFragment StoreEntitySet="tbl_OrderCardCheckInfo">
+                <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
+                <ScalarProperty Name="CardName" ColumnName="CardName" />
+                <ScalarProperty Name="LeadID" ColumnName="LeadID" />
+                <ScalarProperty Name="AOID" ColumnName="AOID" />
+                <ScalarProperty Name="CheckNo" ColumnName="CheckNo" />
+                <ScalarProperty Name="CardSecurityCode" ColumnName="CardSecurityCode" />
+                <ScalarProperty Name="CardExpirationYear" ColumnName="CardExpirationYear" />
+                <ScalarProperty Name="CardExpirationMonth" ColumnName="CardExpirationMonth" />
+                <ScalarProperty Name="CardNumber" ColumnName="CardNumber" />
+                <ScalarProperty Name="CardType" ColumnName="CardType" />
+                <ScalarProperty Name="PaymentMode" ColumnName="PaymentMode" />
+                <ScalarProperty Name="CCID" ColumnName="CCID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Package">
+            <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_Package">
+              <MappingFragment StoreEntitySet="tbl_Package">
+                <ScalarProperty Name="IsRenewal" ColumnName="IsRenewal" />
+                <ScalarProperty Name="DecalNumber" ColumnName="DecalNumber" />
+                <ScalarProperty Name="AddIdentityTheft" ColumnName="AddIdentityTheft" />
+                <ScalarProperty Name="AddDecal" ColumnName="AddDecal" />
+                <ScalarProperty Name="Additional" ColumnName="Additional" />
+                <ScalarProperty Name="NoOfInstallment" ColumnName="NoOfInstallment" />
+                <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Package" ColumnName="Package" />
+                <ScalarProperty Name="PackageID" ColumnName="PackageID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_AOScript">
+            <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_AOScript">
+              <MappingFragment StoreEntitySet="tbl_AOScript">
+                <ScalarProperty Name="Step" ColumnName="Step" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="AOScript" ColumnName="AOScript" />
+                <ScalarProperty Name="AOSID" ColumnName="AOSID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_ReportTakeOffListCriteria">
+            <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_ReportTakeOffListCriteria">
+              <MappingFragment StoreEntitySet="tbl_ReportTakeOffListCriteria">
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ReportDate" ColumnName="ReportDate" />
+                <ScalarProperty Name="ReportStatus" ColumnName="ReportStatus" />
+                <ScalarProperty Name="AccountStatus" ColumnName="AccountStatus" />
+                <ScalarProperty Name="Show" ColumnName="Show" />
+                <ScalarProperty Name="IsTakeOFF" ColumnName="IsTakeOFF" />
+                <ScalarProperty Name="LastModifiedTo" ColumnName="LastModifiedTo" />
+                <ScalarProperty Name="LastModifiedFrom" ColumnName="LastModifiedFrom" />
+                <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_EMails">
+            <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_EMails">
+              <MappingFragment StoreEntitySet="tbl_EMails">
+                <ScalarProperty Name="OriginalFileName" ColumnName="OriginalFileName" />
+                <ScalarProperty Name="AttachedFileName" ColumnName="AttachedFileName" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedById" ColumnName="ModifiedById" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedById" ColumnName="CreatedById" />
+                <ScalarProperty Name="EmailPlainText" ColumnName="EmailPlainText" />
+                <ScalarProperty Name="EmailHTMLBody" ColumnName="EmailHTMLBody" />
+                <ScalarProperty Name="EmailSubject" ColumnName="EmailSubject" />
+                <ScalarProperty Name="BCCEmails" ColumnName="BCCEmails" />
+                <ScalarProperty Name="CCEmails" ColumnName="CCEmails" />
+                <ScalarProperty Name="ToEmails" ColumnName="ToEmails" />
+                <ScalarProperty Name="FromEmail" ColumnName="FromEmail" />
+                <ScalarProperty Name="AutoGenID" ColumnName="AutoGenID" />
+                <ScalarProperty Name="PageID" ColumnName="PageID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Snippet">
+            <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_Snippet">
+              <MappingFragment StoreEntitySet="tbl_Snippet">
+                <ScalarProperty Name="SnippetFor" ColumnName="SnippetFor" />
+                <ScalarProperty Name="Snippet" ColumnName="Snippet" />
+                <ScalarProperty Name="SnippetTitle" ColumnName="SnippetTitle" />
+                <ScalarProperty Name="SID" ColumnName="SID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_CustomReportDataType">
+            <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_CustomReportDataType">
+              <MappingFragment StoreEntitySet="tbl_CustomReportDataType">
+                <ScalarProperty Name="DataType" ColumnName="DataType" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_CustomReportFields">
+            <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_CustomReportFields">
+              <MappingFragment StoreEntitySet="tbl_CustomReportFields">
+                <ScalarProperty Name="FieldID" ColumnName="FieldID" />
+                <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_CustomReportFilters">
+            <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_CustomReportFilters">
+              <MappingFragment StoreEntitySet="tbl_CustomReportFilters">
+                <ScalarProperty Name="FieldCriteria" ColumnName="FieldCriteria" />
+                <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_ReportTables">
+            <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_ReportTables">
+              <MappingFragment StoreEntitySet="tbl_ReportTables">
+                <ScalarProperty Name="TableName" ColumnName="TableName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_ReportTablesFields">
+            <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_ReportTablesFields">
+              <MappingFragment StoreEntitySet="tbl_ReportTablesFields">
+                <ScalarProperty Name="DropDownID" ColumnName="DropDownID" />
+                <ScalarProperty Name="IsDropDown" ColumnName="IsDropDown" />
+                <ScalarProperty Name="DataType" ColumnName="DataType" />
+                <ScalarProperty Name="ColumnName" ColumnName="ColumnName" />
+                <ScalarProperty Name="DiaplayName" ColumnName="DiaplayName" />
+                <ScalarProperty Name="TableID" ColumnName="TableID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_ReportTablesJoins">
+            <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_ReportTablesJoins">
+              <MappingFragment StoreEntitySet="tbl_ReportTablesJoins">
+                <ScalarProperty Name="JoinString" ColumnName="JoinString" />
+                <ScalarProperty Name="TableID" ColumnName="TableID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_CustomReport">
+            <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_CustomReport">
+              <MappingFragment StoreEntitySet="tbl_CustomReport">
+                <ScalarProperty Name="IsSaved" ColumnName="IsSaved" />
+                <ScalarProperty Name="IsPublic" ColumnName="IsPublic" />
+                <ScalarProperty Name="ModifiedBY" ColumnName="ModifiedBY" />
+                <ScalarProperty Name="CreatedtedBY" ColumnName="CreatedtedBY" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatdedDate" ColumnName="CreatdedDate" />
+                <ScalarProperty Name="ReportName" ColumnName="ReportName" />
+                <ScalarProperty Name="TableID" ColumnName="TableID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_AgentOrderDetails">
+            <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_AgentOrderDetails">
+              <MappingFragment StoreEntitySet="tbl_AgentOrderDetails">
+                <ScalarProperty Name="TooMuch" ColumnName="TooMuch" />
+                <ScalarProperty Name="CompType" ColumnName="CompType" />
+                <ScalarProperty Name="LicensePlate4" ColumnName="LicensePlate4" />
+                <ScalarProperty Name="LicensePlate3" ColumnName="LicensePlate3" />
+                <ScalarProperty Name="LicensePlate2" ColumnName="LicensePlate2" />
+                <ScalarProperty Name="VINNo4" ColumnName="VINNo4" />
+                <ScalarProperty Name="VINNo3" ColumnName="VINNo3" />
+                <ScalarProperty Name="VINNo2" ColumnName="VINNo2" />
+                <ScalarProperty Name="VehicleYear4" ColumnName="VehicleYear4" />
+                <ScalarProperty Name="VehicleYear3" ColumnName="VehicleYear3" />
+                <ScalarProperty Name="VehicleYear2" ColumnName="VehicleYear2" />
+                <ScalarProperty Name="VehicleMake4" ColumnName="VehicleMake4" />
+                <ScalarProperty Name="VehicleMake3" ColumnName="VehicleMake3" />
+                <ScalarProperty Name="VehicleMake2" ColumnName="VehicleMake2" />
+                <ScalarProperty Name="Warranty" ColumnName="Warranty" />
+                <ScalarProperty Name="FinanceCompany" ColumnName="FinanceCompany" />
+                <ScalarProperty Name="Dealership" ColumnName="Dealership" />
+                <ScalarProperty Name="LicensePlate" ColumnName="LicensePlate" />
+                <ScalarProperty Name="VINNo" ColumnName="VINNo" />
+                <ScalarProperty Name="GPSDN4" ColumnName="GPSDN4" />
+                <ScalarProperty Name="GPSDN3" ColumnName="GPSDN3" />
+                <ScalarProperty Name="GPSDN2" ColumnName="GPSDN2" />
+                <ScalarProperty Name="GPSDN1" ColumnName="GPSDN1" />
+                <ScalarProperty Name="GPSSKU4" ColumnName="GPSSKU4" />
+                <ScalarProperty Name="GPSSKU3" ColumnName="GPSSKU3" />
+                <ScalarProperty Name="GPSSKU2" ColumnName="GPSSKU2" />
+                <ScalarProperty Name="GPSSKU1" ColumnName="GPSSKU1" />
+                <ScalarProperty Name="DecalNumber4" ColumnName="DecalNumber4" />
+                <ScalarProperty Name="DecalNumber3" ColumnName="DecalNumber3" />
+                <ScalarProperty Name="DecalNumber2" ColumnName="DecalNumber2" />
+                <ScalarProperty Name="DecalNumber1" ColumnName="DecalNumber1" />
+                <ScalarProperty Name="AdditionalPackageAmt" ColumnName="AdditionalPackageAmt" />
+                <ScalarProperty Name="PackageAmt" ColumnName="PackageAmt" />
+                <ScalarProperty Name="TotalAmt" ColumnName="TotalAmt" />
+                <ScalarProperty Name="IdentityTheft" ColumnName="IdentityTheft" />
+                <ScalarProperty Name="AddDecals" ColumnName="AddDecals" />
+                <ScalarProperty Name="NoOfVehicle" ColumnName="NoOfVehicle" />
+                <ScalarProperty Name="ChargeDay" ColumnName="ChargeDay" />
+                <ScalarProperty Name="FirstChargeDate" ColumnName="FirstChargeDate" />
+                <ScalarProperty Name="BZipCode" ColumnName="BZipCode" />
+                <ScalarProperty Name="BState" ColumnName="BState" />
+                <ScalarProperty Name="BCity" ColumnName="BCity" />
+                <ScalarProperty Name="BStreet" ColumnName="BStreet" />
+                <ScalarProperty Name="IsDiffBillingAdd" ColumnName="IsDiffBillingAdd" />
+                <ScalarProperty Name="AdditionalPackage" ColumnName="AdditionalPackage" />
+                <ScalarProperty Name="PackageId" ColumnName="PackageId" />
+                <ScalarProperty Name="VehicleYear" ColumnName="VehicleYear" />
+                <ScalarProperty Name="VehicleType" ColumnName="VehicleType" />
+                <ScalarProperty Name="VehicleMake" ColumnName="VehicleMake" />
+                <ScalarProperty Name="AOID" ColumnName="AOID" />
+                <ScalarProperty Name="AODID" ColumnName="AODID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_AccountOwner">
+            <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_AccountOwner">
+              <MappingFragment StoreEntitySet="tbl_AccountOwner">
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="NewOwnerId" ColumnName="NewOwnerId" />
+                <ScalarProperty Name="OldOwnerId" ColumnName="OldOwnerId" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="ACCOID" ColumnName="ACCOID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_VehicleMake">
+            <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_VehicleMake">
+              <MappingFragment StoreEntitySet="tbl_VehicleMake">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="VehicleMake" ColumnName="VehicleMake" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_OrderTransactions">
+            <EntityTypeMapping TypeName="MalaGroupERPModel.tbl_OrderTransactions">
+              <MappingFragment StoreEntitySet="tbl_OrderTransactions">
+                <ScalarProperty Name="MailSend" ColumnName="MailSend" />
+                <ScalarProperty Name="TransType" ColumnName="TransType" />
+                <ScalarProperty Name="StatusText" ColumnName="StatusText" />
+                <ScalarProperty Name="ResonText" ColumnName="ResonText" />
+                <ScalarProperty Name="GatwayResponse" ColumnName="GatwayResponse" />
+                <ScalarProperty Name="GatewayID" ColumnName="GatewayID" />
+                <ScalarProperty Name="RefundAmt" ColumnName="RefundAmt" />
+                <ScalarProperty Name="SubscriptionID" ColumnName="SubscriptionID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ChargeAmt" ColumnName="ChargeAmt" />
+                <ScalarProperty Name="CardType" ColumnName="CardType" />
+                <ScalarProperty Name="CardCheckNumber" ColumnName="CardCheckNumber" />
+                <ScalarProperty Name="TransHashCode" ColumnName="TransHashCode" />
+                <ScalarProperty Name="AuthCode" ColumnName="AuthCode" />
+                <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+                <ScalarProperty Name="PaymentMethod" ColumnName="PaymentMethod" />
+                <ScalarProperty Name="ChargeNo" ColumnName="ChargeNo" />
+                <ScalarProperty Name="AOID" ColumnName="AOID" />
+                <ScalarProperty Name="ChargeDate" ColumnName="ChargeDate" />
+                <ScalarProperty Name="CDID" ColumnName="CDID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

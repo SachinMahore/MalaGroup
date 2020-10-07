@@ -1,0 +1,970 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MalaGroupERPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="syNavigationNodes">
+    <Key>
+      <PropertyRef Name="NodeID" />
+    </Key>
+    <Property Name="NodeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DisplayIndex" Type="int" Nullable="false" />
+    <Property Name="ResourceId" Type="int" Nullable="false" />
+    <Property Name="ParentId" Type="int" />
+    <Property Name="IsPopupWindow" Type="bit" />
+  </EntityType>
+  <EntityType Name="syResources">
+    <Key>
+      <PropertyRef Name="ResourceId" />
+    </Key>
+    <Property Name="ResourceId" Type="int" Nullable="false" />
+    <Property Name="Resource" Type="varchar" MaxLength="200" />
+    <Property Name="ResourceTypeId" Type="tinyint" />
+    <Property Name="Controller" Type="varchar" MaxLength="200" />
+    <Property Name="Action" Type="varchar" MaxLength="200" />
+    <Property Name="UsedIn" Type="int" />
+    <Property Name="IsRight" Type="int" />
+    <Property Name="TabText" Type="varchar" MaxLength="200" />
+    <Property Name="PageTitle" Type="varchar" MaxLength="200" />
+    <Property Name="Icon" Type="varchar" MaxLength="50" />
+    <Property Name="ClickEent" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="syResourceTypes">
+    <Key>
+      <PropertyRef Name="ResourceTypeId" />
+    </Key>
+    <Property Name="ResourceTypeId" Type="int" Nullable="false" />
+    <Property Name="ResourceType" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="syRoleResources">
+    <Key>
+      <PropertyRef Name="RoleResourceId" />
+    </Key>
+    <Property Name="RoleResourceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleId" Type="int" Nullable="false" />
+    <Property Name="ResourceId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="syRoles">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleCode" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="RoleDescription" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="RoleStatus" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="syRolesResourcesLevels">
+    <Key>
+      <PropertyRef Name="RRLId" />
+    </Key>
+    <Property Name="RRLId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleId" Type="int" Nullable="false" />
+    <Property Name="ModuleId" Type="int" Nullable="false" />
+    <Property Name="ResourceId" Type="int" Nullable="false" />
+    <Property Name="AccessLevel" Type="int" Nullable="false" />
+    <Property Name="HasSpecialRight" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="syUsersRoles">
+    <Key>
+      <PropertyRef Name="UserRoleId" />
+    </Key>
+    <Property Name="UserRoleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="RoleId" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_ABSCreditCrad">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OpportunityID" Type="varchar" MaxLength="50" />
+    <Property Name="PaymentStatus" Type="varchar" MaxLength="50" />
+    <Property Name="PaymentStartDate" Type="varchar" MaxLength="50" />
+    <Property Name="InvoiceNumber" Type="varchar" MaxLength="50" />
+    <Property Name="ChargeAmountAfterFirstPayment" Type="varchar" MaxLength="50" />
+    <Property Name="TransactionTotal" Type="varchar" MaxLength="50" />
+    <Property Name="PaymentMethod" Type="varchar" MaxLength="50" />
+    <Property Name="CardNumber" Type="varchar" MaxLength="50" />
+    <Property Name="CardExpirationMonth" Type="varchar" MaxLength="50" />
+    <Property Name="CardExpirationYear" Type="varchar" MaxLength="50" />
+    <Property Name="TransactionCount" Type="varchar" MaxLength="50" />
+    <Property Name="PaymentCount" Type="varchar" MaxLength="50" />
+    <Property Name="ChargeDate" Type="varchar" MaxLength="50" />
+    <Property Name="PasswordId" Type="varchar" MaxLength="50" />
+    <Property Name="PinNumber" Type="varchar" MaxLength="50" />
+    <Property Name="BillingFirstName" Type="varchar" MaxLength="50" />
+    <Property Name="BillingLastName" Type="varchar" MaxLength="50" />
+    <Property Name="BillingAddress" Type="varchar" MaxLength="500" />
+    <Property Name="BillingCity" Type="varchar" MaxLength="50" />
+    <Property Name="BillingState" Type="varchar" MaxLength="50" />
+    <Property Name="BillingZipPostal" Type="varchar" MaxLength="50" />
+    <Property Name="BillingCountry" Type="varchar" MaxLength="50" />
+    <Property Name="PrimaryPhone" Type="varchar" MaxLength="50" />
+    <Property Name="PersonAccountEmail" Type="varchar" MaxLength="500" />
+    <Property Name="PersonAccountFirstName" Type="varchar" MaxLength="50" />
+    <Property Name="PersonAccountLastName" Type="varchar" MaxLength="50" />
+    <Property Name="ShippingStreet" Type="varchar" MaxLength="500" />
+    <Property Name="ShippingCity" Type="varchar" MaxLength="50" />
+    <Property Name="ShippingStateProvince" Type="varchar" MaxLength="50" />
+    <Property Name="ShippingZipPostalCode" Type="varchar" MaxLength="50" />
+    <Property Name="ShippingCountry" Type="varchar" MaxLength="50" />
+    <Property Name="VehicleYear" Type="varchar" MaxLength="50" />
+    <Property Name="VehicleMake" Type="varchar" MaxLength="50" />
+    <Property Name="ChargeAmount" Type="varchar" MaxLength="50" />
+    <Property Name="TransactionID" Type="varchar" MaxLength="50" />
+    <Property Name="TransactionStatus" Type="varchar" MaxLength="50" />
+    <Property Name="TransactionMessage" Type="varchar" MaxLength="1000" />
+    <Property Name="TransactionDate" Type="varchar" MaxLength="50" />
+    <Property Name="AuthCode" Type="varchar" MaxLength="50" />
+    <Property Name="IsSend" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="CreatedById" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedById" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_AccountOwner">
+    <Key>
+      <PropertyRef Name="ACCOID" />
+    </Key>
+    <Property Name="ACCOID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AccountID" Type="bigint" />
+    <Property Name="OldOwnerId" Type="int" />
+    <Property Name="NewOwnerId" Type="int" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_Accounts">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AccountName" Type="varchar" MaxLength="100" />
+    <Property Name="Phone" Type="varchar" MaxLength="20" />
+    <Property Name="Website" Type="varchar" MaxLength="50" />
+    <Property Name="Type" Type="int" />
+    <Property Name="AccountOwner" Type="int" />
+    <Property Name="ParentAccount" Type="int" />
+    <Property Name="Industry" Type="int" />
+    <Property Name="Employee" Type="int" />
+    <Property Name="Description" Type="nvarchar" MaxLength="500" />
+    <Property Name="BillingAddress" Type="nvarchar" MaxLength="500" />
+    <Property Name="BillingCity" Type="varchar" MaxLength="50" />
+    <Property Name="BillingState" Type="varchar" MaxLength="50" />
+    <Property Name="BillingZip" Type="varchar" MaxLength="50" />
+    <Property Name="BillingCountry" Type="varchar" MaxLength="50" />
+    <Property Name="ShippingAddress" Type="nvarchar" MaxLength="500" />
+    <Property Name="ShippingCity" Type="varchar" MaxLength="50" />
+    <Property Name="ShippingState" Type="varchar" MaxLength="50" />
+    <Property Name="ShippingZip" Type="varchar" MaxLength="50" />
+    <Property Name="ShippingCountry" Type="varchar" MaxLength="50" />
+    <Property Name="LeadID" Type="bigint" />
+    <Property Name="Password" Type="varchar" MaxLength="20" />
+    <Property Name="AOID" Type="bigint" />
+    <Property Name="PinNo" Type="varchar" MaxLength="20" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="CreatedById" Type="int" />
+    <Property Name="LastModifiedDate" Type="datetime" />
+    <Property Name="LastModifiedById" Type="int" />
+    <Property Name="PersonContactId" Type="int" />
+    <Property Name="IsDeleted" Type="int" Nullable="false" />
+    <Property Name="CustomerProfileID" Type="varchar" MaxLength="20" />
+    <Property Name="CustomerPaymentID" Type="varchar" MaxLength="20" />
+    <Property Name="CustomerAddressID" Type="varchar" MaxLength="20" />
+    <Property Name="EmailId" Type="nvarchar" MaxLength="255" />
+    <Property Name="RecordTypeId" Type="nvarchar" MaxLength="255" />
+    <Property Name="AccountCancellationDate" Type="datetime" />
+    <Property Name="RenewalDate" Type="datetime" />
+    <Property Name="AccountStatus" Type="int" />
+    <Property Name="SalesDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbl_AgentOrder">
+    <Key>
+      <PropertyRef Name="OrderID" />
+    </Key>
+    <Property Name="OrderID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LeadID" Type="bigint" />
+    <Property Name="AgentID" Type="int" />
+    <Property Name="StepCompleted" Type="int" />
+    <Property Name="StartDate" Type="datetime" />
+    <Property Name="EndDate" Type="datetime" />
+    <Property Name="PinNo" Type="varchar" MaxLength="20" />
+    <Property Name="IsCompleted" Type="int" />
+    <Property Name="AccountID" Type="bigint" />
+  </EntityType>
+  <EntityType Name="tbl_AgentOrderDetails">
+    <Key>
+      <PropertyRef Name="AODID" />
+    </Key>
+    <Property Name="AODID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AOID" Type="bigint" />
+    <Property Name="VehicleMake" Type="int" />
+    <Property Name="VehicleType" Type="int" />
+    <Property Name="VehicleYear" Type="varchar" MaxLength="10" />
+    <Property Name="PackageId" Type="int" />
+    <Property Name="AdditionalPackage" Type="varchar" MaxLength="50" />
+    <Property Name="IsDiffBillingAdd" Type="int" />
+    <Property Name="BStreet" Type="varchar" MaxLength="200" />
+    <Property Name="BCity" Type="varchar" MaxLength="200" />
+    <Property Name="BState" Type="varchar" MaxLength="200" />
+    <Property Name="BZipCode" Type="varchar" MaxLength="20" />
+    <Property Name="FirstChargeDate" Type="datetime" />
+    <Property Name="ChargeDay" Type="int" />
+    <Property Name="NoOfVehicle" Type="int" />
+    <Property Name="AddDecals" Type="int" />
+    <Property Name="IdentityTheft" Type="int" />
+    <Property Name="TotalAmt" Type="nvarchar" MaxLength="50" />
+    <Property Name="PackageAmt" Type="money" />
+    <Property Name="AdditionalPackageAmt" Type="varchar" MaxLength="500" />
+    <Property Name="DecalNumber1" Type="varchar" MaxLength="50" />
+    <Property Name="DecalNumber2" Type="varchar" MaxLength="50" />
+    <Property Name="DecalNumber3" Type="varchar" MaxLength="50" />
+    <Property Name="DecalNumber4" Type="varchar" MaxLength="50" />
+    <Property Name="GPSSKU1" Type="varchar" MaxLength="50" />
+    <Property Name="GPSSKU2" Type="varchar" MaxLength="50" />
+    <Property Name="GPSSKU3" Type="varchar" MaxLength="50" />
+    <Property Name="GPSSKU4" Type="varchar" MaxLength="50" />
+    <Property Name="GPSDN1" Type="varchar" MaxLength="50" />
+    <Property Name="GPSDN2" Type="varchar" MaxLength="50" />
+    <Property Name="GPSDN3" Type="varchar" MaxLength="50" />
+    <Property Name="GPSDN4" Type="varchar" MaxLength="50" />
+    <Property Name="VINNo" Type="varchar" MaxLength="50" />
+    <Property Name="LicensePlate" Type="varchar" MaxLength="50" />
+    <Property Name="Dealership" Type="varchar" MaxLength="200" />
+    <Property Name="FinanceCompany" Type="varchar" MaxLength="200" />
+    <Property Name="Warranty" Type="varchar" MaxLength="200" />
+    <Property Name="VehicleMake2" Type="int" />
+    <Property Name="VehicleMake3" Type="int" />
+    <Property Name="VehicleMake4" Type="int" />
+    <Property Name="VehicleYear2" Type="varchar" MaxLength="10" />
+    <Property Name="VehicleYear3" Type="varchar" MaxLength="10" />
+    <Property Name="VehicleYear4" Type="varchar" MaxLength="10" />
+    <Property Name="VINNo2" Type="varchar" MaxLength="50" />
+    <Property Name="VINNo3" Type="varchar" MaxLength="50" />
+    <Property Name="VINNo4" Type="varchar" MaxLength="50" />
+    <Property Name="LicensePlate2" Type="varchar" MaxLength="50" />
+    <Property Name="LicensePlate3" Type="varchar" MaxLength="50" />
+    <Property Name="LicensePlate4" Type="varchar" MaxLength="50" />
+    <Property Name="CompType" Type="int" />
+    <Property Name="TooMuch" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_AOScript">
+    <Key>
+      <PropertyRef Name="AOSID" />
+    </Key>
+    <Property Name="AOSID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AOScript" Type="nvarchar(max)" />
+    <Property Name="Status" Type="int" />
+    <Property Name="Step" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_AttachedFiles">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PageID" Type="int" />
+    <Property Name="AGID" Type="bigint" />
+    <Property Name="SystemFileName" Type="varchar" MaxLength="500" />
+    <Property Name="OriginalFileName" Type="varchar" MaxLength="500" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="CreatedByID" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_AuditTrail">
+    <Key>
+      <PropertyRef Name="ATID" />
+    </Key>
+    <Property Name="ATID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AuditDetails" Type="nvarchar(max)" />
+    <Property Name="DateUpdate" Type="datetime" />
+    <Property Name="UpdatedByUserID" Type="int" />
+    <Property Name="PageID" Type="int" />
+    <Property Name="AGID" Type="bigint" />
+  </EntityType>
+  <EntityType Name="tbl_CallHistory">
+    <Key>
+      <PropertyRef Name="CHID" />
+    </Key>
+    <Property Name="CHID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AOID" Type="bigint" />
+    <Property Name="AgentID" Type="int" />
+    <Property Name="CallDate" Type="datetime" />
+    <Property Name="LeadID" Type="bigint" />
+    <Property Name="PageID" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_Calls">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PageID" Type="int" />
+    <Property Name="AutoGenID" Type="bigint" />
+    <Property Name="CallSubject" Type="varchar(max)" />
+    <Property Name="CallComment" Type="varchar(max)" />
+    <Property Name="CallNameIds" Type="varchar" MaxLength="500" />
+    <Property Name="ReleatedToIds" Type="varchar" MaxLength="500" />
+    <Property Name="CreatedById" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedById" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbl_Chattter">
+    <Key>
+      <PropertyRef Name="CID" />
+    </Key>
+    <Property Name="CID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FeedItemId" Type="nvarchar" MaxLength="255" />
+    <Property Name="AccountId" Type="varchar" MaxLength="10" />
+    <Property Name="Type" Type="int" />
+    <Property Name="CreatedById" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="Title" Type="nvarchar" MaxLength="255" />
+    <Property Name="Body" Type="nvarchar(max)" />
+    <Property Name="LinkUrl" Type="nvarchar" MaxLength="255" />
+    <Property Name="IsDeleted" Type="int" />
+    <Property Name="InsertedById" Type="int" />
+    <Property Name="IsRichText" Type="int" />
+    <Property Name="SystemFileName" Type="varchar" MaxLength="500" />
+    <Property Name="OriginalFileName" Type="varchar" MaxLength="500" />
+    <Property Name="LeadID" Type="bigint" />
+  </EntityType>
+  <EntityType Name="tbl_ChatViewedBy">
+    <Key>
+      <PropertyRef Name="CVID" />
+    </Key>
+    <Property Name="CVID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CID" Type="bigint" />
+    <Property Name="ViewedById" Type="int" />
+    <Property Name="ViewedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbl_CustomReport">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TableID" Type="bigint" />
+    <Property Name="ReportName" Type="varchar" MaxLength="255" />
+    <Property Name="CreatdedDate" Type="datetime" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="CreatedtedBY" Type="int" />
+    <Property Name="ModifiedBY" Type="int" />
+    <Property Name="IsPublic" Type="int" />
+    <Property Name="IsSaved" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_CustomReportDataType">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DataType" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="tbl_CustomReportFields">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ReportID" Type="bigint" />
+    <Property Name="FieldID" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="tbl_CustomReportFilters">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ReportID" Type="bigint" />
+    <Property Name="FieldCriteria" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="tbl_EMails">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PageID" Type="int" />
+    <Property Name="AutoGenID" Type="bigint" />
+    <Property Name="FromEmail" Type="varchar" MaxLength="500" />
+    <Property Name="ToEmails" Type="varchar(max)" />
+    <Property Name="CCEmails" Type="varchar(max)" />
+    <Property Name="BCCEmails" Type="varchar(max)" />
+    <Property Name="EmailSubject" Type="varchar" MaxLength="500" />
+    <Property Name="EmailHTMLBody" Type="varchar(max)" />
+    <Property Name="EmailPlainText" Type="varchar(max)" />
+    <Property Name="CreatedById" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedById" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="AttachedFileName" Type="nvarchar" MaxLength="500" />
+    <Property Name="OriginalFileName" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="tbl_EmailTemplates">
+    <Key>
+      <PropertyRef Name="TemplateID" />
+    </Key>
+    <Property Name="TemplateID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TemplateName" Type="varchar" MaxLength="500" />
+    <Property Name="TemplateSubject" Type="varchar" MaxLength="500" />
+    <Property Name="TemplateHTML" Type="varchar(max)" />
+    <Property Name="TemplatePlainText" Type="varchar(max)" />
+    <Property Name="AttachmentFileName" Type="varchar" MaxLength="500" />
+    <Property Name="IsDeleted" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="CreatedById" Type="int" />
+    <Property Name="LastModifiedDate" Type="datetime" />
+    <Property Name="LastModifiedById" Type="int" />
+    <Property Name="TemplateFor" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_Events">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PageID" Type="int" />
+    <Property Name="AutoGenID" Type="bigint" />
+    <Property Name="EventSubject" Type="varchar(max)" />
+    <Property Name="EventDescription" Type="varchar(max)" />
+    <Property Name="StartDate" Type="datetime" />
+    <Property Name="EndDate" Type="datetime" />
+    <Property Name="Location" Type="varchar(max)" />
+    <Property Name="EventNameIds" Type="varchar" MaxLength="500" />
+    <Property Name="ReleatedToIds" Type="varchar" MaxLength="500" />
+    <Property Name="CreatedById" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedById" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbl_ExportHistory">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TableName" Type="varchar" MaxLength="500" />
+    <Property Name="UserID" Type="int" />
+    <Property Name="TotalCount" Type="int" />
+    <Property Name="DuplicateCount" Type="int" />
+    <Property Name="DateExported" Type="datetime" />
+    <Property Name="IsExported" Type="int" />
+    <Property Name="IsViewed" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_FromAddress">
+    <Key>
+      <PropertyRef Name="FromID" />
+    </Key>
+    <Property Name="FromID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FromEmailAddress" Type="varchar" MaxLength="500" />
+    <Property Name="FromName" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="tbl_LeadInformation">
+    <Key>
+      <PropertyRef Name="LeadID" />
+    </Key>
+    <Property Name="LeadID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LeadStatus" Type="int" />
+    <Property Name="LeadOwner" Type="int" />
+    <Property Name="Name" Type="varchar" MaxLength="100" />
+    <Property Name="PrimaryPhone" Type="varchar" MaxLength="500" />
+    <Property Name="SecondaryPhone" Type="varchar" MaxLength="500" />
+    <Property Name="LeadEmail" Type="varchar" MaxLength="255" />
+    <Property Name="ListCode" Type="varchar" MaxLength="500" />
+    <Property Name="ExpirationDate" Type="datetime" />
+    <Property Name="Warranty" Type="varchar" MaxLength="500" />
+    <Property Name="Language" Type="varchar" MaxLength="500" />
+    <Property Name="ListCode2" Type="varchar" MaxLength="500" />
+    <Property Name="Street" Type="varchar" MaxLength="200" />
+    <Property Name="City" Type="varchar" MaxLength="500" />
+    <Property Name="State" Type="varchar" MaxLength="500" />
+    <Property Name="ZipCode" Type="varchar" MaxLength="500" />
+    <Property Name="Country" Type="varchar" MaxLength="500" />
+    <Property Name="Password" Type="varchar" MaxLength="500" />
+    <Property Name="PinNo" Type="varchar" MaxLength="500" />
+    <Property Name="ExportedDate" Type="datetime" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="FirstName" Type="varchar" MaxLength="500" />
+    <Property Name="LastName" Type="varchar" MaxLength="500" />
+    <Property Name="AccountID" Type="bigint" />
+    <Property Name="CreatedById" Type="varchar" MaxLength="500" />
+    <Property Name="LastModifiedDate" Type="datetime" />
+    <Property Name="IsConverted" Type="int" />
+    <Property Name="LastModifiedById" Type="varchar" MaxLength="500" />
+    <Property Name="ConvertedDate" Type="datetime" />
+    <Property Name="AccountText" Type="varchar" MaxLength="500" />
+    <Property Name="Password_Generator__c" Type="varchar" MaxLength="500" />
+    <Property Name="VechileMake" Type="varchar" MaxLength="500" />
+    <Property Name="VechileTye" Type="varchar" MaxLength="500" />
+    <Property Name="VechileYear" Type="varchar" MaxLength="500" />
+    <Property Name="DelearShip" Type="varchar" MaxLength="500" />
+    <Property Name="Finance" Type="varchar" MaxLength="500" />
+    <Property Name="VinNo" Type="varchar" MaxLength="500" />
+    <Property Name="LicensePlate" Type="varchar" MaxLength="500" />
+    <Property Name="Take_Off_List__c" Type="int" />
+    <Property Name="AOStatus" Type="int" />
+    <Property Name="OwnerIDText" Type="varchar" MaxLength="100" />
+    <Property Name="IsDeleted" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_Notes">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Notes" Type="nvarchar(max)" />
+    <Property Name="Photo" Type="nvarchar(max)" />
+    <Property Name="NotesDate" Type="datetime" />
+    <Property Name="UserID" Type="bigint" />
+    <Property Name="CreatedByID" Type="int" />
+    <Property Name="LastModifiedById" Type="int" />
+    <Property Name="LastModifiedDate" Type="datetime" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="IsDeleted" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_NotExportLead">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FIRSTNAME" Type="varchar" MaxLength="500" />
+    <Property Name="LASTNAME" Type="varchar" MaxLength="500" />
+    <Property Name="ADDRESS" Type="varchar" MaxLength="500" />
+    <Property Name="CITY" Type="varchar" MaxLength="500" />
+    <Property Name="STATE" Type="varchar" MaxLength="500" />
+    <Property Name="ZIP" Type="varchar" MaxLength="500" />
+    <Property Name="VIN" Type="varchar" MaxLength="500" />
+    <Property Name="YEAR" Type="varchar" MaxLength="500" />
+    <Property Name="MAKE" Type="varchar" MaxLength="500" />
+    <Property Name="VEHTYPE" Type="varchar" MaxLength="500" />
+    <Property Name="LOGIN" Type="varchar" MaxLength="500" />
+    <Property Name="EXPIRATIONDATE" Type="varchar" MaxLength="500" />
+    <Property Name="PASSWORD" Type="varchar" MaxLength="500" />
+    <Property Name="LISTCODE" Type="varchar" MaxLength="500" />
+    <Property Name="LENDER_NAME" Type="varchar" MaxLength="500" />
+    <Property Name="LOAD_DATE" Type="varchar" MaxLength="500" />
+    <Property Name="DEALERSHIP" Type="varchar" MaxLength="500" />
+    <Property Name="ExportDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbl_OrderCardCheckInfo">
+    <Key>
+      <PropertyRef Name="CCID" />
+    </Key>
+    <Property Name="CCID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PaymentMode" Type="int" />
+    <Property Name="CardType" Type="int" />
+    <Property Name="CardNumber" Type="varchar" MaxLength="20" />
+    <Property Name="CardExpirationMonth" Type="varchar" MaxLength="10" />
+    <Property Name="CardExpirationYear" Type="varchar" MaxLength="10" />
+    <Property Name="CardSecurityCode" Type="varchar" MaxLength="20" />
+    <Property Name="CheckNo" Type="varchar" MaxLength="20" />
+    <Property Name="AOID" Type="bigint" />
+    <Property Name="LeadID" Type="bigint" />
+    <Property Name="CardName" Type="varchar" MaxLength="50" />
+    <Property Name="IsDefault" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_OrderTransactions">
+    <Key>
+      <PropertyRef Name="CDID" />
+    </Key>
+    <Property Name="CDID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ChargeDate" Type="datetime" />
+    <Property Name="AOID" Type="bigint" />
+    <Property Name="ChargeNo" Type="int" />
+    <Property Name="PaymentMethod" Type="int" />
+    <Property Name="TransactionID" Type="varchar" MaxLength="50" />
+    <Property Name="AuthCode" Type="varchar" MaxLength="50" />
+    <Property Name="TransHashCode" Type="nvarchar" MaxLength="100" />
+    <Property Name="CardCheckNumber" Type="varchar" MaxLength="20" />
+    <Property Name="CardType" Type="varchar" MaxLength="50" />
+    <Property Name="ChargeAmt" Type="money" />
+    <Property Name="Status" Type="int" />
+    <Property Name="SubscriptionID" Type="varchar" MaxLength="100" />
+    <Property Name="RefundAmt" Type="money" />
+    <Property Name="GatewayID" Type="nvarchar" MaxLength="50" />
+    <Property Name="GatwayResponse" Type="nvarchar(max)" />
+    <Property Name="ResonText" Type="nvarchar(max)" />
+    <Property Name="StatusText" Type="nvarchar" MaxLength="50" />
+    <Property Name="TransType" Type="int" />
+    <Property Name="MailSend" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_Package">
+    <Key>
+      <PropertyRef Name="PackageID" />
+    </Key>
+    <Property Name="PackageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Package" Type="nvarchar" MaxLength="500" />
+    <Property Name="Price" Type="nvarchar" MaxLength="50" />
+    <Property Name="ExpiryDate" Type="datetime" />
+    <Property Name="NoOfInstallment" Type="int" />
+    <Property Name="Additional" Type="int" />
+    <Property Name="AddDecal" Type="int" />
+    <Property Name="AddIdentityTheft" Type="int" />
+    <Property Name="DecalNumber" Type="int" />
+    <Property Name="IsRenewal" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'MalaGroupERP_Development.dbo.tbl_Question' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="tbl_Question">
+    <Key>
+      <PropertyRef Name="QID" />
+    </Key>
+    <Property Name="QID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Question" Type="nvarchar" MaxLength="500" />
+    <Property Name="Answer" Type="nvarchar(max)" />
+    <Property Name="Status" Type="int" />
+    <Property Name="Type" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_ReportTables">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TableName" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="tbl_ReportTablesFields">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TableID" Type="bigint" />
+    <Property Name="DiaplayName" Type="varchar" MaxLength="100" />
+    <Property Name="ColumnName" Type="varchar" MaxLength="100" />
+    <Property Name="DataType" Type="int" />
+    <Property Name="IsDropDown" Type="int" />
+    <Property Name="DropDownID" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_ReportTablesJoins">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TableID" Type="bigint" />
+    <Property Name="JoinString" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="tbl_ReportTakeOffListCriteria">
+    <Key>
+      <PropertyRef Name="ReportID" />
+    </Key>
+    <Property Name="ReportID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LastModifiedFrom" Type="datetime" />
+    <Property Name="LastModifiedTo" Type="datetime" />
+    <Property Name="IsTakeOFF" Type="int" />
+    <Property Name="Show" Type="int" />
+    <Property Name="AccountStatus" Type="varchar" MaxLength="100" />
+    <Property Name="ReportStatus" Type="int" />
+    <Property Name="ReportDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_Snippet">
+    <Key>
+      <PropertyRef Name="SID" />
+    </Key>
+    <Property Name="SID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SnippetTitle" Type="varchar" MaxLength="50" />
+    <Property Name="Snippet" Type="nvarchar" MaxLength="100" />
+    <Property Name="SnippetFor" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_Tasks">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PageID" Type="int" />
+    <Property Name="AutoGenID" Type="bigint" />
+    <Property Name="TaskSubject" Type="varchar(max)" />
+    <Property Name="DueDate" Type="datetime" />
+    <Property Name="AssignToId" Type="int" />
+    <Property Name="TaskNameIds" Type="varchar" MaxLength="500" />
+    <Property Name="ReleatedToIds" Type="varchar" MaxLength="500" />
+    <Property Name="CreatedById" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedById" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbl_Transaction">
+    <Key>
+      <PropertyRef Name="TransactionID" />
+    </Key>
+    <Property Name="TransactionID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CardDetail" Type="varchar" MaxLength="50" />
+    <Property Name="CardType" Type="int" />
+    <Property Name="CardNumber" Type="varchar" MaxLength="20" />
+    <Property Name="Token" Type="varchar" MaxLength="10" />
+    <Property Name="CardExpirationMonth" Type="varchar" MaxLength="10" />
+    <Property Name="CardExpirationYear" Type="varchar" MaxLength="10" />
+    <Property Name="CardSecurityCode" Type="varchar" MaxLength="20" />
+    <Property Name="AOID" Type="bigint" />
+    <Property Name="LeadID" Type="bigint" />
+    <Property Name="TotalAmount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="AccountID" Type="bigint" />
+  </EntityType>
+  <EntityType Name="tbl_VehicleAO">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VehicleMake" Type="int" />
+    <Property Name="VehicleType" Type="int" />
+    <Property Name="VehicleYear" Type="varchar" MaxLength="10" />
+    <Property Name="VINNo" Type="varchar" MaxLength="20" />
+    <Property Name="LicensePlate" Type="varchar" MaxLength="50" />
+    <Property Name="Dealership" Type="varchar" MaxLength="100" />
+    <Property Name="FinanceCompany" Type="varchar" MaxLength="100" />
+    <Property Name="AOID" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_VehicleLeads">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VehicleMake" Type="int" />
+    <Property Name="VehicleType" Type="int" />
+    <Property Name="VehicleYear" Type="varchar" MaxLength="10" />
+    <Property Name="VINNo" Type="varchar" MaxLength="30" />
+    <Property Name="LicensePlate" Type="varchar" MaxLength="50" />
+    <Property Name="Dealership" Type="varchar" MaxLength="100" />
+    <Property Name="FinanceCompany" Type="varchar" MaxLength="100" />
+    <Property Name="LeadID" Type="bigint" Nullable="false" />
+    <Property Name="VehicleTypeText" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="tbl_VehicleMake">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VehicleMake" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="IsDeleted" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_VehicleType">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VehicleMake" Type="int" Nullable="false" />
+    <Property Name="VehicleType" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_ViewedBy">
+    <Key>
+      <PropertyRef Name="NVID" />
+    </Key>
+    <Property Name="NVID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NID" Type="bigint" />
+    <Property Name="ViewedById" Type="int" />
+    <Property Name="ViewedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tblLogin">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="nvarchar" MaxLength="255" />
+    <Property Name="Password" Type="nvarchar" MaxLength="255" />
+    <Property Name="ClientOrVendorID" Type="int" />
+    <Property Name="IsClientOrVendor" Type="int" />
+    <Property Name="FirstName" Type="varchar" MaxLength="100" />
+    <Property Name="LastName" Type="varchar" MaxLength="100" />
+    <Property Name="Email" Type="varchar" MaxLength="260" />
+    <Property Name="IsSuperUser" Type="int" />
+    <Property Name="SortOrderSFP" Type="int" />
+    <Property Name="Address1" Type="varchar" MaxLength="200" />
+    <Property Name="City" Type="varchar" MaxLength="100" />
+    <Property Name="StateID" Type="varchar" MaxLength="50" />
+    <Property Name="ZipCode" Type="varchar" MaxLength="10" />
+    <Property Name="Country" Type="varchar" MaxLength="50" />
+    <Property Name="WorkPhone" Type="varchar" MaxLength="15" />
+    <Property Name="CellPhone" Type="varchar" MaxLength="15" />
+    <Property Name="IsActive" Type="int" />
+    <Property Name="Extension" Type="varchar" MaxLength="5" />
+    <Property Name="VendorID" Type="varchar" MaxLength="10" />
+    <Property Name="EmployeeID" Type="bigint" />
+    <Property Name="AddToGroup" Type="int" />
+    <Property Name="UserType" Type="int" />
+    <Property Name="StationMarketID" Type="int" />
+    <Property Name="ShowNotification" Type="int" />
+    <Property Name="UserCode" Type="nvarchar" MaxLength="20" />
+    <Property Name="Timezone" Type="nvarchar" MaxLength="20" />
+    <Property Name="Language" Type="varchar" MaxLength="20" />
+    <Property Name="Locale" Type="varchar" MaxLength="50" />
+    <Property Name="Company" Type="varchar" MaxLength="20" />
+    <Property Name="Department" Type="varchar" MaxLength="20" />
+    <Property Name="UserLicense" Type="nvarchar" MaxLength="50" />
+    <Property Name="EmailEncoding" Type="nvarchar" MaxLength="50" />
+    <Property Name="StartDay" Type="nvarchar" MaxLength="20" />
+    <Property Name="EndDay" Type="nvarchar" MaxLength="20" />
+    <Property Name="FederationID" Type="varchar" MaxLength="20" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="CreatedById" Type="int" />
+    <Property Name="LastModifiedDate" Type="datetime" />
+    <Property Name="LastModifiedById" Type="int" />
+    <Property Name="LastLoginDate" Type="datetime" />
+    <Property Name="IsDeleted" Type="int" />
+    <Property Name="CommunityNickname" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserRoleId" Type="nvarchar" MaxLength="50" />
+    <Property Name="SMTPUserName" Type="varchar" MaxLength="500" />
+    <Property Name="SMTPPassword" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tblLoginHistory">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="int" />
+    <Property Name="SessionID" Type="varchar" MaxLength="500" />
+    <Property Name="IPAddress" Type="varchar" MaxLength="50" />
+    <Property Name="PageName" Type="varchar" MaxLength="100" />
+    <Property Name="LoginDateTime" Type="datetime" />
+    <Property Name="LogoutDateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tblMessage">
+    <Key>
+      <PropertyRef Name="MessageId" />
+    </Key>
+    <Property Name="MessageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MessageFrom" Type="int" />
+    <Property Name="MessageTo" Type="int" />
+    <Property Name="MessageText" Type="varchar" MaxLength="8000" />
+    <Property Name="MessageTime" Type="datetime" />
+    <Property Name="IsRead" Type="int" />
+    <Property Name="GroupID" Type="int" />
+  </EntityType>
+  <EntityType Name="tblPagesLoginHistory">
+    <Key>
+      <PropertyRef Name="PHID" />
+    </Key>
+    <Property Name="PHID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LHID" Type="bigint" />
+    <Property Name="PageName" Type="varchar" MaxLength="100" />
+    <Property Name="PageInDateTime" Type="datetime" />
+    <Property Name="PageOutDateTime" Type="datetime" />
+  </EntityType>
+  <Association Name="FK_syNavigationNodes_syResources">
+    <End Role="syResources" Type="Self.syResources" Multiplicity="1" />
+    <End Role="syNavigationNodes" Type="Self.syNavigationNodes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="syResources">
+        <PropertyRef Name="ResourceId" />
+      </Principal>
+      <Dependent Role="syNavigationNodes">
+        <PropertyRef Name="ResourceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_syRoleResources_syResources">
+    <End Role="syResources" Type="Self.syResources" Multiplicity="1" />
+    <End Role="syRoleResources" Type="Self.syRoleResources" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="syResources">
+        <PropertyRef Name="ResourceId" />
+      </Principal>
+      <Dependent Role="syRoleResources">
+        <PropertyRef Name="ResourceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_syRoleResources_syRoles">
+    <End Role="syRoles" Type="Self.syRoles" Multiplicity="1" />
+    <End Role="syRoleResources" Type="Self.syRoleResources" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="syRoles">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="syRoleResources">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_syRolesResourcesLevels_syRoles">
+    <End Role="syRoles" Type="Self.syRoles" Multiplicity="1" />
+    <End Role="syRolesResourcesLevels" Type="Self.syRolesResourcesLevels" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="syRoles">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="syRolesResourcesLevels">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_syUsersRoles_syRoles">
+    <End Role="syRoles" Type="Self.syRoles" Multiplicity="0..1" />
+    <End Role="syUsersRoles" Type="Self.syUsersRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="syRoles">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="syUsersRoles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MalaGroupERPModelStoreContainer">
+    <EntitySet Name="syNavigationNodes" EntityType="Self.syNavigationNodes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="syResources" EntityType="Self.syResources" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="syResourceTypes" EntityType="Self.syResourceTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="syRoleResources" EntityType="Self.syRoleResources" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="syRoles" EntityType="Self.syRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="syRolesResourcesLevels" EntityType="Self.syRolesResourcesLevels" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="syUsersRoles" EntityType="Self.syUsersRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_ABSCreditCrad" EntityType="Self.tbl_ABSCreditCrad" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_AccountOwner" EntityType="Self.tbl_AccountOwner" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Accounts" EntityType="Self.tbl_Accounts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_AgentOrder" EntityType="Self.tbl_AgentOrder" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_AgentOrderDetails" EntityType="Self.tbl_AgentOrderDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_AOScript" EntityType="Self.tbl_AOScript" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_AttachedFiles" EntityType="Self.tbl_AttachedFiles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_AuditTrail" EntityType="Self.tbl_AuditTrail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_CallHistory" EntityType="Self.tbl_CallHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Calls" EntityType="Self.tbl_Calls" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Chattter" EntityType="Self.tbl_Chattter" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_ChatViewedBy" EntityType="Self.tbl_ChatViewedBy" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_CustomReport" EntityType="Self.tbl_CustomReport" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_CustomReportDataType" EntityType="Self.tbl_CustomReportDataType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_CustomReportFields" EntityType="Self.tbl_CustomReportFields" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_CustomReportFilters" EntityType="Self.tbl_CustomReportFilters" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_EMails" EntityType="Self.tbl_EMails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_EmailTemplates" EntityType="Self.tbl_EmailTemplates" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Events" EntityType="Self.tbl_Events" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_ExportHistory" EntityType="Self.tbl_ExportHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_FromAddress" EntityType="Self.tbl_FromAddress" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_LeadInformation" EntityType="Self.tbl_LeadInformation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Notes" EntityType="Self.tbl_Notes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_NotExportLead" EntityType="Self.tbl_NotExportLead" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_OrderCardCheckInfo" EntityType="Self.tbl_OrderCardCheckInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_OrderTransactions" EntityType="Self.tbl_OrderTransactions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Package" EntityType="Self.tbl_Package" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_ReportTables" EntityType="Self.tbl_ReportTables" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_ReportTablesFields" EntityType="Self.tbl_ReportTablesFields" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_ReportTablesJoins" EntityType="Self.tbl_ReportTablesJoins" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_ReportTakeOffListCriteria" EntityType="Self.tbl_ReportTakeOffListCriteria" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Snippet" EntityType="Self.tbl_Snippet" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Tasks" EntityType="Self.tbl_Tasks" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Transaction" EntityType="Self.tbl_Transaction" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_VehicleAO" EntityType="Self.tbl_VehicleAO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_VehicleLeads" EntityType="Self.tbl_VehicleLeads" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_VehicleMake" EntityType="Self.tbl_VehicleMake" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_VehicleType" EntityType="Self.tbl_VehicleType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_ViewedBy" EntityType="Self.tbl_ViewedBy" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblLogin" EntityType="Self.tblLogin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblLoginHistory" EntityType="Self.tblLoginHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblMessage" EntityType="Self.tblMessage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblPagesLoginHistory" EntityType="Self.tblPagesLoginHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Question" EntityType="Self.tbl_Question" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [tbl_Question].[QID] AS [QID], 
+    [tbl_Question].[Question] AS [Question], 
+    [tbl_Question].[Answer] AS [Answer], 
+    [tbl_Question].[Status] AS [Status], 
+    [tbl_Question].[Type] AS [Type]
+    FROM [dbo].[tbl_Question] AS [tbl_Question]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_syNavigationNodes_syResources" Association="Self.FK_syNavigationNodes_syResources">
+      <End Role="syResources" EntitySet="syResources" />
+      <End Role="syNavigationNodes" EntitySet="syNavigationNodes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_syRoleResources_syResources" Association="Self.FK_syRoleResources_syResources">
+      <End Role="syResources" EntitySet="syResources" />
+      <End Role="syRoleResources" EntitySet="syRoleResources" />
+    </AssociationSet>
+    <AssociationSet Name="FK_syRoleResources_syRoles" Association="Self.FK_syRoleResources_syRoles">
+      <End Role="syRoles" EntitySet="syRoles" />
+      <End Role="syRoleResources" EntitySet="syRoleResources" />
+    </AssociationSet>
+    <AssociationSet Name="FK_syRolesResourcesLevels_syRoles" Association="Self.FK_syRolesResourcesLevels_syRoles">
+      <End Role="syRoles" EntitySet="syRoles" />
+      <End Role="syRolesResourcesLevels" EntitySet="syRolesResourcesLevels" />
+    </AssociationSet>
+    <AssociationSet Name="FK_syUsersRoles_syRoles" Association="Self.FK_syUsersRoles_syRoles">
+      <End Role="syRoles" EntitySet="syRoles" />
+      <End Role="syUsersRoles" EntitySet="syUsersRoles" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

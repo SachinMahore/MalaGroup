@@ -1,0 +1,261 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DF8C00E0-2632-4378-9057-F89E272F67ED}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MalaGroupERP.Data</RootNamespace>
+    <AssemblyName>MalaGroupERP.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AuthorizeNet, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AuthorizeNet.1.9.7\lib\AuthorizeNet.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MalaGroupERP.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MalaGroupERP.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MalaGroupERP.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MalaGroupERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MalaGroupERP.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MalaGroupERP.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="syNavigationNode.cs">
+      <DependentUpon>MalaGroupERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="syResource.cs">
+      <DependentUpon>MalaGroupERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="syResourceType.cs">
+      <DependentUpon>MalaGroupERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="syRole.cs">
+      <DependentUpon>MalaGroupERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="syRoleResource.cs">
+      <DependentUpon>MalaGroupERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="syRolesResourcesLevel.cs">
+      <DependentUpon>MalaGroupERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="syUsersRole.cs">
+      <DependentUpon>MalaGroupERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblLogin.cs">
+      <DependentUpon>MalaGroupERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblLoginHistory.cs">
+      <DependentUpon>MalaGroupERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblMessage.cs">
+      <DependentUpon>MalaGroupERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblPagesLoginHistory.cs">
+      <DependentUpon>MalaGroupERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_ABSCreditCrad.cs">
+      <DependentUpon>MalaGroupERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_AccountOwner.cs">
+      <DependentUpon>MalaGroupERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Accounts.cs">
+      <DependentUpon>MalaGroupERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_AgentOrder.cs">
+      <DependentUpon>MalaGroupERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_AgentOrderDetails.cs">
+      <DependentUpon>MalaGroupERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_AOScript.cs">
+      <DependentUpon>MalaGroupERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_AttachedFiles.cs">
+      <DependentUpon>MalaGroupERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_AuditTrail.cs">
+      <DependentUpon>MalaGroupERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_CallHistory.cs">
+      <DependentUpon>MalaGroupERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Calls.cs">
+      <DependentUpon>MalaGroupERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Chattter.cs">
+      <DependentUpon>MalaGroupERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_ChatViewedBy.cs">
+      <DependentUpon>MalaGroupERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_CustomReport.cs">
+      <DependentUpon>MalaGroupERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_CustomReportDataType.cs">
+      <DependentUpon>MalaGroupERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_CustomReportFields.cs">
+      <DependentUpon>MalaGroupERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_CustomReportFilters.cs">
+      <DependentUpon>MalaGroupERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_EMails.cs">
+      <DependentUpon>MalaGroupERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_EmailTemplates.cs">
+      <DependentUpon>MalaGroupERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Events.cs">
+      <DependentUpon>MalaGroupERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_ExportHistory.cs">
+      <DependentUpon>MalaGroupERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_FromAddress.cs">
+      <DependentUpon>MalaGroupERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_LeadInformation.cs">
+      <DependentUpon>MalaGroupERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Notes.cs">
+      <DependentUpon>MalaGroupERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_NotExportLead.cs">
+      <DependentUpon>MalaGroupERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_OrderCardCheckInfo.cs">
+      <DependentUpon>MalaGroupERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_OrderTransactions.cs">
+      <DependentUpon>MalaGroupERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Package.cs">
+      <DependentUpon>MalaGroupERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Question.cs">
+      <DependentUpon>MalaGroupERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_ReportTables.cs">
+      <DependentUpon>MalaGroupERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_ReportTablesFields.cs">
+      <DependentUpon>MalaGroupERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_ReportTablesJoins.cs">
+      <DependentUpon>MalaGroupERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_ReportTakeOffListCriteria.cs">
+      <DependentUpon>MalaGroupERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Snippet.cs">
+      <DependentUpon>MalaGroupERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Tasks.cs">
+      <DependentUpon>MalaGroupERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Transaction.cs">
+      <DependentUpon>MalaGroupERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_VehicleAO.cs">
+      <DependentUpon>MalaGroupERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_VehicleLeads.cs">
+      <DependentUpon>MalaGroupERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_VehicleMake.cs">
+      <DependentUpon>MalaGroupERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_VehicleType.cs">
+      <DependentUpon>MalaGroupERP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_ViewedBy.cs">
+      <DependentUpon>MalaGroupERP.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="MalaGroupERP.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MalaGroupERP.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="MalaGroupERP.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MalaGroupERP.edmx</DependentUpon>
+      <LastGenOutput>MalaGroupERP.Context.cs</LastGenOutput>
+    </None>
+    <None Include="MalaGroupERP.edmx.diagram">
+      <DependentUpon>MalaGroupERP.edmx</DependentUpon>
+    </None>
+    <None Include="MalaGroupERP.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MalaGroupERP.edmx</DependentUpon>
+      <LastGenOutput>MalaGroupERP.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

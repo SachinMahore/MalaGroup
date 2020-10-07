@@ -1,0 +1,58 @@
+body {
+	background:#fff;
+}
+
+#header {
+	background-color: #fff;
+   margin-top:10px;
+}
+
+#search input[type=text] {
+	background-color: #fff; border-left: 1px solid #e3ebed;
+}
+#searchCreated input[type=text] {
+	background-color: #fff; border: 1px solid #c3cece;
+}
+#search input[type=text]:focus {
+	color: #777777;
+}
+#searchCreated input[type=text]:focus {
+	color: #777777;
+}
+.dropdown-menu li a:hover, .dropdown-menu .active a, .dropdown-menu .active a:hover {
+    color: #000;
+	background:#ffd91f;
+   
+}
+.top_message{ float:right; padding:20px 12px; position:relative; top:-13px; border-left:1px solid #3D3A37; font-size:14px; line-height:20px; *line-height:20px; color:#333; text-align:center;  vertical-align:middle; cursor:pointer; }
+.top_message:hover{ background:#3D3A37}
+.rightzero{ right:0px; display:none;}
+@media (max-width: 480px) {
+	#sidebar > a {
+		background:#ffd91f;
+		
+	}
+	#sidebar > ul {
+		background-color: #ffd91f;
+	}
+#user-nav{ margin:0px auto; border-top:none; width:100%; text-align:center; float:none;background-color: white;position:fixed;height:75px;}
+#user-nav > ul > li:last-child{ border-right:1px solid #000}
+#user-nav > ul > li{ border-top:1px solid #000}
+#user-nav > ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+   position:absolute;
+}
+#sidebar{ top: 75px;position: fixed;}
+#content{ margin-top:120px;}
+}
+@media (min-width: 481px) and (max-width: 767px) {
+	#sidebar > ul ul:before {
+		border-right: 7px solid rgba(0, 0, 0, 0.2);
+	}
+	#sidebar > ul ul:after {
+		border-right: 6px solid #222222;
+    }
+
+}

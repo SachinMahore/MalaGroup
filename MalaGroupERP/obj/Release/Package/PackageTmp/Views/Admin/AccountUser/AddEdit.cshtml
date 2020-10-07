@@ -1,0 +1,1123 @@
+﻿@using MalaGroupERP.Models
+@model AccountUserModel
+@{
+    ViewBag.Title = "Accounts";
+}
+
+<script src="~/Content/Pages/Admin/AccountUser/AccountUser.js"></script>
+<div id="breadcrumb"> <a href="/Home/Index" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="tip-bottom">Account Information</a> <a href="#" class="current">Add/Edit</a> </div>
+<input type="hidden" id="hndAccountID" value="@Model.AccountID" />
+<input type="hidden" id="hndLeadID" value="@Model.LeadID" />
+<input type="hidden" id="hndPin" value="@Model.PinNo" />
+<input type="hidden" id="hndAttachFile" value="" />
+<input type="hidden" id="hndCID" />
+<input type="hidden" id="hndPNAOID" value="0" />
+<input type="hidden" id="hndAOID" value="0" />
+<input type="hidden" id="hndPackId" value="0" />
+<input type="hidden" id="hndDecalRow" value="0" />
+
+<input type="hidden" id="hndccnum" value="" />
+<input type="hidden" id="hndcccode" value="" />
+<input type="hidden" id="hndccmm" value="0" />
+<input type="hidden" id="hndccyy" value="0" />
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="widget-box">
+            <div class="widget-title">
+                <span class="icon"> <i class="icon-star-empty"></i> </span>
+                <h5>Accounts</h5>
+                <div class="btn-group pull-right">
+                    <button type="button" class="btn btn-info" onclick="search();">Search</button>
+                    <button type="button" class="btn btn-info" onclick="saveUpdateAccount()">Save</button>
+                    @*<button id="PaymentConsole" type="button" class="btn btn-primary">Payment Console</button>
+                  
+                    <button type="button" class="btn btn-primary" onclick="viewChrageOpp();">Charge</button>
+                    <button type="button" class="btn btn-primary" onclick="viewRefundOff();">Refund</button>
+                    <button type="button" class="btn btn-primary" onclick="viewVoidOpp();">Void</button>
+                    <button type="button" class="btn btn-danger" onclick="deleteAccount()">Delete</button>*@
+                </div>
+            </div>
+        </div>
+        <div class="widget-box">
+            <div class="widget-content">
+                <div class="row-fluid">
+                    <div class="control-group">
+                        <div class="span2 pull-left">
+                            <label class="control-label">Account Name</label>
+                            <div class="controls">
+                                <input type="text" id="txtAccountName" placeholder="Account name" value="@Model.AccountName"  />
+                            </div>
+                        </div>
+                        <div class="span2">
+                            <label class="control-label">Phone</label>
+                            <div class="controls">
+                                <input type="text" id="txtPhone" placeholder="Phone" value="@Model.Phone"  />
+                            </div>
+                        </div>
+                        <div class="span2">
+                            <label class="control-label">Created By</label>
+                            <div class="controls">
+                                <input type="email" id="txtCreatedBy" placeholder="Email" value="@Model.CreatedByText" readonly />
+                            </div>
+                        </div>
+                        <div class="span2">
+                            <label class="control-label">Created Date</label>
+                            <div class="controls">
+                                <input type="text" id="txtCreatedDate" placeholder="Created Date" value="@Model.CreatedDateText" readonly />
+                            </div>
+                        </div>
+                        <div class="span2">
+                            <label class="control-label">Last Modified By</label>
+                            <div class="controls">
+                                <input type="email" id="txtLastModifiedBy" placeholder="Email" value="@Model.LastModifiedByIdText" readonly />
+                            </div>
+                        </div>
+                        <div class="span2">
+                            <label class="control-label">Last Modified Date</label>
+                            <div class="controls">
+                                <input type="email" id="txtLastModifiedDate" placeholder="Email" value="@Model.LastModifiedDateText" readonly />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row-fluid">
+            <div class="span8">
+
+                <div class="widget-box collapsible">
+
+                    <div class="widget-title">
+                        <a href="#collapseOne" data-toggle="collapse">
+                            <span class="icon"><i class="icon-align-justify"></i></span>
+                            <h5>Details</h5>
+                        </a>
+                    </div>
+                    <div class="collapse in" id="collapseOne">
+
+                        <div class="widget-content span6">
+                            <div class="form-vertical">
+                                <div class="control-group  ">
+                                    <label class="control-label">First Name</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtFirstName" class="span11" placeholder="FirstName" value="@Model.FirstName"  />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Account Status</label>
+                                    <div class="controls" >
+                                        <select id="ddlAccountStatus" disabled>
+                                            <option value="0">-- Select Status --</option>
+                                            <option value="1">Active</option>
+                                            <option value="2">Suspended</option>
+                                            <option value="3">Cancelled - No Refund</option>
+                                            <option value="4">Cancelled - Full Refund</option>
+                                            <option value="5">Cancelled - Partial Refund</option>
+                                            <option value="6">Caspio Account</option>
+                                            <option value="7">Check - Pending</option>
+                                            <option value="8">Comp - Pending</option>
+                                            <option value="9">Online</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="control-group">                                 
+                                    <label class="control-label"><span style="color:red">*</span>Language Spoken</label>
+                                    <div class="controls">
+                                        <select multiple id="ddlLeadLanguageAcc">
+                                            <option value="0">All</option>
+                                            <option value="1">English</option>
+                                            <option value="2">Spanish</option>
+                                            <option value="3">French</option>
+                                            <option value="4">Dutch</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Type</label>
+                                    <div class="controls">
+                                        <select id="ddlCompType" disabled="true">
+                                            <option value="0">General</option>
+                                            <option value="1">COMP - MNGR</option>
+                                            <option value="2">COMP - HARDSHIP</option>
+                                            <option value="3">Comp - USA</option>
+                                            <option value="4">COMP - LAW/GOV/1ST REP</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Email ID</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtAccEmail" class="span11" value="@Model.AccountEmail" readonly />&nbsp;<span id="errmsg"></span>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Secondary Phone</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtPhone2" class="span11" value="@Model.SecondaryPhone" readonly />&nbsp;<span id="errmsg"></span>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Warranty</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtWarranty" class="span11" value="@Model.Warranty" readonly />&nbsp;<span id="errmsg"></span>
+                                    </div>
+                                </div>
+                                <div class="control-group  hidden">
+                                    <label class="control-label">Parent Account</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtParentAccount" class="span11" value="@Model.ParentAccount" readonly />&nbsp;<span id="errmsg"></span>
+                                    </div>
+                                </div>
+
+                                <div class="control-group  hidden">
+                                    <label class="control-label">Employee</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtEmployee" class="span11" placeholder="Employee" value="@Model.Employee" readonly />&nbsp;<span id="errEMP"></span>
+                                    </div>
+                                </div>
+                                <div class="control-group" style="padding: 11px;">
+                                    <label class="control-label">Take Off List</label>
+                                    <div class="controls">
+                                        <input type="checkbox" id="chkTakeOffList" @(Model.TakeOffList == 1 ? "checked" : "") />
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="widget-content span6">
+                            <div class="form-vertical">
+                                <div class="control-group  ">
+                                    <label class="control-label">Last Name</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtLastName" class="span11" placeholder="LastName" value="@Model.LastName"  />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Account Owner</label>
+                                    <div class="controls">
+                                       
+                                            <input type="text" id="txtLeadOwner" class="span11" placeholder="Account Owner" value="@Model.AccountOwnerName" readonly />
+                                            <input type="hidden" id="hndOwnerID" value="@Model.AccountOwner" readonly />
+                                            @*<a href="#" id="btnAddOwnerPop"><span class="add-on"><i class="icon-user"></i></span></a>*@
+                                       
+
+                                    </div>
+                                </div>
+                                
+                                <div class="control-group">
+                                    <label class="control-label">Sales Date</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtSalesDate" class="span11" placeholder="Sales Date" value="@Model.SalesDate" readonly />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Cancellation Date</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtCancellationDate" class="span11" placeholder="Cancellation Date" value="@Model.AccountCancellationDate" readonly />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">List Code</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtListCode" class="span11" placeholder="List Code" value="@Model.ListCode" readonly />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">List Code2</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtListCode2" class="span11" placeholder="List Code2" value="@Model.ListCode2" readonly />
+                                    </div>
+                                </div>
+                                <div class="control-group hidden">
+                                    <label class="control-label">Close Date</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtCloseDate" class="span11" placeholder="Close Date" value="@Model.CloseDate" readonly />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Renewal Date</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtRenewalDate" class="span11" placeholder="Renewal Date" value="@Model.RenewalDate" readonly />
+                                    </div>
+                                </div>
+                                <div class="control-group hidden">
+                                    <label class="control-label">Industry</label>
+                                    <div class="controls">
+                                        <select id="ddlIndustry" disabled="true">
+                                            <option value="0">-- Select --</option>
+                                            <option value="1">Agriculture</option>
+                                            <option value="2">Apparel</option>
+                                            <option value="3">Banking</option>
+                                            <option value="4">Biotechnology</option>
+                                            <option value="5">Chemicals</option>
+                                            <option value="6">Communications</option>
+                                            <option value="7">Construction</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="control-group hidden">
+                                    <label class="control-label">Description</label>
+                                    <div class="controls">
+                                        <textarea id="txtDescription" class="span11" placeholder="Enter Description" readonly>@Model.Description</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="widget-title">
+                        <a href="#collapseTwo" data-toggle="collapse">
+                            <span class="icon"><i class="icon-map-marker"></i></span>
+                            <h5>Address Information</h5>
+                        </a>
+                    </div>
+                    <div class=" collapse in" id="collapseTwo">
+                        <div class="widget-content span6 form-vertical">
+                            <div class="control-group">
+                                <label class="control-label">Billing Address</label>
+                                <div class="controls">
+                                    <textarea id="txtBillingAddress" class="span11" readonly>@Model.BillingAddress</textarea>
+
+                                </div>
+                            </div>
+                            <div class="control-group hidden">
+                                <label class="control-label">Billing Street</label>
+                                <div class="controls">
+                                    <textarea id="txtBillingStreet" class="span11" readonly></textarea>
+
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label span7">Billing City</label>
+                                <label class="control-label span4">Billing State</label>
+                                <div class="controls">
+                                    <input type="text" id="txtBillingCity" class="span7" placeholder="Billing City" value="@Model.BillingCity" readonly />
+                                    <input type="text" id="txtBillingState" class="span4" placeholder="Billing State" value="@Model.BillingState" readonly />
+
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label span7">Billing Zip/Postal Code</label>
+                                <label class="control-label span4">Billing Country</label>
+                                <div class="controls">
+                                    <input type="text" id="txtBillingZip" class="span7" placeholder="Billing Zip" value="@Model.BillingZip" readonly />
+                                    <input type="text" id="txtBillingCountry" class="span4" placeholder="Billing Country" value="@Model.BillingCountry" readonly />
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget-content span6 form-vertical">
+                            <div class="control-group">
+                                <label class="control-label">Shipping Address</label>
+                                <div class="controls">
+                                    <textarea id="txtShippingAddress" class="span11" >@Model.ShippingAddress</textarea>
+
+                                </div>
+                            </div>
+                            <div class="control-group hidden">
+                                <label class="control-label">Shipping Street</label>
+                                <div class="controls">
+                                    <textarea id="txtShippingStreet" class="span11" ></textarea>
+
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label span7">Shipping City</label>
+                                <label class="control-label span4">Shipping State</label>
+                                <div class="controls">
+                                    <input type="text" id="txtShippingCity" class="span7" placeholder="Shipping City" value="@Model.ShippingCity"  />
+                                    <input type="text" id="txtShippingState" class="span4" placeholder="Shipping State" value="@Model.ShippingState"  />
+
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label span7">Shipping Zip/Postal Code</label>
+                                <label class="control-label span4">Shipping Country</label>
+                                <div class="controls">
+                                    <input type="text" id="txtShippingZip" class="span7" placeholder="Shipping Zip" value="@Model.ShippingZip"  />
+                                    <input type="text" id="txtShippingCountry" class="span4" placeholder="Shipping Country" value="@Model.ShippingCountry"  />
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="widget-title">
+                        <a href="#collapseThree" data-toggle="collapse">
+                            <span class="icon"><i class="icon-lock"></i></span>
+                            <h5>Login Information</h5>
+                        </a>
+                    </div>
+                    <div class="collapse in" id="collapseThree">
+
+                        <div class="widget-content span6 form-vertical">
+                            <div class="control-group">
+                                <label class="control-label">Password ID</label>
+                                <div class="controls">
+                                    <input type="text" id="txtPasswordId" class="span11" placeholder="Password ID" value="@Model.Password" readonly />
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="widget-content span6 form-vertical">
+                            <div class="control-group">
+                                <label class="control-label">Pin No.</label>
+                                <div class="controls">
+                                    <input type="text" id="txtPin" class="span11" placeholder="Pin No." value="@Model.PinNo" readonly />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-title">
+                        <a href="#collapseFive" data-toggle="collapse">
+                            <span class="icon"><i class="icon-align-justify"></i></span>
+                            <h5>Transaction Information</h5>
+                        </a>
+                    </div>
+                    <div class="collapse in" id="collapseFive">
+                        <table class="table table-bordered table-striped" id="tblDetailTransaction">
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Total Amount</th>
+                                    <th>Paid Amount</th>
+                                    <th>Balance Amount</th>
+                                    <th>First Charged Date</th>
+                                    <th>Card Type</th>
+                                    <th>Created By</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <div class="widget-title">
+                        <a href="#collapseSix" data-toggle="collapse">
+                            <span class="icon"><i class="icon-align-justify"></i></span>
+                            <h5>Vehicle / Decal Information</h5>
+                        </a>
+                    </div>
+                    <div class="collapse in" id="collapseSix">
+                        <table class="table table-bordered table-striped" id="tblDecalDetail">
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Vehicle Make</th>
+                                    <th>Vehicle Type</th>
+                                    <th>Vehicle Year</th>
+                                    <th>Additonal Theft Recovery</th>
+                                    <th>Addition Decals</th>
+                                    <th>Number of Vehicle in household</th>
+                                    <th>Number of Decals</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+
+                    </div>
+
+                    <div class="widget-title">
+                        <a href="#collapseFour" data-toggle="collapse">
+                            <span class="icon"><i class="icon-tag"></i></span>
+                            <h5>Credit Card/Check Info</h5>
+                        </a>
+                        <div class="pull-right form-control">
+                            @*<button class="btn btn-success" onclick="newCCard()">ADD</button>*@
+
+                        </div>
+                    </div>
+                    <div class="collapse in" id="collapseFour">
+                        <table class="table table-bordered table-striped" id="tblCardCheck">
+                            <thead>
+                                <tr>
+                                    <th>Payment Type</th>
+                                    <th>Card Type</th>
+                                    <th>Card Number</th>
+                                    <th>Exp MM/YYYY</th>
+                                    <th>Check Number</th>
+                                    @*<th>Action</th>*@
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="span4">
+                <div class="widget-box ">
+                    <div class="widget-title">
+                        <span class="icon">
+                            <i class="icon-book"></i>
+                        </span>
+                        <h5>Transaction Details</h5>
+                    </div>
+                    <div class="widget-content nopadding" style="height:400px; width:100%!important; overflow:auto;">
+                        <table class="table table-bordered" id="tblTransactionDetails">
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="widget-box">
+                    <div class="widget-title">
+                        <span class="icon">
+                            <i class="icon-th-list"></i>
+                        </span>
+                        <h5>Files <code id="fileCount">@Model.FileUploadCount</code></h5>
+                    </div>
+                    <div class="widget-content">
+                        <div class="control-group">
+                            <label class="control-label">File upload input</label>
+                            <div class="controls">
+                                <input type="file" id="openFileSaveList" />
+                                <button type="button" class="btn btn-info" onclick="saveToFolder();">Upload</button>
+                                <button type="button" class="btn btn-info" onclick="viewFiles();">View</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="widget-box">
+                    <div class="widget-title">
+                        <span class="icon">
+                            <i class="icon-th-list"></i>
+                        </span>
+                        <h5>Activity</h5>
+                    </div>
+                    <div class="widget-content">
+                        <div class="widget-box">
+                            <div class="widget-title">
+                                <ul class="nav nav-tabs">
+                                    <li><a data-toggle="tab" href="#tabLeadCall" class="hidden">Log a Call</a></li>
+                                    <li><a data-toggle="tab" href="#tabLeadTask" class="hidden">Task</a></li>
+                                    <li><a data-toggle="tab" href="#tabLeadEvent" class="hidden">Event</a></li>
+                                    <li class="active"><a data-toggle="tab" href="#tabLeadEmail">Email</a></li>
+                                    <li><a data-toggle="tab" href="#tabLeadChat">Chat</a></li>
+                                    <li><a data-toggle="tab" href="#tabhistory">Audit Trail</a></li>
+                                </ul>
+                            </div>
+                            <div class="widget-content tab-content">
+                                <div id="tabLeadCall" class="tab-pane">
+                                    <div class="control-group">
+                                        <div class="controls">
+                                            <input type="text" id="txtListCode" class="span11" placeholder="Recap Your Call" />
+                                            <button type="submit" class="btn btn-info">Add</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="tabLeadTask" class="tab-pane">
+                                </div>
+                                <div id="tabLeadEvent" class="tab-pane">
+                                </div>
+                                <div id="tabLeadEmail" class="tab-pane active  form-horizontal">
+                                    <div class="form-horizontal nopadding">
+                                        <table id="tblAccounts" class="table table-responsive table-condensed">
+                                            <tbody>
+                                                <tr><td><button type="submit" class="btn btn-info" onclick="getEmailHistory()">History</button></td>
+                                                    <td><button type="submit" id="btnNewEmail" class="btn btn-info" onclick="sendNewEmail()">New Email</button></td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td><label>From</label></td>
+                                                    <td>
+                                                        <select id="ddlEmailFrom">
+                                                            <option value="admin@nationaltheftsearchandrecovery.org">admin@nationaltheftsearchandrecovery.org</option>
+                                                            <option value="admin@ntsrtracking.com">admin@ntsrtracking.com</option>
+                                                            <option value="carolh@ntsrtracking.com">carolh@ntsrtracking.com</option>
+                                                            <option value="claudiaa@ntsrtracking.com">claudiaa@ntsrtracking.com</option>
+                                                            <option value="deborahp@ntsrtracking.com">deborahp@ntsrtracking.com</option>
+                                                            <option value="davida@ntsrtracking.com">davida@ntsrtracking.com</option>
+                                                            <option value="edwardo@ntsrtracking.com">edwardo@ntsrtracking.com</option>
+                                                            <option value="joshd@ntsrtracking.com">joshd@ntsrtracking.com</option>
+                                                            <option value="olgag@ntsrtracking.com">olgag@ntsrtracking.com</option>
+                                                            <option value="robz@ntsrtracking.com">robz@ntsrtracking.com</option>
+                                                            <option value="stephaniec@ntsrtracking.com">stephaniec@ntsrtracking.com</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr><td><label>To</label></td><td><input id="txtToAccountEmail" type="text" class="span11" value="@Model.AccountEmail" placeholder="Enter To Email..." /></td></tr>
+                                                <tr><td><label>CC</label></td><td><input id="txtCCAccountEmail" type="text" class="span11" value="" placeholder="Enter CC Email..." /></td></tr>
+                                                <tr><td><label>BCC</label></td><td><input id="txtBCCAccountEmail" type="text" class="span11" value="" placeholder="Enter Bcc Email..." /></td></tr>
+                                                <tr><td><label>Subject</label></td><td><input id="txtAccountSubject" type="text" class="span11" value="" placeholder="Enter Subject..." /></td></tr>
+                                                <tr>
+                                                    <td colspan="2">
+                                                        <textarea id="TemplateHTML" cols="20" rows="20"></textarea>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2">
+                                                        <button class="btn btn-primary" id="btnSelectTemplate">Select Template</button> <button class="btn btn-primary" id="btnSendEmail" onclick="sendEmail()">Send Email</button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div id="tabLeadChat" class="tab-pane">
+                                    <button id="btnAddChat" class="btn btn-primary">New Chat</button>
+                                    <ul id="tblChat" class="recent-posts"></ul>
+                                 </div>
+                                <div id="tabhistory" class="tab-pane">
+                                    <ul id="tblHistoryDetail" class="recent-posts"></ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="fixed-bottom">
+
+    <div class="span12 btn-icon-pg">
+        <ul>
+            <li><i class="icon-bell"></i> Phone</li>
+            <li><i class="icon-comment"></i> Notes</li>
+            <li><i class="icon-time"></i> History</li>
+        </ul>
+    </div>
+
+</footer>
+@*Modal Pop up*@
+
+
+<div id="popOwnerDiv" class="example_content">
+
+    <div class="row-fluid">
+        <div class="control-group">
+            <label class="control-label">Search Name</label>
+            <div class="controls">
+                <input type="text" id="txtSearchOwnerName" class="pull-left" placeholder="Search Name" />
+
+                <button type="submit" class="btn btn-info span3" onclick="getOwnerList()">Search</button>
+                <table id="tblOwner" class="table table-bordered table-striped with-check">
+                    <thead>
+                        <tr>
+
+                            <th class="pd-vehicletblText">UserID</th>
+                            <th class="pd-vehicletblText">User Name</th>
+                            <th class="pd-vehicletblText">First Name</th>
+                            <th class="pd-vehicletblText">Last Name</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div id="popTransDiv" class="example_content ">
+    @*<button id="btnSetEditMode" class="btn btn-primary" onclick="setControlsInEditMode()">Change Schedule Date And Amount</button>
+    <button id="btnUpdateDateAmount" class="btn btn-success hidden" onclick="updateDateAmountTransaction()">Save</button>
+    <button id="btnCancelUpdateDateAmount" class="btn btn-danger hidden" onclick="unsetControlsInEditMode()">Cancel</button>*@
+    <table class="table table-bordered table-striped" id="tbl_TransOrderDetail">
+        <thead>
+            <tr>
+                <th>Sr No.</th>
+                <th>Charge Date</th>
+                <th>Amount</th>
+                <th>TransactionID</th>
+                <th>Status</th>
+                @*<th>Action</th>*@
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+<div id="popDecalsDiv" class="example_content ">
+   
+    <div class="widget-title">
+        <a href="#collapseFour" data-toggle="collapse">
+            <span class="icon"><i class="icon-tag"></i></span>
+            <h5>Decal Information</h5>
+        </a>
+        <button class="btn btn-info pull-right" id="btnVehicleAdd"><i class="icon-plane"></i>Add</button>
+    </div>
+    <table class="table table-bordered table-striped" id="tblFillDecalDetail">
+        <thead>
+            <tr>
+                <th>Sr No.</th>
+                <th>Vehicle Make</th>
+                <th>Vehicle Year</th>
+                @*<th>VINNO</th>*@
+                <th>LicensePlate</th>
+                <th>Decals</th>
+                <th>GPS SKU</th>
+                <th>GPS DN</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+   
+</div>
+
+
+
+<div id="popAddDecalAcc" class="example_content ">
+    <div class="row-fluid span6">
+        <div class="widget-content span6">
+            <div class="form-vertical">
+                <div class="control-group">
+                    <label class="control-label">Vehicle Make</label>
+                    <div class="controls">
+                        <select id="ddlVehicleMakeDecAcc"></select>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">VINNO</label>
+                    <div class="controls">
+                        <input type="text" id="txtVINNODecAcc" class="span11" placeholder="VINNO" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">Decals</label>
+                    <div class="controls">
+                        <input type="text" id="txtDecalNumberDecAcc" class="span11" placeholder="Decal Number" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">GPSSKU</label>
+                    <div class="controls">
+                        <input type="text" id="txtGPSSKUDecAcc" class="span11" placeholder="GPSSKU" />
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="widget-content span6">
+            <div class="form-vertical">
+                <div class="control-group">
+                    <label class="control-label">Vehicle Year</label>
+                    <div class="controls">
+                        <input type="text" id="txtVehicleYearDecAcc" class="span11" placeholder="Vehicle Year" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">License Plate</label>
+                    <div class="controls">
+                        <input type="text" id="txtLicensePlateDecAcc" class="span11" placeholder="VINNO" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">GPSDN</label>
+                    <div class="controls">
+                        <input type="text" id="txtGPSDNDecAcc" class="span11" placeholder="GPSDN" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="controls">
+                        <button type="button" class="btn btn-info  " onclick="saveDecalAcc()">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<div id="popCardDiv" class="example_content ">
+    <div class="form-vertical">
+        <div class="rcorners1">
+            <table class="table-bordered" align="center">
+               
+                <tr>
+                    <td colspan="3">
+                        <label class="control-label">Card Number</label>
+                        <div class="controls">
+                            <input type="text" id="txtPCCardNumber" maxlength="16" class="span4" placeholder="" autocomplete="off" onkeyup="validateNumber()" />
+                        </div>
+                    </td>
+                 
+                </tr>
+                <tr>
+                    <td>
+                        
+                        <div class="controls hidden">
+                            <input type="text" id="txtPCCardName" class="span2" placeholder="" />
+                        </div>
+                        <label class="control-label">Card Security Code</label>
+                        <div class="controls">
+                            <input type="text" id="txtPCCardCode" class="span2" />
+                        </div>
+                        <div class="controls hidden">
+                            <select id="ddlCardType">
+                                <option value="0">-- Select --</option>
+                                <option value="1">Visa</option>
+                                <option value="2">Mastercard</option>
+                                <option value="3">Discover</option>
+                                <option value="4">American Express</option>
+                                <option value="5">Diners Club Carte Blanche</option>
+                                <option value="6">Diners Club International</option>
+                                <option value="7">jcb</option>
+                                <option value="8">Laser</option>
+                                <option value="9">Visa Electron</option>
+                                <option value="10">Dankort</option>
+                                <option value="11">Maestro</option>
+                                <option value="12">UAPT</option>
+                            </select>
+                        </div>
+                    </td>
+                    <td>
+                        <label class="control-label">Month</label>
+                        <div class="controls">
+                            <select id="ddlPCMonth">
+                                <option value="0">MM</option>
+                                <option value="01">01</option>
+                                <option value="02">02</option>
+                                <option value="03">03</option>
+                                <option value="04">04</option>
+                                <option value="05">05</option>
+                                <option value="06">06</option>
+                                <option value="07">07</option>
+                                <option value="08">08</option>
+                                <option value="09">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                            </select>
+                        </div>
+                    </td>
+                    <td>
+                        <label class="control-label">Year</label>
+                        <div class="controls">
+                            <select id="ddlPCYear">
+                                <option value="0">YYYY</option>
+                                <option value="19">2019</option>
+                                <option value="20">2020</option>
+                                <option value="21">2021</option>
+                                <option value="22">2022</option>
+                                <option value="23">2023</option>
+                                <option value="24">2024</option>
+                                <option value="25">2025</option>
+                                <option value="26">2026</option>
+                                <option value="27">2027</option>
+                                <option value="28">2028</option>
+                                <option value="29">2029</option>
+                                <option value="30">2030</option>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+
+                        <div class="controls">
+                            <input type="checkbox" id="chkDefaultCard" />Mark Default Credit card
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+        <div class="pull-right form-control">
+            <button class="btn btn-primary" onclick="editCardInfo()">Save</button>
+            
+        </div>
+        <br />
+
+    </div>
+</div>
+
+<div id="popFileDiv" class="example_content ">
+    <table id="tblAccountFiles" class="table table-bordered table-striped with-check" style="height:100px; width:100%!important; overflow:auto;">
+        <thead>
+            <tr>
+                <th class="pd-vehicletblText">File Name</th>
+                <th class="pd-vehicletblText">Creadted By </th>
+                <th class="pd-vehicletblText">Created Date</th>
+                <th class="pd-vehicletblText">Action</th>
+                <th class="pd-vehicletblText">Download</th>
+                
+            </tr>
+        </thead>
+        <tbody class="pd-tbody"></tbody>
+    </table>
+</div>
+<div id="popEmailTemplateDiv" class="example_content ">
+    <table id="tblEmailTemplate" class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th class="pd-vehicletbltext">Template Name</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+<div id="popPaymentConsole" class="example_content ">
+    <div class="row-fluid span6">
+        <div class="widget-content span6">
+            <div class="form-vertical">
+                <div id="divPack" class="hidden">
+                    <label class="control-label">Vehicle Make</label>
+                    <div class="controls">
+                        <select id="ddlVehicleMakeA"></select>
+                    </div>
+                    <label class="control-label">Vehicle Year</label>
+                    <div class="controls">
+                        <input type="text" id="txtVehicleYearA" placeholder="Vehicle Year" />
+                    </div>
+                    <label class="control-label">Select a Package</label>
+                    <div class="controls">
+                        <select id="ddlPackages"></select>
+                    </div>
+                </div>
+                <label class="control-label">First Name</label>
+                <div class="controls">
+                    <input type="text" id="txtPCFirstName" placeholder="First Name" value="@Model.FirstName" />
+                </div>
+                <label class="control-label">Last Name</label>
+                <div class="controls">
+                    <input type="text" id="txtPCLastName" placeholder="Last Name" value="@Model.LastName" />
+                </div>
+               
+                <label class="control-label">Email</label>
+                <div class="controls">
+                    <input type="email" id="txtCCEmail" value="@Model.AccountEmail" />
+                </div>
+                <label class="control-label">Phone Number</label>
+                <div class="controls">
+                    <input type="email" id="txtCCPhone" value="@Model.Phone" />
+                </div>
+
+                <div class="controls hidden">
+                    <a href="#">Save Billing Address</a>
+                </div>
+                
+            </div>
+        </div>
+        <div class="widget-content span6">
+            <div class="form-vertical">
+                <label class="control-label">Billing Address</label>
+                <div class="controls">
+                    <input type="text" id="txtBillingAddress" placeholder="Billing Address" value="@Model.BillingAddress" />
+                </div>
+                <label class="control-label">Billing City</label>
+                <div class="controls">
+                    <input type="text" id="txtBillingCity" placeholder="Billing City" value="@Model.BillingCity" />
+                </div>
+                <label class="control-label">Billing State</label>
+                <div class="controls">
+                    <input type="text" id="txtBillingState" placeholder="Billing State" value="@Model.BillingState" />
+                </div>
+                <label class="control-label">Billing Zip/Postal</label>
+                <div class="controls">
+                    <input type="text" id="txtBillingZip" placeholder="Billing Zip/Postal" value="@Model.BillingZip" />
+                </div>
+                <label class="control-label">Country</label>
+                <div class="controls">
+                    <input type="text" id="txtCCCountry" value="USA" />
+                </div>
+                <label class="control-label">Charge Amount</label>
+                <div class="controls">
+                    <input type="text" id="txtPCChargeAmount" />
+                </div>
+            </div>
+        </div>
+     
+            <table class="table table-bordered table-striped" id="tblPCCardDetail">
+                <thead>
+                    <tr><th colspan="4"><h5>Select Credit Card</h5></th>
+                        <th><button class="btn btn-success" onclick="newCCard()">ADD</button></th>
+                    </tr>
+                    <tr>
+                        <th>Select</th>
+                        <th>Payment Type</th>
+                        @*<th>Card Type</th>*@
+                        <th>Card Number</th>
+                        <th>Card Code</th>
+                        <th>Exp MM/YYYY</th>
+
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <div class="pull-right form-control">
+                <button class="btn btn-primary" onclick="ChargePCCard()">Charge</button>
+                <button class="btn btn-primary">Authorize</button>
+            </div>
+        
+    </div>
+
+       
+</div>
+
+<div id="popRefundOff" class="example_content ">
+
+    <div class="controls">
+        <button type="button" class="btn btn-info pull-right" onclick="ChargeOppTrans(2)">Refund</button>
+    </div>
+    <table class="table table-bordered table-striped with-check" id="tbl_RefundOff">
+        <thead>
+            <tr>
+                @*<th><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox" /></th>*@
+                <th></th>
+                <th>Sr No.</th>
+                <th>Charge Date</th>
+                <th>Package Details</th>
+                <th>Amount</th>
+                <th>TransactionID</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+<div id="popVoid" class="example_content ">
+    <div class="controls">
+        <button type="button" class="btn btn-info pull-right" onclick="ChargeOppTrans(3)">Void</button>
+    </div>
+    <table class="table table-bordered table-striped with-check" id="tbl_Void">
+        <thead>
+            <tr>
+                @*<th><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox" /></th>*@
+                <th></th>
+                <th>Sr No.</th>
+                <th>Charge Date</th>
+                <th>Package Details</th>
+                <th>Amount</th>
+                <th>TransactionID</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+<div id="popCharge" class="example_content ">
+    <div class="pull-right form-control">
+        <button type="button" class="btn btn-info" onclick="ChargeOppTrans(1)">Charge</button>
+        <button type="button" class="btn btn-danger" onclick="ChargeOppTrans(4)">Waive Off</button>
+    </div>
+    <table class="table table-bordered table-striped with-check" id="tbl_charge">
+        <thead>
+            <tr>
+                @*<th><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox" /></th>*@
+                <th></th>
+                <th>Sr No.</th>
+                <th>Charge Date</th>
+                <th>Amount</th>
+                <th>TransactionID</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+<div id="popChatDet" class="example_content">
+
+    <div class="row-fluid">
+        <div class="control-group">
+            <textarea id="txtChatBody" class="span12" style="height:100px" placeholder="Enter Chat.."></textarea>
+            <label class="control-label">Chat Type</label>
+            <div class="controls">
+                <select id="ddlChatType">
+                 
+                    <option value="1">Text Post</option>
+                    <option value="2">Link Post</option>
+                    <option value="3">Content Post</option>
+                   
+                </select>
+            </div>           
+            <input type="text" id="txtChatLink" class="span12" placeholder="Link URL" />
+            <input type="text" id="txtChatTitle" class="span12" placeholder="Title" />
+            <div class="hidden" id="chatterUploadDiv"><input type="file" id="chatterUpload" /></div><br />
+            <a href="#" id="linkChatFile" class="hidden" target="_blank"> </a>
+            <button id="btnSavechat" type="button" class="btn btn-primary" onclick="saveUpdateChat()">Save</button>
+            <button id="btnDeletechat" type="button" class="btn btn-danger hidden" onclick="deleteChat()">Delete</button>
+        </div>
+    </div>
+</div>
+<div id="popEmaillHistoryDiv" class="example_content ">
+    <table class="table table-bordered table-striped" id="tblEmailHistory">
+        <thead>
+            <tr>
+                <th>Email Date</th>
+                <th>Subject</th>
+              
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+<style>
+    footer {
+        position: fixed;
+        height: 40px;
+        bottom: 0;
+        width: 100%;
+        background-color: white;
+        box-shadow: 0px 0px 5px 0px #888888;
+    }
+
+    .pd-vehicletblText {
+        text-align: center !important;
+    }
+
+    #errmsg {
+        color: red;
+    }
+
+    #errEMP {
+        color: red;
+    }
+    .approved{
+        color:#333;
+    }
+    .declined{
+        color:red;
+    }
+    .error{
+        color:red;
+    }
+    #vehicleInfo_1 td {
+        background-color: #caf2ad !important;
+    }
+</style>
+<script>
+    $(function () {
+        CKEDITOR.replace('TemplateHTML', {
+            fullPage: true,
+            allowedContent: true,
+            autoGrow_onStartup: true,
+            enterMode: CKEDITOR.ENTER_BR,
+            height: 500,
+        });
+
+        
+    });
+</script>
+<script>
+    getCallHistoryList(@Model.LeadID, 1);
+    getTransactionDetails(@Model.AccountID)
+    getTransactionHistory(@Model.AccountID);
+    getTotalOrderDecal(@Model.AccountID);
+
+    getCardCheckInfo(@Model.AccountID);
+    @*getDecimalTable(@Model.AOID,@Model.NumberOfDecals);*@
+    $('#ddlType').val("@Model.Type").trigger('change');
+    $('#ddlIndustry').val("@Model.Type").trigger('change');
+    @*$('#ddlCardType').val("@Model.CardType").trigger('change');
+    $('#ddlMonth').val("@Model.CardExpirationMonth").trigger('change');*@
+    $("#ddlCompType").val(@Model.Type).trigger('change');
+    $("#ddlAccountStatus").val(@Model.AccountStatus).trigger('change');
+    @*$('#ddlPCMonth').val("@Model.CardExpirationMonth").trigger('change');
+    $('#ddlPCYear').val("@Model.CardExpirationYear").trigger('change');*@
+    setLanguageAccount("@Model.Language");
+    getChatist();
+    getHistoryList();
+</script>

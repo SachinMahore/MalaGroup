@@ -1,0 +1,172 @@
+﻿@using MalaGroupERP.Models
+@{
+    ViewBag.Title = "NTSR - Home";
+}
+<script src="@Url.Content("~/Content/js/Chart.min.js")"></script>
+<script src="~/Content/Pages/Home/Home.js"></script>
+ <div id="breadcrumb"> <a href="/Home/Index" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a></div>
+ <div class="container-fluid ">
+   
+
+    <div class="quick-actions_homepage">
+        <h5 style="padding: 15px;">Welcome @CommonModel.GetUserFullName()</h5>
+    </div>
+    <div class="row-fluid hidden ">
+        <div class="widget-box">
+            <div class="widget-title">
+                <span class="icon"><i class="icon-tasks"></i></span>
+                <h5>Welcome</h5><h3>@CommonModel.GetUserFullName()</h3>
+            </div>
+           
+        </div>
+    </div>
+     <div class="row-fluid">
+         <div class="span6 nopadding" style="background-color: #f8f8f8;border-right:  1px solid #CDCDCD;border-bottom: 1px solid #CDCDCD;border-left:   1px solid #CDCDCD;">
+             <div class="widget-box" style="margin-top: 0px!important;">
+                 <div class="widget-title">
+                     <a href="javascript:void(0)" onclick="showGraph()"><span class="icon"><i class="icon-refresh"></i></span></a>
+                         <h5>Order Graph</h5>
+                 </div>
+                 <div class="widget-content">
+                     <canvas id="bar-chart" width="200" height="100"></canvas>
+                     <label class="control-label span2" id="lblTotalPercentage" style="font-weight:bold"></label>
+                     <label class="control-label span3" id="lblTotalOpen"></label>
+                     <label class="control-label span3" id="lblConverted"></label>
+                     <label class="control-label span3" id="lblNotConverted"></label>
+                     
+                 </div>
+             </div>
+         </div>
+    
+         <div class="span6 nopadding" style="background-color: #f8f8f8;border-right:  1px solid #CDCDCD;border-bottom: 1px solid #CDCDCD;border-left:   1px solid #CDCDCD;">
+             <div class="widget-box" style="margin-top: 0px!important;">
+                 <div class="widget-title">
+                     <a href="javascript:void(0)" onclick="showGraph()"><span class="icon"><i class="icon-refresh"></i></span></a>
+                     <h5>Sales Graph</h5>
+                 </div>
+                 <div class="widget-content">
+                     <canvas id="bar-chartSales" width="200" height="100"></canvas>
+                   
+                     <label class="control-label span3" id="lblTotalAmt"></label>
+                     <label class="control-label span2" id="lblTotalRefund"></label>
+                     <label class="control-label span3" id="lblTotalVoided"></label>
+                     <label class="control-label span3" id="lblTotalDeclined"></label>
+                 </div>
+             </div>
+         </div>
+     </div>
+     <div class="row-fluid">
+         <div class="span8 nopadding" style="background-color: #f8f8f8;border-right:  1px solid #CDCDCD;border-bottom: 1px solid #CDCDCD;border-left:   1px solid #CDCDCD;">
+             <div class="widget-box" style="margin-top: 0px!important;">
+                 <div class="widget-title">
+                     <a href="javascript:void(0)" onclick="showGraph()"><span class="icon"><i class="icon-refresh"></i></span></a>
+                     <h5>Agentwise Order Graph</h5>
+                 </div>
+                 <div class="widget-content">
+                     <canvas id="bar-chartAO" width="300" height="100"></canvas>
+                   
+                 </div>
+             </div>
+         </div>
+
+         <div class="span4 nopadding" style="background-color: #f8f8f8;border-right:  1px solid #CDCDCD;border-bottom: 1px solid #CDCDCD;border-left:   1px solid #CDCDCD;">
+             <div class="widget-box" style="margin-top: 0px!important;">
+                 <div class="widget-title">
+                     <a href="javascript:void(0)" onclick="showGraph()"><span class="icon"><i class="icon-refresh"></i></span></a>
+                     <h5>Id Theft/Decals Graph</h5>
+                 </div>
+                 <div class="widget-content">
+                     <canvas id="bar-chartIdDec" width="200" height="100"></canvas>
+                     <label class="control-label span2"></label>
+                     <label class="control-label span5" id="lblAddDecal"></label>
+                     <label class="control-label span4" id="lblIdTheft"></label>                    
+                 </div>
+             </div>
+         </div>
+     </div>
+    <hr>
+    <div class="row-fluid">
+        <div class="span6">
+            <div class="widget-box">
+                <div class="widget-title">
+                    <a href="javascript:void(0)" onclick="getExportHistory()"><span class="icon"><i class="icon-refresh"></i></span></a>
+                    <h5>Export History</h5>
+
+                </div>
+                <div class="widget-content nopadding tableFixHead" style="height:200px; width:100%!important; overflow:auto;">
+                    <table id="tblExportHistory">
+                        <thead>
+                            <tr>
+                                <th class="td-left">File Name</th>
+                                <th class="td-left">Date Exported</th>
+                                <th class="td-left">Total Count</th>
+                                <th class="td-left">Duplicate Count</th>
+                                <th class="td-left">Status</th>
+                                <th class="td-left">Options</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="span6">
+            <div class="widget-box">
+                <div class="widget-title">
+                    <a href="javascript:void(0)" onclick="getTakeOffListReport()"><span class="icon"><i class="icon-refresh"></i></span></a>
+                    <h5>Take Off List Report</h5>
+
+                </div>
+                <div class="widget-content nopadding tableFixHead" style="height:200px; width:100%!important; overflow:auto;">
+                    <table id="tblTakeOffList">
+                        <thead>
+                            <tr>
+                                <th class="td-left">List Name</th>
+                                <th class="td-left">Report Date</th>
+                                <th class="td-left">Status</th>
+                                <th class="td-left">Options</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <hr>
+    </div>
+    <style>
+        .td-left {
+            text-align: left !important;
+        }
+        #tblExportHistory tr {
+            cursor: pointer;
+        }
+
+        #tblTakeOffList tr {
+            cursor: pointer;
+        }
+
+        .tableFixHead {
+            overflow-y: auto;
+            height: 200px;
+        }
+
+            .tableFixHead table {
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            .tableFixHead th, .tableFixHead td {
+                padding: 5px 5px;
+                border: 1px solid #e3dddd;
+                text-align: left;
+            }
+
+            .tableFixHead th {
+                position: sticky;
+                top: 0;
+                background: #eee;
+            }
+
+    </style>
+</div>

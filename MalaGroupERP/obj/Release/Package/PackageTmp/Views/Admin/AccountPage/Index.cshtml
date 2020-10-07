@@ -1,0 +1,248 @@
+﻿@{
+    ViewBag.Title = "Account";
+}
+
+<script src="~/Content/Pages/Admin/AccountPage/AccountPage.js"></script>
+<div id="breadcrumb"> <a href="/Home/Index" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="tip-bottom">Account Information</a> <a href="#" class="current">List</a> </div>
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="widget-box">
+            <div class="widget-title">
+                <span class="icon"> <i class="icon-star-empty"></i> </span>
+                <h5>Account</h5>
+                <div class="btn-group pull-right">
+                    <button type="button" class="btn btn-info" id="btnImport">Import Details</button>
+                    <button type="button" class="btn btn-primary" id="btnExportDaily">Export Daily Report</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <label id="lblTotalRecords" class="pull-right control-label" style="color: red !important;"></label>
+    <div class="widget-box">
+        <div class="widget-title">
+            <a>
+                <span class="icon"><i class="icon-align-justify"></i></span>
+                <h5></h5>
+            </a>
+            <input type="text" id="txtAccountName" name="Criteria" class="control-group pull-left" style="border:1px solid #E1E1DD" />
+            <button id="btnSearch" class="btn btn-primary m-b-5 pull-left" onclick="buildPaganationAccount()"><i class="fa fa-search"></i> Search</button>
+            <button id="btnAdvSearch" class="btn btn-info" onclick="advSearch()"><i class="fa fa-search"></i>Advance Search</button>
+            <select id="ddlRowPerPage" class="no-search pull-right" style="width:5%!important;">
+                <option value="25">25</option>
+                <option value="50" selected="selected">50</option>
+                <option value="75">75</option>
+                <option value="100">100</option>
+            </select>
+            <select id="ddlRowPerPageAdv" class="no-search pull-right hidden" style="width:5%!important;">
+                <option value="25">25</option>
+                <option value="50" selected="selected">50</option>
+                <option value="75">75</option>
+                <option value="100">100</option>
+            </select>
+            <label class="control-label pull-right">Rows</label>
+            <ul id="ulPaginationAccountDetail" class="pagination pull-right"></ul>
+            <ul id="ulPaginationAccountDetailAdv" class="pagination pull-right hidden"></ul>
+        </div>
+        <div class="widget-content nopadding tableFixHead" style="height:400px; width:100%!important; overflow:auto;">
+            <table id="tblAccounts" >
+                <thead>
+                    <tr>
+                        <th class="pd-vehicletbltext" id="pdAccountName">Acct Name</th>
+                        <th class="pd-vehicletbltext" id="pdPin">Acct Pin #</th>
+                        <th class="pd-vehicletbltext" id="pdAcct">Acct Status</th>
+                        <th class="pd-vehicletbltext" id="pdPckg">Last Pckg</th>
+                        <th class="pd-vehicletbltext" id="pdTotal">Total Cost</th>
+
+                        <th class="pd-vehicletbltext" id="pdRep">Rep Name</th>
+                        <th class="pd-vehicletbltext" id="pdCreated">Created Date</th>
+                        <th class="pd-vehicletbltext" id="pdLast">Last Modified</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div id="divAddOwner" class="modal hide">
+    <div class="modal-header">
+        <button data-dismiss="modal" class="close" type="button">×</button>
+        <h3>Add Lead Owner</h3>
+    </div>
+    <div class="modal-body">
+        <div class="control-group">
+            <label class="control-label">Search Name</label>
+            <div class="controls">
+                <input type="text" id="txtSearchOwnerName" class="pull-left" placeholder="Search Name" />
+                <button type="submit" class="btn btn-info span1">Search</button>
+                <table class="table table-bordered table-striped with-check">
+                    <thead>
+                        <tr>
+                            <th><i class="icon-resize-vertical"></i></th>
+                            <th>Name</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="checkbox" /></td>
+                            <td>Trident</td>
+
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" /></td>
+                            <td>Trident</td>
+
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" /></td>
+                            <td>Trident</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" /></td>
+                            <td>Trident</td>
+
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" /></td>
+                            <td>Trident</td>
+
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" /></td>
+                            <td>Trident</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="popExportDiv" class="example_content ">
+    <div class="control-group ">
+        <label class="control-label"> Date</label>
+        <div class="controls">
+            <div data-date="12-02-2018" class="input-append date datepicker ">
+                <input type="text" id="dtExportDate" data-date-format="mm/dd/yyyy" class="datepicker span2">
+                <span class="add-on"><i class="icon-th"></i></span>
+            </div>
+        </div>
+        <button type="button" class="btn btn-info" onclick="exportDaily();">Export</button>
+    </div>
+</div>
+<div id="popImportFile" class="example_content ">
+    <div class="control-group">
+        <label class="control-label">File upload </label>
+        <input type="file" id="openFileAccountList" />
+    </div>
+    <button type="button" class="btn btn-info" onclick="importToAccount();">Save</button>
+</div>
+<div id="popAdvSearch" class="example_content ">
+    <div class="control-group">
+   
+        <div class="controls">
+            <select id="ddlCreatedSale">
+                <option value="0">Created Date</option>
+                <option value="1">Close Date</option>
+                <option value="2">Charge Date</option>
+            </select><br />
+            From<div data-date="12-02-2018" class="input-append date datepicker ">
+                <input type="text" id="dtCFromDate" data-date-format="mm/dd/yyyy" class="datepicker span2" value="@DateTime.Now.AddDays(-7).ToString("MM/dd/yyyy")">
+                <span class="add-on"><i class="icon-th"></i></span>
+            </div>
+
+            To  <div data-date="12-02-2018" class="input-append date datepicker ">
+                <input type="text" id="dtCTotDate" data-date-format="mm/dd/yyyy" class="datepicker span2" value="@DateTime.Now.ToString("MM/dd/yyyy")">
+                <span class="add-on"><i class="icon-th"></i></span>
+            </div>
+        </div>
+
+        <label class="control-label">Account Status</label>
+        <div class="controls">
+            <select id="ddlAccountStatus">
+                <option value="0">-- Select Status --</option>
+                <option value="1">Active</option>
+                <option value="2">Suspended</option>
+                <option value="3">Cancelled - No Refund</option>
+                <option value="4">Cancelled - Full Refund</option>
+                <option value="5">Cancelled - Partial Refund</option>
+                <option value="6">Caspio Account</option>
+                <option value="7">Check - Pending</option>
+                <option value="8">Comp - Pending</option>
+            </select>
+        </div>
+        <label class="control-label">Account Name</label>
+        <div class="controls">
+            <input type="text" id="txtAccName" class="span6" placeholder="Account Name" />
+        </div>
+    </div>
+    <button type="button" class="btn btn-info" onclick="buildAdvPaganationAccount();">Search</button>
+</div>
+<style>
+    .pd-vehicletblText {
+        text-align: left !important;
+    }
+
+    #tblAccounts tr {
+        cursor: pointer;
+    }
+        .tableFixHead {
+  overflow-y: auto;
+  height: 200px;
+}
+
+.tableFixHead table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+ .tableFixHead th, .tableFixHead td {
+
+    padding: 5px 5px;
+    border: 1px solid #e3dddd;
+    text-align:left;
+
+}
+
+.tableFixHead th {
+  position: sticky;
+  top: 0;
+  background: #eee;
+}
+</style>
+<script>
+
+    var table = $('#tblAccounts');
+    $('#pdAccountName, #pdPin,#pdAcct, #pdTotal,#pdRep, #pdCreated, #pdLast')
+        .wrapInner('<span title="sort this column"/>')
+        .each(function () {
+
+            var th = $(this),
+                thIndex = th.index(),
+                inverse = false;
+
+            th.click(function () {
+
+                table.find('td').filter(function () {
+
+                    return $(this).index() === thIndex;
+
+                }).sortElements(function (a, b) {
+
+                    return $.text([a]) > $.text([b]) ?
+                        inverse ? -1 : 1
+                        : inverse ? 1 : -1;
+
+                }, function () {
+
+                    // parentNode is the element we want to move
+                    return this.parentNode;
+
+                });
+                inverse = !inverse;
+            });
+        });
+</script>

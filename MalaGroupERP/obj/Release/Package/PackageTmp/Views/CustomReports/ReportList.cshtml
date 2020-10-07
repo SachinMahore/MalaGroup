@@ -1,0 +1,84 @@
+﻿@{
+    ViewBag.Title = "Custom Report List";
+}
+
+<script src="~/Content/Pages/CustomReports/CustomList.js"></script>
+<div id="breadcrumb"> <a href="/Home/Index" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="tip-bottom">Custom Report</a> <a href="#" class="current">List</a> </div>
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="widget-box">
+            <div class="widget-title">
+                <span class="icon"> <i class="icon-star-empty"></i> </span>
+                <h5>Custom Report</h5>
+                <div class="btn-group pull-right">
+                    <button type="button" class="btn btn-info" onclick="newReport()">New Report</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <label id="lblTotalRecords" class="pull-right control-label" style="color: red !important;"></label>
+    <div class="widget-box">
+        <div class="widget-title">
+            <a>
+                <span class="icon"><i class="icon-align-justify"></i></span>
+                <h5></h5>
+            </a>
+            <select id="ddlRowPerPage" class="no-search pull-right" style="width:5%!important;">
+                <option value="25">25</option>
+                <option value="50" selected="selected">50</option>
+                <option value="75">75</option>
+                <option value="100">100</option>
+            </select>
+            <label class="control-label pull-right">Rows</label>
+            <ul id="ulPaginationReportList" class="pagination pull-right"></ul>
+        </div>
+        <div class="widget-content nopadding tableFixHead" style="height:400px; width:100%!important; overflow:auto;">
+            <table id="tblReportList">
+                <thead>
+                    <tr>
+                        <th>Report Name</th>
+                        <th>Report For</th>
+                        <th>Created By </th>
+                        <th>Created Date</th>
+                        @*<th>ModiFied By</th>
+                        <th>ModiFied Date</th>*@
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<style>
+
+    #tblReportList tr {
+        cursor: pointer;
+    }
+
+    .tableFixHead {
+        overflow-y: auto;
+        height: 200px;
+    }
+
+        .tableFixHead table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .tableFixHead th, .tableFixHead td {
+            padding: 5px 5px;
+            border: 1px solid #e3dddd;
+            text-align: left;
+        }
+
+        .tableFixHead th {
+            position: sticky;
+            top: 0;
+            background: #eee;
+        }
+</style>
+

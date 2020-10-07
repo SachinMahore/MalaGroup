@@ -1,0 +1,363 @@
+﻿@using MalaGroupERP.Models
+@model UserManagementModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<script src="@Url.Content("~/Content/Pages/Admin/UserManagement/UserManagement.js")"></script>
+<div id="breadcrumb"> <a href="/Home/Index" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="tip-bottom">User Information</a> <a href="#" class="current">Add / Edit</a> </div>
+
+
+<input type="hidden" id="hndUserID" value="@Model.UserID" />
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="widget-box">
+            <div class="widget-title">
+
+                <span class="icon"> <i class="icon-star-empty"></i> </span>
+                <h5>User Details</h5>
+                <div class="btn-group pull-right">
+                    <button type="button" class="btn btn-info" onclick="saveUpdateUser()">Save</button>
+                    <button type="button" class="btn btn-primary">Delete</button>
+
+                </div>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="span7 " style="overflow: auto; max-height: 505px;">
+                <div class="widget-box collapsible">
+                    <div class="widget-title">
+                        <a href="#collapseOne" data-toggle="collapse">
+                            <span class="icon"><i class="icon-book"></i></span>
+                            <h5>User Details</h5>
+                        </a>
+                    </div>
+                    <div class="collapse in" id="collapseOne">
+
+                        <div class="widget-content span6">
+                            <div class="form-vertical">
+                                <div class="control-group">
+                                    <label class="control-label">First Name</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtFirstName" class="span11" placeholder="Enter First Name" value="@Model.FirstName" />
+                                    </div>
+                                </div>
+
+                                <div class="control-group">
+                                    <label class="control-label">Last Name</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtLastName" class="span11" placeholder="Enter Last Name" value="@Model.LastName" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Email</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtEmail" class="span11" placeholder="Enter Email" value="@Model.Email" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">UserName</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtUserName" class="span11" placeholder="Enter User Name" value="@Model.UserName" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Company</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtCompany" class="span11" placeholder="Enter Company Name" value="@Model.Company" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Department</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtDepartment" class="span11" placeholder="Enter Department Name" value="@Model.Department" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Division</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtDivision" class="span11" placeholder="Enter Division" value="@Model.Division" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">User Type</label>
+                                    <div class="controls">
+                                        <select id="ddlProfile">
+                                            <option value="0">-- Select --</option>
+                                            <option value="1">Administrator</option>
+                                            <option value="2">Standard</option>
+                                            <option value="3">Automated Process</option>
+                                            <option value="4">License Manager</option>
+                                            <option value="5">CsnOnly</option>
+                                            <option value="6">ExternalWho</option>
+                                        </select>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label">User License</label>
+                                        <div class="controls">
+                                            <input type="text" id="txtUserLicense" class="span11" placeholder="" value="@Model.UserLicense" />
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget-content span6">
+                            <div class="form-vertical">
+                                <div class="control-group">
+                                    <label class="control-label">Password</label>
+                                    <div class="controls">
+                                        <input type="password" id="txtPassword" class="span11" placeholder="Enter Password" value="@Model.Password" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Phone</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtPhone" class="span11" placeholder="" value="@Model.CellPhone" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Extention</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtExtention" class="span11" placeholder="" value="@Model.Extension" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Fax</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtFax" class="span11" placeholder="" value="@Model.WorkPhone" />
+                                    </div>
+                                </div>
+
+                                <div class="control-group">
+                                    <label class="control-label">Email Encoding</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtEmailEncoding" class="span11" placeholder="" value="@Model.FirstName" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Employer Number</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtEmployerNumber" class="span11" placeholder="" value="@Model.EmployeeID" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Start of day</label>
+                                    <div class="controls">
+                                        <select id="ddlStartDay"></select>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">End of day</label>
+                                    <div class="controls">
+                                        <select id="ddlEndDay"></select>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Active</label>
+                                    <div class="controls">
+                                        <label>
+                                            <input id="chkActive" type="checkbox" name="radios" @(Model.IsActive==1?"checked":"") />
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="widget-title">
+                        <a href="#collapseMail" data-toggle="collapse">
+                            <span class="icon"><i class="icon-envelope"></i></span>
+                            <h5>Mailing Address</h5>
+                        </a>
+                    </div>
+
+                    <div class="collapse in" id="collapseMail">
+
+                        <div class="widget-content span6">
+                            <div class="form-vertical">
+                                <div class="control-group">
+                                    <label class="control-label">Street</label>
+                                    <div class="controls">
+                                        <textarea type="text" id="txtStreet" class="span11" placeholder="Enter Street Address"> @Model.Address1</textarea>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">City</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtCity" class="span11" placeholder="Enter City Name" value="@Model.City" />
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="widget-content span6">
+                            <div class="form-vertical">
+                                <div class="control-group">
+                                    <label class="control-label">State/Province</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtState" class="span11" placeholder="Enter State Name" value="@Model.StateID" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Zip/Postal Code</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtZip" class="span11" value="@Model.ZipCode" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Country</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtCountry" class="span11" placeholder="Enter Country" value="@Model.Country" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="widget-title">
+                        <a href="#collapseSingle" data-toggle="collapse">
+                            <span class="icon"><i class="icon-folder-close"></i></span>
+                            <h5>Single Sign On Information </h5>
+                        </a>
+                    </div>
+                    <div class="collapse in" id="collapseSingle">
+                        <div class="widget-content span6">
+                            <div class="form-vertical">
+                                <div class="control-group">
+                                    <label class="control-label">Federation ID</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtFederationID" class="span11" value="@Model.FederationID" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-title">
+                        <a href="#collapseSingle" data-toggle="collapse">
+                            <span class="icon"><i class="icon-folder-close"></i></span>
+                            <h5>Email Configuration </h5>
+                        </a>
+                    </div>
+                    <div class="collapse in" id="collapseSingle">
+                        <div class="widget-content span6">
+                            <div class="form-vertical">
+                                <div class="control-group">
+                                    <label class="control-label">User Name</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtSMTPUserName" class="span11" value="@Model.SMTPUserName" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget-content span6">
+                            <div class="form-vertical">
+                                <div class="control-group">
+                                    <label class="control-label">Password</label>
+                                    <div class="controls">
+                                        <input type="password" id="txtSMTPPassword" class="span11" value="@Model.SMTPPassword" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-title">
+                        <a href="#collapseLocale" data-toggle="collapse">
+                            <span class="icon"><i class="icon-star"></i></span>
+                            <h5>Locale Settings </h5>
+                        </a>
+                    </div>
+                    <div class="collapse in" id="collapseLocale">
+                        <div class="widget-content span6">
+                            <div class="form-vertical">
+                                <div class="control-group">
+                                    <label class="control-label">Time Zone</label>
+                                    <div class="controls">
+                                        <select id="ddlTimeZone"></select>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Locale</label>
+                                    <div class="controls">
+                                        <select id="ddlLocale">
+                                            <option value="0">-- Select --</option>
+                                            <option value="1">Administrator</option>
+                                            <option value="2">Agent</option>
+                                            <option value="3">Owner</option>
+                                            <option value="4">Sales Person</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="widget-content span6">
+                            <div class="form-vertical">
+                                <div class="control-group">
+                                    <label class="control-label">Language</label>
+                                    <div class="controls">
+                                        <select id="ddlLanguage">
+                                            <option value="0">-- Select --</option>
+                                            <option value="1">English</option>
+                                            <option value="2">French</option>
+                                            <option value="3">Carabian</option>
+                                            <option value="4">US</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="span5">
+                <div class="widget-box ">
+                    <div class="widget-title">
+                        <span class="icon">
+                            <i class="icon-book"></i>
+                        </span>
+                        <h5>User Roles</h5>
+                    </div>
+                    <div class="widget-content nopadding">
+                        <table class="table table-bordered" id="tblUserRoles">
+                            <tbody>
+                                @foreach (var ur in Model.UserRole)
+                                {
+                                    <tr>
+                                        <td class="hidden">@ur.ID</td>
+                                        <td class="hidden">@ur.RoleID</td>
+                                        <td>@ur.RoleName</td>
+                                        <td>
+                                            <input id="chkUserRole" type="checkbox" class="chkUserRole" name="chkUserRole" @(ur.IsAssign == 1 ? "checked" : "") />
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+@*Modal Pop up*@
+
+<script>
+
+    $('#ddlProfile').val("@Model.UserType");
+    $('#ddlProfile').trigger('chosen:updated');
+    $('#ddlStartDay').val("@Model.StartDay");
+    $('#ddlStartDay').trigger('chosen:updated');
+    $('#ddlEndDay').val("@Model.EndDay");
+    $('#ddlEndDay').trigger('chosen:updated');
+    $('#ddlLocale').val("@Model.Locale");
+    $('#ddlLocale').trigger('chosen:updated');
+    $('#ddlLanguage').val("@Model.Language");
+    $('#ddlLanguage').trigger('chosen:updated');
+    @*$('#ddlTimeZone').val("@Model.Timezone");
+    $('#ddlTimeZone').trigger('chosen:updated');*@
+
+</script>

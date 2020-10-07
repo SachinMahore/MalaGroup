@@ -1,0 +1,81 @@
+﻿@using MalaGroupERP.Models
+@model UserAccessRights
+
+@{
+    ViewBag.Title = "Role Management";
+}
+<input type="hidden" id="hfEditRight" value="@Model.EditRight" />
+<input type="hidden" id="hfAddRight" value="@Model.AddRight" />
+<input type="hidden" id="hfDeleteRight" value="@Model.DeleteRight" />
+<input type="hidden" id="hfDispalyRight" value="@Model.DispalyRight" />
+
+<script src="@Url.Content("~/Content/pages/Admin/RoleManagement/RoleManagement.js")"></script>
+<input id="hfHasUsers" name="HasUsers" type="hidden" value='0' />
+
+
+<div id="breadcrumb"> <a href="/Home/Index" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Admin</a> <a href="#" class="tip-bottom">Role Management</a> <a href="#" class="current">List</a> </div>
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="widget-box">
+            <div class="widget-title">
+
+                <span class="icon"> <i class="icon-star-empty"></i> </span>
+                <h5>Role Management</h5>
+
+                <div class="btn-group pull-right">
+                    <button type="button" class="btn btn-info">New</button>
+                    <button type="button" class="btn btn-primary">Import</button>
+                   
+                </div>
+
+
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="row-fluid">
+        <div class="span12">
+
+            <div class="widget-box collapsible">
+
+                <div class="widget-title">
+                    <a href="#collapseOne" data-toggle="collapse">
+                        <span class="icon"><i class="icon-align-justify"></i></span>
+                        <h5>Role List</h5>
+                    </a>
+                </div>
+                <div class="collapse in" id="collapseOne">
+                    <div class="widget-content">
+                        <div id="divViewList"></div>
+
+                    </div>
+                </div>
+                <div class="widget-title">
+                    <a href="#collapseTwo" data-toggle="collapse">
+                        <span class="icon"><i class="icon-plus"></i></span>
+                        <h5>Add / Edit Role</h5>
+                    </a>
+                </div>
+                <div class="collapse" id="collapseTwo">
+                    <div class="widget-content">
+                        <div id="divAddEdit"></div>
+
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+  
+
+    </div>
+</div>
+
+<style>
+    .pds-selected-row {
+        background-color: #ffd800 !important;
+    }
+   
+</style>

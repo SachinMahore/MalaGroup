@@ -1,0 +1,906 @@
+﻿@{
+    ViewBag.Title = "Opportunities";
+}
+
+ <div id="breadcrumb"> <a href="/Home/Index" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="tip-bottom">Lead Information</a> <a href="#" class="current">Add / Edit</a> </div>
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="widget-box">
+            <div class="widget-title">
+
+                <span class="icon"> <i class="icon-star-empty"></i> </span>
+                <h5>Opportunities</h5>
+
+                <button class="btn btn-info pull-right"><i class="icon-plus"></i>Follow</button>
+                <div class="btn-group pull-right">
+                    <button type="button" class="btn btn-primary">Edit</button>
+
+                    <a href="#divPaymentConsole" class="btn btn-primary" data-toggle="modal">Payment Console</a>
+                    <button type="button" class="btn btn-primary">Delete</button>
+                    <button type="button" class="btn btn-primary">Clone</button>
+                    <button type="button" class="btn btn-primary">Change Owner</button>
+                    <button type="button" class="btn btn-primary">Charge Opp</button>
+                    <button type="button" class="btn btn-primary">Refund Opp</button>
+                    <button type="button" class="btn btn-primary">Void Opp</button>
+                    <button type="button" class="btn btn-primary">Home</button>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="widget-box">
+            <div class="widget-content">
+                <div class="row-fluid">
+                    <div class="control-group">
+                        <div class="span3 pull-left">
+                            <label class="control-label">Account Name</label>
+                            <div class="controls">
+                                <input type="text" id="txtAccountName" placeholder="Account name" />
+                            </div>
+                        </div>
+                        <div class="span3">
+                            <label class="control-label">Close Date</label>
+                            <div class="controls">
+                                <input type="text" id="txtCloseDate" placeholder="Close Date" />
+                            </div>
+                        </div>
+                        <div class="span3">
+                            <label class="control-label">Amount</label>
+                            <div class="controls">
+                                <input type="text" id="txtAmount" placeholder="Amount" />
+                            </div>
+                        </div>
+                        <div class="span3">
+                            <label class="control-label">Opportunity Owner</label>
+                            <div class="controls">
+                                <div class="input-append">
+                                    <input type="text" id="txtOpportunityOwner" class="span9" placeholder="Add Opportunity Owner" />
+                                    <a href="#divAddOwner" data-toggle="modal"><span class="add-on"><i class="icon-user"></i></span></a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row-fluid">
+            <div class="span8">
+
+                <div class="widget-box collapsible">
+
+                    <div class="widget-title">
+                        <a href="#collapseOne" data-toggle="collapse">
+                            <span class="icon"><i class="icon-align-justify"></i></span>
+                            <h5>Opportunity Information</h5>
+                        </a>
+                    </div>
+                    <div class="collapse in" id="collapseOne">
+
+                        <div class="widget-content span6">
+                            <div class="form-vertical">
+
+                                <div class="control-group">
+                                    <label class="control-label">Transaction ID</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtTransactionID" class="span11" placeholder="Enter Transaction ID" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Opportunity Name</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtOpportunityName" class="span11" placeholder="Enter Opportunity Name" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Account Name</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtAccountName" class="span11" placeholder="Enter Account Name" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Created By</label>
+                                    <div class="controls">
+                                        <input type="email" id="txtCreatedBy" class="span11" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Last Modified By</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtLastModifiedBy" class="span11" />
+                                    </div>
+                                </div>
+
+                                <div class="control-group">
+                                    <label class="control-label">Manager Override</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtManagerOverride" class="span11" placeholder="Enter Manager Override" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Product</label>
+                                    <div class="controls">
+                                        <select multiple>
+                                            <option>-- Select --</option>
+                                            <option selected>Prefered Status</option>
+                                            <option>Third option</option>
+                                            <option>Fourth option</option>
+                                            <option>Fifth option</option>
+                                            <option>Sixth option</option>
+                                            <option>Seventh option</option>
+                                            <option>Eighth option</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Additional Decals</label>
+                                    <div class="controls">
+                                        <input type="checkbox" id="chkAddDecals" name="radios" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Additional Theft Recovery</label>
+                                    <div class="controls">
+                                        <input type="checkbox" id="chkAddTheft" name="radios" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Additional Devices</label>
+                                    <div class="controls">
+                                        <input type="checkbox" id="AddDevices" name="radios" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Number of Decals</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtDecalNumber" class="span11" placeholder="Number of Decals" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Number of Vehicle in household</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtVehicleNumber" class="span11" placeholder="Number of Vehicle in household" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">2nd Set of Decals</label>
+                                    <div class="controls">
+                                        <input type="checkbox" id="chkDecals2" name="radios" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">3rd Set of Decals</label>
+                                    <div class="controls">
+                                        <input type="checkbox" id="chkDecals3" name="radios" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">4th Set of Decals</label>
+                                    <div class="controls">
+                                        <input type="checkbox" id="chkDecals4" name="radios" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Total Decals Count</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtDecalCount" class="span11" placeholder="Decals Count" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Online - Close Date</label>
+                                    <div class="controls">
+                                        <div data-date="12-02-2012" class="input-append date datepicker">
+                                            <input type="text" data-date-format="mm/dd/yyyy" class="datepicker span11">
+                                            <span class="add-on"><i class="icon-th"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Online - Payment Transaction ID</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtOnlinePaymentID" class="span11" placeholder="Online Payment Transaction ID" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Online - Payment Amount</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtOnlinePaymentAmt" class="span11" placeholder="Online Payment Amount" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Online - Payment Email</label>
+                                    <div class="controls">
+                                        <input type="email" id="txtOnlinePaymentEmail" class="span11" placeholder="Online Payment Email" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget-content span6">
+                            <div class="form-vertical">
+
+                                <div class="control-group">
+                                    <label class="control-label">Tax</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtTax" class="span11" placeholder="Tax" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Amount</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtAmt" class="span11" placeholder="Amount" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Total</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtTotal" class="span11" placeholder="Total" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Balance Due</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtBalance" class="span11" placeholder="Balance Due" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Stage</label>
+                                    <div class="controls">
+                                        <select id="ddlStage">
+                                            <option>-- Select --</option>
+                                            <option>Qualification</option>
+                                            <option>Needs Analysis</option>
+                                            <option>Proposal</option>
+                                            <option>Negotiation</option>
+                                            <option>Closed Won</option>
+                                            <option>Closed Lost</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Probability(%)</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtProbability" class="span11" placeholder="Probability(%)" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="widget-title">
+                        <a href="#collapseTwo" data-toggle="collapse">
+                            <span class="icon"><i class="icon-user"></i></span>
+                            <h5>Client Information</h5>
+                        </a>
+                    </div>
+                    <div class="collapse" id="collapseTwo">
+                        <div class="widget-content span6">
+                            <div class="form-vertical">
+
+
+                                <div class="control-group">
+                                    <label class="control-label">Billing First Name</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtBillingFirstName" class="span11" placeholder="Billing First Name" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Billing Last Name</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtBillingLastName" class="span11" placeholder="Billing Last Name" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Billing Address</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtBillingAddress" class="span11" placeholder="Billing Address" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Billing Address Line2</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtBillingAddress2" class="span11" placeholder="Billing Address Line2" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Billing City</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtBillingCity" class="span11" placeholder="Billing City" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Billing State</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtBillingState" class="span11" placeholder="Billing state" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Billing Zip/Postal</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtBillingZip" class="span11" placeholder="Billing Zip/Postal" />
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="widget-content span6">
+                            <div class="form-vertical">
+
+                                <div class="control-group">
+                                    <label class="control-label">Billing Company</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtBillingCompany" class="span11" placeholder="Billing Company" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Billing Phone</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtBillingPhone" class="span11" placeholder="Billing Phone" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Billing Fax</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtBillingFax" class="span11" placeholder="Billing Fax" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Billing Email</label>
+                                    <div class="controls">
+                                        <input type="email" id="txtBillingEmail" class="span11" placeholder="Billing Email" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Billing Country</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtBillingCountry" class="span11" placeholder="Billing Country" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Invoice Number</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtInvoice" class="span11" placeholder="Invoice Number" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-title">
+                        <a href="#collapseThree" data-toggle="collapse">
+                            <span class="icon"><i class="icon-piechart"></i></span>
+                            <h5>Payment Information</h5>
+                        </a>
+                    </div>
+                    <div class="collapse" id="collapseThree">
+                        <div class="widget-content span6">
+                            <div class="form-vertical">
+
+
+                                <div class="control-group">
+                                    <label class="control-label">Payment Method</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtPaymentMethod" class="span11" placeholder="Payment Method" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Payment Status</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtPaymentStatus" class="span11" placeholder="Payment Status" />
+                                    </div>
+                                </div>
+
+                                <div class="control-group">
+                                    <label class="control-label">Manual Charge</label>
+                                    <div class="controls">
+                                        <input type="checkbox" id="chkManualCharge" name="radios" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Charge Amount</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtChargeAmt" class="span11" placeholder="Charge Amount" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Transaction Total</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtTransactionTotal" class="span11" placeholder="TransactionTotal" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Transaction Count</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtTransactionTotal" class="span11" placeholder="TransactionTotal" />
+                                    </div>
+                                </div>
+
+                                <div class="control-group">
+                                    <label class="control-label">Transaction Count Recurring</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtTransactionCountRecurring" class="span11" placeholder="Transaction Count Recurring" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Charge Amount after first Payment</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtTransactionCount" class="span11" placeholder="Transaction Count" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Approved Transaction</label>
+                                    <div class="controls">
+                                        <input type="checkbox" id="chkApprovedTrans" name="radios" />
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="widget-content span6">
+                            <div class="form-vertical">
+
+
+                                <div class="control-group">
+                                    <label class="control-label">Payment Frequency</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtPaymentFrequency" class="span11" placeholder="Payment Frequency" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Payment Stop</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtPaymentStatus" class="span11" placeholder="Payment Status" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Payment Start Date</label>
+                                    <div class="controls">
+                                        <div data-date="12-02-2012" class="input-append date datepicker">
+                                            <input type="text" id="txtPaymentStartDate" data-date-format="mm/dd/yyyy" class="datepicker span11">
+                                            <span class="add-on"><i class="icon-th"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Payment End Date</label>
+                                    <div class="controls">
+                                        <div data-date="12-02-2012" class="input-append date datepicker">
+                                            <input type="text" id="txtPaymentEndDate" data-date-format="mm/dd/yyyy" class="datepicker span11">
+                                            <span class="add-on"><i class="icon-th"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Payment Count</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtPaymentCount" class="span11" placeholder="Payment Count" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Charge Date</label>
+                                    <div class="controls">
+                                        <div data-date="12-02-2012" class="input-append date datepicker">
+                                            <input type="text" id="txtChargeDate" data-date-format="mm/dd/yyyy" class="datepicker span11">
+                                            <span class="add-on"><i class="icon-th"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Gateway</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtPaymentCount" class="span11" placeholder="Payment Count" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-title">
+                        <a href="#collapseFour" data-toggle="collapse">
+                            <span class="icon"><i class="icon-tag"></i></span>
+                            <h5>Credit Card</h5>
+                        </a>
+                    </div>
+                    <div class="collapse" id="collapseFour">
+                        <div class="widget-content span6 form-vertical">
+                            <div class="control-group">
+                                <label class="control-label">Card Details</label>
+                                <div class="controls">
+                                    <input type="text" id="txtCardDetails" class="span11" placeholder="Card Details" />
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">Card Type</label>
+                                <div class="controls">
+                                    <select id="ddlCardType">
+                                        <option>-- Select --</option>
+                                        <option>Visa</option>
+                                        <option>Rewards</option>
+                                        <option>Cash back</option>
+
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">Card Number</label>
+                                <div class="controls">
+                                    <input type="text" id="txtVehicleType" class="span11" placeholder="" />
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">Token</label>
+                                <div class="controls">
+                                    <input type="text" id="txttoken" class="span11" placeholder="" />
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="widget-content span6 form-vertical">
+                            <div class="control-group">
+                                <label class="control-label">Card Expiration Month</label>
+                                <div class="controls">
+                                    <select id="ddlMonth">
+                                        <option>-- Select --</option>
+                                        <option>01</option>
+                                        <option>02</option>
+                                        <option>03</option>
+                                        <option>04</option>
+                                        <option>05</option>
+                                        <option>06</option>
+                                        <option>07</option>
+                                        <option>08</option>
+                                        <option>09</option>
+                                        <option>10</option>
+                                        <option>11</option>
+                                        <option>12</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">Card Expiration Year</label>
+                                <div class="controls">
+                                    <input type="text" id="txtVehicleType" class="span11" placeholder="" />
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">Card Security Code</label>
+                                <div class="controls">
+                                    <input type="text" id="txtVehicleType" class="span11" placeholder="" />
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">Card Last 4</label>
+                                <div class="controls">
+                                    <input type="text" id="txtVehicleType" class="span11" placeholder="" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="span4">
+
+
+
+                <div class="widget-box">
+                    <div class="widget-title">
+                        <span class="icon">
+                            <i class="icon-book"></i>
+                        </span>
+                        <h5>Transaction <code>(2)</code></h5>
+                        <div class="btn-group pull-right">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+
+                                <li><a href="#">New Transaction</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="widget-content nopadding">
+                        <table class="table table-bordered">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <label class="control-label">11/05/2018 02:34PM</label>
+                                        <label class="control-label">Gateway ID : 645455455</label>
+                                        <label class="control-label">Transaction ID : <a href=""> trx-4343434</a></label>
+                                        <label class="control-label">Payment Method : Credit Card</label>
+                                    </td>
+                                    @*<td>
+                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                                <span class="caret"></span>
+                                            </button>
+                                        </td>*@
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label class="control-label">16/11/2018 08:54PM</label>
+                                        <label class="control-label">Gateway ID : 56878995</label>
+                                        <label class="control-label">Transaction ID : <a href=""> trx-88989898</a></label>
+                                        <label class="control-label">Payment Method : Credit Card</label>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr><th><a href="">View All</a></th></tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+                <div class="widget-box">
+                    <div class="widget-title">
+                        <span class="icon">
+                            <i class="icon-book"></i>
+                        </span>
+                        <h5>Stage History <code>(3)</code></h5>
+                        <div class="btn-group pull-right">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+
+                                <li><a href="~/Opportunities/StageHistory">New History</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="widget-content nopadding">
+                        <table class="table table-bordered">
+                            <tbody>
+                                <tr>
+                                    <td>
+
+                                        <label class="control-label">Stage : Closed Won</label>
+                                        <label class="control-label">Amount : $20650</label>
+                                        <label class="control-label">Probability(%) : 99%</label>
+                                        <label class="control-label">Close Date : 12/04/2018</label>
+                                        <label class="control-label">Last Modified By : <a href=""> David Adelson</a></label>
+                                        <label class="control-label">Last Modified Date : 14/11/2018</label>
+                                    </td>
+                                    @*<td>
+                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                                <span class="caret"></span>
+                                            </button>
+                                        </td>*@
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label class="control-label">Stage : Closed Won</label>
+                                        <label class="control-label">Amount : $10000</label>
+                                        <label class="control-label">Probability(%) : 100%</label>
+                                        <label class="control-label">Close Date : 12/07/2018</label>
+                                        <label class="control-label">Last Modified By : <a href=""> Sachin Hon</a></label>
+                                        <label class="control-label">Last Modified Date : 14/11/2018</label>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr><th><a href="">View All</a></th></tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+@*Modal Pop up*@
+
+<div id="divAddOwner" class="modal hide">
+    <div class="modal-header">
+        <button data-dismiss="modal" class="close" type="button">×</button>
+        <h3>Add Opportunity Owner</h3>
+    </div>
+    <div class="modal-body">
+        <div class="control-group">
+            <label class="control-label">Search Name</label>
+            <div class="controls">
+                <input type="text" id="txtSearchOwnerName" class="pull-left" placeholder="Search Name" />
+                <button type="submit" class="btn btn-info span1">Search</button>
+                <table class="table table-bordered table-striped with-check">
+                    <thead>
+                        <tr>
+                            <th><i class="icon-resize-vertical"></i></th>
+                            <th>Name</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="checkbox" /></td>
+                            <td>Trident</td>
+
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" /></td>
+                            <td>Trident</td>
+
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" /></td>
+                            <td>Trident</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" /></td>
+                            <td>Trident</td>
+
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" /></td>
+                            <td>Trident</td>
+
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" /></td>
+                            <td>Trident</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="divPaymentConsole" class="modal hide">
+    <div class="modal-header">
+        <button data-dismiss="modal" class="close" type="button">×</button>
+        <h3>Payment Console</h3>
+    </div>
+    <div class="modal-body">
+        <div class="form-horizontal ">
+
+            <label class="control-label">First Name</label>
+            <div class="controls">
+                <input type="text" id="txtBillingFirstName" placeholder="Billing First Name" />
+            </div>
+
+            <label class="control-label">Last Name</label>
+            <div class="controls">
+                <input type="text" id="txtBillingLastName" placeholder="Billing Last Name" />
+            </div>
+
+            <label class="control-label">Billing Address</label>
+            <div class="controls">
+                <input type="text" id="txtBillingAddress" placeholder="Billing Address" />
+            </div>
+
+            <label class="control-label">Billing Address Line2</label>
+            <div class="controls">
+                <input type="text" id="txtBillingAddress2" placeholder="Billing Address Line2" />
+            </div>
+
+            <label class="control-label">Billing City</label>
+            <div class="controls">
+                <input type="text" id="txtBillingCity" placeholder="Billing City" />
+            </div>
+
+
+            <label class="control-label">Billing State</label>
+            <div class="controls">
+                <input type="text" id="txtBillingState" placeholder="Billing state" />
+            </div>
+
+
+            <label class="control-label">Billing Zip/Postal</label>
+            <div class="controls">
+                <input type="text" id="txtBillingZip" placeholder="Billing Zip/Postal" />
+            </div>
+
+            <label class="control-label">Country</label>
+            <div class="controls">
+                <input type="text" id="txtCCCountry" />
+            </div>
+            <label class="control-label">Email</label>
+            <div class="controls">
+                <input type="email" id="txtCCEmail" />
+            </div>
+
+            <div class="controls">
+                <a href="#">Save Billing Address</a>
+            </div>
+            <label class="control-label">Charge Amount</label>
+            <div class="controls">
+                <input type="text" id="txtChargeAmount" />
+            </div>
+
+        </div>
+        <div class="form-vertical">
+            <div class="rcorners1">
+                <table class="table-bordered" align="center">
+                    <tr>
+                        <td>
+                            <label class="control-label">Card Number</label>
+                            <div class="controls">
+                                <input type="text" id="txtVehicleType" class="span2" placeholder="" />
+                            </div>
+                        </td>
+                        <td colspan="2">
+                            <label class="control-label">Card Security Code</label>
+                            <div class="controls">
+                                <input type="text" id="txtVehicleType" class="span2" placeholder="" />
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label class="control-label">Name on Card</label>
+                            <div class="controls">
+                                <input type="text" id="txtCardName" class="span2" placeholder="" />
+                            </div>
+                        </td>
+                        <td>
+                            <label class="control-label"> Expiration</label>
+                            <div class="controls">
+                                <select id="ddlMonth">
+                                    <option>MM</option>
+                                    <option>01</option>
+                                    <option>02</option>
+                                    <option>03</option>
+                                    <option>04</option>
+                                    <option>05</option>
+                                    <option>06</option>
+                                    <option>07</option>
+                                    <option>08</option>
+                                    <option>09</option>
+                                    <option>10</option>
+                                    <option>11</option>
+                                    <option>12</option>
+                                </select>
+                            </div>
+                        </td>
+                        <td>
+                            <label class="control-label">Date</label>
+                            <div class="controls">
+                                <select id="ddlYr">
+                                    <option>YY</option>
+                                    <option>20</option>
+                                    <option>22</option>
+                                    <option>23</option>
+                                    <option>24</option>
+                                    <option>25</option>
+                                    <option>26</option>
+                                    <option>27</option>
+                                    <option>28</option>
+                                    <option>29</option>
+                                    <option>30</option>
+                                    <option>31</option>
+                                    <option>32</option>
+                                </select>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                
+            </div>
+            <div class="pull-right">
+                <button class="btn btn-default btn-mini">Charge</button>
+                <button class="btn btn-default btn-mini ">Authorize</button>
+               
+            </div>
+           
+            
+        </div>
+
+    </div>
+    <div class="modal-header">
+        <div class="pull-right">
+            <button class="btn btn-primary ">Cancel</button>
+            <button class="btn btn-primary ">Save</button>
+
+        </div>
+    </div>
+</div>
+<style>
+    .rcorners1 {
+        border-radius: 25px;
+        background: #c7c5c5;
+    }
+</style>

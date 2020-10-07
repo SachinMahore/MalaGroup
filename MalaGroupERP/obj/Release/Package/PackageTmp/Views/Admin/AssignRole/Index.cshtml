@@ -1,0 +1,91 @@
+﻿@using MalaGroupERP.Models
+@model UserAccessRights
+
+@{
+    ViewBag.Title = "Assign Role";
+}
+
+
+<input type="hidden" id="hfEditRight" value="1" />
+<input type="hidden" id="hfAddRight" value="1" />
+<input type="hidden" id="hfDeleteRight" value="1" />
+<input type="hidden" id="hfDispalyRight" value="1" />
+<script src="@Url.Content("~/Content/pages/Admin/AssignRole/AssignRole.js")"></script>
+
+
+<div id="breadcrumb"> <a href="/Home/Index" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Admin</a> <a href="#" class="tip-bottom">Assign Role</a> <a href="#" class="current">Add / Edit</a> </div>
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="widget-box">
+            <div class="widget-title">
+
+                <span class="icon"> <i class="icon-star-empty"></i> </span>
+                <h5>Assign Role</h5>
+                <button class="btn btn-info pull-right"><i class="icon-plus"></i>Follow</button>
+                <div class="btn-group pull-right">
+                    <button type="button" id="btnSave" class="btn btn-success">Save</button>
+                    
+                </div>
+
+            </div>
+        </div>
+
+        <div class="widget-box">
+            <div class="widget-content">
+                <div class="row-fluid">
+                    <div class="control-group">
+                        <div class="span3 pull-left">
+                            <label for="Role" class="control-label">Role <span style="color:red">*</span> : </label>
+                            <div class="controls">
+                                <select id="Role" name="Role" ></select>
+                            </div>
+                        </div>
+                        <div class="span3">
+                            <label for="Module" class="control-label">Module <span style="color:red">*</span> : </label>
+                            <div class="controls">
+                                <select id="Module" name="Module" data-req="0"></select>
+                            </div>
+                        </div>
+                        <div class="span3">
+                            <label for="SubModule" class="control-label">Sub Module <span style="color:red">*</span> : </label>
+                            <div class="controls">
+                                <select id="SubModule" name="SubModule" data-req="0"></select>
+                            </div>
+                        </div>
+                        <div class="span3">
+                            <label for="SubModule" class="control-label">&nbsp; </label>
+                            <div class="controls">
+                                <button id="btnBuild" type="button" class="btn btn-primary">Build</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="widget-box">
+            <div class="widget-title">
+                <span class="icon"><i class="icon-th"></i></span>
+                <h5></h5>
+            </div>
+            <div class="widget-content nopadding">
+                <table id="tblRights" class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Resource</th>
+                            <th>Special</th>
+                            <th>Full</th>
+                            <th>Edit</th>
+                            <th>Add</th>
+                            <th>Delete</th>
+                            <th>Display</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

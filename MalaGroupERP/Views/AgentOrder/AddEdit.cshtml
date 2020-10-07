@@ -1,0 +1,895 @@
+﻿@using MalaGroupERP.Models
+@model AgentOrderModel
+@{
+    ViewBag.Title = "Agent Order";
+}
+<script src="@Url.Content("~/Content/Pages/AgentOrder/AgentOrder.js")"></script>
+<div id="breadcrumb"> <a href="/Home/Index" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="tip-bottom">Agent Order</a> <a href="#" class="current">Add / Edit</a> </div>
+<input type="hidden" id="hndLeadID" value="@Model.LeadID" />
+<input type="hidden" id="hndAOID" value="0" />
+<input type="hidden" id="hndVehicleID" value="0" />
+<input type="hidden" id="hndAmt" value="0" />
+<input type="hidden" id="hndPacakgeAmt" value="0" />
+<input type="hidden" id="hndPackage" value="@Model.PackageId" />
+<input type="hidden" id="hndInstallment" value="@Model.NoOfInstallment" />
+<input type="hidden" id="hndAccountID" value="0" />
+<input type="hidden" id="hndCardNumber" value="" />
+<input type="hidden" id="hndUserid" value="@CommonModel.GetUserFirstName()" />
+<input type="hidden" id="hndUserExt" value="@CommonModel.GetUserExitension()" />
+<input type="hidden" id="hndTooMuch" value="0" />
+
+@*<input type="hidden" id="hndLeadVehicleID" value="@Model.VehicleId" />*@
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span8">
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon">
+                        <i class="icon-pencil"></i>
+                    </span>
+                    <h5>Agent Order - <span id="lblStepTitle"></span></h5>
+                    <div class="btn-group pull-right" id="divStepNo">
+                        <input id="step1" class="btn btn-warning " type="reset" onclick="stepTab(1)" value="1" />
+                        <input id="step2" class="btn btn-warning " type="submit" onclick="stepTab(2)" value="2" disabled />
+                        <input id="step3" class="btn btn-warning " type="reset" onclick="stepTab(3)" value="3" disabled />
+                        <input id="step4" class="btn btn-warning " type="submit" onclick="stepTab(4)" value="4" disabled />
+                        <input id="step5" class="btn btn-warning " type="reset" onclick="stepTab(5)" value="5" disabled />
+                        <input id="step6" class="btn btn-warning " type="submit" onclick="stepTab(6)" value="6" disabled />
+                        <input id="step7" class="btn btn-warning " type="submit" onclick="stepTab(7)" value="7" disabled />
+                        <input id="step8" class="btn btn-warning " type="submit" onclick="stepTab(8)" value="8" disabled />
+                        <input id="step9" class="btn btn-warning " type="submit" onclick="stepTab(9)" value="9" disabled />
+                    </div>
+                </div>
+                <div class="widget-content nopadding">
+                    <div id="form-wizard" class="form-horizontal">
+                        <div id="form-wizard-1" class="step">
+                            <div class="widget-content" id="script11">
+                                @Html.Raw(CommonModel.AOScript(1))
+                             
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label"><span style="color:red">*</span>Enter Pin / Password</label>
+                                <div class="controls">
+                                    <input type="text" id="txtPin" class="span11" placeholder="Pin  / Password" value="@Model.PinNo" onfocus="this.removeAttribute('readonly');" readonly/>
+                                </div>
+                            </div>
+                            <div class="widget-content" id="script12">
+                                @Html.Raw(CommonModel.AOScript(12))
+                            </div>
+
+                            <div class="form-actions pull-right">
+                                @*<input id="back" class="btn btn-primary" type="reset" onclick="backTab(1)" value="Back" />*@
+                                <input id="next" class="btn btn-primary" type="submit" onclick="nextTab(1)" value="Next" />
+                                <div id="status"></div>
+                            </div>
+                        </div>
+                        <div id="form-wizard-2" class="step">
+                            <div class="widget-content">
+                                <p>This is for <span id="lblCustName" style="font-weight:bold"></span> correct?</p>  
+                                <div class="control-group" id="divNameEdit">
+                                    <label class="control-label"><span style="color:red">*</span>First Name</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtFirstName" class="span11" placeholder="First Name" value="@Model.FirstName" autocomplete="off" />
+
+                                    </div>
+                                    <label class="control-label">Last Name</label>
+                                    <div class="controls">
+
+                                        <input type="text" id="txtLastName" class="span11" placeholder="Last Name" value="@Model.LastName" autocomplete="off" />
+                                    </div>
+                                </div>
+                                
+                                <p>Ok, would the phone number ending in...(last 4 #'s you see on hard phone), be the best number for Law Enforcement to contact you, in the event that your vehicle is stolen?</p>
+                                <p>  If no, what is the best number?</p>
+
+                                <div class="control-group">
+                                    <label class="control-label"><span style="color:red">*</span>Primary Phone</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtPhone1" maxlength="10" class="span11" placeholder="Primary Phone" value="@Model.PrimaryPhone" autocomplete="off" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <p>Ask for secondary # (optional)</p>
+                                    <label class="control-label">Secondary Phone</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtPhone2" maxlength="10" class="span11" placeholder="Secondary Phone" value="@Model.SecondaryPhone" autocomplete="off" />
+                                    </div>
+                                </div>
+
+                                <div class="control-group">
+                                    <p>Preferred Language spoken?</p>
+                                    <label class="control-label"><span style="color:red">*</span>Language Spoken</label>
+                                    <div class="controls">
+                                        <select multiple id="ddlLeadLanguageAO">
+                                            <option value="0">All</option>
+                                            <option value="1">English</option>
+                                            <option value="2">Spanish</option>
+                                            <option value="3">French</option>
+                                            <option value="4">Dutch</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+
+                                <div class="control-group">
+                                    <p> What is the Year and Make of the Vehicle you are calling in about?</p>
+                                    <label class="control-label"><span style="color:red">*</span>Vehicle Make</label>
+                                    <div class="controls">
+                                        <select id="ddlVehicleMake"></select>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label"><span style="color:red">*</span>Vehicle Year</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtVehicleYear" class="span11" placeholder="Vehicle Year" autocomplete="off" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Vehicle Type</label>
+                                    <div class="controls">
+                                        <select id="ddlVehicleType"></select>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div class="form-actions pull-right">
+                                <input id="back" class="btn btn-primary" type="reset" onclick="backTab(2)" value="Back" />
+                                <input id="next" class="btn btn-primary" type="submit" onclick="nextTab(2)" value="Next" />
+                                <div id="status"></div>
+                            </div>
+                        </div>
+                        <div id="form-wizard-3" class="step">
+                           
+                               
+                                <div id="script31">
+                                    @Html.Raw(CommonModel.AOScript(31))
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label"><span style="color:red">*</span>Select a Package</label>
+                                    <div class="controls">
+                                        <div id="tblRadioLists"></div>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+
+                                    <div class="controls">
+                                        <label>
+                                            <input type="checkbox" class="AOStatus" id="chkToomuch" value="1"  onclick="setAOStatus(this)" />
+                                            Too much
+                                        </label>
+                                        <span class="hidden" id="divTomuch">  First Charge Amount <span style="color:red">* </span> <input type="text" id="txtPackageAmt" class="span2" autocomplete="off" /></span>
+                                          <span class="hidden" id="divmonthTomuch">   Monthly Amount <span style="color:red">* </span> <input type="text" id="txtMonthlyAmt" class="span2"  autocomplete="off" /></span>
+                                      
+                                        <label>
+                                            <input type="checkbox" class="AOStatus" value="2" onclick="setAOStatus(this)" />
+                                            Not interested
+                                        </label>
+                                        <label>
+                                            <input type="checkbox" class="AOStatus" value="3" onclick="setAOStatus(this)" />
+                                            Take Off List - Do Not Mail
+                                        </label>
+                                    </div>
+                                    <div class="controls">
+
+                                    </div>
+                                </div>
+
+                                <div class="control-group">
+                                    <label class="control-label"></label>
+
+                                    <div class="controls">
+                                        <div id="tblAdditionalPackage"></div>
+
+                                    </div>
+                                </div>
+                            
+                               
+                                
+                            <div class="form-actions pull-right">
+                                <input id="back" class="btn btn-primary" type="reset" onclick="backTab(3)" value="Back" />
+                                <input id="next" class="btn btn-primary" type="submit" onclick="nextTab(3)" value="Next" />
+                                <div id="status"></div>
+                            </div>
+                        </div>
+                        <div id="form-wizard-4" class="step">
+                            <div class="control-group">
+                                <label class="control-label">Email</label>
+                                <div class="controls">
+                                    <input type="text" id="txtEmail" class="span11" placeholder="Lead Email" value="@Model.LeadEmail" autocomplete="off" />
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <p>Ok and the mailing address where the decals are being sent to is...</p>
+                                <label class="control-label">Street</label>
+                                <div class="controls">
+                                    <textarea rows="2" cols="200" class="span11" id="txtStreet"></textarea>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">City</label>
+                                <div class="controls">
+                                    <input type="text" id="txtCity" class="span11" placeholder="Enter City Name" value="@Model.City" autocomplete="off" />
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">State/Province</label>
+                                <div class="controls">
+                                    <input type="text" id="txtState" class="span11" placeholder="Enter State Name" value="@Model.State" autocomplete="off" />
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">Zip/Postal Code</label>
+                                <div class="controls">
+                                    <input type="text" id="txtZip" class="span11" value="@Model.Zip" autocomplete="off" />
+                                </div>
+                            </div>
+                            <div class="form-actions pull-right">
+                                <input id="back" class="btn btn-primary" type="reset" onclick="backTab(4)" value="Back" />
+                                <input id="next" class="btn btn-primary" type="submit" onclick="nextTab(4)" value="Next" />
+                                <div id="status"></div>
+                            </div>
+
+                        </div>
+                        <div id="form-wizard-5" class="step" >
+                            <div class="control-group">
+                                <p>When to charge the card (i.e. Post Date).</p>
+                                <label class="control-label"><span style="color:red">*</span>First Charge Date</label>
+                                <div class="controls">
+                                    <div data-date="12-02-2018" class="input-append date datepicker">
+                                        <input type="text" id="txtAChargeDate" data-date-format="mm/dd/yyyy" class="datepicker span11" value="@Model.FirstChargeDate" autocomplete="off" />>
+                                        <span class="add-on"><i class="icon-th"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="control-group hidden" id="divDay">
+                                <label class="control-label ">Charge Day</label>
+                                <div class="controls">
+                                    <select id="ddlChargeDay">
+                                        <option value="0">-- Select --</option>
+                                        <option value="1">01</option>
+                                        <option value="2">02</option>
+                                        <option value="3">03</option>
+                                        <option value="4">04</option>
+                                        <option value="5">05</option>
+                                        <option value="6">06</option>
+                                        <option value="7">07</option>
+                                        <option value="8">08</option>
+                                        <option value="9">09</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                        <option value="13">13</option>
+                                        <option value="14">14</option>
+                                        <option value="15">15</option>
+                                        <option value="16">16</option>
+                                        <option value="17">17</option>
+                                        <option value="18">18</option>
+                                        <option value="19">19</option>
+                                        <option value="20">20</option>
+                                        <option value="21">21</option>
+                                        <option value="22">22</option>
+                                        <option value="23">23</option>
+                                        <option value="24">24</option>
+                                        <option value="25">25</option>
+                                        <option value="26">26</option>
+                                        <option value="27">27</option>
+                                        <option value="28">28</option>
+                                        <option value="29">29</option>
+                                        <option value="30">30</option>
+                                        <option value="31">31</option>
+
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="control-group hidden" id="div3inst">
+                                <label class="control-label">Second Charge Date</label>
+                                <div class="controls">
+                                    <div data-date="12-02-2012" class="input-append date datepicker">
+                                        <input type="text" id="txtSecondChargeDate" data-date-format="mm/dd/yyyy" class="datepicker span11" autocomplete="off" />
+                                        <span class="add-on"><i class="icon-th"></i></span>
+                                    </div>
+                                </div>
+                                <label class="control-label">Third Charge Date</label>
+                                <div class="controls">
+                                    <div data-date="12-02-2012" class="input-append date datepicker">
+                                        <input type="text" id="txtThirdChargeDate" data-date-format="mm/dd/yyyy" class="datepicker span11" autocomplete="off" />
+                                        <span class="add-on"><i class="icon-th"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="control-group hidden" id="div6inst">
+                                <label class="control-label">Fourth Charge Date</label>
+                                <div class="controls">
+                                    <div data-date="12-02-2012" class="input-append date datepicker">
+                                        <input type="text" id="txtFourthChargeDate" data-date-format="mm/dd/yyyy" class="datepicker span11" autocomplete="off" />
+                                        <span class="add-on"><i class="icon-th"></i></span>
+                                    </div>
+                                </div>
+                                <label class="control-label">Fifth Charge Date</label>
+                                <div class="controls">
+                                    <div data-date="12-02-2012" class="input-append date datepicker">
+                                        <input type="text" id="txtFifthChargeDate" data-date-format="mm/dd/yyyy" class="datepicker span11" autocomplete="off" />
+                                        <span class="add-on"><i class="icon-th"></i></span>
+                                    </div>
+                                </div>
+                                <label class="control-label">Sixth Charge Date</label>
+                                <div class="controls">
+                                    <div data-date="12-02-2012" class="input-append date datepicker">
+                                        <input type="text" id="txtSixthChargeDate" data-date-format="mm/dd/yyyy" class="datepicker span11" autocomplete="off" />
+                                        <span class="add-on"><i class="icon-th"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <p>Is the Billing Address different from the Mailing Address?</p>
+                                <label class="control-label">Different Billing Address</label>
+                                <div class="controls">
+                                    <input type="checkbox" id="chkDiffBillAddress" />
+                                </div>
+                            </div>
+                            <div id="divBillAddress" class="hidden">
+                                <div class="control-group">
+                                    <label class="control-label">Street</label>
+                                    <div class="controls">
+                                        <textarea rows="2" cols="200" class="span11" id="txtBStreet"></textarea>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">City</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtBCity" class="span11" placeholder="Enter City Name" value="@Model.BCity" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">State/Province</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtBState" class="span11" placeholder="Enter State Name" value="@Model.BState" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Zip/Postal Code</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtBZip" class="span11" value="@Model.BZip" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-actions pull-right">
+                                <input id="back" class="btn btn-primary" type="reset" onclick="backTab(5)" value="Back" />
+                                <input id="next" class="btn btn-primary" type="submit" onclick="nextTab(5)" value="Next" />
+                                <div id="status"></div>
+                            </div>
+                        </div>
+                        <div id="form-wizard-6" class="step" >
+                            <div class="control-group">
+                                @*When to charge the card (i.e. Post Data)*@
+
+                                <label class="control-label">Total First Charge Amount</label>
+                                <div class="controls">
+                                    <input type="text" id="lblTotalAmt" class="span11" disabled />
+
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label"><span style="color:red">*</span>Payment Method</label>
+                                <div class="controls">
+                                    <select id="ddlPaymentMethod">
+                                        <option value="1">CreditCard</option>
+                                        <option value="2">Check</option>
+                                        <option value="3">Comp</option>
+                                    </select>
+                                    <a href="javascript:void(0)" onclick="goToLogin()" title="Click here to enable" hidden><i class="icon-edit" ></i></a>
+                                </div>
+                               
+                            </div>
+                            <div class="control-group hidden" id="divcheck">
+                                <label class="control-label"><span style="color:red">*</span>Check Number</label>
+                                <div class="controls">
+                                    <input type="text" id="txtCheckNumber" maxlength="10" class="span11" placeholder=""  onfocus="this.removeAttribute('readonly');" readonly/>
+                                </div>
+                            </div>
+                            <div class="control-group hidden" id="divcomp">
+                                <label class="control-label"><span style="color:red">*</span>Comp Type</label>
+                                <div class="controls">
+                                    <select id="ddlCompType">
+                                        <option value="0">Select COMP Type</option>
+                                        <option value="1">COMP - MNGR</option>
+                                        <option value="2">COMP - HARDSHIP</option>
+                                        <option value="3">Comp - USA</option>
+                                        <option value="4">COMP - LAW/GOV/1ST REP</option>
+                                    </select>
+                                </div>
+                                <div class="controls">
+                                    <input id="btnSendMail" class="btn btn-success" type="submit" onclick="sendCompMail()" value="Send Mail" />
+                                </div>
+                                </div>
+                            <div class="control-group" id="divcc">
+                                <div class="control-group hidden">
+                                    <label class="control-label"><span style="color:red">*</span>Card Type</label>
+                                    <div class="controls">
+                                        <select id="ddlCardType">
+                                            <option value="0">-- Select --</option>
+                                            <option value="1">Visa</option>
+                                            <option value="2">Mastercard</option>
+                                            <option value="3">Discover</option>
+                                            <option value="4">American Express</option>
+                                            <option value="5">Diners Club Carte Blanche</option>
+                                            <option value="6">Diners Club International</option>
+                                            <option value="7">jcb</option>
+                                            <option value="8">Laser</option>
+                                            <option value="9">Visa Electron</option>
+                                            <option value="10">Dankort</option>
+                                            <option value="11">Maestro</option>
+                                            <option value="12">UAPT</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label"><span style="color:red">*</span>Card Number</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtCardNumber" maxlength="16" class="span11" placeholder=""  onkeyup="validateNumber()"  onfocus="this.removeAttribute('readonly');" readonly/>
+                                    </div>
+                                </div>
+
+                                <div class="control-group">
+                                    <label class="control-label"><span style="color:red">*</span>Card Expiration Month</label>
+                                    <div class="controls">
+                                        <select id="ddlMonth" class="no-search"   onfocus="this.removeAttribute('readonly');" readonly>
+                                            <option value="0">-- Select --</option>
+                                            <option value="01">01</option>
+                                            <option value="02">02</option>
+                                            <option value="03">03</option>
+                                            <option value="04">04</option>
+                                            <option value="05">05</option>
+                                            <option value="06">06</option>
+                                            <option value="07">07</option>
+                                            <option value="08">08</option>
+                                            <option value="09">09</option>
+                                            <option value="10">10</option>
+                                            <option value="11">11</option>
+                                            <option value="12">12</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label"><span style="color:red">*</span>Card Expiration Year</label>
+                                    <div class="controls">
+                                        <select id="ddlYear" class="no-search"   onfocus="this.removeAttribute('readonly');" readonly>
+                                            <option value="0">-- Select --</option>
+                                            <option value="19">2019</option>
+                                            <option value="20">2020</option>
+                                            <option value="21">2021</option>
+                                            <option value="22">2022</option>
+                                            <option value="23">2023</option>
+                                            <option value="24">2024</option>
+                                            <option value="25">2025</option>
+                                            <option value="26">2026</option>
+                                            <option value="27">2027</option>
+                                            <option value="28">2028</option>
+                                            <option value="29">2029</option>
+                                            <option value="30">2030</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label"><span style="color:red">*</span>Card Security Code</label>
+                                    <div class="controls">
+                                        <input type="password" id="txtCardSecurityCode" class="span11" placeholder="" maxlength="4"  value=""  onfocus="this.removeAttribute('readonly');" readonly/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-actions pull-right">
+                                <input id="back" class="btn btn-primary" type="reset" onclick="backTab(6)" value="Back" />
+                                <input id="next" class="btn btn-primary" type="submit" onclick="nextTab(6)" value="Next" />
+                                <div id="status"></div>
+                            </div>
+                        </div>
+                        <div id="form-wizard-7" class="step">
+                            <div class="widget-content">
+                                <div  id="script71">
+                                    @Html.Raw(CommonModel.AOScript(71))
+                                 </div>
+                                     <div class="control-group">
+                                        <label class="control-label"><span style="color:red">*</span>Number of Vehicles in the Household</label>
+                                        <div class="controls">
+                                            <input type="text" id="txtNoOfVehicle" class="span11" placeholder="No Of Vehicle" />
+
+                                        </div>
+                                    </div>
+                                    <div id="divVehAO" class="hidden">
+                                        <div class="widget-title">
+                                            <a href="#collapseFour" data-toggle="collapse">
+                                                <span class="icon"><i class="icon-plane"></i></span>
+                                                <h5>Additional Vehicle Information</h5>
+                                            </a>
+                                            <button class="btn btn-info pull-right" id="btnVehicleAdd"><i class="icon-plane"></i>Add</button>
+                                        </div>
+                                        <div class="collapse widget-content nopadding in" id="collapseFour">
+                                            <table class="table table-bordered table-striped" id="tbl_vehicleLead">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Vehicle Make</th>
+                                                        <th>Vehicle Year</th>
+                                                        <th>VIN No</th>
+                                                        <th>License Plate</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody></tbody>
+                                            </table>
+                                        </div>
+
+                                    </div><br />
+
+
+                                    <div  id="script72">
+                                        @Html.Raw(CommonModel.AOScript(72))
+                                    </div>
+
+
+                                    <div class="control-group">
+                                        <p>Additional Decals - $49 per set Added to First Charge</p>
+                                        <div class="controls">
+                                            <select id="ddlAddDecal">
+                                                <option value="0">-- Select --</option>
+                                                <option value="1">X1 Additional Decal ($49.00)</option>
+                                                <option value="2">X2 Additional Decal ($98.00)</option>
+                                                <option value="3">X3 Additional Decal ($147.00)</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                   
+                                <div  id="script73">
+                                    @Html.Raw(CommonModel.AOScript(73))
+                                </div>
+                                        
+                                    <div class="control-group">
+
+
+                                        <div class="controls">
+                                            <label><input type="checkbox" id="chkIdentityTheft" />Identity Theft Recovery - $10 Added to First Charge</label>
+                                        </div>
+                                    </div>
+                                <div  id="script74">
+                                    @Html.Raw(CommonModel.AOScript(74))
+                                </div>
+                                </div>
+                            <div class="form-actions pull-right">
+                                <input id="back" class="btn btn-primary" type="reset" onclick="backTab(7)" value="Back" />
+                                <input id="next" class="btn btn-primary" type="submit" onclick="nextTab(7)" value="Next" />
+                                <div id="status"></div>
+                            </div>
+                        </div>
+                        <div id="form-wizard-8" class="step" >
+                           
+                            <div class=" span5"></div>
+                            <div class=" span6"></div>
+                            <div class="widget-content alert alert-info alert-block  span6">
+                                    <h4 class="alert-heading">Lead Information!</h4>
+                                   <span id="lblpin8"></span><br />
+                                    <span id="lblName8"></span><br />
+                                    <span id="lblAddress8"></span><br />
+                                    <span id="lblExpDate8"></span><br />
+                                    <span id="lblListCode8"></span><br />
+                            
+                                <span id="lblBAddress8"></span>
+                                <a href="javascript:void(0)" onclick="stepTab(5)" class="pull-right"><i class="icon-edit"></i></a>
+
+                            </div>
+                            <div class="widget-content alert alert-success alert-block span5">
+
+                                <h4 class="alert-heading">Vehicle Information!</h4>
+                                <span id="lblVehicleDet8"></span>
+                                <a href="javascript:void(0)" onclick="stepTab(2)" class="pull-right"><i class="icon-edit"></i></a><br/>
+                                <span id="lblDealer8"></span><br />
+                                <span id="lblPhone18"></span><br />
+                                <span id="lblPhone28"></span>
+                                <a href="javascript:void(0)" onclick="stepTab(2)" class="pull-right"><i class="icon-edit"></i></a><br />
+                                <span id="lblEmail8"></span>
+                                <a href="javascript:void(0)" onclick="stepTab(4)" class="pull-right"><i class="icon-edit"></i></a>
+                                <span>dd</span>
+                            </div>
+                            <div class="widget-content alert alert-success alert-block  span6">                               
+                                    <h4 class="alert-heading">Package Information!</h4>
+                                    <span id="lblPackage8"></span>
+                                    <a href="javascript:void(0)" class="pull-right" onclick="stepTab(3)"><i class="icon-edit"></i></a>
+                                    <div id="tblPackageLists8"></div>
+                                    <span id="lblAddDecals8"></span><br />
+                                    <span id="lblIdentityTheft8" ></span>
+                                    <a href="javascript:void(0)" class="pull-right" id="editdecals" onclick="stepTab(7)"><i class="icon-edit"></i></a>
+                            </div>
+                           
+                            <div class="widget-content alert alert-info alert-block span5">
+                                <h4 class="alert-heading">Transaction Information!</h4>
+                                <a href="javascript:void(0)" class="pull-right" onclick="stepTab(6)"><i class="icon-edit"></i></a>
+                                <label id="lblTotalAmtDet"></label>
+                                <label id="lblCardType" class="hidden"></label>
+                                <label id="lblCardNumber" class="hidden"></label>
+                                <label id="lblCardMonth" class="hidden"></label>
+                                <label id="lblCardCode" class="hidden"></label>
+                                <label id="lblCheckNumber" class="hidden"></label>
+                                <label id="lblCompType" class="hidden"></label>
+                                <a href="javascript:void(0)" class="pull-right" onclick="stepTab(6)"><i class="icon-edit"></i></a>
+                                <div id="tblChargeDates8"></div>
+                            </div>
+
+                          
+                            <div class="widget-content alert alert-success alert-block span12 hidden" id="divNewButton">
+                                <input class="btn btn-primary" type="submit" onclick="newOrderAcct(1)" value="New Order" />
+                                <input class="btn btn-primary" type="submit" onclick="newOrderAcct(2)" value="Go To Account" />
+
+                            </div>
+                                <div class="form-actions pull-right" id="finishButton">
+                                    <input id="back" class="btn btn-primary" type="reset" onclick="backTab(7)" value="Back" />
+                                    <input id="next" class="btn btn-primary" type="submit" onclick="payNow()" value="Pay Now" />
+                                    <div id="status"></div>
+                                </div>
+                            </div>
+                        <div id="form-wizard-9" class="step">
+
+                          
+                             <div id="divSurvey" class="widget-content alert alert-success hidden">
+                                 @Html.Raw(CommonModel.AOScript(91))
+                                 </div>
+                            <div id="divTransactionDetails" class="widget-content alert alert-info alert-block ">
+                                <h4 class="alert-heading">Transaction Information!</h4>
+                                <span id="lblTransactionCreated"></span><br />
+                                <span id="lblTransactionStatus"></span><br />
+                                <span id="lblTransactionMessage"></span><br />
+                                <span id="lblTransactionID"></span><br />
+                            </div>
+                            <div id="divMessage" class="widget-content alert alert-success ">
+
+                            </div>
+                            <div id="divClosingScript" class="widget-content  hidden">
+                                @Html.Raw(CommonModel.AOScript(92))
+                                </div>
+
+                            <div class="form-actions pull-right" id="">
+                                <input id="backFinish" class="btn btn-primary" type="reset" onclick="backTab(8)" value="Back" disabled/>
+                                <input id="next" class="btn btn-primary" type="submit" onclick="newOrderAcct(1)" value="Finish" />
+                                <div id="status"></div>
+                            </div>
+                        </div>
+                        <div id="submitted"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="span4">
+
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon">
+                        <i class="icon-th-list"></i>
+                    </span>
+                    <h5>Order Details</h5>
+                </div>
+                <div class="widget-content">
+                    <div class="alert alert-info" id="divAccount">
+                        <div class="controls">
+                            <span style="font-weight:bold">Account Information</span><br />
+                            <span id="lblAccID"></span>
+                            <a href="javascript:void(0)" onclick="goToAccount()" class="pull-right"><i class="icon-edit"></i></a><br />
+                            <span id="lblAccDate"></span><br />
+                            <span id="lblAccBy"></span><br />
+                            <span id="lblTransAmt"></span>
+                        </div>
+                    </div>
+                    <div class="alert alert-success" id="divCallHistory">
+                        <div class="controls">
+                            <span style="font-weight:bold">Last Call History</span><br />
+                            <span id="lblCallHistory"></span>
+                            <a href="javascript:void(0)" onclick="openCallHistory()" class="pull-right"><i class="icon-edit"></i></a>
+                        </div>
+                    </div>
+                    <div id="div1" class="control-group hidden">
+                        <div class="controls">
+                            <span id="lblpin"></span><br />
+                            <span id="lblName"></span>
+                            <a href="javascript:void(0)" onclick="stepTab(2)" class="pull-right"><i class="icon-edit"></i></a><br />
+                            <span id="lblAddress"></span>
+                            <a href="javascript:void(0)" onclick="stepTab(4)" id="linkAddressEdit" class="pull-right hidden"><i class="icon-edit"></i></a><br />
+                            <span id="lblExpDate"></span><br />
+                            <span id="lblListCode"></span><br />
+                            <span id="lblDealer"></span><br />
+                        </div>
+                        
+                    </div>
+                    <div id="div2" class="control-group hidden">
+
+                        <div class="controls">
+                            <span id="lblVehicleDet"></span>
+                            <a href="javascript:void(0)" onclick="stepTab(2)" class="pull-right"><i class="icon-edit"></i></a>
+                        </div>
+                        
+                        <div class="controls">
+                            <span id="lblPhone1"></span><br />
+                            <span id="lblPhone2"></span>
+                            <a href="javascript:void(0)" onclick="stepTab(2)" class="pull-right"><i class="icon-edit"></i></a>
+                        </div>
+
+
+                    </div>
+                    <div id="divpackage" class="control-group  hidden">
+                        <span style="font-weight:bold;">Package Selection:</span><br />
+                        <span id="lblPackage"></span>
+                        <a href="javascript:void(0)" class="pull-right" onclick="stepTab(3)"><i class="icon-edit"></i></a>
+                        <div id="tblPackageLists"></div>
+                        <span id="lblAddDecals" class="hidden "></span><br />
+                        <span id="lblIdentityTheft" class="hidden"></span>
+                        <a href="javascript:void(0)" class="hidden pull-right" id="editdecals" onclick="stepTab(7)"><i class="icon-edit"></i></a>
+                        <span>-----------------------------------------------------------------------</span><br/>
+                        <span id="lblTotalPackage"></span>
+                        <a href="javascript:void(0)" class="pull-right" onclick="stepTab(5)"><i class="icon-edit"></i></a>
+                        <div id="tblChargeDates" class="controls"></div>
+                        
+                    </div>
+                    <div class="controls hidden" id="divEmail">
+                        <span id="lblEmail"></span>
+                        <a href="javascript:void(0)" onclick="stepTab(4)" class="pull-right"><i class="icon-edit"></i></a>
+                    </div>
+                    <div id="divBillingAdd" class="controls hidden">
+                        <span id="lblBAddress"></span>
+                        <a href="javascript:void(0)" onclick="stepTab(5)" class="pull-right"><i class="icon-edit"></i></a>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+       
+       
+    </div>
+
+</div>
+<div id="popLoginStep6" class="example_content ">
+
+    <div class="row-fluid ">
+        <div class="widget-content">
+            <div class="control-group">
+                <div class="controls">
+                    <div class="main_input_box">
+                        <span class="add-on"><i class="icon-user"></i></span><input type="text" id="txtUserName" placeholder="Username" />
+                    </div>
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="controls">
+                    <div class="main_input_box">
+                        <span class="add-on"><i class="icon-lock"></i></span><input type="password" id="txtPassword" placeholder="Password" />
+
+                    </div>
+                </div>
+            </div>
+          
+            <div>
+                <span class=""><input type="submit" class="btn btn-primary" value="Login" id="login" onclick="authorizeAdmin()" /></span>
+                <span class=""><input type="submit" class="btn btn-success" value="Cancel" id="Cancel" onclick="closeLogin()" /></span>
+                
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<div id="popQuestion1" class="example_content ">
+
+    <div class="row-fluid ">
+        <div class="widget-content">
+            <table id="tblQuestion1" class="table table-bordered table-striped with-check">
+                <tbody></tbody>
+            </table>
+        </div>
+
+    </div>
+
+</div>
+<div id="popQuestion2" class="example_content ">
+
+    <div class="row-fluid ">
+        <div class="widget-content">
+            <table id="tblQuestion2" class="table table-bordered table-striped with-check">
+                <tbody></tbody>
+            </table>
+        </div>
+
+    </div>
+
+</div>
+<div id="popVehicleDiv" class="example_content ">
+    <div class="btn-group pull-right">
+        <button type="button" class="btn btn-info  " onclick="saveVehicleAO()">Save</button>
+    </div>
+    <div class="row-fluid span6">
+        <div class="widget-content span6">
+            <div class="form-vertical">
+                <div class="control-group">
+                    <label class="control-label">Vehicle Make</label>
+                    <div class="controls">
+                        <select id="ddlVehicleMake7"></select>
+                    </div>
+                </div>
+                @*<div class="control-group">
+                        <label class="control-label">Vehicle Type</label>
+                        <div class="controls">
+                            <select id="ddlVehicleType7"></select>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                            <label class="control-label">Vehicle Model</label>
+                            <div class="controls">
+                                <select id="ddlVehicleModel"></select>
+                            </div>
+                        </div>*@
+                <div class="control-group">
+                    <label class="control-label">Vehicle Year</label>
+                    <div class="controls">
+                        <input type="text" id="txtVehicleYear7" class="span11" placeholder="Vehicle Year" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="widget-content span6">
+            <div class="form-vertical">
+                <div class="control-group">
+                    <label class="control-label">VIN No.</label>
+                    <div class="controls">
+                        <input type="text" id="txtVinNo" class="span11" placeholder="Vin No." />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">License Plate</label>
+                    <div class="controls">
+                        <input type="text" id="txtLicense" class="span11" placeholder="License Plate" />
+                    </div>
+                </div>
+                @*<div class="control-group">
+                        <label class="control-label">Dealership</label>
+                        <div class="controls">
+                            <input type="text" id="txtDealer" class="span11" placeholder="Dealership" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Finance Company</label>
+                        <div class="controls">
+                            <input type="text" id="txtFinanceCompany" class="span11" placeholder="Finance Company" />
+                        </div>
+                    </div>*@
+            </div>
+        </div>
+    </div>
+
+</div>
+<style>
+    quefooter {
+        position: fixed;
+        height: 40px;
+        bottom: 0;
+        width: 100%;
+        background-color: white;
+        box-shadow: 0px 0px 5px 0px #888888;
+    }
+
+    input:disabled,
+    button[disabled] {
+        border: 2px solid #ff6a00;
+        border-bottom: double;
+        border-bottom-color: navy;
+        border-bottom-width: thick;
+        color: #ff0000;
+    }
+</style>
+<script>
+  
+    $('#form-wizard-2').hide();
+    $('#form-wizard-3').hide();
+    $('#form-wizard-4').hide();
+    $('#form-wizard-5').hide();
+    $('#form-wizard-6').hide();
+    $('#form-wizard-7').hide();
+    $('#form-wizard-8').hide();
+    $('#form-wizard-9').hide();
+    $('#divAccount').hide();
+    $('#divCallHistory').hide();
+</script>

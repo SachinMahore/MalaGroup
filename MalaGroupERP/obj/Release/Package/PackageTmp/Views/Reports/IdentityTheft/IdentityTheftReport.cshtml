@@ -1,0 +1,160 @@
+﻿@using MalaGroupERP.Models
+@using System.Data;
+@{
+    ViewBag.Title = "ExportReport";
+    
+}
+<script src="@Url.Content("~/Content/Pages/Reports/IdentityTheft/IdentityTheft.js")"></script>
+
+<input type="hidden" id="hndFileName" value="" />
+
+<div id="breadcrumb"> <a href="/Home/Index" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="tip-bottom">Report</a> <a href="#" class="current">IdentityTheft</a> </div>
+<div class="container-fluid hidden" id="divSearchDay">
+    <div class="row-fluid">
+        <div class="widget-box">
+            <div class=" widget-title">
+                <span class="icon"> <i class="icon-star-empty"></i> </span>
+                <h5>Identity Theft</h5>
+            </div>
+        </div>
+    </div>
+    <div class="widget-box" style="width: 74%!important;">
+        <div class="widget-content nopadding" style="border-bottom: 1px solid #CDCDCD">
+            <table>
+                <tr>
+                    <td>
+                        <div class="padding-0 span5" style="margin-left: 18px!important;">
+                            <label class="control-label">Select Field</label>
+                            <select id="SelectField" style="width:100%!important" name="SelectField"></select>
+                            <label class="control-label">Enter Crieria</label>
+                            <div class="input-group">
+                                
+                                <div id="divTxtCriteria" class="hidden">
+                                    <input type="text" id="Criteria" name="Criteria" class="form-control form-control-small" />
+                                </div>
+                                <div id="divDateRangeCriteria" class="hidden">
+
+                                    <div id="divDateRange" class="form-inline span4 pull-left">
+                                        From
+                                        <div data-date="12-02-2018" class="input-append date datepicker nopadding " style="width:40%!important">
+                                            <input type="text" id="dtpFromDate" name="dtpFromDate" data-date-format="mm/dd/yyyy" style="width:63%!important" class="datepicker span2">
+                                            <span class="add-on"><i class="icon-th"></i></span>
+                                        </div>
+                                        To
+                                        <div data-date="12-02-2018" class="input-append date datepicker nopadding" style="width:40%!important">
+                                            <input id="dtpToDate" name="dtpToDate" type="text" data-date-format="mm/dd/yyyy" style="width:63%!important" class="datepicker span2">
+                                            <span class="add-on"><i class="icon-th"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="divDDLCriteria" class="hidden">
+                                    <select id="ddlCriteria" name="ddlCriteria" style="width:98%!important;"></select>
+                                </div>
+
+                                <div id="divDDLCriteriaMul" class="hidden">
+                                    <select id="ddlCriteriaMul" name="ddlCriteriaMul" style="width:98%!important;" multiple></select>
+                                </div>
+                                @*Criteria - CheckBoxes*@
+                                <div id="divCheckBoxCriteria" class="col-sm-12 padding-0 hidden">
+                                    <div class="form-inline clearfix">
+                                        <span id="spanCheckBoxes">
+                                            <input type="checkbox" name="chkCriteria" id="chkCriteria" class="filled-in" />
+                                            <label id="lblChkCriteria" for="chkCriteria" style="font-size:14px;font-weight:bold;margin: 10px 10px 6px 10px;padding-left:25px!important;"> Identity Theft-NULL</label>
+                                        </span>
+                                    </div>
+                                </div>
+                                @*Criteria - CheckBoxes*@
+                                <div class="input-group-btn">
+                                    <button class="btn btn-primary form-control-small pull-right" type="button" onclick="addFilterCriteria()"><i class="fa fa-plus"></i>&nbsp;&nbsp;Add</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="span6">
+                            <div class="input-group">
+                                <label class="control-label">Search Criteria</label>
+                                <div class="input-group-addon padding-0 no-borders">
+                                    <button class="btn btn-primary form-control-small " type="button" onclick="removeFilterAll()"><i class="fa fa-trash"></i>&nbsp;&nbsp;Remove All</button>
+                                    <button id="btnSearch" class="btn btn-info m-b-5 pull-right span1" onclick="exportDayWise()" style="margin-left:5px!important;"><i class="fa fa-search"></i> View</button>
+                                </div>
+                            </div>
+                            <div id="divFilterCriteria" style="border:solid 1px #1ab394;padding:2px!important;height:300px !important;">
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="container-fluid" id="divViewDay">
+    <div class="row-fluid">
+        <div class="widget-box">
+            <div class="widget-title">
+                <span class="icon"> <i class="icon-star-empty"></i> </span>
+                <h5>Report Preview</h5>
+                <div class="btn-group pull-right">
+                    <button type="button" class="btn btn-info" id="btnBackToSearch" onclick="backToSearch();">Search</button>
+                    <button type="button" class="btn btn-primary" id="btnExport" onclick="saveToDiskExcelFile();">Export</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="widget-box">
+        <div class="widget-title">
+            <a>
+                <span class="icon"><i class="icon-align-justify"></i></span>
+                <h5>Identity Theft</h5>
+            </a>
+        </div>
+        <div class="  widget-content nopadding tableFixHead" style="height:400px; width:100%!important; overflow:auto;">
+            <table id="tblIdentityTheft" style="width:100%!important;">
+                <thead>
+                    <tr>
+                        										
+                       
+                        <th>Close Date</th>
+                        <th>Identity Theft Recovery	</th>
+                        <th>Additional Decals</th>
+                        <th>Person Account: First Name</th>
+                        <th>Person Account: Last Name</th>
+                        <th>Person Account: Mailing Street</th>
+                        <th>Person Account: Mailing City</th>
+                        <th>Person Account: Mailing State/Province</th>
+                        <th>Person Account: Mailing Zip/Postal Code</th>
+                        <th>Primary Phone</th>
+                        <th>Password Id</th>
+                        <th>Pin Number</th>
+                        <th>Created By</th>
+                        <th>Renewal</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<style>
+    .tableFixHead {
+        overflow-y: auto;
+        height: 200px;
+    }
+
+        .tableFixHead table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .tableFixHead th, .tableFixHead td {
+            padding: 5px 5px;
+            border: 1px solid #e3dddd;
+            text-align: left;
+        }
+
+        .tableFixHead th {
+            position: sticky;
+            top: 0;
+            background: #eee;
+        }
+</style>
+
+

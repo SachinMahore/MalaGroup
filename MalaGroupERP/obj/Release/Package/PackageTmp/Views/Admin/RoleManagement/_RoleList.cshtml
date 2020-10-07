@@ -1,0 +1,39 @@
+﻿@{
+    Layout = null;
+}
+<script src="@Url.Content("/content/js/jquery-3.3.1.js")"></script>
+<script src="@Url.Content("~/Content/pages/Admin/RoleManagement/RoleList.js")"></script>
+<div class="form-group clearfix">
+    <div class="form-inline clearfix panel">
+        <label class="control-label" style="padding-right:5px; padding-left:15px;">
+            Search
+        </label>
+        <input type="text" id="search" name="search" class="form-control form-control-small" style="width:50%" />
+        <label class="control-label" style="padding-right:5px; padding-left:15px;">
+            Note : Type to search data
+        </label>
+        <button id="btnGo" class="btn btn-success pull-right" style="margin-right:15px;" onclick="goToRole()"><i class="fa fa-spinner fa-spin hidden"></i><i class="fa fa-arrow-circle-o-right"></i> Go to</button>
+    </div>
+</div>
+
+<div class="widget-box">
+    <div class="widget-title">
+        <span class="icon"><i class="icon-th"></i></span>
+        <h5></h5>
+    </div>
+    <div class="widget-content nopadding">
+        <table id="rolelist" class="table table-bordered data-table">
+            <thead>
+                <tr>
+                 
+                    <th>Role Code</th>
+                    <th>Role Description</th>
+                    <th>Role Status</th>
+                </tr>
+            </thead>
+            <tbody>
+              
+            </tbody>
+        </table>
+    </div>
+</div>

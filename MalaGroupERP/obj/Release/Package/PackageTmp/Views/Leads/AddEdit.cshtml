@@ -1,0 +1,836 @@
+﻿@using MalaGroupERP.Models
+@model LeadsModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<div id="breadcrumb"> <a href="/Home/Index" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="tip-bottom">Lead Information</a> <a href="#" class="current">Add / Edit</a> </div>
+
+<input type="hidden" id="hndLeadID" value="@Model.LeadID" />
+<input type="hidden" id="hndAttachFile" value="" />
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="widget-box">
+          
+            <div class="widget-title">
+                <span class="icon"> <i class="icon-star-empty"></i> </span>
+                <h5>Leads Information</h5>
+                <div class="btn-group pull-right">
+                    <button type="button" class="btn btn-info" onclick="search();">Search</button>
+                    <button type="button" class="btn btn-primary" onclick="saveUpdateLead()">Save</button>
+                    <button type="button" class="btn btn-danger" onclick="deleteLeadInfo()">Delete</button>
+                    <button type="button" class="btn btn-success" onclick="convertTOAccount();">Convert To Account</button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="widget-box">
+            <div class="widget-content">
+                <div class="row-fluid">
+                    <div class="control-group">
+                        <div class="span2 pull-left">
+                            <label class="control-label">Name</label>
+                            <div class="controls">
+                                <input type="text" id="txtCompanyName" placeholder="Company name" value="@Model.FirstName @Model.LastName" readonly />
+                            </div>
+                        </div>
+                        <div class="span2">
+                            <label class="control-label">Phone</label>
+                            <div class="controls">
+                                <input type="text" id="txtPhone" placeholder="Phone Number " value="@Model.Phone" readonly />
+                            </div>
+                        </div>
+                        <div class="span2">
+                            <label class="control-label">Created By</label>
+                            <div class="controls">
+                                <input type="email" id="txtCreatedBy" placeholder="Email" value="@Model.CreatedById" readonly />
+                            </div>
+                        </div>
+                        <div class="span2">
+                            <label class="control-label">Created Date</label>
+                            <div class="controls">
+                                <input type="email" id="txtCreatedDate" placeholder="Created Date" value="@Model.CreatedDateText" readonly />
+                            </div>
+                        </div>
+                        <div class="span2">
+                            <label class="control-label">Last Modified By</label>
+                            <div class="controls">
+                                <input type="email" id="txtLastModifiedBy" placeholder="Email" value="@Model.LastModifiedById" readonly />
+                            </div>
+                        </div>
+                        <div class="span2">
+                            <label class="control-label">Last Modified Date</label>
+                            <div class="controls">
+                                <input type="email" id="txtLastModifiedDate" placeholder="Email" value="@Model.LastModifiedDate" readonly />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row-fluid">
+            <div class="span8">
+
+                <div class="widget-box collapsible">
+
+                    <div class="widget-title">
+                        <a href="#collapseOne" data-toggle="collapse">
+                            <span class="icon"><i class="icon-align-justify"></i></span>
+                            <h5>Details</h5>
+                        </a>
+                    </div>
+                    <div class="collapse in" id="collapseOne">
+
+                        <div class="widget-content span6">
+                            <div class="form-vertical">
+                                <div class="control-group">
+                                    <label class="control-label">Lead Status</label>
+                                    <div class="controls">
+                                        <select id="ddlLeadStatus">
+                                            <option value="0">-- Select Status --</option>
+                                            <option value="2">New</option>
+                                            <option value="1">Active</option>
+                                            <option value="3">Not Active</option>
+                                            <option value="4">In Progress</option>
+                                            @*<option value="5">Nurturing</option>
+                                            <option value="6">Qualified</option>*@
+                                            <option value="7">Check - Pending</option>
+                                            <option value="8">Comp - Pending</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Name</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtName" class="span11" placeholder="Enter Name" value="@Model.FirstName @Model.LastName" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Email</label>
+                                    <div class="controls">
+                                        <input type="email" id="txtLeadEmail" class="span11" placeholder="Enter Email" value="@Model.LeadEmail" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">List Code</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtListCode" class="span11" placeholder="Enter List Code" value="@Model.ListCode" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Expiration Date</label>
+                                    <div class="controls">
+                                        <div data-date="@Model.ExpirationDate" class="input-append date datepicker">
+                                            <input type="text" id="dtExpiryDate" data-date-format="mm/dd/yyyy" class="datepicker span11" value="@Model.ExpirationDate">
+                                            <span class="add-on"><i class="icon-th"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="control-group">
+                                    <label class="control-label">Language Spoken</label>
+                                    <div class="controls">
+                                        <select multiple id="ddlLeadLanguage">
+                                            <option value="0">All</option>
+                                            <option value="1">English</option>
+                                            <option value="2">Spanish</option>
+                                            <option value="3">French</option>
+                                            <option value="4">Dutch</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <div class="widget-content span6">
+                            <div class="form-vertical">
+                                <div class="control-group">
+                                    <label class="control-label">Lead Owner</label>
+                                    <div class="controls">
+                                        <div class="input-append">
+                                            <input type="text" id="txtLeadOwner" class="span9" placeholder="Add Lead Owner" value="@Model.LeadOwnerText" />
+                                            <input type="hidden" id="hndOwnerID" value="@Model.LeadOwner" />
+                                            <a href="#" id="btnAddOwnerPop"><span class="add-on"><i class="icon-user"></i></span></a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Primary Phone</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtPhone1" class="span11" placeholder="Primary Phone" value="@Model.PrimaryPhone" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Secondary Phone</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtPhone2" class="span11" placeholder="Secondary Phone" value="@Model.SecondaryPhone" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">List Code 2</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtListCode2" class="span11" placeholder="Enter List Code 2" value="@Model.ListCode2" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Warranty</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtWarranty" class="span11" placeholder="Enter Warranty" value="@Model.Warranty" />
+                                    </div>
+                                </div>
+                                <div class="control-group" style="padding: 12px;">
+                                    <label class="control-label">Take Off List</label>
+                                    <div class="controls">
+                                        <input type="checkbox" id="chkTakeOffList" @(Model.TakeOffList == 1 ? "checked" : "") />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="widget-title">
+                        <a href="#collapseTwo" data-toggle="collapse">
+                            <span class="icon"><i class="icon-map-marker"></i></span>
+                            <h5>Address Information</h5>
+                        </a>
+                    </div>
+                    <div class="collapse" id="collapseTwo">
+                        <div class="form-vertical">
+                            <div class="widget-content span6">
+                                <div class="control-group">
+                                    <label class="control-label">Street</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtStreet" class="span11" placeholder="Enter Street " value="@Model.Street" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">City</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtCity" class="span11" placeholder="Enter City Name" value="@Model.City" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">State/Province</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtState" class="span11" placeholder="Enter State Name" value="@Model.State" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Zip/Postal Code</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtZip" class="span11" value="@Model.Zip" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Country</label>
+                                    <div class="controls">
+                                        <input type="text" id="txtCountry" class="span11" placeholder="Enter Country" value="@Model.Country" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-title">
+                        <a href="#collapseThree" data-toggle="collapse">
+                            <span class="icon"><i class="icon-lock"></i></span>
+                            <h5>Login Information</h5>
+                        </a>
+                    </div>
+                    <div class="collapse" id="collapseThree">
+                        <div class="widget-content span6 form-vertical">
+                            <div class="control-group">
+                                <label class="control-label">Password ID</label>
+                                <div class="controls">
+                                    <input type="text" id="txtPasswordId" class="span11" placeholder="Password ID" value="@Model.Password" @(Model.LeadID == 0 ? "" : "readonly") />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget-content span6 form-vertical">
+                            <div class="control-group">
+                                <label class="control-label">Pin No.</label>
+                                <div class="controls">
+                                    <input type="text" id="txtPin" class="span11" placeholder="Pin No." value="@Model.PinNo" @(Model.LeadID == 0 ? "" : "readonly") />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-title">
+                        <a href="#collapseFour" data-toggle="collapse">
+                            <span class="icon"><i class="icon-plane"></i></span>
+                            <h5>Vehicle Information</h5>
+                        </a>
+                        <button class="btn btn-info pull-right" id="btnVehicleAdd"><i class="icon-plane"></i>Add</button>
+                    </div>
+                    <div class="collapse widget-content nopadding in" id="collapseFour">
+                        <table class="table table-bordered table-striped" id="tbl_vehicleLead">
+                            <thead>
+                                <tr>
+                                    <th>Vehicle Make</th>
+                                    <th>Vehicle Type</th>
+                                    @*<th>Vehicle Model</th>*@
+                                    <th>Vehicle Year</th>
+                                    <th>VIN No</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="span4">
+                <div class="widget-box">
+                    <div class="widget-title">
+                        <span class="icon">
+                            <i class="icon-th-list"></i>
+                        </span>
+                        <h5>Files <code id="fileCount">@Model.FileUploadCount</code></h5>
+                    </div>
+                    <div class="widget-content">
+                        <div class="control-group">
+                            <label class="control-label">File upload input</label>
+                            <div class="controls">
+                                <input type="file" id="openFileSaveList" />
+                                <button type="button" class="btn btn-info" onclick="saveToFolder();">Upload</button>
+                                <button type="button" class="btn btn-info" onclick="viewFiles();">View</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="widget-box">
+                    <div class="widget-title">
+                        <span class="icon">
+                            <i class="icon-th-list"></i>
+                        </span>
+                        <h5>Activity</h5>
+                    </div>
+                    <div class="widget-content">
+                        <div class="widget-box">
+                            <div class="widget-title">
+                                <ul class="nav nav-tabs">
+                                   
+                                    <li><a data-toggle="tab" href="#tabLeadTask" class="hidden">Task</a></li>
+                                    <li><a data-toggle="tab" href="#tabLeadEvent" class="hidden">Event</a></li>
+                                    <li><a data-toggle="tab" href="#tabLeadCall" class="hidden">Log a Call</a></li>
+                                    <li class="active"><a data-toggle="tab" href="#tabLeadEmail">Email</a></li>
+                                    <li><a data-toggle="tab" href="#tabLeadChat">Chat</a></li>
+                                    <li><a data-toggle="tab" href="#tabhistory">Audit Trail</a></li>
+                                </ul>
+                            </div>
+                            <div class="widget-content tab-content">
+                                <div id="tabLeadTask" class="tab-pane">
+                                    <div class="control-group">
+                                        <label class="control-label"><span style="color:red;">*</span>Subject</label>
+                                        <div class="controls">
+                                            <select id="ddlLogSubject">
+                                                <option value="0">-- Select Subject --</option>
+                                                <option value="1">Call</option>
+                                                <option value="2">Send Letter</option>
+                                                <option value="3">Send Quote</option>
+                                                <option value="4">Other</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label">Name</label>
+                                        <div class="controls">
+                                            <input type="text" id="txtSpName" class="span11" placeholder="Name" value="" />
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label">Related To</label>
+                                        <div class="controls">
+                                            <input type="text" id="txtRelatedTo" class="span11" placeholder="Related To." value="" />
+                                        </div>
+                                    </div>
+                                    <button type="button" class="btn btn-info pull-right" onclick="saveNewTask();">Save</button>
+                                </div>
+                                <div id="tabLeadEvent" class="tab-pane">
+                                    <div class="control-group">
+                                        <label class="control-label"><span style="color:red;">*</span>Subject</label>
+                                        <div class="controls">
+                                            <select id="ddlNewSubject">
+                                                <option value="0">-- Select Subject --</option>
+                                                <option value="1">Call</option>
+                                                <option value="2">Send Letter</option>
+                                                <option value="3">Send Quote</option>
+                                                <option value="4">Other</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label">Discription</label>
+                                        <div class="controls">
+                                            <textarea id="txtDiscription" class="span11"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="control-group span12 ">
+                                        <div class="span6">
+                                            <div class="control-group" >
+                                                <label class="control-label" ><span style="color:red;">*</span>Start Date</label>
+                                                <div class="controls">
+                                                    <div data-date="12-02-2018" class="input-append date datepicker ">
+                                                        <input type="text" id="dtStartDate" data-date-format="mm/dd/yyyy" class="datepicker span11">
+                                                        <span class="add-on"><i class="icon-th"></i></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="control-group" >
+                                                <label class="control-label"><span style="color:red;">*</span>END Date</label>
+                                                <div class="controls" >
+                                                    <div data-date="12-02-2018" class="input-append date datepicker ">
+                                                        <input type="text" id="dtENDDate" data-date-format="mm/dd/yyyy" class="datepicker span11">
+                                                        <span class="add-on"><i class="icon-th"></i></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="span6">
+                                            <div class="control-group" >
+                                                <label class="control-label" style="padding: 6px!important;"> Time</label>
+                                                <div class="controls ">
+                                                    <select id="ddlStartTime"></select>
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+                                                <label class="control-label" style="padding:9px!important;"> Time</label>
+                                                <div class="controls ">
+                                                    <select id="ddlENDTime"></select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label">Location</label>
+                                        <div class="controls">
+                                            <input type="text" id="txtLocation" class="span11" placeholder="Name" value="" />
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label">Name</label>
+                                        <div class="controls">
+                                            <select multiple id="ddlNewName"></select>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label"><span style="color:red;">*</span>Related To</label>
+                                        <div class="controls">
+                                            <select multiple id="ddlNewRelated"></select>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="btn btn-info pull-right" onclick="saveNewEvent();">Save</button>
+                                </div>
+                                <div id="tabLeadCall" class="tab-pane">
+                                    <div class="control-group">
+                                        <label class="control-label"><span style="color:red;">*</span>Subject</label>
+                                        <div class="controls">
+                                            <select id="ddlNewSubject">
+                                                <option value="0">-- Select Subject --</option>
+                                                <option value="1">Call</option>
+                                                <option value="2">Send Letter</option>
+                                                <option value="3">Send Quote</option>
+                                                <option value="4">Other</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label">Comment</label>
+                                        <div class="controls">
+                                            <textarea id="txtComment" class="span11"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label">Name</label>
+                                        <div class="controls">
+                                            <select multiple id="ddlCallName"></select>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label"><span style="color:red;">*</span>Related To</label>
+                                        <div class="controls">
+                                            <select multiple id="ddlCallRelated"></select>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="btn btn-info pull-right" onclick="saveCallLog();">Save</button>
+                                </div>
+                                <div id="tabLeadEmail" class="tab-pane active  form-horizontal">
+                                    <div class="form-horizontal nopadding">
+                                        <table id="tblAccounts" class="table table-responsive table-condensed">
+                                            <tbody>
+                                                <tr>
+                                                    <td><button type="submit" class="btn btn-info" onclick="getEmailHistory()">History</button></td>
+                                                    <td><button type="submit" id="btnNewEmail" class="btn btn-info" onclick="sendNewEmail()">New Email</button></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label>From</label></td>
+                                                    <td>
+                                                        <select id="ddlEmailFrom">
+                                                            <option value="admin@nationaltheftsearchandrecovery.org">admin@nationaltheftsearchandrecovery.org</option>
+                                                            <option value="admin@ntsrtracking.com">admin@ntsrtracking.com</option>
+                                                            <option value="carolh@ntsrtracking.com">carolh@ntsrtracking.com</option>
+                                                            <option value="claudiaa@ntsrtracking.com">claudiaa@ntsrtracking.com</option>
+                                                            <option value="deborahp@ntsrtracking.com">deborahp@ntsrtracking.com</option>
+                                                            <option value="davida@ntsrtracking.com">davida@ntsrtracking.com</option>
+                                                            <option value="edwardo@ntsrtracking.com">edwardo@ntsrtracking.com</option>
+                                                            <option value="joshd@ntsrtracking.com">joshd@ntsrtracking.com</option>
+                                                            <option value="olgag@ntsrtracking.com">olgag@ntsrtracking.com</option>
+                                                            <option value="robz@ntsrtracking.com">robz@ntsrtracking.com</option>
+                                                            <option value="stephaniec@ntsrtracking.com">stephaniec@ntsrtracking.com</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr><td><label>To</label></td><td><input id="txtToLeadEmail" type="text" class="span11" value="@Model.LeadEmail" placeholder="Enter To Email..." /></td></tr>
+                                                <tr><td><label>CC</label></td><td><input id="txtCCLeadEmail" type="text" class="span11" value="" placeholder="Enter CC Email..." /></td></tr>
+                                                <tr><td><label>BCC</label></td><td><input id="txtBCCLeadEmail" type="text" class="span11" value="" placeholder="Enter Bcc Email..." /></td></tr>
+                                                <tr><td><label>Subject</label></td><td><input id="txtLeadSubject" type="text" class="span11" value="" placeholder="Enter Subject..." /></td></tr>
+                                                <tr><td><label>Attachment</label></td><td><div id="emailUploadDiv"><input type="file" id="emailattUpload" /></div><a href="#" id="linkEmailFile" class="hidden" target="_blank"> </a></td></tr>
+                                                <tr>
+                                                    <td colspan="2">
+                                                        <textarea id="TemplateHTML" cols="20" rows="20"></textarea>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2">
+                                                        <button class="btn btn-primary" id="btnSelectTemplate">Select Template</button> <button class="btn btn-primary" id="btnSendEmail" onclick="sendEmailAttach()">Send Email</button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div id="tabLeadChat" class="tab-pane">
+                                    <button id="btnAddChat" class="btn btn-primary">New Chat</button>
+                                    
+                                    <ul id="tblChat" class="recent-posts"></ul>
+                                </div>
+                                <div id="tabhistory" class="tab-pane">
+                                    <ul id="tblHistoryDetail" class="recent-posts"></ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="popVehicleDiv" class="example_content ">
+    <div class="btn-group pull-right">
+        <button type="button" class="btn btn-info  " onclick="saveVehicleLead()">Save</button>
+    </div>
+    <div class="row-fluid span6">
+        <div class="widget-content span6">
+            <div class="form-vertical">
+                <div class="control-group">
+                    <label class="control-label">Vehicle Make</label>
+                    <div class="controls">
+                        <select id="ddlVehicleMake"></select>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">Vehicle Type</label>
+                    <div class="controls">
+                        <select id="ddlVehicleType"></select>
+                    </div>
+                </div>
+                @*<div class="control-group">
+                        <label class="control-label">Vehicle Model</label>
+                        <div class="controls">
+                            <select id="ddlVehicleModel"></select>
+                        </div>
+                    </div>*@
+                <div class="control-group">
+                    <label class="control-label">Vehicle Year</label>
+                    <div class="controls">
+                        <input type="text" id="txtVehicleYear" class="span11" placeholder="Vehicle Year" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="widget-content span6">
+            <div class="form-vertical">
+                <div class="control-group">
+                    <label class="control-label">VIN No.</label>
+                    <div class="controls">
+                        <input type="text" id="txtVinNo" class="span11" placeholder="Vin No." />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">License Plate</label>
+                    <div class="controls">
+                        <input type="text" id="txtLicense" class="span11" placeholder="License Plate" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">Dealership</label>
+                    <div class="controls">
+                        <input type="text" id="txtDealer" class="span11" placeholder="Dealership" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">Finance Company</label>
+                    <div class="controls">
+                        <input type="text" id="txtFinanceCompany" class="span11" placeholder="Finance Company" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div id="popEmailTemplateDiv" class="example_content ">
+    <table id="tblEmailTemplate" class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th class="pd-vehicletbltext">Template Name</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+<div id="popAccountDiv" class="example_content ">
+    <div class="btn-group pull-right">
+        <button type="button" class="btn btn-info  " onclick="saveLeadToAccount(1)">Save</button>
+    </div>
+    <div class="row-fluid span6">
+        <div class="widget-content span6">
+            <div class="form-vertical">
+                <div class="control-group">
+                    <label class="control-label"><span style="color:red">*</span>Primary Phone</label>
+                    <div class="controls">
+                        <input type="text" id="txtPhone1A" maxlength="10" class="span11" placeholder="Primary Phone" value="@Model.PrimaryPhone" autocomplete="off" />
+                    </div>
+                    <label class="control-label">Email</label>
+                    <div class="controls">
+                        <input type="text" id="txtEmailA" class="span11" placeholder="Lead Email" value="@Model.LeadEmail" autocomplete="off" />
+                    </div>
+                    <label class="control-label">Vehicle Make</label>
+                    <div class="controls">
+                        <select id="ddlVehicleMakeA"></select>
+                    </div>
+                    <label class="control-label">Vehicle Year</label>
+                    <div class="controls">
+                        <input type="text" id="txtVehicleYearA" class="span11" placeholder="Vehicle Year" />
+                    </div>
+              
+                    <label class="control-label"><span style="color:red">*</span>Select a Package</label>
+                    <div class="controls">
+                        <div id="tblRadioLists"></div>
+                    </div>
+               
+                   
+                    <div class="controls">
+                        <div id="tblAdditionalPackage"></div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="widget-content span6">
+            <div class="form-vertical">
+                <div class="control-group">                 
+                    <label class="control-label"><span style="color:red">*</span>First Charge Date</label>
+                    <div class="controls">
+                        <div data-date="12-02-2018" class="input-append date datepicker">
+                            <input type="text" id="txtAChargeDate" data-date-format="mm/dd/yyyy" class="datepicker span11" value="@DateTime.Now.ToString("MM/dd/yyyy")" autocomplete="off" />>
+                            <span class="add-on"><i class="icon-th"></i></span>
+                        </div>
+                    </div>
+                        <label class="control-label"><span style="color:red">*</span>Card Type</label>
+                        <div class="controls">
+                            <select id="ddlCardType">
+                                <option value="0">-- Select --</option>
+                                <option value="1">Visa</option>
+                                <option value="2">Mastercard</option>
+                                <option value="3">Discover</option>
+                                <option value="4">American Express</option>
+                                <option value="5">Diners Club Carte Blanche</option>
+                                <option value="6">Diners Club International</option>
+                                <option value="7">jcb</option>
+                                <option value="8">Laser</option>
+                                <option value="9">Visa Electron</option>
+                                <option value="10">Dankort</option>
+                                <option value="11">Maestro</option>
+                                <option value="12">UAPT</option>
+                            </select>
+                        </div>
+                 
+                        <label class="control-label"><span style="color:red">*</span>Card Number</label>
+                        <div class="controls">
+                            <input type="text" id="txtCardNumber" maxlength="16" class="span11" placeholder="" autocomplete="off"  />
+                        </div>
+                   
+                      
+                  
+                        <label class="control-label"><span style="color:red">*</span>Transaction ID</label>
+                        <div class="controls">
+                            <input type="text" id="txtTransactionID" class="span11" placeholder=""  autocomplete="off" value="" />
+                        </div>
+                   
+                        <label class="control-label"><span style="color:red">*</span>Auth Code</label>
+                        <div class="controls">
+                            <input type="text" id="txtAuthCode" class="span11" placeholder="" autocomplete="off" value="" />
+                        </div>
+                    <label class="control-label">Account Status</label>
+                    <div class="controls">
+                        <select id="ddlAccStatus">
+                            <option value="9">Online</option>
+                            <option value="1">Active</option>
+                            
+                        </select>
+                    </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+</div>
+<div id="popAOAccountDiv" class="example_content ">
+    <div class="btn-group pull-right">
+        <button type="button" class="btn btn-info  " onclick="saveLeadToAccount(2)">Convert To Account</button>
+    </div>
+    <div class="span4">
+        <h4 class="alert-heading">Order Information! - <span id="lblAOIDl"></span></h4>
+       
+        <span id="lblChargeDatel"></span></br>
+        <span id="lblVehicleDetl"></span></br>
+        <span id="lblPackagel"></span></br>
+        <span id="lblTotalAmtDet"></span>   </br>
+        <span id="lblCheckNumber"></span></br>
+        <span id="lblCompType" ></span>
+    </div>
+
+   
+</div>
+<div id="popChatDet" class="example_content">
+
+    <div class="row-fluid">
+        <div class="control-group">
+            <textarea id="txtChatBody" class="span12" style="height:100px" placeholder="Enter Chat.."></textarea>
+            <label class="control-label">Chat Type</label>
+            <div class="controls">
+                <select id="ddlChatType">
+
+                    <option value="1">Text Post</option>
+                    <option value="2">Link Post</option>
+                    <option value="3">Content Post</option>
+
+                </select>
+            </div>
+            <input type="text" id="txtChatLink" class="span12" placeholder="Link URL" />
+            <input type="text" id="txtChatTitle" class="span12" placeholder="Title" />
+            <div class="hidden" id="chatterUploadDiv"><input type="file" id="chatterUpload" /></div><br />
+            <a href="#" id="linkChatFile" class="hidden" target="_blank"> </a>
+            <button id="btnSavechat" type="button" class="btn btn-primary hidden" onclick="saveUpdateChat()">Save</button>
+        </div>
+    </div>
+</div>
+</div>
+@*Modal Pop up*@
+
+<div id="popOwnerDiv" class="example_content">
+
+    <div class="row-fluid">
+        <div class="control-group">
+            <label class="control-label">Search Name</label>
+            <div class="controls">
+                <input type="text" id="txtSearchOwnerName" class="pull-left" placeholder="Search Name" />
+
+                <button type="submit" class="btn btn-info span3" onclick="getOwnerList()">Search</button>
+                <table id="tblOwner" class="table table-bordered table-striped with-check">
+                    <thead>
+                        <tr>
+
+                            <th class="pd-vehicletblText">UserID</th>
+                            <th class="pd-vehicletblText">User Name</th>
+                            <th class="pd-vehicletblText">First Name</th>
+                            <th class="pd-vehicletblText">Last Name</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div id="popFileDiv" class="example_content ">
+    <table id="tblLeadFiles" class="table table-bordered table-striped with-check" style="height:100px; width:100%!important; overflow:auto;">
+        <thead>
+            <tr>
+                <th class="pd-vehicletblText">File Name</th>
+                <th class="pd-vehicletblText">Creadted By </th>
+                <th class="pd-vehicletblText">Created Date</th>
+                <th class="pd-vehicletblText">Action</th>
+                <th class="pd-vehicletblText">Download</th>
+            </tr>
+        </thead>
+        <tbody class="pd-tbody"></tbody>
+    </table>
+</div>
+<div id="popEmaillHistoryDiv" class="example_content ">
+    <table class="table table-bordered table-striped" id="tblEmailHistory">
+        <thead>
+            <tr>
+                <th>Email Date</th>
+                <th>Subject</th>
+
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+<style>
+    footer {
+        position: fixed;
+        height: 40px;
+        bottom: 0;
+        width: 100%;
+        background-color: white;
+        box-shadow: 0px 0px 5px 0px #888888;
+    }
+
+    .pd-vehicletblText {
+        text-align: center !important;
+    }
+
+    .pd-btndelete {
+        background-color: #ce3636 !important;
+    }
+
+    .lblCustom {
+        text-align: left !important;
+        width: 75px !important;
+    }
+</style>
+<script>
+    $(function () {
+        CKEDITOR.replace('TemplateHTML', {
+            fullPage: true,
+            allowedContent: true,
+            autoGrow_onStartup: true,
+            enterMode: CKEDITOR.ENTER_BR,
+            height: 500,
+        });
+    });
+
+
+</script>
+<script src="@Url.Content("~/Content/Pages/Leads/Leads.js")"></script>
+<script>
+    setLanguage("@Model.Language");
+    getVehicleLeadData(@Model.LeadID);
+    $('#ddlLeadStatus').val("@Model.LeadStatus").trigger('change');
+    getChatist();
+    getHistoryList();
+</script>

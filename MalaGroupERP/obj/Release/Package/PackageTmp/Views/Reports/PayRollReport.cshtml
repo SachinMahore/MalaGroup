@@ -1,0 +1,528 @@
+﻿@using MalaGroupERP.Models
+@model System.Data.DataTable
+@using System.Data;
+@{
+    ViewBag.Title = "ExportReport";
+    var reportTitle = ViewBag.RT;
+    var fileName = ViewBag.FileName;
+    var createdByID = "0";
+    var count = 0;
+    var isChange = false;
+  
+   var CreatedCOUNT="0";
+   var ADDSUM = "0";
+   var ChargeTotal="0";
+   var DecalCount="0";
+   var VoidCount="0";
+   var GrossCount="0";
+   var NetCount	="0";
+   var IDenCount = "0";
+   var rowCount = Model.Rows.Count;
+    
+}
+@*<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>*@
+<script src="@Url.Content("~/Content/js/Chart.min.js")"></script>
+<script src="@Url.Content("~/Content/Pages/Reports/Reports.js")"></script>
+
+
+
+<input type="hidden" id="hndLabels" value="@ViewData["Label"]" />
+<input type="hidden" id="hndGrossData" value="@ViewData["GrossData"]" />
+<input type="hidden" id="hndNetData" value="@ViewData["NetData"]" />
+<input type="hidden" id="hndCVData" value="@ViewData["CVData"]" />
+<input type="hidden" id="hndADDData" value="@ViewData["ADData"]" />
+<input type="hidden" id="hndIDData" value="@ViewData["IDData"]" />
+
+
+<input type="hidden" id="hndGrossDataTotal" value="@ViewData["GrossDataTotal"]" />
+<input type="hidden" id="hndNetDataTotal"   value="@ViewData["NetDataTotal"] " />
+<input type="hidden" id="hndCVDataTotal"    value="@ViewData["CVDataTotal"]" />
+<input type="hidden" id="hndADDDataTotal"   value="@ViewData["ADDataTotal"]" />
+<input type="hidden" id="hndIDDataTotal"    value="@ViewData["IDDataTotal"]" />
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="widget-box">
+            <div class="widget-title">
+                <span class="icon"> <i class="icon-star-empty"></i> </span>
+                <h5>Report Preview</h5>
+                <div class="btn-group pull-right">
+                    <button type="button" class="btn btn-primary" id="btnExport" onclick="saveToDiskExcelFile('@fileName','@reportTitle');">Export</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span12 nopadding" style="background-color: #f8f8f8;border-right:  1px solid #CDCDCD;border-bottom: 1px solid #CDCDCD;border-left:   1px solid #CDCDCD;">
+            <div class="widget-box" style="margin-top: 0px!important;">
+                @*<div class="widget-title">
+                    <span class="icon"> <i class="icon-signal"></i> </span>
+                    <h5>Bar chart</h5>
+                </div>*@
+                <div class="widget-content">
+                    <canvas id="bar-chart" width="300" height="80"></canvas>
+                    <label class="control-label span1"></label>
+                    <label class="control-label span2" >Gross Total:@ViewData["GrossDataTotal"]</label>
+                    <label class="control-label span2" >Net Total:@ViewData["NetDataTotal"]</label>
+                    <label class="control-label span2" >Cancel And Void Total:@ViewData["CVDataTotal"]</label>
+                    <label class="control-label span2" >Decal Total:@ViewData["ADDataTotal"]</label>
+                    <label class="control-label span2" >Identity Total:@ViewData["IDDataTotal"]</label>
+                    @*<label class="control-label span1"></label>*@
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="widget-box">
+        <div class="widget-title">
+            <a>
+                <span class="icon"><i class="icon-align-justify"></i></span>
+                <h5>@reportTitle</h5>
+            </a>
+        </div>
+        <div class="  widget-content nopadding tableFixHead"  style="height:400px; width:100%!important; overflow:auto;">
+            @if (Model != null)
+            {
+
+                <table  style="width:100%!important;">
+                    <thead>
+                        <tr>
+                            @foreach (DataColumn col in Model.Columns)
+                            {
+                                if (col.ColumnName == "CreatedByID") { break; }
+                                <th>@col.ColumnName</th>
+                            }
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (DataRow row in Model.Rows)
+                        {
+                            rowCount -= 1;
+                            int i = 0;
+                            int j = 0;
+                            int a = 0;
+                            int b = 0;
+                            if (createdByID != row["CreatedByID"].ToString())
+                            {
+                                if (count == 0)
+                                {
+                                    createdByID = row["CreatedByID"].ToString();
+                                    CreatedCOUNT = row["CreatedCOUNT"].ToString();
+                                    ADDSUM = row["ADDSUM"].ToString();
+                                    ChargeTotal = row["ChargeTotal"].ToString();
+                                    DecalCount = row["DecalCount"].ToString();
+                                    VoidCount = row["VoidCount"].ToString();
+                                    GrossCount = row["GrossSUM"].ToString();
+                                    NetCount = row["NetSUM"].ToString();
+                                    IDenCount = row["IDenCount"].ToString();
+
+                                }
+                                if (count != 0)
+                                {
+                                    isChange = true;
+                                }
+
+                            }
+                            count += 1;
+                            if (isChange == true)
+                            {
+
+                                isChange = false;
+                                <tr>
+                                    @foreach (DataColumn col in Model.Columns)
+                                    {
+
+                                        if (col.ColumnName == "CreatedByID") { break; }
+                                        if (i == 0)
+                                        {
+                                            <td style="background-color:yellow!important;">Sum</td>
+                                        }
+                                        else if (i == 3)
+                                        {
+                                            <td style="background-color:yellow!important;">$@(Convert.ToDecimal(ADDSUM).ToString("0.00"))</td>
+                                        }
+                                        else if (i == 4)
+                                        {
+                                            <td style="background-color:yellow!important;">$@(Convert.ToDecimal(ChargeTotal).ToString("0.00"))</td>
+                                        }
+                                        else if (i == 14)
+                                        {
+                                            <td style="background-color:yellow!important;">$@(Convert.ToDecimal(GrossCount).ToString("0.00"))</td>
+                                        }
+                                        else if (i == 15)
+                                        {
+                                            <td style="background-color:yellow!important;">$@(Convert.ToDecimal(NetCount).ToString("0.00"))</td>
+                                        }
+                                        else
+                                        {
+                                            <td style="background-color:yellow!important;"></td>
+                                        }
+
+                                        i += 1;
+                                    }
+                                </tr>
+                                <tr>
+                                    @foreach (DataColumn col in Model.Columns)
+                                    {
+                                        if (col.ColumnName == "CreatedByID") { break; }
+
+                                        if (j == 0)
+                                        {
+                                            <td style="background-color:yellow!important;">COUNT</td>
+                                        }
+                                        else if (j == 2)
+                                        {
+                                            <td style="background-color:yellow!important;">@CreatedCOUNT</td>
+                                        }
+                                        else if (j == 12)
+                                        {
+                                            <td style="background-color:yellow!important;">@DecalCount</td>
+                                        }
+                                        else if (j == 13)
+                                        {
+                                            <td style="background-color:yellow!important;">@VoidCount</td>
+                                        }
+
+                                        else if (j == 16)
+                                        {
+                                            <td style="background-color:yellow!important;">@IDenCount</td>
+                                        }
+                                        else
+                                        {
+                                            <td style="background-color:yellow!important;"></td>
+                                        }
+
+                                        j += 1;
+                                    }
+
+                                </tr>
+                                    createdByID = row["CreatedByID"].ToString();
+                                    CreatedCOUNT = row["CreatedCOUNT"].ToString();
+                                    ADDSUM = row["ADDSUM"].ToString();
+                                    ChargeTotal = row["ChargeTotal"].ToString();
+                                    DecalCount = row["DecalCount"].ToString();
+                                    VoidCount = row["VoidCount"].ToString();
+                                    GrossCount = row["GrossSUM"].ToString();
+                                    NetCount = row["NetSUM"].ToString();
+                                    IDenCount = row["IDenCount"].ToString();
+                            }
+
+                            <tr>
+                                @foreach (DataColumn col in Model.Columns)
+                                {
+                                    if (col.ColumnName == "CreatedByID") { break; }
+
+                                    if (col.ColumnName == "Transaction Total")
+                                    {
+                                        <td>$@(Convert.ToDecimal(row[col.ColumnName]).ToString("0.00"))</td>
+                                    }
+                                    else if (col.ColumnName == "Charge Amount")
+                                    {
+                                        <td>$@(Convert.ToDecimal(row[col.ColumnName]).ToString("0.00"))</td>
+                                    }
+                                    else if (col.ColumnName == "Gross Deals")
+                                    {
+                                        <td>$@(Convert.ToDecimal(row[col.ColumnName]).ToString("0.00"))</td>
+                                    }
+                                    else if (col.ColumnName == "Net Deals")
+                                    {
+                                        <td>$@(Convert.ToDecimal(row[col.ColumnName]).ToString("0.00"))</td>
+                                    }
+                                    else
+                                    {
+                                        <td>@row[col.ColumnName]</td>
+                                    }
+                                }
+                            </tr>
+                            if (rowCount == 0)
+                            {
+
+                                isChange = false;
+                                <tr>
+                                    @foreach (DataColumn col in Model.Columns)
+                                    {
+
+                                        if (col.ColumnName == "CreatedByID") { break; }
+                                        if (i == 0)
+                                        {
+                                            <td style="background-color:yellow!important;">Sum</td>
+                                        }
+                                        else if (i == 3)
+                                        {
+                                            <td style="background-color:yellow!important;">$@(Convert.ToDecimal(ADDSUM).ToString("0.00"))</td>
+                                        }
+                                        else if (i == 4)
+                                        {
+                                            <td style="background-color:yellow!important;">$@(Convert.ToDecimal(ChargeTotal).ToString("0.00"))</td>
+                                        }
+                                        else if (i == 14)
+                                        {
+                                            <td style="background-color:yellow!important;">$@(Convert.ToDecimal(GrossCount).ToString("0.00"))</td>
+                                        }
+                                        else if (i == 15)
+                                        {
+                                            <td style="background-color:yellow!important;">$@(Convert.ToDecimal(NetCount).ToString("0.00"))</td>
+                                        }
+                                        else
+                                        {
+                                            <td style="background-color:yellow!important;"></td>
+                                        }
+
+                                        i += 1;
+                                    }
+                                </tr>
+                                <tr>
+                                    @foreach (DataColumn col in Model.Columns)
+                                    {
+                                        if (col.ColumnName == "CreatedByID") { break; }
+
+                                        if (j == 0)
+                                        {
+                                            <td style="background-color:yellow!important;">COUNT</td>
+                                        }
+                                        else if (j == 2)
+                                        {
+                                            <td style="background-color:yellow!important;">@CreatedCOUNT</td>
+                                        }
+                                        else if (j == 12)
+                                        {
+                                            <td style="background-color:yellow!important;">@DecalCount</td>
+                                        }
+                                        else if (j == 13)
+                                        {
+                                            <td style="background-color:yellow!important;">@VoidCount</td>
+                                        }
+
+                                        else if (j == 16)
+                                        {
+                                            <td style="background-color:yellow!important;">@IDenCount</td>
+                                        }
+                                        else
+                                        {
+                                            <td style="background-color:yellow!important;"></td>
+                                        }
+
+                                        j += 1;
+                                    }
+
+                                </tr>
+
+
+                                <tr>
+                                    @foreach (DataColumn col in Model.Columns)
+                                    {
+
+                                        if (col.ColumnName == "CreatedByID") { break; }
+                                        if (a == 0)
+                                        {
+                                            <td style="background-color:yellow!important;">Total Sum</td>
+                                        }
+                                        else if (a == 3)
+                                        {
+                                            <td style="background-color:yellow!important;">$@(Convert.ToDecimal(row["TranTotal"].ToString()).ToString("0.00"))</td>
+                                        }
+                                        else if (a == 4)
+                                        {
+                                            <td style="background-color:yellow!important;">$@(Convert.ToDecimal(row["CharTotal"].ToString()).ToString("0.00"))</td>
+                                        }
+                                        else if (a == 14)
+                                        {
+                                            <td style="background-color:yellow!important;">$@(Convert.ToDecimal(row["GRTotal"].ToString()).ToString("0.00"))</td>
+                                        }
+                                        else if (a == 15)
+                                        {
+                                            <td style="background-color:yellow!important;">$@(Convert.ToDecimal(row["NETotal"].ToString()).ToString("0.00"))</td>
+                                        }
+                                        else
+                                        {
+                                            <td style="background-color:yellow!important;"></td>
+                                        }
+
+                                        a += 1;
+                                    }
+                                </tr>
+                                <tr>
+                                    @foreach (DataColumn col in Model.Columns)
+                                    {
+                                        if (col.ColumnName == "CreatedByID") { break; }
+
+                                        if (b == 0)
+                                        {
+                                            <td style="background-color:yellow!important;"> Total Count</td>
+                                        }
+                                        else if (b == 2)
+                                        {
+                                            <td style="background-color:yellow!important;">@row["CReatedTotal"].ToString()</td>
+                                        }
+                                        else if (b == 12)
+                                        {
+                                            <td style="background-color:yellow!important;">@row["Dectotal"].ToString()</td>
+                                        }
+                                        else if (b == 13)
+                                        {
+                                            <td style="background-color:yellow!important;">@row["VoiTotal"].ToString()</td>
+                                        }
+
+                                        else if (b == 16)
+                                        {
+                                            <td style="background-color:yellow!important;">@row["IDenTotal"].ToString()</td>
+                                        }
+                                        else
+                                        {
+                                            <td style="background-color:yellow!important;"></td>
+                                        }
+
+                                        b += 1;
+                                    }
+
+                                </tr>
+
+
+
+                                    createdByID = row["CreatedByID"].ToString();
+                                    CreatedCOUNT = row["CreatedCOUNT"].ToString();
+                                    ADDSUM = row["ADDSUM"].ToString();
+                                    ChargeTotal = row["ChargeTotal"].ToString();
+                                    DecalCount = row["DecalCount"].ToString();
+                                    VoidCount = row["VoidCount"].ToString();
+                                    GrossCount = row["GrossSUM"].ToString();
+                                    NetCount = row["NetSUM"].ToString();
+                                    IDenCount = row["IDenCount"].ToString();
+                            }
+                        }
+                    </tbody>
+                </table>
+            }
+        </div>
+    </div>
+</div>
+<style>
+
+.tableFixHead {
+  overflow-y: auto;
+  height: 200px;
+}
+
+.tableFixHead table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+ .tableFixHead th, .tableFixHead td {
+
+    padding: 5px 5px;
+    border: 1px solid #e3dddd;
+     text-align:left;
+
+}
+
+.tableFixHead th {
+  position: sticky;
+  top: 0;
+  background: #eee;
+}
+</style>
+
+<script>
+    
+
+    var ctx = document.getElementById("bar-chart").getContext("2d");
+
+    var label = $("#hndLabels").val().split(',');
+    var grossData = $("#hndGrossData").val().split(',');
+    var netData = $("#hndNetData").val().split(',');
+    var cvData = $("#hndCVData").val().split(',');
+    var addData = $("#hndADDData").val().split(',');
+    var identityData = $("#hndIDData").val().split(',');
+
+
+    var grossDataTotal    = $("#hndGrossDataTotal").val();
+    var netDataTotal      = $("#hndNetDataTotal").val();
+    var cvDataTotal       = $("#hndCVDataTotal").val();
+    var addDataTotal      = $("#hndADDDataTotal").val();
+    var identityDataTotal = $("#hndIDDataTotal").val();
+
+
+    var data = {
+        labels:label,
+        datasets: [
+            {
+                label: "Gross",
+                backgroundColor: "dodgerblue",
+                data: grossData
+            },
+            {
+                label: "Net",
+                backgroundColor: "green",
+                data: netData
+            },
+            {
+                label: "Cancel And Void",
+                backgroundColor: "grey",
+                data: cvData
+            },
+            {
+                label: "Add Decal",
+                backgroundColor: "orange",
+                data: addData
+            },
+            {
+                label: "Identity",
+                backgroundColor: "yellow",
+                data: identityData
+            }
+        ]
+    };
+    var myBarChart = new Chart(ctx, {
+        type: 'bar',
+        data: data,
+        options: {
+            barValueSpacing: 5,
+            scales: {
+                yAxes: [{
+          //          gridLines: {
+          //  display: false,
+          //},
+                    ticks: {
+                        min: 0,
+                        stepSize: 5,
+                       
+                    }
+                }]
+            }
+        }
+    });
+    Chart.plugins.register({
+        afterDatasetsDraw: function (chart, easing) {
+            // To only draw at the end of animation, check for easing === 1
+            var ctx = chart.ctx;
+
+            chart.data.datasets.forEach(function (dataset, i) {
+                var meta = chart.getDatasetMeta(i);
+                if (!meta.hidden) {
+                    meta.data.forEach(function (element, index) {
+                        // Draw the text in black, with the specified font
+                        ctx.fillStyle = 'rgb(0, 0, 0)';
+
+                        var fontSize = 16;
+                        var fontStyle = 'normal';
+                        var fontFamily = 'Helvetica Neue';
+                        ctx.font = Chart.helpers.fontString(fontSize, fontStyle, fontFamily);
+
+                        // Just naively convert to string for now
+                        var dataString = dataset.data[index].toString();
+
+                        // Make sure alignment settings are correct
+                        ctx.textAlign = 'center';
+                        ctx.textBaseline = 'middle';
+
+                        var padding = 5;
+                        var position = element.tooltipPosition();
+                        ctx.fillText(dataString, position.x, position.y - (fontSize / 2) - padding);
+                    });
+                }
+            });
+        }
+    });
+
+</script>

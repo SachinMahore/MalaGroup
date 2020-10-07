@@ -1,0 +1,191 @@
+﻿@{
+    ViewBag.Title = "Opportunities";
+}
+<script src="~/Content/Pages/Leads/Leads.js"></script>
+
+<div id="breadcrumb"> <a href="/Home/Index" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="tip-bottom">Opportunities Information</a> <a href="#" class="current">List</a> </div>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="widget-box">
+            <div class="widget-title">
+
+                <span class="icon"> <i class="icon-star-empty"></i> </span>
+                <h5>Opportunities List</h5>
+
+                <div class="btn-group pull-right">
+                    <button type="button" class="btn btn-info" onclick="">New</button>
+                    @*<button type="button" class="btn btn-primary">Import</button>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                            Add To Campaign <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Change Status</a></li>
+                            <li><a href="#">Change Owner</a></li>
+                            <li><a href="#">Send List Email</a></li>
+                        </ul>
+                    </div>*@
+                </div>
+
+
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="widget-box">
+        <div class="widget-title">
+            <span class="icon"><i class="icon-th"></i></span>
+            <h5></h5>
+        </div>
+        <div class="widget-content nopadding">
+            <table id="tblOpportunity" class="table table-bordered data-table">
+                <thead>
+                    <tr>
+                        <th><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
+                        <th>OPPORTUNITY NAME</th>
+                        <th>ACCOUNT NAME</th>
+                        <th>STAGE</th>
+                        <th>CLOSE DATE</th>
+                       
+                        <th>OWNER ALIAS</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="gradeX">
+                        <td><input type="checkbox" /></td>
+                        <td><a href="~/Opportunities/AddEdit">Acme - 130 Widgets (Sample)</a></td>
+                        <td>   Acme Sample     </td>
+                        <td>Closed Lost</td>
+                        <td>12/13/2017</td>
+                     
+                        <td>Admin</td>
+                    </tr>
+                    <tr class="gradeX">
+                        <td><input type="checkbox" /></td>
+                        <td><a href="~/Leads/AddEdit">Acme - 2550 Widgets (Sample)</a></td>
+                        <td>   Acme Sample     </td>
+                        <td>Closed Won</td>
+                        <td>23/04/2018</td>
+                       
+                        <td>Admin</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@*Modal Pop up*@
+
+<div id="divAddOwner" class="modal hide">
+    <div class="modal-header">
+        <button data-dismiss="modal" class="close" type="button">×</button>
+        <h3>Add Lead Owner</h3>
+    </div>
+    <div class="modal-body">
+        <div class="control-group">
+            <label class="control-label">Search Name</label>
+            <div class="controls">
+                <input type="text" id="txtSearchOwnerName" class="pull-left" placeholder="Search Name" />
+                <button type="submit" class="btn btn-info span1">Search</button>
+                <table class="table table-bordered table-striped with-check">
+                    <thead>
+                        <tr>
+                            <th><i class="icon-resize-vertical"></i></th>
+                            <th>Name</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="checkbox" /></td>
+                            <td>Trident</td>
+
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" /></td>
+                            <td>Trident</td>
+
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" /></td>
+                            <td>Trident</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" /></td>
+                            <td>Trident</td>
+
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" /></td>
+                            <td>Trident</td>
+
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" /></td>
+                            <td>Trident</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript">
+    var geocoder;
+    var map;
+    var address = "San Diego, CA";
+
+    function initialize() {
+        geocoder = new google.maps.Geocoder();
+        var latlng = new google.maps.LatLng(-34.397, 150.644);
+        var myOptions = {
+            zoom: 8,
+            center: latlng,
+            mapTypeControl: true,
+            mapTypeControlOptions: {
+                style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
+            },
+            navigationControl: true,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+        if (geocoder) {
+            geocoder.geocode({
+                'address': address
+            }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    if (status != google.maps.GeocoderStatus.ZERO_RESULTS) {
+                        map.setCenter(results[0].geometry.location);
+
+                        var infowindow = new google.maps.InfoWindow({
+                            content: '<b>' + address + '</b>',
+                            size: new google.maps.Size(150, 50)
+                        });
+
+                        var marker = new google.maps.Marker({
+                            position: results[0].geometry.location,
+                            map: map,
+                            title: address
+                        });
+                        google.maps.event.addListener(marker, 'click', function () {
+                            infowindow.open(map, marker);
+                        });
+
+                    } else {
+                        alert("No results found");
+                    }
+                } else {
+                    alert("Geocode was not successful for the following reason: " + status);
+                }
+            });
+        }
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
+</script>

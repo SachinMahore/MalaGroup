@@ -1,0 +1,140 @@
+﻿@model IEnumerable<MalaGroupERP.Models.AutocompleteSuggestions>
+@{
+    ViewBag.Title = "Main Search";
+}
+<script src="@Url.Content("~/Content/Pages/Search/Search.js")"></script>
+
+<input type="hidden" id="hndFileName" value="" />
+<div id="breadcrumb"> <a href="/Home/Index" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="tip-bottom">Report</a> <a href="#" class="current">IdentityTheft</a> </div>
+
+<div class="container-fluid" id="divViewDay">
+    <div class="row-fluid">
+        <div class="widget-box">
+            <div class="widget-title">
+                <span class="icon"> <i class="icon-star-empty"></i> </span>
+                <h5>Main Search</h5>
+                @*<div class="btn-group pull-right">
+                    <button type="button" class="btn btn-info" id="btnBackToSearch" onclick="backToSearch();">Search</button>
+                    <button type="button" class="btn btn-primary" id="btnExport" onclick="saveToDiskExcelFile();">Export</button>
+                </div>*@
+            </div>
+        </div>
+    </div>
+    <div class="widget-box">
+        <div class="span4">
+            <div class="widget-title">
+                <a>
+                    <span class="icon"><i class="icon-align-justify"></i></span>
+                    <h5>Lead Search</h5>
+                </a>
+            </div>
+            <div class="  widget-content nopadding tableFixHead" style="height:400px; width:100%!important; overflow:auto;">
+                <table id="tblLeadSearch" style="width:100%!important;">
+                    <thead>
+                        <tr>
+                            <th>Search Result</th>
+                        </tr>
+                    </thead>
+                    @foreach (var item in Model)
+                    {
+                        if(item.SearchFor =="LI")
+                        { 
+                        <tr>
+                            <td>
+                                <a href="/Leads/Edit/@Html.DisplayFor(modelItem => item.DValue)">  @Html.DisplayFor(modelItem => item.DText)</a> 
+                            </td>
+
+                        </tr>
+                    }
+                    }
+                </table>
+            </div>
+        </div>
+        <div class="span4">
+            <div class="widget-title">
+                <a>
+                    <span class="icon"><i class="icon-align-justify"></i></span>
+                    <h5>Account Search</h5>
+                </a>
+            </div>
+            <div class="  widget-content nopadding tableFixHead" style="height:400px; width:100%!important; overflow:auto;">
+                <table id="tblLeadSearch" style="width:100%!important;">
+                    <thead>
+                        <tr>
+                            <th>Search Result</th>
+                        </tr>
+                    </thead>
+                    @foreach (var item in Model)
+                    {
+                        if (item.SearchFor == "AI")
+                        {
+                            <tr>
+                                <td>
+                                    <a href="/AccountPage/Edit/@Html.DisplayFor(modelItem => item.DValue)">  @Html.DisplayFor(modelItem => item.DText)</a>
+                                </td>
+
+                            </tr>
+                        }
+                    }
+                </table>
+            </div>
+        </div>
+        <div class="span4">
+            <div class="widget-title">
+                <a>
+                    <span class="icon"><i class="icon-align-justify"></i></span>
+                    <h5>Chatter Search</h5>
+                </a>
+            </div>
+            <div class="  widget-content nopadding tableFixHead" style="height:400px; width:100%!important; overflow:auto;">
+                <table id="tblLeadSearch" style="width:100%!important;">
+                    <thead>
+                        <tr>
+                            <th>Search Result</th>
+                        </tr>
+                    </thead>
+                    @foreach (var item in Model)
+                    {
+                        if (item.SearchFor == "CI")
+                        {
+                            <tr>
+                                <td>
+                                    <a href="/AccountPage/Edit/@Html.DisplayFor(modelItem => item.DValue)">  @Html.DisplayFor(modelItem => item.DText)</a>
+                                </td>
+
+                            </tr>
+                        }
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+    
+
+<style>
+    .tableFixHead {
+        overflow-y: auto;
+        height: 200px;
+    }
+
+        .tableFixHead table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .tableFixHead th, .tableFixHead td {
+            padding: 5px 5px;
+            border: 1px solid #e3dddd;
+            text-align: left;
+        }
+
+        .tableFixHead th {
+            position: sticky;
+            top: 0;
+            background: #eee;
+        }
+</style>
+
+
+

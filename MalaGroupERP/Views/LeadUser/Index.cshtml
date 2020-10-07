@@ -1,0 +1,192 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<script src="@Url.Content("~/Content/Pages/LeadUser/LeadUser.js")"></script>
+<div id="breadcrumb"> <a href="/Home/Index" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="tip-bottom">Lead Information</a> <a href="#" class="current">List</a> </div>
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="widget-box">
+            <div class="widget-title">
+                    <span class="icon"> <i class="icon-star-empty"></i> </span>
+                    <h5>Leads List</h5>
+                    <div class="btn-group pull-right">
+                        @*<button type="button" class="btn btn-info" onclick="newLead()">New</button>
+                        <button type="button" class="btn btn-primary" id="btnImport">Import</button>*@
+                        @*<div class="btn-group">
+                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                Add To Campaign <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">Change Status</a></li>
+                                <li><a href="#">Change Owner</a></li>
+                                <li><a href="#">Send List Email</a></li>
+                            </ul>
+                        </div>*@
+                    </div>
+            </div>
+        </div>
+    </div>
+    @* search page*@
+    @* search page*@
+    <label id="lblTotalRecords" class="pull-right control-label" style="color: red !important;"></label>
+    <div class="widget-box">
+        <div class="widget-title">
+            <a>
+                <span class="icon"><i class="icon-align-justify"></i></span>
+                <h5></h5>
+            </a>
+            <input type="text" id="txtName" name="Criteria" class="control-group pull-left" style="border:1px solid #E1E1DD" />
+            <button id="btnSearch" class="btn btn-primary m-b-5 pull-left" onclick="buildPaganationLead()"><i class="fa fa-search"></i> Search</button>
+            <button id="btnAdvSearch" class="btn btn-info" onclick="advSearch()"><i class="fa fa-search"></i>Advance Search</button>
+            <select id="ddlRowPerPage" class="no-search pull-right" style="width:5%!important;">
+                <option value="25">25</option>
+                <option value="50" selected="selected">50</option>
+                <option value="75">75</option>
+                <option value="100">100</option>
+            </select>
+            <select id="ddlRowPerPageAdv" class="no-search pull-right hidden" style="width:5%!important;">
+                <option value="25">25</option>
+                <option value="50" selected="selected">50</option>
+                <option value="75">75</option>
+                <option value="100">100</option>
+            </select>
+            <label class="control-label pull-right">Rows</label>
+            <ul id="ulPaginationLeadDetail" class="pagination pull-right"></ul>
+            <ul id="ulPaginationLeadDetailAdv" class="pagination pull-right hidden"></ul>
+        </div>
+        <div class="widget-content nopadding tableFixHead" style="height:400px; width:100%!important; overflow:auto;">
+            <table id="tblLeads" >
+                <thead>
+                    <tr>
+                        <th class="pd-vehicletblText" id="pdName">Lead Name</th>
+                        <th class="pd-vehicletblText" id="pdAcct">Acct Pin #</th>
+                        <th class="pd-vehicletblText" id="pdState">State</th>
+                        <th class="pd-vehicletblText" id="pdLast">Last Modified</th>
+                        <th class="pd-vehicletblText" id="pdRep">Last Modified Rep</th>
+                        <th class="pd-vehicletblText" id="pdExpiration">Expiration</th>
+                        <th class="pd-vehicletblText" id="pdList">List Code</th>
+                        <th class="pd-vehicletblText" id="pdCreated">Created Lead</th>
+                    </tr>
+                </thead>
+                <tbody class="pd-tbody"></tbody>
+            </table>
+        </div>
+    </div>
+    </div>
+    
+
+@*Modal Pop up*@
+
+<div id="popUploadFile" class="example_content ">
+    <div class="control-group">
+        <label class="control-label">File upload input</label>
+        <input type="file" id="openFileImportList" />
+    </div>
+    <button type="button" class="btn btn-info"  onclick="exportToLead();">Save</button>
+</div>
+<div id="popAdvSearch" class="example_content ">
+    <div class="control-group">
+        <label class="control-label">Created Date</label>
+        <div class="controls">
+            From<div data-date="12-02-2018" class="input-append date datepicker ">
+                <input type="text" id="dtCFromDate" data-date-format="mm/dd/yyyy" class="datepicker span2" value="@DateTime.Now.AddDays(-7).ToString("MM/dd/yyyy")">
+                <span class="add-on"><i class="icon-th"></i></span>
+            </div>
+
+            To  <div data-date="12-02-2018" class="input-append date datepicker ">
+                <input type="text" id="dtCTotDate" data-date-format="mm/dd/yyyy" class="datepicker span2" value="@DateTime.Now.ToString("MM/dd/yyyy")">
+                <span class="add-on"><i class="icon-th"></i></span>
+            </div>
+        </div>
+
+        <label class="control-label">Lead Status</label>
+        <div class="controls">
+            <select id="ddlLeadStatus">
+                <option value="0">-- Select Status --</option>
+                <option value="2">New</option>
+                <option value="1">Active</option>
+                <option value="3">Not Active</option>
+                <option value="4">In Progress</option>
+                @*<option value="5">Nurturing</option>
+                <option value="6">Qualified</option>*@
+                <option value="7">Check - Pending</option>
+                <option value="8">Comp - Pending</option>
+            </select>
+        </div>
+        <label class="control-label">Enter Name</label>
+        <div class="controls">
+            <input type="text" id="txtAccName" class="span6" placeholder="Name" />
+        </div>
+        <label class="control-label">Take Off List</label>
+        <div class="controls">
+            <input type="checkbox" id="chkTakeOffList"/>
+        </div>
+    </div>
+    <button type="button" class="btn btn-info" onclick="buildAdvPaganationLead();">Search</button>
+</div>
+<style>
+    .pd-vehicletblText {
+        text-align: left !important;
+    }
+
+    #tblLeads tr > th {
+        cursor: pointer;
+    }
+        .tableFixHead {
+  overflow-y: auto;
+  height: 200px;
+}
+
+.tableFixHead table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+ .tableFixHead th, .tableFixHead td {
+
+    padding: 5px 5px;
+    border: 1px solid #e3dddd;
+    text-align:left;
+
+}
+
+.tableFixHead th {
+  position: sticky;
+  top: 0;
+  background: #eee;
+}
+</style>
+<script>
+    var table = $('#tblLeads');
+    $('#pdName, #pdAcct,#pdState, #pdLast,#pdRep, #pdExpiration,#pdList, #pdCreated')
+        .wrapInner('<span title="sort this column"/>')
+        .each(function () {
+
+            var th = $(this),
+                thIndex = th.index(),
+                inverse = false;
+
+            th.click(function () {
+
+                table.find('td').filter(function () {
+
+                    return $(this).index() === thIndex;
+
+                }).sortElements(function (a, b) {
+
+                    return $.text([a]) > $.text([b]) ?
+                        inverse ? -1 : 1
+                        : inverse ? 1 : -1;
+
+                }, function () {
+
+                    // parentNode is the element we want to move
+                    return this.parentNode;
+
+                });
+                inverse = !inverse;
+            });
+        });
+</script>

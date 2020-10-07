@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "Fix Authorize Transaction";
+}
+<script src="@Url.Content("~/Content/Pages/Admin/FixAuthorizeTransaction/FixAuthorizeTransaction.js")"></script>
+<div id="breadcrumb"> <a href="/Home/Index" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="tip-bottom">Fix Authorize Transaction</a> </div>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="widget-box" style="border-bottom: 1px solid #CDCDCD">
+            <div class="widget-title">
+                <span class="icon"> <i class="icon-star-empty"></i> </span>
+                <h5>Fix Authorize Transaction</h5>
+            </div>
+            <div class="widget-content" >
+                <div class="row-fluid">
+                    <div class="control-group span3">
+                        <label class="control-label">&nbsp;</label>
+                    </div>
+                    <div class="control-group span2">
+                        <label class="control-label">Charge Date</label>
+                        <div class="controls">
+                            <div data-date="12-02-2018" class="input-append date datepicker max-date">
+                                <input type="text" id="txtChargeDate" data-date-format="mm/dd/yyyy" class="datepicker max-date span11" value="@DateTime.Now.ToString("MM/dd/yyyy")">
+                                <span class="add-on"><i class="icon-th"></i></span>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="control-group span2">
+                        <label class="control-label">Send Mail To</label>
+                        <div class="controls form-inline">
+                            <input type="checkbox" id="chkApproved" /><label class="control-label">Approved</label>&nbsp;&nbsp;
+                            <input type="checkbox" id="chkDecline"/><label class="control-label">Decline</label>
+                        </div>
+                    </div>
+                    <div class="control-group span2">
+                        <label class="control-label">&nbsp;</label>
+                        <button id="btnFixTransaction" class="btn btn-primary" onclick="fixTransaction()">Fix</button>
+                    </div>
+                    <div class="control-group span3">
+                        <label class="control-label">&nbsp;</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,97 @@
+﻿@using MalaGroupERP.Models
+@model EmailTemplateModel
+@{
+    ViewBag.Title = "Email Template";
+}
+
+<script src="~/Content/Pages/Admin/EmailTemplate/EmailTemplate.js"></script>
+<input type="hidden" id="hndTemplateID" value="0" />
+<div id="breadcrumb"> <a href="/Home/Index" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="tip-bottom">Email Template</a> <a href="#" class="current">Add/Edit</a> </div>
+
+<div class="container-fluid" id="divViewDay">
+    <div class="row-fluid">
+        <div class="widget-box">
+            <div class="widget-title">
+                <span class="icon"> <i class="icon-star-empty"></i> </span>
+                <h5>Email Template</h5>
+                <div class="btn-group pull-right">
+
+                    <button type="button" class="btn btn-info" id="btnBackToSearch" onclick="saveEmailTemplate();">Save</button>
+                    <button type="button" class="btn btn-primary" id="btnAddNew" onclick="newEmailTemplate();">Reset</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="widget-box">
+        <div class="span4">
+   
+            <div class="  widget-content nopadding" style="height:400px; width:100%!important; overflow:auto;">
+                <table id="tblEmailTemplate" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th class="pd-vehicletbltext">Template Name</th>
+                            <th class="pd-vehicletbltext">For</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+
+            </div>
+        </div>
+        <div class="span8">
+         
+            <div class="  widget-content nopadding" style="height:400px; width:100%!important; overflow:auto;">
+                <label class="span2">Template For:</label> <div class="controls span5">
+    <select id="ddlTempFor">
+        <option value="1">Lead</option>
+        <option value="2">Account</option>
+
+    </select></div>
+    <br />
+    <label class="span2">Template Name:</label>  <input id="txtTempName" type="text" class="span5" value="" placeholder="Enter Template Name..." /><br />
+    <label class="span2">Email Subject:</label> <input id="txtEmailSubject" type="text" class="span5" value="" placeholder="Enter Email Subject..." />
+    <textarea id="TemplateHTML" cols="20" rows="20"></textarea>
+
+</div>
+        </div>
+
+    </div>
+</div>
+
+
+<style>
+    .tableFixHead {
+        overflow-y: auto;
+        height: 200px;
+    }
+
+        .tableFixHead table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .tableFixHead th, .tableFixHead td {
+            padding: 5px 5px;
+            border: 1px solid #e3dddd;
+            text-align: left;
+        }
+
+        .tableFixHead th {
+            position: sticky;
+            top: 0;
+            background: #eee;
+        }
+</style>
+
+
+<script type="text/javascript">
+    $(function () {
+
+
+    });
+
+
+</script>
+
+
+

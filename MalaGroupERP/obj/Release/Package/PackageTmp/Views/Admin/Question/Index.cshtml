@@ -1,0 +1,94 @@
+﻿@using MalaGroupERP.Models
+@model QuestionModel
+@{
+    ViewBag.Title = "Agent Order Script";
+}
+
+<script src="~/Content/Pages/Admin/Question/Question.js"></script>
+<input type="hidden" id="hndFileName" value="" />
+<div id="breadcrumb"> <a href="/Home/Index" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="tip-bottom">Agent Order Script</a> <a href="#" class="current">Add/Edit</a> </div>
+
+<div class="container-fluid" id="divViewDay">
+    <div class="row-fluid">
+        <div class="widget-box">
+            <div class="widget-title">
+                <span class="icon"> <i class="icon-star-empty"></i> </span>
+                <h5>Agent Order Script</h5>
+                <div class="btn-group pull-right">
+                  
+                        <button type="button" class="btn btn-info" id="btnBackToSearch" onclick="saveAOScript();">Save</button>
+                        
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div class="widget-box">
+        <div class="span12">
+            <div class="widget-title">
+                <a>
+                    <span class="icon"><i class="icon-align-justify"></i></span>
+                    <h5>Select Step</h5>
+                </a>
+                <div class="controls span2">
+                    <select id="ddlAOSteps" class="span2">
+                        <option value="0">-- Select --</option>
+                        <option value="1">Step1- 1</option>
+                        <option value="12">Step1-2</option>
+                        <option value="31">Step3-1</option>
+                        <option value="71">Step7-1</option>
+                        <option value="72">Step7-2</option>
+                        <option value="73">Step7-3</option>
+                        <option value="74">Step7-4</option>
+                        <option value="91">Step9-1</option>
+                        <option value="92">Step9-2</option>
+                    </select>
+                </div>
+                <button id="btnSteps" onclick=" getAOScriptData()" type="button" class="btn btn-info span2 ">Search</button>
+                
+            </div>
+            <div class="  widget-content nopadding" style="height:400px; width:100%!important; overflow:auto;">
+                <textarea id="TemplateHTML" cols="20" rows="20"></textarea>
+
+            </div>
+        </div>
+       
+    </div>
+</div>
+
+
+<style>
+    .tableFixHead {
+        overflow-y: auto;
+        height: 200px;
+    }
+
+        .tableFixHead table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .tableFixHead th, .tableFixHead td {
+            padding: 5px 5px;
+            border: 1px solid #e3dddd;
+            text-align: left;
+        }
+
+        .tableFixHead th {
+            position: sticky;
+            top: 0;
+            background: #eee;
+        }
+</style>
+
+
+<script type="text/javascript">
+    $(function () {
+       
+
+    });
+
+
+</script>
+
+
+

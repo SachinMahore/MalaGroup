@@ -1,0 +1,962 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Mala Group</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="@Url.Content("/content/css/bootstrap.min.css")" />
+    <link rel="stylesheet" href="@Url.Content("/content/css/bootstrap-responsive.min.css")" />
+    <link rel="stylesheet" href="@Url.Content("/content/css/datepicker.css")" />
+    <link rel="stylesheet" href="@Url.Content("/content/css/uniform.css")" />
+    <link rel="stylesheet" href="@Url.Content("/content/css/select2.css")" />
+    <link rel="stylesheet" href="@Url.Content("/content/css/fullcalendar.css")" />
+
+    <link rel="stylesheet" href="@Url.Content("/content/css/maruti-style.css")" />
+    <link rel="stylesheet" href="@Url.Content("/content/css/maruti-media.css")" class="skin-color" />
+    <link rel="stylesheet" href="@Url.Content("/content/css/popupwindow.css")" />
+    <link rel="stylesheet" href="@Url.Content("/Content/jquery-confirm-master/css/jquery-confirm.css")" />
+    <link rel="stylesheet" href="@Url.Content("/Content/css/jquery.simplePagination.css")" />
+    <link rel="stylesheet" href="@Url.Content("/Content/css/creditCardValidator.css")" />
+    <style>
+        .example_content {
+            display: none;
+        }
+
+        footer {
+            position: fixed;
+            height: 40px;
+            bottom: 0;
+            width: 100%;
+            background-color: white;
+            box-shadow: 0px 0px 5px 0px #888888;
+        }
+    </style>
+
+    <script src="@Url.Content("/content/js/jquery-3.3.1.js")"></script>
+    <script src="@Url.Content("/content/js/jquery.min.js")"></script>
+    <script src="@Url.Content("/content/js/popupwindow.js")"></script>
+    @*timeout*@
+    <link rel="stylesheet" href="@Url.Content("/Content/css/jAlert.css")" />
+
+    <script src="@Url.Content("/content/js/jAlert.min.js")"></script>
+    <script src="@Url.Content("/content/js/jTimeout.js")"></script>
+    <script>
+
+        //$(document).idle({
+
+        //    // on idle
+        //    onIdle: function(){
+        //        $.jTimeout.reset(60);
+        //    },
+        //});
+
+        //$.jTimeout({
+        //   'timeoutAfter':120,
+        //    'extendOnMouseMove': true,
+        //    'loginUrl': '/Account/Login',
+        //    'logoutUrl': '/Account/Login',
+        //    'extendUrl': 'index.html'
+        //});
+        $.jTimeout({
+            // flash the tab/title bar when or after timing out
+            flashTitle: true,
+            // flash speed in milliseconds
+            flashTitleSpeed: 500,
+            // text to show in the tab/title bar
+            flashingTitleText: '**WARNING**',
+            // original page title
+            originalTitle: document.title,
+            // timeout in seconds
+            timeoutAfter: 1080,
+            // seconds in between checking and updating the timer
+            heartbeat: 1,
+            // extends the session when the mouse is moved
+            extendOnMouseMove: true,
+            // seconds between extending the session when the mouse is moved
+            mouseDebounce: 30,
+            // on mouse move function
+            onMouseMove: function (timeout) {
+                //request the session extend page
+                $.get(timeout.options.extendUrl, function () {
+                    //reset expiration
+                    timeout.resetExpiration();
+                });
+            },
+            // custom URL
+            'loginUrl': '/Account/Login',
+            'logoutUrl': '/Account/Login',
+            'extendUrl': '/home/index',
+            // seconds before timeout to fire the next callback
+            secondsPrior: 300,
+            // resets the timer with mouse move while the dialog is visible and hide it
+            triggerResetOnAlert: false
+        });
+    </script>
+
+    <script>
+        var Demo = (function ($, undefined) {
+            $(function () {
+                QuickDemo();
+                example2();
+            });
+            function QuickDemo() {
+                $("#popPhone").PopupWindow({
+                    autoOpen: false
+                });
+                $("#btnPhone").on("click", function (event) {
+                    $("#popPhone").PopupWindow("open");
+                });
+            }
+            function example2() {
+                $("#popNotes").PopupWindow({
+                    title: "Notes",
+                    modal: false,
+                    autoOpen: false,
+                    height: 250,
+                    width: 350,
+                    top: 375,
+                    left: 0
+                });
+                $("#popHistory").PopupWindow({
+                    title: "Call History",
+                    modal: false,
+                    autoOpen: false,
+                    height: 250,
+                    width: 350,
+                    top: 375,
+                    left: 0
+                });
+                $("#popNotesDet").PopupWindow({
+                    title: "Add Notes",
+                    modal: false,
+                    autoOpen: false,
+                    top: 220,
+                    left: 400,
+                    height: 360,
+
+                });
+                $("#demo-2_third").PopupWindow({
+                    title: "Yet another one",
+                    modal: false,
+                    autoOpen: false,
+                    top: 400,
+                    left: 600
+                });
+
+
+
+
+                $("#popNotes").on("close.popupwindow", function (event) {
+                    $("#popNotesDet").PopupWindow("close");
+                    $("#demo-2_third").PopupWindow("close");
+                });
+
+                $("#btnNotes").on("click", function (event) {
+                    $("#popNotes").PopupWindow("open");
+                    $("#popHistory").PopupWindow("close");
+                });
+                $("#btnHistory").on("click", function (event) {
+                    $("#popHistory").PopupWindow("open");
+                    $("#popNotes").PopupWindow("close");
+                });
+
+                $("#demo-2_button2").on("click", function (event) {
+                    $("#hndNID").val(0);
+                    $("#txtNotesTitle").val("");
+                    $("#txtNotes").val("");
+                    $(".filename").text("");
+                    $("#popNotesDet").PopupWindow("open");
+                });
+                $("#demo-2_button3").on("click", function (event) {
+                    $("#demo-2_third").PopupWindow("open");
+                });
+            }
+
+
+
+        })(jQuery);
+    </script>
+    <script>
+        function popReport(pop) {
+            $("#hndPopID").val(pop);
+            $("#popExportLayDiv").PopupWindow("open");
+        }
+        function exportReport(popValue) {
+            $("#popExportLayDiv").PopupWindow("close");
+            var pop = $("#hndPopID").val();
+            var exportDate = $("#dtExportLayDate").val().replace('/', '-').replace('/', '-');
+            window.location = '/Reports/ExportReport/?pid=' + pop + "&ed=" + exportDate;
+        }
+    </script>
+    <script>
+        function popAgentReport(pop) {
+            $("#hndPopID").val(pop);
+            $("#popAgentClosingDiv").PopupWindow("open");
+        }
+        function exportAgentReport(popValue) {
+            $("#popAgentClosingDiv").PopupWindow("close");
+            var pop = $("#hndPopID").val();
+            var exportDate = $("#dtAgentClosingFrom").val().replace('/', '-').replace('/', '-');
+            var exportDateto = $("#dtAgentClosingTo").val().replace('/', '-').replace('/', '-');
+            window.location = '/Reports/ExportReport/?pid=' + pop + "&ed=" + exportDate + "&to=" + exportDateto;
+        }
+    </script>
+    <script>
+       
+    function popPayRollReport(pop) {
+        $("#hndPopID").val(pop);
+        getProductList();
+        $("#popPayRollDiv").PopupWindow("open");
+    }
+    function exportPayRollReport(popValue) {
+        $("#popPayRollDiv").PopupWindow("close");
+        var pop = $("#hndPopID").val();
+        var closeDateFrom = $("#dtClosingFrom").val().replace('/', '-').replace('/', '-');
+        var closeDateTo = $("#dtClosingTo").val().replace('/', '-').replace('/', '-');
+        var lstDateFrom = $("#dtLastClosingFrom").val().replace('/', '-').replace('/', '-');
+        var lstDateTo = $("#dtLastClosingTo").val().replace('/', '-').replace('/', '-');
+        var acctStaus = $("#ddlAccountStatusLay").val();
+        var product = $("#ddlProduct").val();
+        window.location = '/Reports/ExportReportPayRoll/?pid=' + pop + "&clDateFrom=" + closeDateFrom + "&clDateto=" + closeDateTo + "&accStatus=" + acctStaus + "&lstDateFrom=" + lstDateFrom + "&lstDateto=" + lstDateTo + "&product=" + product;
+    }
+    </script>
+
+    @*TAKE OFF LIST*@
+    <script>
+        function popTakeOffListReport(pop) {
+            $("#hndPopID").val(pop);
+            $("#popTakeOffListDiv").PopupWindow("open");
+        }
+        function exportTakeOffListReport(popValue) {
+            $("#popTakeOffListDiv").PopupWindow("close");
+            var pop = $("#ddlTOReportType").val();
+            var exportDate = "";
+           // var exportDateto = $("#ddlIDTMonth").val();
+            window.location = '/Reports/ExportReport/?pid=' + pop + "&ed=" + exportDate;
+        }
+    </script>
+    @*MONTHLY ID THEFT*@
+    <script>
+        function popIDTheftReport(pop) {
+            $("#hndPopID").val(pop);
+            $("#popIDTheftDiv").PopupWindow("open");
+        }
+        function exportIDTheftReport(popValue) {
+            $("#popIDTheftDiv").PopupWindow("close");
+            var pop = $("#ddlIDTReportType").val();
+            var exportDate = $("#ddlIDTYear").val();
+            var exportDateto = $("#ddlIDTMonth").val();
+            window.location = '/Reports/ExportReport/?pid=' + pop + "&ed=" + exportDate + "&to=" + exportDateto;
+        }
+    </script>
+
+
+    <script>
+        var saveUpdateNotes = function () {
+            var msg = "";
+            var nid = $("#hndNID").val();
+            var title = $("#txtNotesTitle").val();
+            var notes = $("#txtNotes").val();
+            if (title == "") {
+                msg += " Please enter Notes Title .<br />";
+            }
+            if (notes == "") {
+                msg += " Please enter Notes Details .<br />";
+            }
+            if (msg != "") {
+                $.alert({
+                    title: 'Alert!',
+                    content: msg,
+                    type: 'red'
+                });
+                return;
+            }
+            var model = {
+                ID: nid,
+                Title: title,
+                Notes: notes,
+
+            }
+            var param = { model: model }
+            $.ajax({
+                url: "/Notes/SaveUpdateNotes",
+                method: "post",
+                data: model,
+                contentType: "application/json; charset=utf-8", // content type sent to server
+                dataType: "json", //Expected data format from server
+                success: function (response) {
+                    if ($.trim(response.error) != "") {
+
+                    } else {
+                        if (response.id != 0) {
+                            $.alert({
+                                title: 'Msg!',
+                                content: response.MSG,
+                                type: 'blue',
+
+                            });
+                            getNotesList();
+
+                        }
+                        else {
+                            $.alert({
+                                title: 'Alert!',
+                                content: "Error occured while saving data.<br/>Please try later.",
+                                type: 'red'
+                            });
+                        }
+                    }
+
+                }
+
+            });
+
+            return false;
+        }
+        function getNotesList() {
+            $.ajax({
+                url: '/Notes/GetNotes',
+                method: "post",
+                //data: JSON.stringify(param),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    if ($.trim(response.error) != "") {
+                        //this.cancelChanges();
+                    } else {
+                        $("#tblNotes>tbody").empty();
+                        $.each(response, function (index, elementValue) {
+                            var html = '';
+                            html += '<tr data-value="' + elementValue.ID + '">';
+                            html += '<td><a href="#"  onclick="getNotes(' + elementValue.ID + ');">' + elementValue.Title + '</a><br/>' + elementValue.NotesDate + ' by ' + elementValue.UserName + '<br/> Seen By: (' + elementValue.ViewedCount + ')' + elementValue.ViewedBy + '</td>';
+
+                            html += '</tr>';
+                            $("#tblNotes>tbody").append(html);
+                        });
+                    }
+                }
+            });
+        }
+
+        $(document).ready(function () {
+            getNotesList();
+
+           
+            $("#hndPopID").val(0);
+            $("#popExportLayDiv").PopupWindow({
+                title: "Reports",
+                modal: true,
+                autoOpen: false,
+                top: 200,
+                left: 380,
+                height: 250,
+                width: 450,
+            });
+
+            $("#popAgentClosingDiv").PopupWindow({
+                title: "Reports",
+                modal: true,
+                autoOpen: false,
+                top: 200,
+                left: 380,
+                height: 250,
+                width: 450,
+            });
+            $("#popPayRollDiv").PopupWindow({
+                title: "Reports",
+                modal: true,
+                autoOpen: false,
+                top: 140,
+                left: 400,
+                height: 500,
+                width: 750,
+            });
+            // getCallHistoryList();
+            $("#popIDTheftDiv").PopupWindow({
+                title: "Reports",
+                modal: true,
+                autoOpen: false,
+                top: 200,
+                left: 380,
+                height: 350,
+                width: 450,
+            });
+            
+            $("#popTakeOffListDiv").PopupWindow({
+                title: "Reports",
+                modal: true,
+                autoOpen: false,
+                top: 200,
+                left: 380,
+                height: 250,
+                width: 450,
+            });
+
+            $("#ddlAccountStatusLay").on('change', function (evt, params) {
+                var selected = $(this).val();
+                if (selected != null) {
+                    for (var j = 0; j < selected.length; j++) {
+                        if (selected[j] == 0) {
+                            $("#ddlAccountStatusLay").select2('data', null);
+                            $("#ddlAccountStatusLay").select2('data', { id: '0', text: 'All' });
+                            break;
+                        }
+                    }
+                }
+            });
+
+            $("#ddlProduct").on('change', function (evt, params) {
+                var selected = $(this).val();
+                if (selected != null) {
+                    for (var j = 0; j < selected.length; j++) {
+                        if (selected[j] == 0) {
+                            $("#ddlProduct").select2('data', null);
+                            $("#ddlProduct").select2('data', { id: '0', text: 'All' });
+                            break;
+                        }
+                    }
+                }
+            });
+
+            //Search main
+            var currentRequest = null;
+            $("#SearchString").autocomplete({
+               
+                source: function (request, response) {
+                    $("#divSearchLoader").show();
+                    
+                    currentRequest = $.ajax({
+                        url: "/Home/GetAutocompleteSuggestions",
+                        type: "POST",
+                        dataType: "json",
+                        data: { term: request.term },
+                        beforeSend: function () {
+                            if (currentRequest != null) {
+                                currentRequest.abort();
+                            }
+                        },
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return { label: item.SearchFor + ':' + item.DText, value: item.SearchFor + ':' + item.DValue };
+                               
+                            }))
+                            $("#divSearchLoader").hide();
+                        }
+                    })
+                },
+                minLength: 4,
+                select: function (event, ui) {
+                    event.preventDefault();
+                    if (ui.item) {
+                        event.preventDefault();
+                        var labelValue = ui.item.label;
+                        $("#SearchString").val(labelValue);
+                       
+                        goToController(ui.item.value);
+                    }
+                }
+                
+            });
+
+        });
+        var goToController = function (dValue) {
+
+            model = { DValue: dValue };
+            $.ajax({
+                url: "/Home/GoToController",
+                type: "post",
+                data: JSON.stringify(model),
+                contentType: "application/json; charset=utf-8", // content type sent to server
+                dataType: "json", //Expected data format from server
+                success: function (response) {
+                    if (response.IsSet == "1") {
+                        var goToURL = response.GoToURL;
+                        window.location.replace(goToURL);
+                    }
+                    else {
+                        showError("Error!", response.msg);
+                    }
+                }
+            });
+            return false;
+        }
+        function getNotes(id) {
+            $("#hndNID").val(id);
+            var param = { ID: id }
+            $.ajax({
+                url: '/Notes/GetNotesDet',
+                type: "post",
+                data: JSON.stringify(param),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    if ($.trim(response.error) != "") {
+                        //this.cancelChanges();
+                    } else {
+
+                        $("#txtNotesTitle").val(response.Title);
+                        $("#txtNotes").val(response.Notes);
+                        $("#popNotesDet").PopupWindow("open");
+                    }
+                }
+            });
+        }
+        function getCallHistoryList(leadid, pageid) {
+            var param = { LeadID: leadid, PageID: pageid };
+            $.ajax({
+                url: '/AgentOrder/GetCallHistory',
+                type: "post",
+                data: JSON.stringify(param),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    if ($.trim(response.error) != "") {
+                        //this.cancelChanges();
+                    } else {
+                        $("#tblHistory>tbody").empty();
+                        $.each(response, function (index, elementValue) {
+                            var html = '';
+                            html += '<tr data-value="' + elementValue.AOID + '">';
+                            html += '<td><a href="#">Call Order ID: ' + elementValue.AOID + '</a><br/>' + elementValue.CallDate + ' by ' + elementValue.UserName + '</td>';
+
+                            html += '</tr>';
+                            $("#tblHistory>tbody").append(html);
+                        });
+                    }
+                }
+            });
+        }
+
+        function getProductList() {
+            $("#ddlProduct").empty();
+            $.ajax({
+                url: "/Reports/GetProductList",
+                type: "post",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: false,
+                success: function (response) {
+                    $("#ddlProduct").append("<option value='0'>ALL</option>");
+                    $.each(response.model, function (index, elementValue) {
+                        var opt = "<option value='" + elementValue.Value + "'>" + elementValue.Text + "</option>";
+                        $("#ddlProduct").append(opt);
+                    });
+                    $("#ddlProduct").val(0).trigger('change');
+                }
+            });
+        }
+    </script>
+    @RenderSection("scripts", required: false)
+</head>
+<body>
+    <div class="btn-group rightzero"> <a class="top_message tip-left" title="Manage Files"><i class="icon-file"></i></a> <a class="top_message tip-bottom" title="Manage Users"><i class="icon-user"></i></a> <a class="top_message tip-bottom" title="Manage Comments"><i class="icon-comment"></i><span class="label label-important">5</span></a> <a class="top_message tip-bottom" title="Manage Orders"><i class="icon-shopping-cart"></i></a> </div>
+    <!--close-top-Header-messaages-->
+    <!--top-Header-menu-->
+    <div id="user-nav" class="navbar navbar-inverse ">
+        <div class="span3">
+            <a href="~/Home/Index"> <img src="~/content/img/logo.png" /></a>
+        </div>
+       
+        <i class="icon-search" style="margin-top :10px"></i>
+       
+        <div class="span5 pull-left">
+            @*<div>
+                <input type="text" id="SearchString" placeholder="Search here..." />
+                <button type="submit" class="tip-left" title="Search"><i class="icon-search icon-white"></i></button>
+            </div>*@
+            <div id="divSearchBox" class="form-group">
+                <div class="input-search" style="padding :2px;">
+                    <input id="SearchString" type="text" class="form-control" placeholder="Search..." style="padding:6px 24px!important;width:100%!important;">
+                  
+                </div>
+                <div id="divSearchLoader" style="display: none;"></div>
+            </div>
+        </div>
+        <ul class="nav">
+            @*<li class=""><a title="" href="#"><i class="icon icon-user"></i> <span class="text">Profile</span></a></li>
+            <li class=" dropdown" id="menu-messages">
+                <a href="#" data-toggle="dropdown" data-target="#menu-messages" class="dropdown-toggle"><i class="icon icon-envelope"></i> <span class="text">Messages</span> <span class="label label-important">5</span> <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a class="sAdd" title="" href="#">New message</a></li>
+                    <li><a class="sInbox" title="" href="#">Inbox</a></li>
+                    <li><a class="sOutbox" title="" href="#">Outbox</a></li>
+                    <li><a class="sTrash" title="" href="#">Trash</a></li>
+                </ul>
+            </li>
+            <li class=""><a title="" href="#"><i class="icon icon-cog"></i> <span class="text">Settings</span></a></li>*@
+            <li class=""><a title="" href="~/Account/Login"><i class="icon icon-share-alt"></i> <span class="text">Logout</span></a></li>
+        </ul>
+
+    </div>
+
+    <!--close-top-Header-menu-->
+
+    <div id="sidebar">
+        <a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
+
+        @Html.Action("Index", "NavigationMenu")
+        @*<ul>
+                <li class="active"><a href="~/Home/Index"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
+                <li class="submenu">
+                    <a href="#"><i class="icon icon-user"></i> <span>Admin</span></a>
+                    <ul>
+                        <li><a href="~/UserManagement">User Management</a></li>
+                        <li><a href="~/Vehicle">Vehicle Management</a></li>
+                        <li><a href="~/Package">Package Management</a></li>
+                        <li><a href="~/RoleManagement">Role Management</a></li>
+                        <li><a href="~/AssignRole">Assign Role</a></li>
+                    </ul>
+                </li>
+                <li> <a href="~/AgentOrder/AddEdit"><i class="icon icon-tag"></i> <span>Agent Orders</span></a> </li>
+
+                <li><a href="~/Leads"><i class="icon icon-star-empty"></i> <span>Leads</span></a></li>
+                <li><a href="~/AccountPage"><i class="icon icon-user"></i> <span>Accounts</span></a></li>
+                <li class="submenu">
+                    <a href="#"><i class="icon icon-book"></i> <span>Reports</span></a>
+                    <ul>
+                        <li><a href="javascript:void(0)" onclick="popReport(1);">Export Daily Report</a></li>
+                        <li><a href="javascript:void(0)" onclick="popReport(2);">New - Agent Report Daily Deals </a></li>
+                        <li><a href="javascript:void(0)" onclick="popAgentReport(3);">AGENT CLOSING</a></li>
+                        <li><a href="javascript:void(0)" onclick="popReport(4);">2Payroll</a></li>
+                    </ul>
+                </li>
+                <li class="submenu">
+                    <a href="#"><i class="icon icon-book"></i> <span>Tools</span></a>
+                    <ul>
+                        <li><a href="~/CardSchedule">Card Schedule</a></li>
+                    </ul>
+                </li>
+            </ul>*@
+
+    </div>
+    <div id="content">
+        @RenderBody()
+        <div id="divLoader" style="display:none"></div>
+    </div>
+    <footer class="fixed-bottom">
+        <div class="span12 btn-icon-pg">
+            @*<button id="btnPhone" class="btn btn-default"><i class="icon-bell"></i> Phone</button>*@
+            <button id="btnNotes" class="btn btn-default"><i class="icon-comment"></i> Notes</button>
+            <button id="btnHistory" class="btn btn-default hidden"><i class="icon-time"></i> History</button>
+            <button id="btnQuestion2" class="btn btn-default  pull-right hidden"><i class="icon-edit"></i> Rebuttals 2</button>
+            <button id="btnQuestion1" class="btn btn-default  pull-right hidden"><i class="icon-edit"></i> Rebuttals 1</button>
+        </div>
+    </footer>
+    <input type="hidden" id="hndPopID" />
+    <input type="hidden" id="hndNID" />
+
+    <div id="popExportLayDiv" class="example_content ">
+
+
+        <div class="control-group ">
+            <label class="control-label"> Date</label>
+            <div class="controls">
+                <div data-date="12-02-2018" class="input-append date datepicker ">
+                    <input type="text" id="dtExportLayDate" data-date-format="mm/dd/yyyy" class="datepicker span2">
+                    <span class="add-on"><i class="icon-th"></i></span>
+                </div>
+            </div>
+            <button type="button" class="btn btn-info" onclick="exportReport(1);">Export</button>
+        </div>
+
+    </div>
+    <div id="popAgentClosingDiv" class="example_content ">
+        <div class="control-group ">
+            <label class="control-label"> From Date</label>
+            <div class="controls">
+                <div data-date="12-02-2018" class="input-append date datepicker ">
+                    <input type="text" id="dtAgentClosingFrom" data-date-format="mm/dd/yyyy" class="datepicker span2">
+                    <span class="add-on"><i class="icon-th"></i></span>
+                </div>
+            </div>
+            <label class="control-label"> To Date</label>
+            <div class="controls">
+                <div data-date="12-02-2018" class="input-append date datepicker ">
+                    <input type="text" id="dtAgentClosingTo" data-date-format="mm/dd/yyyy" class="datepicker span2">
+                    <span class="add-on"><i class="icon-th"></i></span>
+                </div>
+            </div>
+            <button type="button" class="btn btn-info" onclick="exportAgentReport(3);">Export</button>
+        </div>
+    </div>
+
+    <div id="popPayRollDiv" class="example_content ">
+        <div class="span12">
+                <div class="collapse in" id="collapseOne">
+                    <div class="span8">
+                        <div class="form-horizontal">
+                            <div class="control-group ">
+                                <label class="control-label">Close Date From</label> 
+                                <div class="controls">
+                                    <div data-date="12-02-2018" class="input-append date datepicker ">
+                                        <input type="text" id="dtClosingFrom" data-date-format="mm/dd/yyyy" class="datepicker span2">
+                                        <span class="add-on"><i class="icon-th"></i></span>
+                                    </div>
+                                    To
+                                    <div data-date="12-02-2018" class="input-append date datepicker ">
+                                        <input type="text" id="dtClosingTo" data-date-format="mm/dd/yyyy" class="datepicker span2">
+                                        <span class="add-on"><i class="icon-th"></i></span>
+                                    </div>
+                                </div>
+                                </div>
+                            <div class="control-group">
+                                <label class="control-label">Account Status</label>
+                                <div class="controls">
+                                    <select id="ddlAccountStatusLay" style="width:68%!important" multiple>
+                                        <option value="0" selected>All</option>
+                                        <option value="1">Active</option>
+                                        <option value="3">Cancelled-No Refund</option>
+                                        <option value="4">Cancelled-Partial Refund</option>
+                                        <option value="5">Cancelled-Full Refund</option>
+                                        <option value="2">Suspended</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="control-group ">
+                                <label class="control-label">Last Modified From</label>
+                                <div class="controls">
+                                    <div data-date="12-02-2018" class="input-append date datepicker ">
+                                        <input type="text" id="dtLastClosingFrom" data-date-format="mm/dd/yyyy" class="datepicker span2">
+                                        <span class="add-on"><i class="icon-th"></i></span>
+                                    </div>
+                                    To
+                                    <div data-date="12-02-2018" class="input-append date datepicker ">
+                                        <input type="text" id="dtLastClosingTo" data-date-format="mm/dd/yyyy" class="datepicker span2">
+                                        <span class="add-on"><i class="icon-th"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">Product</label>
+                                <div class="controls">
+                                    <select id="ddlProduct" style="width:68%!important" multiple></select>
+                                </div>
+                            </div>
+                            <div class="span4">
+                                <button type="button" class="btn btn-info pull-right" style="width:50%!important" onclick="exportPayRollReport(4);">Export</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+    
+    <div id="popIDTheftDiv" class="example_content ">
+        <div class="control-group ">
+            <label class="control-label"> Report Type</label>
+            <div class="controls">
+                <select id="ddlIDTReportType">
+                    <option value="61">Agent Order</option>
+                    <option value="62">Cancellation</option>
+                    <option value="63">Renewal Order</option>
+                 
+                </select>
+            </div>
+            <label class="control-label"> Year</label>
+            <div class="controls">
+                <select id="ddlIDTYear">
+                    <option value="2016">2016</option>
+                    <option value="2017">2017</option>
+                    <option value="2018">2018</option>
+                    <option value="2019">2019</option>
+                    <option value="2020">2020</option>
+                    <option value="2021">2021</option>
+                </select>
+            </div>
+            <label class="control-label">Month</label>
+            <div class="controls">
+                <select id="ddlIDTMonth">
+                 
+                    <option value="01">01</option>
+                    <option value="02">02</option>
+                    <option value="03">03</option>
+                    <option value="04">04</option>
+                    <option value="05">05</option>
+                    <option value="06">06</option>
+                    <option value="07">07</option>
+                    <option value="08">08</option>
+                    <option value="09">09</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                </select>
+            </div>
+            <button type="button" class="btn btn-info" onclick="exportIDTheftReport(6);">Export</button>
+        </div>
+    </div>
+    <div id="popTakeOffListDiv" class="example_content ">
+        <div class="control-group ">
+            <label class="control-label"> Report Type</label>
+            <div class="controls">
+                <select id="ddlTOReportType">
+                    <option value="51">Account</option>
+                    <option value="52">Last 90 Days</option>
+                    <option value="53">Lead</option>
+
+                </select>
+            </div>
+
+            <button type="button" class="btn btn-info" onclick="exportTakeOffListReport(5);">Export</button>
+        </div>
+    </div>
+
+    <div id="popPhone" class="example_content">I'm a Basic PopupWindow!</div>
+    <div id="popNotes" class="example_content">
+        <button id="demo-2_button2" class="btn btn-primary">New Note</button>
+        <table id="tblNotes" class="table table-bordered table-striped with-check">
+            <tbody></tbody>
+        </table>
+    </div>
+    <div id="popHistory" class="example_content">
+        <table id="tblHistory" class="table table-bordered table-striped with-check">
+
+            <tbody></tbody>
+        </table>
+
+    </div>
+    <div id="popNotesDet" class="example_content">
+
+        <div class="row-fluid">
+            <div class="control-group">
+                <input type="text" id="txtNotesTitle" class="span12" placeholder="Title" />
+                <span><input type="file" id="notesPhoto" /><i class="icon icon-picture"></i></span>
+                <textarea id="txtNotes" class="span12" style="height:200px" placeholder="Enter Notes.."></textarea>
+
+                <button id="loadpage" type="button" class="btn btn-primary" onclick="saveUpdateNotes()">Save</button>
+            </div>
+        </div>
+    </div>
+    <div class="fixed-bottom hidden">
+        <div id="footer" class="span12"> @DateTime.Now.ToString("yyyy") &copy; Mala Group. </div>
+    </div>
+
+    <script src="@Url.Content("/content/js/jquery.ui.custom.js")"></script>
+    <script src="@Url.Content("/content/js/bootstrap.min.js")"></script>
+    <script src="@Url.Content("/content/js/jquery.dataTables.min.js")"></script>
+    <script src="@Url.Content("/content/js/maruti.tables.js")"></script>
+    <script src="@Url.Content("/content/js/jquery.uniform.js")"></script>
+    <script src="@Url.Content("/content/js/select2.min.js")"></script>
+    <script src="@Url.Content("/content/js/maruti.form_common.js")"></script>
+    <script src="@Url.Content("/content/js/excanvas.min.js")"></script>
+    <script src="@Url.Content("/content/js/jquery.flot.min.js")"></script>
+    <script src="@Url.Content("/content/js/jquery.flot.resize.min.js")"></script>
+    <script src="@Url.Content("/content/js/jquery.peity.min.js")"></script>
+    <script src="@Url.Content("/content/js/fullcalendar.min.js")"></script>
+
+    <script src="@Url.Content("/Content/js/jquery.wizard.js")"></script>
+    <script src="@Url.Content("/content/js/maruti.js")"></script>
+    <script src="@Url.Content("/content/js/maruti.wizard.js")"></script>
+    <script src="@Url.Content("/content/js/maruti.dashboard.js")"></script>
+    <script src="@Url.Content("/content/js/maruti.chat.js")"></script>
+    <script src="@Url.Content("/Content/jquery-confirm-master/js/jquery-confirm.js")"></script>
+
+    <script src="@Url.Content("/Content/js/common.js")"></script>
+    <script src="@Url.Content("/content/js/bootstrap-datepicker.js")"></script>
+    <script src="@Url.Content("/Content/js/jquery.simplePagination.js")"></script>
+    <script src="@Url.Content("/Content/ckeditor/ckeditor.js")"></script>
+    <script src="@Url.Content("/content/js/jquery.creditCardValidator.js")"></script>
+    <script src="@Url.Content("/Content/js/jQuery.fn.sortElements.js")"></script>
+    <script type="text/javascript">
+        // This function is called from the pop-up menus to transfer to
+        // a different page. Ignore if the value returned is a null string:
+        function goPage(newURL) {
+
+            // if url is empty, skip the menu dividers and reset the menu selection to default
+            if (newURL != "") {
+
+                // if url is "-", it is this page -- reset the menu:
+                if (newURL == "-") {
+                    resetMenu();
+                }
+                    // else, send page to designated URL
+                else {
+                    document.location.href = newURL;
+                }
+            }
+        }
+
+        // resets the menu selection upon entry to this page:
+        function resetMenu() {
+            document.gomenu.selector.selectedIndex = 2;
+        }
+
+
+    </script>
+    <style>
+    </style>
+
+</body>
+</html>
+
+<style>
+    #divLoader {
+        position: fixed;
+        width: 100%;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        /*background: url(../../Content/assets/images/giphy.gif) center no-repeat rgba(255,255,255,0.5);*/
+        background: url(/Content/images/backgrounds/loader.gif) center no-repeat rgba(255,255,255,0.5);
+        display: none;
+    }
+    #divSearchLoader {
+        position:absolute;
+        width: 100%;
+        left: 100px;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        /*background: url(../../Content/assets/images/giphy.gif) center no-repeat rgba(255,255,255,0.5);*/
+        background: url(/Content/img/spinner.gif) center no-repeat rgba(255,255,255,0.5);
+        display: none;
+       
+    }
+    .ui-autocomplete {
+        max-height: 300px;
+        max-width:500px;
+        overflow-y: auto; /* prevent horizontal scrollbar */
+        overflow-x: hidden; /* add padding to account for vertical scrollbar */
+        z-index: 9999 !important;
+        padding: 10px;
+        cursor: pointer;
+        background-color: #fff;
+       
+        list-style-type: none;
+    }
+        .ui-autocomplete > li {
+            line-height: 21px;
+            border-bottom: 1px solid;
+        }
+    #divSearchBox .input-search .form-control; {
+        border-radius: 0px !important;
+        margin-top: 5px !important;
+       
+    }
+    .ui-autocomplete > li:hover {
+        background-color: #ffd91f;
+        color: white;
+    }
+    #divSearchBox .input-search .input-search-icon {
+        left: 0px !important;
+    }
+
+    #divSearchBox .input-search .input-search-icon, .input-search .input-search-close {
+        top: 54% !important;
+        
+    }
+
+   
+   
+</style>
+<script>
+    $(window).load(function () {
+        $("#divLoader").hide();
+    });
+
+    function showloaderfn() {
+        $("#divLoader").show();
+    }
+</script>
+
+

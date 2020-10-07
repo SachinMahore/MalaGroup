@@ -1,0 +1,90 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<script src="@Url.Content("~/Content/Pages/Admin/UserManagement/UserManagement.js")"></script>
+ <div id="breadcrumb"> <a href="/Home/Index" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="tip-bottom">User Information</a> <a href="#" class="current">List</a> </div>
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="widget-box">
+            <div class="widget-title">
+                <span class="icon"> <i class="icon-star-empty"></i> </span>
+                <h5>User List</h5>
+                <div class="btn-group pull-right">
+                    <button type="button" class="btn btn-info" onclick="newUser()">New</button>
+                    @*<button type="button" class="btn btn-primary">Import</button>*@
+                </div>
+            </div>
+        </div>
+    </div>
+    @* search page*@
+    @*<div class="row-fluid">
+        <div class="control-group form-horizontal pull-left span4">
+            <label class="control-label ">NAME</label>
+            <div id="divTxtCriteria" class="span5">
+                <input type="text" id="txtName" name="Criteria" class="control-group" style="border:1px solid #E1E1DD" />
+            </div>
+            <button id="btnSearch" class="btn btn-primary m-b-5 pull-left" onclick="buildPaganationUser()" style="margin-left:5px!important;"><i class="fa fa-search"></i> Search</button>
+        </div>
+    </div>*@
+    @* search page*@
+    <label id="lblTotalRecords" class="pull-right control-label" style="color: red !important;"></label>
+    <div class="widget-box">
+        <div class="widget-title">
+            <a>
+                <span class="icon"><i class="icon-align-justify"></i></span>
+                <h5>NAME</h5>
+            </a>
+            <input type="text" id="txtName" name="Criteria" class="control-group pull-left" style="border:1px solid #E1E1DD" />
+            <button id="btnSearch" class="btn btn-primary m-b-5 pull-left" onclick="buildPaganationUser()"><i class="fa fa-search"></i> Search</button>
+
+            <select id="ddlRowPerPage" class="no-search pull-right" style="width:5%!important;">
+                <option value="25">25</option>
+                <option value="50" selected="selected">50</option>
+                <option value="75">75</option>
+                <option value="100">100</option>
+            </select>
+            <label class="control-label pull-right">Rows</label>
+            <ul id="ulPaginationUserDetail" class="pagination pull-right"></ul>
+        </div>
+
+        <div class="widget-content nopadding tableFixHead" style="height:400px; width:100%!important; overflow:auto;">
+            <table id="tblUser">
+                <thead>
+                    <tr>
+                        <th class="pd-vehicletblText">USER NAME</th>
+                        <th class="pd-vehicletblText">NAME</th>
+                        <th class="pd-vehicletblText">EMAIL</th>
+                        <th class="pd-vehicletblText">PHONE</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<style>
+ .tableFixHead {
+  overflow-y: auto;
+  height: 200px;
+}
+
+.tableFixHead table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+ .tableFixHead th, .tableFixHead td {
+
+    padding: 5px 5px;
+    border: 1px solid #e3dddd;
+     text-align:left;
+
+}
+
+.tableFixHead th {
+  position: sticky;
+  top: 0;
+  background: #eee;
+}
+</style>

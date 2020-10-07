@@ -1,0 +1,370 @@
+﻿@using MalaGroupERP.Models
+@model CustomReportModel
+@{
+    ViewBag.Title = "Custom Report";
+}
+<script src="@Url.Content("~/Content/Pages/CustomReports/CustomReport.js")"></script>
+<div id="breadcrumb"> <a href="/Home/Index" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="tip-bottom">Custom Report</a> <a href="#" class="current">Add / Edit</a> </div>
+<input type="hidden" id="hndCusReporID" value="0" />
+<input type="hidden" id="hndCIDs" value="0" />
+<input type="hidden" id="hndColumnName" value="0" />
+<input type="hidden" id="hndTableID" value="0" />
+<input type="hidden" id="hndFileName" value="0" />
+<input type="hidden" id="hndReportFor" value="0" />
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget-box">
+                <div class="widget-title" >
+                    <span class="icon">
+                        <i class="icon-pencil"></i>
+                    </span>
+                    <h5 style="padding:0px!important"><label class="control-label" id="headText" style="padding:8px!important"></label></h5>
+                    <div class="btn-group pull-right">
+                        <button type="button" class="btn btn-info" onclick="gotoCustom()">Custom Report List</button>
+                    </div>
+                </div>
+                <div class="widget-content nopadding">
+                    <div id="form-wizard" class="form-horizontal">
+                        <div id="form-wizard-1" class="step">
+                            <div class="widget-content form-horizontal" style="padding: 5px 12px;">
+                                <div class="control-group">
+                                    <label class="control-label pull-right">Report Name<span style="color:red">*</span> </label>
+                                    <div class="controls">
+                                        <input type="text" id="txtReportName" placeholder="Report Name" value="" style="width:48%!important" />
+                                    </div>
+                                </div>
+                                <div class="control-group" >
+                                    <label class="control-label pull-right">Report For<span style="color:red">*</span> </label>
+                                    <div class="controls">
+                                        <select id="ddlReportFor" style="width:50%!important">
+                                            <option value="0">-- Select Report For --</option>
+                                            <option value="1">Account</option>
+                                            <option value="2">Lead</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="control-group ">
+                                    <label class="control-label">IsPublic</label>
+                                    <div class="form-inline clearfix">
+                                        <span id="spanCheckBoxes">
+                                            <input type="checkbox" id="chkIsPublic" />
+                                        </span>
+                                    </div>
+                                </div>
+                                @*<div class="control-group ">
+                                    <label class="control-label">Save Report</label>
+                                    <div class="form-inline clearfix">
+                                        <span id="spanCheckBoxes">
+                                            <input type="checkbox" id="chkSaveReport" />
+                                        </span>
+                                    </div>
+                                </div>*@
+                            </div>
+                                <div class="form-actions pull-right">
+                                    <input id="next" class="btn btn-primary" type="submit" onclick="nextTab(1)" value="Next" />
+                                    <div id="status"></div>
+                                </div>
+                            </div>
+                        <div id="form-wizard-2" class="step">
+                            <div class="widget-content nopadding tableFixHead" style="height:400px; width:100%!important; overflow:auto;">
+                                <table id="tblStep2" >
+                                    <thead>
+                                        <tr>
+                                            <td class="">
+                                                <input type="checkbox" class="chkFull"  />
+                                            </td>
+                                            <td>Field Name</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                            <div class="form-actions pull-right">
+                                <input id="back" class="btn btn-primary" type="reset" onclick="backTab(2)" value="Back" />
+                                <input id="add" class="btn btn-primary" type="submit" onclick="nextTab(2)" value="Next" />
+                                <div id="status"></div>
+                            </div>
+                        </div>
+                        <div id="form-wizard-3" class="step">
+                            <div class="widget-content form-horizontal" style="padding: 5px 12px;" >
+                                    <div class="control-group">
+                                        <label class="control-label pull-right">Filter Field :</label>
+                                        <div class="controls">
+                                            <select id="ddlFilterField"></select>
+                                        </div>
+                                    </div>
+                                    <div class="control-group" id="divCon">
+                                    <label class="control-label pull-right">Filter Condition :</label>
+                                    <div class="controls">
+                                        <select id="ddlFieldCondition"></select>
+                                    </div>
+                                </div>
+                                    <div class="control-group hidden" id="divText">
+                                        <label class="control-label pull-right">Filter Value </label>
+                                        <div class="controls">
+                                            <input type="text" class="span11" id="txtFilterValue" />
+                                        </div>
+                                        <div class="pull-right">
+                                           
+                                            <input id="btnCusReFilterTXT pull-right" class="btn btn-primary" type="submit" onclick="saveCusReFilterTxt()" value="Add" />
+                                            <div id=""></div>
+                                        </div>
+                                    </div>
+                                    <div class="control-group hidden" id="divMulSelect">
+                                        <label class="control-label">Filter Value </label>
+                                        <div class="controls">
+                                            <select id="ddlFilterValue" multiple></select>
+                                        </div>
+                                        <div class="pull-right">
+                                            @*<input id="btnviewCon pull-right" class="btn btn-primary" type="submit" onclick="viewCon()" value="View" />*@
+                                            <input id="btnCusReFilterTXT pull-right" class="btn btn-primary" type="submit" onclick="saveCusReFilterDDL()" value="Add" />
+                                            <div id=""></div>
+                                        </div>
+                                    </div>
+                                    <div class="control-group  hidden" id="divDate">
+                                        <label class="control-label">Filter Value </label>
+                                        <div class="controls">
+                                            <div data-date="12-02-2018" class="input-append date datepicker " style="width:40%!important">
+                                                <input type="text" id="dtDate" data-date-format="mm/dd/yyyy" class="datepicker span2" style="width:63%!important" value="@DateTime.Now.ToString("MM/dd/yyyy")">
+                                                <span class="add-on"><i class="icon-th"></i></span>
+                                            </div>
+                                        </div>
+                                        <input id="btnCusReFilterDate pull-right" class="btn btn-primary" type="submit" onclick="saveCusReFilterDate1()" value="Add" />
+                                    </div>
+                                    <div class="control-group  hidden" id="divDateFromTo">
+                                    <label class="control-label">Filter Value </label>
+                                    <div class="controls">
+                                        <div data-date="12-02-2018" class="input-append date datepicker " style="width:40%!important">
+                                            <input type="text" id="dtFromDate" data-date-format="mm/dd/yyyy" class="datepicker span2" style="width:63%!important" value="@DateTime.Now.AddDays(-7).ToString("MM/dd/yyyy")">
+                                            <span class="add-on"><i class="icon-th"></i></span>
+                                        </div>
+
+                                        To  <div data-date="12-02-2018" class="input-append date datepicker " style="width:40%!important">
+                                            <input type="text" id="dtTotDate" data-date-format="mm/dd/yyyy" class="datepicker span2" style="width:63%!important" value="@DateTime.Now.ToString("MM/dd/yyyy")">
+                                            <span class="add-on"><i class="icon-th"></i></span>
+                                        </div>
+                                    </div>
+                                    <input id="btnCusReFilterDate pull-right" class="btn btn-primary" type="submit" onclick="saveCusReFilterDate2()" value="Add" />
+                                </div>
+                                    <div class="control-group hidden" id="divcheck">
+                                        <label class="control-label">Filter Value </label>
+                                        <div class="form-inline clearfix">
+                                            <span id="spanCheckBoxes">
+                                                <input type="checkbox" name="chkFilterValue" id="chkFilterValue" class="filled-in" />
+                                                <label id="lblChkFilterValue" for="chkFilterValue" style="font-size:14px;font-weight:bold;margin: 10px 10px 6px 10px;padding-left:0px!important;"> Yes</label>
+                                            </span>
+                                        </div>
+                                        <input id="btnCusReFilterchk pull-right" class="btn btn-primary" type="submit" onclick="saveCusReFilterChk()" value="Add" />
+                                    </div>
+                            </div>
+                            <div class="widget-content nopadding tableFixHeadVal" style="height:225px; width:100%!important; overflow:auto;">
+                                <table id="tblFiltervalue">
+                                    <thead>
+                                        <tr>
+                                            <th>Filter Field</th> 
+                                            <th>Filter Condition</th>
+                                            <th>Filter Value</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                            <div class="form-actions pull-right">
+                                <input id="back" class="btn btn-primary" type="reset" onclick="backTab(3)" value="Back" />
+                                <input id="next" class="btn btn-primary" type="submit" onclick="nextTab(3)" value="Next" />
+                                <div id="status"></div>
+                            </div>
+                        </div>
+                        <div id="form-wizard-4" class="step">
+                            <div class="widget-content " style="padding: 5px 12px;">
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <input type="submit" id="btnView"  value="Save and Download Report" onclick="lastStep(1)" style="width:48%!important" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <input type="submit" id="btnDown" value="Download  without Saving Report" onclick="lastStep(0)" style="width:48%!important" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-actions pull-right">
+                                <input id="btnFinished" class="btn btn-primary hidden" type="reset"  value="Finished" disabled/>
+                                <input id="btnback" class="btn btn-primary" type="reset" onclick="backTab(4)" value="Back" />
+                                <input id="add" class="btn btn-primary" type="submit" onclick="newReport()" value="New" />
+                                <div id="status"></div>
+                            </div>
+                        </div>
+                        <div id="submitted"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hidden">
+            <div class="widget-box">
+                <div class="widget-title">
+                    <span class="icon">
+                        <i class="icon-th-list"></i>
+                    </span>
+                    <h5>Report Details</h5>
+                </div>
+                <div class="widget-content">
+                    <div class="alert alert-info hidden" id="divStep1">
+                        <div class="controls">
+                            <span id="lblReportName"></span><br />
+                            <span id="lblReportFor"></span><br />
+                            <span id="lblPublic"></span><br />
+                            <span id="lblSave"></span><br />
+                        </div>
+                    </div>
+                    <div class="alert alert-success hidden" id="divStep2">
+                        <div class="widget-content nopadding tableFixHead3" style="height:150px; width:100%!important; overflow:auto;">
+                            <table id="tbllblStep3">
+                                <thead></thead>
+                                <tbody></tbody>
+                            </table>
+                            <a href="javascript:void(0)" class="pull-right" onclick="getReportFieldListMore()" id="Cusmore">more</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div id="popFiltervalue" class="example_content ">
+    <div class="row-fluid span10">
+        <div class="widget-content span10">
+                <div class="widget-content nopadding tableFixHeadVal" style="height:300px; width:100%!important; overflow:auto;">
+                    <table id="tblFiltervalue" >
+                        <thead>
+                            <tr>
+                                <th>Filter Field</th>
+                                <th>Filter Condition</th>
+                                <th>Filter Value</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+        </div>
+        
+    </div>
+
+</div>
+<style>
+    quefooter {
+        position: fixed;
+        height: 40px;
+        bottom: 0;
+        width: 100%;
+        background-color: white;
+        box-shadow: 0px 0px 5px 0px #888888;
+    }
+
+    input:disabled,
+    button[disabled] {
+        border: 2px solid #ff6a00;
+        border-bottom: double;
+        border-bottom-color: navy;
+        border-bottom-width: thick;
+        color: #ff0000;
+    }
+
+    .csStyle{
+        margin-left: 112px;
+        padding: 5px 0;
+    }
+        .pd-vehicletblText {
+        text-align: left !important;
+    }
+
+    #tblAccounts tr {
+        cursor: pointer;
+    }
+
+    .tableFixHead {
+        overflow-y: auto;
+        height: 200px;
+    }
+
+        .tableFixHead table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .tableFixHead th, .tableFixHead td {
+            padding: 5px 5px;
+            border: 1px solid #e3dddd;
+            text-align: left;
+        }
+
+        .tableFixHead th {
+            position: sticky;
+            top: 0;
+            background: #eee;
+        }
+
+
+         .tableFixHead3 {
+        overflow-y: auto;
+        height: 200px;
+    }
+
+        .tableFixHead table3 {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .tableFixHead3 th, .tableFixHead3 td {
+            padding: 1px 0px;
+            /*border: 1px solid #e3dddd;*/
+            text-align: left;
+        }
+
+        .tableFixHead3 th {
+            position: sticky;
+            top: 0;
+            background: #eee;
+        }
+
+
+              .tableFixHeadVal {
+        overflow-y: auto;
+        height: 200px;
+    }
+
+        .tableFixHeadVal table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .tableFixHeadVal th, .tableFixHeadVal td {
+            padding: 6px 20px;
+            border: 1px solid #e3dddd;
+            text-align: left;
+        }
+
+        .tableFixHeadVal th {
+            position: sticky;
+            top: 0;
+            background: #eee;
+        }
+</style>
+
+<script>
+    $('#form-wizard-2').hide();
+    $('#form-wizard-3').hide();
+    $('#form-wizard-4').hide();
+    $('#form-wizard-5').hide();
+    $('#form-wizard-6').hide();
+    $('#form-wizard-7').hide();
+    $('#form-wizard-8').hide();
+    $('#form-wizard-9').hide();
+    $('#divAccount').hide();
+    $('#divCallHistory').hide();
+</script>

@@ -1,0 +1,154 @@
+﻿@{
+    ViewBag.Title = "Agent Order";
+}
+<script src="~/Content/Pages/Leads/Leads.js"></script>
+<div id="content-header">
+    <div id="breadcrumb"> <a href="/Home/Index" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="tip-bottom">Lead Information</a> <a href="#" class="current">List</a> </div>
+
+</div>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="widget-box">
+            <div class="widget-title">
+             
+                    <span class="icon"> <i class="icon-star-empty"></i> </span>
+                    <h5>Agent Order</h5>
+               
+                    <div class="btn-group pull-right">
+                        <button type="button" class="btn btn-info">New</button>
+                        <button type="button" class="btn btn-primary">Import</button>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                Add To Campaign <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">Change Status</a></li>
+                                <li><a href="#">Change Owner</a></li>
+                                <li><a href="#">Send List Email</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                  
+                
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="widget-box">
+        <div class="widget-title">
+            <span class="icon"><i class="icon-th"></i></span>
+            <h5></h5>
+        </div>
+        <div class="widget-content nopadding">
+            <table id="tblLeads" class="table table-bordered data-table">
+                <thead>
+                    <tr>
+                        <th><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox" /></th>
+                        <th>NAME</th>
+                        <th>TITLE</th>
+                        <th>COMPANY</th>
+                        <th>PHONE</th>
+                        <th>MOBILE</th>
+                        <th>EMAIL</th>
+                        <th>LEAD STATUS</th>
+                        <th>OWNER ALIAS</th>
+                       
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="gradeX">
+                        <td><input type="checkbox" /></td>
+                        <td><a href="~/Leads/AddEdit">David Adelson</a></td>
+                        <td>
+                            Director, Information Technology
+                        </td>
+                        <td>Green Dot Publishing</td>
+                        <td>1 (800) 667-6389</td>
+                        <td>1 (800) 667-6389</td>
+                        <td>info@salesforce.com</td>
+                        <td>
+                            Working
+                        </td>
+                        <td>Admin</td>                
+                    </tr>
+                    <tr class="gradeX">
+                        <td><input type="checkbox" /></td>
+                        <td><a href="">Sarah Loher</a></td>
+                        <td>
+                            System Administrator
+                        </td>
+                        <td>MedLife, Inc.</td>
+                        <td>1 (800) 667-6389</td>
+                        <td>1 (800) 667-6389</td>
+                        <td>info@salesforce.com</td>
+                        <td>
+                            Nurturing
+                        </td>
+                        <td>Admin</td>
+                    </tr>
+                  
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@*Modal Pop up*@
+
+<div id="divAddOwner" class="modal hide">
+    <div class="modal-header">
+        <button data-dismiss="modal" class="close" type="button">×</button>
+        <h3>Add Lead Owner</h3>
+    </div>
+    <div class="modal-body">
+        <div class="control-group">
+            <label class="control-label">Search Name</label>
+            <div class="controls">
+                <input type="text" id="txtSearchOwnerName" class="pull-left" placeholder="Search Name" />
+                <button type="submit" class="btn btn-info span1">Search</button>
+                <table class="table table-bordered table-striped with-check">
+                    <thead>
+                        <tr>
+                            <th><i class="icon-resize-vertical"></i></th>
+                            <th>Name</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="checkbox" /></td>
+                            <td>Trident</td>
+
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" /></td>
+                            <td>Trident</td>
+
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" /></td>
+                            <td>Trident</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" /></td>
+                            <td>Trident</td>
+
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" /></td>
+                            <td>Trident</td>
+
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" /></td>
+                            <td>Trident</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,92 @@
+﻿
+.card_number {
+    background-image: url(../images/images.png), url(../images/images.png);
+    background-position: 2px -98px, 260px -48px;
+    background-size: 120px 361px, 120px 361px;
+    background-repeat: no-repeat;
+    padding-left: 54px!important;
+}
+
+.card_number.visa {
+    background-position: 2px -131px, 260px -48px
+}
+.card_number.valid.visa {
+    background-position: 2px -131px, 260px -71px
+}
+
+.card_number.visa_electron {
+    background-position: 2px -164px, 260px -48px
+}
+.card_number.valid.visa_electron {
+    background-position: 2px -164px, 260px -71px
+}
+
+.card_number.mastercard {
+    background-position: 2px -198px, 260px -48px
+}
+.card_number.valid.mastercard {
+    background-position: 2px -198px, 260px -71px
+}
+
+.card_number.diners_club_carte_blanche {
+    background-position: 2px -232px, 260px -48px
+}
+.card_number.valid.diners_club_carte_blanche {
+    background-position: 2px -232px, 260px -71px
+}
+
+.card_number.diners_club_international {
+    background-position: 2px -232px, 260px -48px
+}
+.card_number.valid.diners_club_international {
+    background-position: 2px -232px, 260px -71px
+}
+
+.card_number.discover {
+    background-position: 2px -267px, 260px -48px
+}
+.card_number.valid.discover {
+    background-position: 2px -267px, 260px -71px
+}
+
+.card_number.amex {
+     background-position: 2px -301px, 260px -48px
+}
+.card_number.valid.amex {
+    background-position: 2px -301px, 260px -71px
+}
+
+.card_number.jcb {
+    background-position: 2px -334px, 260px -48px
+}
+.card_number.valid.jcb {
+     background-position: 2px -334px, 260px -71px
+}
+
+
+/*Need To Add New Images Here*/
+
+.card_number.maestro {
+    background-position: 2px -98px, 260px -48px
+}
+.card_number.valid.maestro {
+    background-position: 2px -98px, 260px -71px
+}
+.card_number.laser {
+     background-position: 2px -98px, 260px -48px
+}
+.card_number.valid.laser {
+     background-position: 2px -98px, 260px -71px
+}
+.card_number.dankort {
+     background-position: 2px -98px, 260px -48px
+}
+.card_number.valid.dankort {
+     background-position: 2px -98px, 260px -71px
+}
+.card_number.uatp {
+     background-position: 2px -98px, 260px -48px
+}
+.card_number.valid.uatp {
+     background-position: 2px -98px, 260px -71px
+}

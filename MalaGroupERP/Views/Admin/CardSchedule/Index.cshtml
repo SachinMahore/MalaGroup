@@ -1,0 +1,78 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<script src="@Url.Content("~/Content/Pages/Admin/CardSchedule/CardSchedule.js")"></script>
+<div id="breadcrumb"> <a href="/Home/Index" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="tip-bottom">Card Schedule</a> </div>
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="widget-box">
+            <div class="widget-title">
+                <span class="icon"> <i class="icon-star-empty"></i> </span>
+                <h5>Card Schedule</h5>
+                <div class="btn-group pull-right">
+                    <button type="button" class="btn btn-primary" id="btnImportCardSchedule">Import</button>
+                </div>
+            </div>
+            <div class="widget-content nopadding" style="width:100%!important;">
+                <div class="control-group">
+                    <label class="control-label">Schedule Date</label>
+                    <div class="controls">
+                        <div data-date="12-02-2018" class="input-append date datepicker">
+                            <input type="text" id="txtSCChargeDate" data-date-format="mm/dd/yyyy" class="datepicker span11" value="@DateTime.Now.ToString("MM/dd/yyyy")">
+                            <span class="add-on"><i class="icon-th"></i></span>
+                        </div> 
+                        &nbsp;&nbsp;&nbsp;<button id="btnSerachCardSchedule" class="btn btn-primary" onclick="getCaredScheduleDetails()">Search</button>
+                        &nbsp;&nbsp;&nbsp;<button id="btnChargeCard" class="btn btn-primary" onclick="chargeCreditCards()">Charge Card</button>
+                    </div>
+                    
+                </div>
+                <table id="tblCreditCardSchedule" class="table table-bordered table-striped with-check">
+                    <thead>
+                        <tr>
+                            <th><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox" /></th>
+                            <th class="sc-td">Opportunity ID</th>
+                            <th class="sc-td">Pin Number</th>
+                            <th class="sc-td">Name</th>
+                            <th class="sc-td">Payment Status</th>
+                            <th class="sc-td">Invoice Number</th>
+                            <th class="sc-td">Card Number</th>
+                            <th class="sc-td">Expiration Month/Year</th>
+                            <th class="sc-td">Charge Amount</th>
+                            <th class="sc-td">Charge Date</th>
+                        </tr>
+                    </thead>
+                    <tbody class="pd-tbody"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="popUploadScheduleFile" class="example_content ">
+    <div class="control-group">
+        <label class="control-label">File upload input</label>
+        <input type="file" id="openFileImportList" />
+    </div>
+    <button type="button" class="btn btn-info" onclick="importCardSchedule();">Save</button>
+</div>
+<style>
+    .sc-td{
+        width:200px!important;
+    }
+    
+     #tblCreditCardSchedule tbody {
+        display: block;
+        overflow: auto;
+        height: 300px;
+    }
+
+    #tblCreditCardSchedule thead tr {
+        display: block;
+    }
+
+</style>
+<script>
+    $('.dataTables_filter').addClass('hidden');
+</script>

@@ -1,0 +1,101 @@
+﻿
+@{
+    ViewBag.Title = "Datewise Schedule";
+
+}
+
+<script src="@Url.Content("~/Content/Pages/Admin/CardSchedule/DatewiseSchedule.js")"></script>
+<div id="breadcrumb"> <a href="/Home/Index" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="tip-bottom">Card Schedule</a> </div>
+<input type="hidden" id="hndFileName" value="" />
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="widget-box">
+            <div class="widget-title">
+                <span class="icon"> <i class="icon-star-empty"></i> </span>
+                <h5>Datewise Schedule</h5>
+                <div class="btn-group pull-right">
+                    <button type="button" class="btn btn-primary" id="btnImportCardSchedule" onclick="saveToDiskExcelFile();">Export</button>
+                </div>
+            </div>
+            <div class="widget-content  form-vertical"  style="width:100%!important;">
+                <div class="control-group span3">
+                    <label class="control-label">Schedule Date</label>
+                    <div class="controls">
+                        <div data-date="12-02-2018" class="input-append date datepicker max-date">
+                            <input type="text" id="txtDCChargeDate" data-date-format="mm/dd/yyyy" class="datepicker max-date span11" value="@DateTime.Now.ToString("MM/dd/yyyy")">
+                            <span class="add-on"><i class="icon-th"></i></span>
+                        </div>
+                     
+                    </div>
+
+                </div>
+                <div class="control-group span3">
+                    <label class="control-label">Payment Status</label>
+                    <div class="controls">
+                        <select id="ddlPaymentStatus">
+                            <option value="2">Pending</option>
+                            <option value="1">Completed</option>
+                            <option value="3">Both</option>
+                        </select>
+                        <button id="btnSerachCardSchedule" class="btn btn-primary" onclick="getCardScheduleDatewise()">Search</button>
+                        <button id="btnChargePendingSchedule" class="btn btn-primary" onclick="chargeCardScheduleDatewise()">Charge Pending Schedule</button>
+                    </div>
+                </div>
+
+                <div class="tableFixHead" style="height:400px; width:100%!important; overflow:auto;">
+                    <table id="tblCreditCardSchedule" >
+                        <thead>
+                            <tr>
+                                <th class="scd-td">CDID</th>
+                                <th class="scd-td">Pin Number</th>
+                                <th class="scd-td">Billing Name</th>
+                                <th class="scd-td">Address</th>
+                                <th class="scd-td">City</th>
+                                <th class="scd-td">State</th>
+                                <th class="scd-td">Zip</th>
+                                <th class="scd-td">Payment Status</th>
+                                <th class="scd-td">Invoice Number</th>
+                                <th class="scd-td">Card Number</th>
+                                <th class="scd-td">Expiration Month/Year</th>
+                                <th class="scd-td">Charge Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="popUploadScheduleFile" class="example_content ">
+    <div class="control-group">
+        <label class="control-label">File upload input</label>
+        <input type="file" id="openFileImportList" />
+    </div>
+    <button type="button" class="btn btn-info" onclick="importCardSchedule();">Save</button>
+</div>
+<style>
+    .tableFixHead {
+        overflow-y: auto;
+        height: 200px;
+    }
+
+        .tableFixHead table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .tableFixHead th, .tableFixHead td {
+            padding: 5px 5px;
+            border: 1px solid #e3dddd;
+            text-align: left;
+        }
+
+        .tableFixHead th {
+            position: sticky;
+            top: 0;
+            background: #eee;
+        }
+</style>

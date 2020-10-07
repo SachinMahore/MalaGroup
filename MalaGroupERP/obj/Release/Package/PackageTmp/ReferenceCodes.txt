@@ -1,0 +1,13 @@
+﻿--Charge		1
+--Refund		2
+--Void			3
+--Authorization	4
+--Paused		5
+--Check			0
+--Full Pay		6
+
+--Mastercard		2
+--Discover			3
+--					0
+--American Express	4
+--Visa				1

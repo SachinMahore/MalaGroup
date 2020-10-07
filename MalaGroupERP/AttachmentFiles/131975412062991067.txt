@@ -1,0 +1,5 @@
+select * from dbo.syResources
+select * from dbo.syNavigationNodes
+insert into syResources values(21,'Order Script',2,'Question','Index',1,0,NULL,NULL,NULL,NULL)
+
+insert into syNavigationNodes values (22,21,1,0)

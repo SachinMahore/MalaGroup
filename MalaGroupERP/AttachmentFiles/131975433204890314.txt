@@ -1,0 +1,30 @@
+declare @pinn nvarchar(20)
+set @pinn='tm123'
+SELECT * FROM tbl_OrderTransactions WHERE AOID IN (SELECT ORDERID FROM tbl_AgentOrder WHERE PinNo=@pinn)
+SELECT * FROM tbl_Accounts WHERE ID IN (SELECT AccountID FROM tbl_AgentOrder WHERE PinNo=@pinn)
+SELECT * FROM tbl_agentorderdetails WHERE AOID IN (SELECT ORDERID FROM tbl_AgentOrder WHERE PinNo=@pinn)
+SELECT * FROM tbl_ordercardcheckinfo WHERE AOID IN (SELECT ORDERID FROM tbl_AgentOrder WHERE PinNo=@pinn)
+SELECT * FROM tbl_AgentOrder WHERE PinNo=@pinn
+
+--DELETE FROM tbl_OrderTransactions WHERE AOID IN (SELECT ORDERID FROM tbl_AgentOrder WHERE PinNo=@pinn)
+--DELETE FROM tbl_Accounts WHERE ID IN (SELECT AccountID FROM tbl_AgentOrder WHERE PinNo=@pinn)
+--DELETE FROM tbl_agentorderdetails WHERE AOID IN (SELECT ORDERID FROM tbl_AgentOrder WHERE PinNo=@pinn)
+--DELETE FROM tbl_ordercardcheckinfo WHERE AOID IN (SELECT ORDERID FROM tbl_AgentOrder WHERE PinNo=@pinn)
+--DELETE FROM tbl_AgentOrder WHERE PinNo=@pinn
+
+--update tbl_OrderTransactions SET  ChargeDate='05/27/2019' where cdid=256589
+
+--INSERT INTO tbl_OrderTransactions VALUES ('02/17/2019',103532,2,1, NULL,NULL,'',NULL,'',36.5,0,0,36.5,'','','',NULL,NULL)
+--INSERT INTO tbl_OrderTransactions VALUES ('03/17/2019',103532,3,1, NULL,NULL,'',NULL,'',36.5,0,0,36.5,'','','',NULL,NULL)
+--INSERT INTO tbl_OrderTransactions VALUES ('04/17/2019',103532,4,1, NULL,NULL,'',NULL,'',36.5,0,0,36.5,'','','',NULL,NULL)
+--INSERT INTO tbl_OrderTransactions VALUES ('05/17/2019',103532,5,1, NULL,NULL,'',NULL,'',36.5,0,0,36.5,'','','',NULL,NULL)
+--INSERT INTO tbl_OrderTransactions VALUES ('06/17/2019',103532,6,1, NULL,NULL,'',NULL,'',36.5,0,0,36.5,'','','',NULL,NULL)
+
+--INSERT INTO tbl_OrderTransactions VALUES ('25-Jan-2019 03:36:02 PM',103493,2,1, 61523346443,086318,'','6303','',36.50,1,0,36.50,'','','This transaction has been approved.','Approved',1)
+
+--INSERT INTO tbl_OrderTransactions VALUES ('03/17/2019',103510,3,1, NULL,NULL,'',NULL,'',73,0,0,73,'','','',NULL,NULL)
+
+--update tbl_OrderTransactions SET  TransactionID=61502376047 where cdid=256634
+--update tbl_OrderTransactions SET  TransactionID=0, StatusText='Approved- Full Pay' where cdid=256633
+--
+update tbl_OrderTransactions SET  ChargeDate='25-Jan-2019 03:35:29 PM',TransactionID=61523345019,AuthCode=519781,CardCheckNumber='XXXX3948',Status=1,ResonText='This transaction has been approved.',StatusText='Approved',TransType=1 where cdid=255290
